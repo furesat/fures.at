@@ -258,14 +258,14 @@ export function Header() {
     `${navBaseClasses} ${
       isActive(path)
         ? "liquid-pill is-active text-white"
-        : "rounded-full border border-white/10 bg-white/5 text-slate-200/75 hover:border-white/20 hover:bg-white/10 hover:text-white"
+        : "fures-nav-item-idle text-slate-200/75 hover:text-white"
     }`;
 
   const navGlassStyle = {
-    "--glass-surface-bg": "rgba(6, 12, 30, 0.08)",
-    "--glass-surface-border": "rgba(255, 255, 255, 0.18)",
-    "--glass-surface-highlight": "rgba(255, 255, 255, 0.35)",
-    "--glass-surface-reflection": "rgba(210, 230, 255, 0.22)",
+    "--glass-surface-bg": "rgba(15, 15, 20, 0.4)",
+    "--glass-surface-border": "rgba(255, 255, 255, 0.16)",
+    "--glass-surface-highlight": "rgba(255, 255, 255, 0.5)",
+    "--glass-surface-reflection": "rgba(210, 230, 255, 0.28)",
     "--glass-highlight-height": "9%",
     "--glass-reflection-height": "42%",
   } as CSSProperties;
@@ -293,8 +293,7 @@ export function Header() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex w-full items-center justify-between sm:w-auto sm:flex-none">
           <Link to="/" className="group relative flex items-center">
-            <span className="absolute inset-0 -z-20 rounded-full bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.28),rgba(9,9,11,0))] opacity-45 blur-xl transition duration-300 group-hover:opacity-70" />
-            <span className="relative flex items-center rounded-full border border-white/10 bg-black/10 px-4 py-2 backdrop-blur-3xl">
+            <span className="fures-logo-pill relative flex items-center">
               <img
                 src={logoSrc}
                 alt="Fures"
@@ -312,7 +311,7 @@ export function Header() {
             <div className="absolute inset-0 -z-10 rounded-full bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),rgba(9,9,11,0))] opacity-50 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
             <nav
               ref={navRef}
-              className="liquid-glass group relative flex items-center gap-3 overflow-x-auto rounded-full px-4 py-3 backdrop-blur-[42px] backdrop-saturate-[1.65] shadow-[0_32px_90px_-58px_rgba(12,16,40,0.9)] transition-all duration-500 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="fures-nav-glass group relative flex items-center gap-3 overflow-x-auto rounded-full px-4 py-3 transition-all duration-500 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               style={navGlassStyle}
               >
                 {!isMobileNav && highlightBoxStyle && (
@@ -355,7 +354,7 @@ export function Header() {
                 <DropdownMenuTrigger asChild>
                   <button
                     type="button"
-                    className={`${navBaseClasses} rounded-full border border-white/10 bg-white/5 text-slate-200/75 transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:text-white focus-visible:outline-none ${moreMenuActive ? "text-white" : ""}`}
+                    className={`${navBaseClasses} fures-nav-item-idle text-slate-200/75 transition-all duration-300 hover:text-white focus-visible:outline-none ${moreMenuActive ? "text-white" : ""}`}
                     data-active={moreMenuActive || undefined}
                     ref={moreTriggerRef}
                   >
@@ -417,10 +416,9 @@ export function Header() {
         <div className="hidden items-center gap-3 sm:flex">
           <LanguageSelector />
           <Link to="/tr/iletisim">
-            <Button variant="gradient" size="sm" className="group">
-              <span className="relative z-10">{t("nav.lets_talk")}</span>
-              <span className="relative z-10">→</span>
-            </Button>
+            <button className="fures-cta-pill">
+              {t("nav.lets_talk")}
+            </button>
           </Link>
         </div>
       </div>
