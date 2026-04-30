@@ -184,3 +184,8 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - `Trigger Demo` tetiklemesi korunmuştur; pulse etkisi yüzey deformasyonuna aynı akışla uygulanır.
 - Çok dilli davranışta değişiklik yoktur; `Hero.tsx` ve `HeroDE.tsx` ortak hero bileşenini kullanmaya devam eder.
 - Sitemap kontrolü: yeni route/page üretilmediği için `public/sitemap.xml` için URL ekleme gerekmemektedir.
+
+## Güncel Görev Notu (2026-04-30 / Fures Cloth Texture Revizyonu)
+- Hero animasyonu `KineticFuresCloth` yapısına geçirildi; kumaş yüzeyi ve `fures` yazısı artık canvas texture ile üretiliyor.
+- Işık sahnesi yeniden dengelendi (ambient/directional/point/spot kombinasyonu) ve pulse deformasyonu korunarak görünürlük artırıldı.
+- Sitemap kontrolü tekrar yapıldı: bu görevde yeni sayfa/route eklenmedi, `public/sitemap.xml` güncellemesi gerekmedi.
