@@ -178,3 +178,9 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - Bu yapıda dil bağımsız premium görsel deneyim korunur; çeviri odaklı değişiklikler hero dışında yapılmalıdır.
 - Gelecek ajanlar için kılavuz: Hero değişikliği gerekiyorsa `src/components/FuresTechHero.tsx` üzerinden ilerle; `Hero.tsx` ve `HeroDE.tsx` yalnızca bu ortak bileşeni çağırır.
 - SEO kontrol notu: Hero güncellemesi yeni rota üretmedi, bu nedenle sitemap URL listesine yeni öğe eklenmedi.
+
+## Güncel Görev Notu (2026-04-30 / Hero Visibility Fix)
+- `src/components/FuresTechHero.tsx` içinde hero efekt görünürlüğü artırıldı: yüzey pozisyonu öne taşındı, materyal kontrastı yükseltildi, ek spot/point light güçlendirildi, arka plan glow katmanları eklendi.
+- `Trigger Demo` tetiklemesi korunmuştur; pulse etkisi yüzey deformasyonuna aynı akışla uygulanır.
+- Çok dilli davranışta değişiklik yoktur; `Hero.tsx` ve `HeroDE.tsx` ortak hero bileşenini kullanmaya devam eder.
+- Sitemap kontrolü: yeni route/page üretilmediği için `public/sitemap.xml` için URL ekleme gerekmemektedir.
