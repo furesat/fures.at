@@ -27,7 +27,10 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.0",
     "tailwind-merge": "^2.3.0",
-    "yaml": "^2.8.1"
+    "yaml": "^2.8.1",
+    "three": "^0.176.0",
+    "@react-three/fiber": "^8.17.10",
+    "@react-three/drei": "^9.122.0"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
