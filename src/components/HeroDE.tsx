@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { MapPin, TrendingUp, Hotel, ArrowRight } from "lucide-react";
+import { ClothCanvas } from "./ClothCanvas";
 
 const ROTATING_WORDS = [
   "Direktbuchungen",
@@ -55,28 +56,28 @@ export function HeroDE() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden pt-16">
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-50/60 via-white to-purple-50/30 pointer-events-none" />
+    <section className="relative min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden pt-16">
+      {/* Three.js silk cloth background */}
+      <ClothCanvas />
 
-      {/* Decorative blobs — very faint */}
+      {/* Gradient overlay — left readable, edges darkened */}
       <div
-        className="absolute top-0 right-0 w-[480px] h-[480px] rounded-full bg-orange-100/30 blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-purple-100/20 blur-3xl pointer-events-none"
-        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 2,
+          background:
+            "linear-gradient(90deg, rgba(5,5,5,0.88) 0%, rgba(5,5,5,0.6) 30%, rgba(5,5,5,0.15) 60%, rgba(5,5,5,0) 75%), linear-gradient(180deg, rgba(5,5,5,0.45) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.55) 100%)",
+        }}
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 flex flex-col items-center text-center">
+      <div className="relative z-[5] max-w-5xl mx-auto px-6 py-24 flex flex-col items-center text-center">
         {/* Trust badge */}
         <motion.div
           variants={FADE_IN}
           initial="hidden"
           animate="visible"
           custom={0}
-          className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-orange-50 border border-orange-100 text-orange-600 text-sm font-medium"
+          className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-white/5 border border-white/12 text-orange-300 text-sm font-medium backdrop-blur-sm"
         >
           <MapPin className="w-4 h-4 shrink-0" />
           Büro in Maria Alm, Salzburgerland · DACH-Markt
@@ -88,15 +89,14 @@ export function HeroDE() {
           initial="hidden"
           animate="visible"
           custom={0.08}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-4"
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
           style={{ letterSpacing: "-0.03em" }}
         >
           Mehr{" "}
           <span
             className="inline-block transition-all duration-300"
             style={{
-              background:
-                "linear-gradient(135deg, #FF7A29 0%, #a855f7 100%)",
+              background: "linear-gradient(135deg, #FF7A29 0%, #a855f7 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -116,7 +116,7 @@ export function HeroDE() {
           initial="hidden"
           animate="visible"
           custom={0.16}
-          className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-10"
+          className="text-lg sm:text-xl text-white/65 max-w-2xl mx-auto leading-relaxed mb-10"
         >
           Professionelle Digitalstrategien für Hotels im DACH-Raum — von der
           Website über SEO bis zur Social-Media-Betreuung. Alles aus einer Hand.
@@ -132,14 +132,23 @@ export function HeroDE() {
         >
           <Link
             to="/de/leistungen"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 rounded-full transition-all duration-200 shadow-md shadow-orange-200 hover:shadow-orange-300 hover:-translate-y-px active:translate-y-0"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-full transition-all duration-200 hover:-translate-y-px active:translate-y-0"
+            style={{
+              background: "linear-gradient(90deg, #6ee7e0 0%, #c4e870 50%, #f4d35e 100%)",
+              color: "#0a0a0a",
+              boxShadow: "0 8px 32px rgba(110,231,224,0.15)",
+            }}
           >
             Leistungen entdecken
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             to="/de/kontakt"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 rounded-full transition-all duration-200 hover:-translate-y-px active:translate-y-0"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold text-white rounded-full transition-all duration-200 hover:-translate-y-px active:translate-y-0"
+            style={{
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.12)",
+            }}
           >
             Jetzt Beratung anfragen
           </Link>
@@ -160,23 +169,16 @@ export function HeroDE() {
                 key={i}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: 0.38 + i * 0.08,
-                }}
-                className="flex flex-col items-center gap-3 p-6 rounded-3xl bg-gray-50 border border-gray-100"
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.38 + i * 0.08 }}
+                className="fures-nav-glass flex flex-col items-center gap-3 p-6 rounded-3xl"
               >
-                <div className="flex items-center justify-center w-11 h-11 rounded-2xl bg-orange-100">
-                  <Icon className="w-5 h-5 text-orange-600" />
+                <div className="flex items-center justify-center w-11 h-11 rounded-2xl bg-orange-500/20 border border-orange-400/20">
+                  <Icon className="w-5 h-5 text-orange-400" />
                 </div>
-                <p
-                  className="text-2xl font-bold text-gray-900"
-                  style={{ letterSpacing: "-0.02em" }}
-                >
+                <p className="text-2xl font-bold text-white" style={{ letterSpacing: "-0.02em" }}>
                   {stat.value}
                 </p>
-                <p className="text-sm text-gray-500 text-center">{stat.label}</p>
+                <p className="text-sm text-white/55 text-center">{stat.label}</p>
               </motion.div>
             );
           })}

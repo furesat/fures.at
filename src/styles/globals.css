@@ -628,6 +628,210 @@
   }
 }
 
+/* ─── Fures enhanced glass system (Apple iridescent specular) ──────── */
+@layer components {
+
+  /* ── Main nav pill wrapper ── */
+  .fures-nav-glass {
+    position: relative;
+    isolation: isolate;
+    border-radius: 9999px;
+    border: none;
+    background:
+      radial-gradient(140% 100% at 50% -60%, rgba(255,255,255,0.16) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.012) 55%, rgba(255,255,255,0.05) 100%),
+      rgba(15,15,20,0.4);
+    backdrop-filter: blur(40px) saturate(180%) brightness(1.08);
+    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.16),
+      inset 0 -1px 0 rgba(0,0,0,0.2),
+      inset 0 0 0 0.5px rgba(255,255,255,0.05),
+      0 12px 40px rgba(0,0,0,0.35),
+      0 4px 12px rgba(0,0,0,0.2),
+      0 1px 2px rgba(0,0,0,0.15);
+    will-change: transform;
+  }
+
+  /* Iridescent specular border — Apple signature edge highlight (mask trick) */
+  .fures-nav-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.5) 0%,
+      rgba(255,255,255,0.08) 22%,
+      rgba(255,255,255,0) 42%,
+      rgba(255,255,255,0) 58%,
+      rgba(255,255,255,0.06) 78%,
+      rgba(255,255,255,0.28) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* ── Nav item idle state with radial spotlight hover ── */
+  .fures-nav-item-idle {
+    border-radius: 9999px;
+    background: transparent;
+    border: none;
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .fures-nav-item-idle:hover {
+    background:
+      radial-gradient(80% 100% at 50% 0%, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0.02) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.1),
+      inset 0 -1px 0 rgba(0,0,0,0.15);
+  }
+
+  /* ── Logo pill ── */
+  .fures-logo-pill {
+    position: relative;
+    isolation: isolate;
+    border-radius: 9999px;
+    border: none;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.02) 100%),
+      rgba(0,0,0,0.3);
+    padding: 12px 28px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      inset 0 -1px 0 rgba(0,0,0,0.25),
+      inset 0 0 20px rgba(0,0,0,0.2);
+  }
+
+  .fures-logo-pill::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ── CTA "Beratung anfragen" — gummy candy style ── */
+  .fures-cta-pill {
+    position: relative;
+    isolation: isolate;
+    border: none;
+    border-radius: 9999px;
+    padding: 11px 22px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a0f08;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 50%),
+      linear-gradient(135deg, #e0b083 0%, #c4896a 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.4),
+      inset 0 -1px 0 rgba(0,0,0,0.15),
+      0 4px 16px rgba(212,163,115,0.25),
+      0 1px 2px rgba(0,0,0,0.15);
+    transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.4s cubic-bezier(0.2,0.8,0.2,1);
+  }
+
+  /* Specular rim on CTA */
+  .fures-cta-pill::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.05));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .fures-cta-pill:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.5),
+      inset 0 -1px 0 rgba(0,0,0,0.15),
+      0 8px 28px rgba(212,163,115,0.4),
+      0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  /* ── Language / small glass pill (e.g. "DE DE") ── */
+  .fures-lang-pill {
+    position: relative;
+    isolation: isolate;
+    border-radius: 9999px;
+    border: none;
+    background:
+      radial-gradient(120% 100% at 50% -50%, rgba(255,255,255,0.14) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.012) 60%, rgba(255,255,255,0.04) 100%),
+      rgba(18,18,22,0.42);
+    backdrop-filter: blur(30px) saturate(180%) brightness(1.05);
+    -webkit-backdrop-filter: blur(30px) saturate(180%) brightness(1.05);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.14),
+      inset 0 -1px 0 rgba(0,0,0,0.18),
+      0 4px 16px rgba(0,0,0,0.25),
+      0 1px 2px rgba(0,0,0,0.2);
+    padding: 10px 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1), background 0.4s cubic-bezier(0.2,0.8,0.2,1);
+  }
+
+  .fures-lang-pill::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      140deg,
+      rgba(255,255,255,0.4) 0%,
+      rgba(255,255,255,0.06) 25%,
+      rgba(255,255,255,0) 55%,
+      rgba(255,255,255,0.05) 75%,
+      rgba(255,255,255,0.22) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .fures-lang-pill:hover {
+    transform: translateY(-1px);
+    background:
+      radial-gradient(120% 100% at 50% -50%, rgba(255,255,255,0.2) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.025) 60%, rgba(255,255,255,0.06) 100%),
+      rgba(28,28,32,0.5);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .fures-nav-glass,
+    .fures-logo-pill,
+    .fures-lang-pill {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: rgba(12, 16, 30, 0.92);
+    }
+  }
+}
+
 /**
  * Base typography - Apple HIG inspired hierarchy
  */

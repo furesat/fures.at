@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { ClothCanvas } from "./ClothCanvas";
 
 const FALLBACK_ROTATING_TEXTS = [
   "Dijital Ajans",
@@ -48,32 +49,21 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-16">
-      {/* Background Video - Full Screen with Proper Aspect Ratio */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <div className="absolute inset-0" style={{ width: '100%', height: '100%', padding: '56.25% 0 0 0', position: 'relative' }}>
-          <iframe
-            src="https://player.vimeo.com/video/1054768432?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0&playsinline=1&quality=auto"
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              width: '177.78vh',
-              height: '100vw',
-              minWidth: '100%',
-              minHeight: '100%',
-              transform: 'translate(-50%, -50%)',
-            }}
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            title="Hero Background Video"
-          />
-        </div>
-        {/* Dark overlay with radial gradient */}
-        <div className="absolute inset-0 bg-black/70 blur-gradient-inward"></div>
-      </div>
+      {/* Three.js silk cloth background */}
+      <ClothCanvas />
+
+      {/* Gradient overlay — left side readable, edges darkened */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          zIndex: 2,
+          background:
+            "linear-gradient(90deg, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.7) 25%, rgba(5,5,5,0.2) 50%, rgba(5,5,5,0) 65%), linear-gradient(180deg, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.6) 100%)",
+        }}
+      />
 
       {/* Ambient glow orbs - subtle, Apple-like */}
-      <div className="absolute inset-0 z-[1] pointer-events-none">
+      <div className="absolute inset-0 z-[3] pointer-events-none">
         <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-orange-500/12 rounded-full animate-glow-pulse blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-purple-600/12 rounded-full animate-glow-pulse blur-3xl" style={{ animationDelay: '2s' }}></div>
 
@@ -118,7 +108,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative z-[5] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
           {/* Badge - fades in softly */}
           <motion.div
@@ -215,7 +205,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6, ease: "easeOut" }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-[5]"
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}
