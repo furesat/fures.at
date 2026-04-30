@@ -1,70 +1,60 @@
 import type { CSSProperties } from "react";
-import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Globe } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const languages = [
-  { code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
+  { code: "tr", name: "Türkçe", flag: "🇹🇷" },
+  { code: "en", name: "English", flag: "🇺🇸" },
+  { code: "ru", name: "Русский", flag: "🇷🇺" },
+  { code: "de", name: "Deutsch", flag: "🇩🇪" },
 ];
 
 export function LanguageSelector() {
   const { language, setLanguage } = useLanguage();
 
-  const currentLanguage = languages.find(lang => lang.code === language);
-
-  const triggerGlassStyle = {
-    "--glass-surface-bg": "rgba(255, 255, 255, 0.12)",
-    "--glass-surface-border": "rgba(255, 255, 255, 0.24)",
-    "--glass-highlight-height": "12%",
-  } as CSSProperties;
-
-  const dropdownGlassStyle = {
-    "--glass-surface-bg": "rgba(255, 255, 255, 0.1)",
-    "--glass-surface-border": "rgba(255, 255, 255, 0.2)",
-    "--glass-highlight-height": "11%",
-    "--glass-reflection-height": "42%",
+  const dropdownGlassStyle: CSSProperties = {
+    "--glass-surface-bg": "rgba(8, 14, 28, 0.12)",
+    "--glass-surface-border": "rgba(255, 255, 255, 0.18)",
+    "--glass-surface-highlight": "rgba(255, 255, 255, 0.32)",
+    "--glass-surface-reflection": "rgba(210, 230, 255, 0.24)",
+    "--glass-highlight-height": "10%",
+    "--glass-reflection-height": "40%",
   } as CSSProperties;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          className="gap-2 text-xs text-white/80 hover:text-white"
-          style={triggerGlassStyle}
-        >
-          <Globe className="relative z-10 h-4 w-4" />
-          <span className="relative z-10 hidden text-sm sm:inline">{currentLanguage?.flag}</span>
-          <span className="relative z-10 text-sm">{currentLanguage?.code.toUpperCase()}</span>
-        </Button>
+        <button className="fures-lang-pill-sm text-white/70 hover:text-white/90">
+          <Globe className="h-3.5 w-3.5" />
+          <span className="font-semibold text-white text-xs">{language.toUpperCase()}</span>
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="liquid-glass mt-2 w-48 rounded-2xl p-1 text-white"
+        className="fures-dropdown-content mt-2 w-44 p-2"
         style={dropdownGlassStyle}
       >
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
-            onClick={() => setLanguage(lang.code as any)}
-            className={`liquid-glass flex cursor-pointer items-center gap-2 rounded-xl px-3 py-2 text-sm transition-all duration-200 ${
-              language === lang.code ? 'is-active text-white' : 'text-slate-200/75 hover:text-white'
-            }`}
-            data-active={language === lang.code || undefined}
-            style={dropdownGlassStyle}
+            asChild
+            className="p-0 focus:bg-transparent"
           >
-            <span className="text-lg">{lang.flag}</span>
-            <span>{lang.name}</span>
+            <button
+              onClick={() => setLanguage(lang.code as any)}
+              className={`fures-dropdown-item flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm ${
+                language === lang.code ? "text-white" : "text-white/65 hover:text-white"
+              }`}
+            >
+              <span className="text-base">{lang.flag}</span>
+              {lang.name}
+            </button>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

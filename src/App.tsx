@@ -82,12 +82,12 @@ function TRLayout() {
   );
 }
 
-// DE site layout – minimal light theme for DACH market
+// DE site layout – dark glass theme matching TR design
 function DELayout() {
   return (
-    <ThemeProvider theme="light">
+    <ThemeProvider theme="dark">
       <LanguageProvider initialLanguage="de">
-        <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
+        <div className="min-h-screen bg-black text-white overflow-x-hidden">
           <HeaderDE />
           <main>
             <Routes>

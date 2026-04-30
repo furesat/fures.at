@@ -68,128 +68,132 @@ export function ContactPageDE() {
     structuredData,
   });
 
+  const contactItems = [
+    {
+      href: "mailto:info@fures.at",
+      icon: Mail,
+      label: t("contact.email"),
+      value: "info@fures.at",
+      color: "orange",
+    },
+    {
+      href: "tel:+4366499735268",
+      icon: Phone,
+      label: t("contact.phone"),
+      value: "+43 664 99735268",
+      color: "orange",
+    },
+    {
+      href: null,
+      icon: MapPin,
+      label: t("contact.headquarters"),
+      value: t("contact.headquarters_location"),
+      sub: "Maria Alm, Salzburgerland, Österreich",
+      color: "purple",
+    },
+    {
+      href: "https://calendly.com/fures",
+      icon: Calendar,
+      label: t("contact.schedule_meeting"),
+      value: "Termin buchen",
+      color: "orange",
+      external: true,
+    },
+  ];
+
   return (
-    <div className="pt-24 min-h-screen bg-white">
-      <div className="max-w-5xl mx-auto px-6 py-16">
-        {/* Title section */}
+    <div className="pt-24 min-h-screen bg-black relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-orange-500/8 blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-purple-600/8 blur-3xl" />
+      </div>
+
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-16">
+        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16"
         >
-          <span className="text-orange-500 text-sm font-semibold tracking-widest uppercase mb-4 block">
+          <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase mb-4 block">
             {t("contact.title")}
           </span>
           <h1
-            className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4"
+            className="text-4xl sm:text-5xl font-bold text-white mb-4"
             style={{ letterSpacing: "-0.03em" }}
           >
             {t("contact.subtitle")}
           </h1>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+          <p className="text-lg text-white/55 max-w-2xl mx-auto">
             {t("contact.description")}
           </p>
         </motion.div>
 
         {/* Contact cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {/* Email card */}
-          <motion.a
-            href="mailto:info@fures.at"
-            variants={CARD_FADE}
-            initial="hidden"
-            animate="visible"
-            custom={0.08}
-            className="group block p-8 rounded-3xl border border-gray-100 bg-gray-50 hover:border-orange-200 hover:bg-orange-50/50 transition-all duration-300"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center group-hover:bg-orange-200 transition-colors duration-200 shrink-0">
-                <Mail className="w-6 h-6 text-orange-600" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">
-                  {t("contact.email")}
-                </p>
-                <p className="text-gray-900 font-medium">info@fures.at</p>
-              </div>
-            </div>
-          </motion.a>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
+          {contactItems.map((item, i) => {
+            const Icon = item.icon;
+            const iconBg =
+              item.color === "purple"
+                ? "bg-purple-500/15 border-purple-400/20"
+                : "bg-orange-500/15 border-orange-400/20";
+            const iconColor =
+              item.color === "purple" ? "text-purple-400" : "text-orange-400";
 
-          {/* Phone card */}
-          <motion.a
-            href="tel:+4366499735268"
-            variants={CARD_FADE}
-            initial="hidden"
-            animate="visible"
-            custom={0.14}
-            className="group block p-8 rounded-3xl border border-gray-100 bg-gray-50 hover:border-orange-200 hover:bg-orange-50/50 transition-all duration-300"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center group-hover:bg-orange-200 transition-colors duration-200 shrink-0">
-                <Phone className="w-6 h-6 text-orange-600" />
+            const inner = (
+              <div className="flex items-center gap-4">
+                <div
+                  className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border ${iconBg}`}
+                >
+                  <Icon className={`w-5 h-5 ${iconColor}`} />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-white/35 uppercase tracking-wider mb-0.5">
+                    {item.label}
+                  </p>
+                  <p className="text-white font-medium">{item.value}</p>
+                  {item.sub && (
+                    <p className="text-sm text-white/45 mt-0.5">{item.sub}</p>
+                  )}
+                </div>
               </div>
-              <div>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">
-                  {t("contact.phone")}
-                </p>
-                <p className="text-gray-900 font-medium">+43 664 99735268</p>
-              </div>
-            </div>
-          </motion.a>
+            );
 
-          {/* Address card */}
-          <motion.div
-            variants={CARD_FADE}
-            initial="hidden"
-            animate="visible"
-            custom={0.20}
-            className="p-8 rounded-3xl border border-gray-100 bg-gray-50"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center shrink-0">
-                <MapPin className="w-6 h-6 text-purple-600" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">
-                  {t("contact.headquarters")}
-                </p>
-                <p className="text-gray-900 font-medium">
-                  {t("contact.headquarters_location")}
-                </p>
-                <p className="text-sm text-gray-500 mt-0.5">
-                  Maria Alm, Salzburgerland, Österreich
-                </p>
-              </div>
-            </div>
-          </motion.div>
+            const cardClass =
+              "fures-nav-glass group block rounded-3xl p-7 transition-all duration-300 hover:-translate-y-0.5";
 
-          {/* Meeting card */}
-          <motion.a
-            href="https://calendly.com/fures"
-            target="_blank"
-            rel="noopener noreferrer"
-            variants={CARD_FADE}
-            initial="hidden"
-            animate="visible"
-            custom={0.26}
-            className="group block p-8 rounded-3xl border border-gray-100 bg-gray-50 hover:border-orange-200 hover:bg-orange-50/50 transition-all duration-300"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center group-hover:bg-orange-200 transition-colors duration-200 shrink-0">
-                <Calendar className="w-6 h-6 text-orange-600" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">
-                  {t("contact.schedule_meeting")}
-                </p>
-                <p className="text-gray-900 font-medium">Termin buchen</p>
-              </div>
-            </div>
-          </motion.a>
+            return item.href ? (
+              <motion.a
+                key={i}
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                variants={CARD_FADE}
+                initial="hidden"
+                animate="visible"
+                custom={i * 0.07}
+                className={cardClass}
+              >
+                {inner}
+              </motion.a>
+            ) : (
+              <motion.div
+                key={i}
+                variants={CARD_FADE}
+                initial="hidden"
+                animate="visible"
+                custom={i * 0.07}
+                className={cardClass}
+              >
+                {inner}
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* CTA button */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -199,10 +203,10 @@ export function ContactPageDE() {
           <a href="mailto:info@fures.at">
             <motion.button
               type="button"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition-colors duration-200 shadow-lg shadow-orange-200"
+              className="fures-cta-pill inline-flex items-center gap-2 px-8 py-4 text-base"
             >
               <Mail className="w-5 h-5" />
               {t("contact.send_message")}
