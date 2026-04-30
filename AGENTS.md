@@ -167,3 +167,9 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
   - **Hero Portresi:** Hero bölümünde merkezde blur aurası olan yuvarlak profil fotoğrafı gösterilir; `App.tsx` içindeki `<Hero>` bileşeninde yer alır. Fotoğrafın görünür olduğundan emin olmak için build öncesi lokal görüntü kontrolü yap.
   - **Güncel Ton & Sıralama (2025-02):** Hero/bio metinleri tekil ve “sahada teslimat” odaklı tut; Almanca başlıkta verilen hiyerarşi vurgusunu koru. `features`/`Meine Kernkompetenzen` bloklarını ajans çoğul dili yerine bireysel yetkinlik anlatımıyla yaz. `experienceOrder` ters kronolojik ilerler: Dorana → Fures (yan iş) → Mimoza (müdür yrd./resepsiyon) → Concorde → Granada → Almanya bloğu (2012–2017) tek kutu halinde. Almanya başlığında BMW/Continental/Infineon/FedEx örnekleri toplu durmalı, eski tekil kayıtlar gösterilmemeli. Web Tasarımı & Kodlama detay satırında RWR “Datenverarbeitung/Techniker” uygunluk notunu koru.
   - **Deneyim Kartları:** Header’daki PDF butonundan ayrı olarak deneyim bölümünün başlığında `experience.controls` metinleriyle çevirilmiş “Tüm kartları aç”/“Kartları tek tek görüntüle” toggle’ı bulunur. Açık modda tüm kartlar genişler, kart butonları devre dışı (`aria-disabled`) kalır; tekli moda dönerken varsayılan olarak `neu` kartı seçilir.
+
+
+## Güncelleme Notu (2026-04-30)
+- Ana site hero arka planı artık Three.js tabanlı tam ekran kumaş animasyonu kullanır; hero içerikleri korunur.
+- Header cam efektleri için yoğun blur/saturate/brightness ve specular hover katmanları güçlendirildi.
+- Yeni benzer görevlerde önce `src/components/Hero.tsx`, `src/components/Header.tsx`, `src/styles/globals.css` dosyalarını referans al.

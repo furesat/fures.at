@@ -28,3 +28,7 @@ Bu klasör Furkan Yonat'ın ÖNORM uyumlu CV sayfasını barındırır. Buradaki
 - "Mehr", "Mehr entdecken", "Erzählen Sie uns von Ihrem Projekt", "Angetrieben von Fures" gibi ifadeler ve abartılı asistan selamlamaları kullanılmaz; metinlerde bu kalıpları görürsen temizle.
 
 Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya ekle.
+
+
+## Güncelleme Notu (2026-04-30)
+- Bu klasörde değişiklik yapılmadı; ancak global görsel dil güncellemesinde ana sitedeki glass/header sistemi referans alınmalıdır.
