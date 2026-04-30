@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
+import * as THREE from "three";
 import { Button } from "./ui/button";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Sparkles, ArrowRight } from "lucide-react";
@@ -15,6 +16,7 @@ const FALLBACK_ROTATING_TEXTS = [
 export function Hero() {
   const { t, language } = useLanguage();
   const [textIndex, setTextIndex] = useState(0);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const rotatingTexts = useMemo(() => {
     const raw = t("hero.rotating");
@@ -46,33 +48,71 @@ export function Hero() {
     setTextIndex(0);
   }, [rotatingTexts]);
 
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.set(0, 0, 8);
+
+    const geometry = new THREE.PlaneGeometry(16, 10, 140, 90);
+    const material = new THREE.MeshStandardMaterial({ color: "#1b0f13", roughness: 0.35, metalness: 0.08 });
+    const cloth = new THREE.Mesh(geometry, material);
+    scene.add(cloth);
+    const l1 = new THREE.DirectionalLight("#6e9fff", 2.3); l1.position.set(-2, 2, 3);
+    const l2 = new THREE.DirectionalLight("#ff7a4d", 2.1); l2.position.set(2, -1, 2);
+    scene.add(l1, l2);
+    scene.add(new THREE.AmbientLight("#120d12", 0.65));
+
+    const clock = new THREE.Clock();
+    const mouse = new THREE.Vector2(0, 0);
+    let mx = 0, my = 0, intro = 0;
+
+    const onMove = (e: MouseEvent) => { mx = (e.clientX / window.innerWidth) * 2 - 1; my = -((e.clientY / window.innerHeight) * 2 - 1); };
+    window.addEventListener("mousemove", onMove);
+
+    const pos = geometry.attributes.position;
+    const resize = () => {
+      const w = window.innerWidth, h = window.innerHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h; camera.updateProjectionMatrix();
+      const vh = 2 * Math.tan((camera.fov * Math.PI / 180) / 2) * camera.position.z;
+      const vw = vh * camera.aspect;
+      const s = Math.max((vw * 1.05) / 16, (vh * 1.1) / 10);
+      cloth.scale.set(s, s, 1);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const tick = () => {
+      const t = clock.getElapsedTime();
+      mouse.x += (mx - mouse.x) * 0.05;
+      mouse.y += (my - mouse.y) * 0.05;
+      intro += (1 - intro) * 0.011;
+      for (let i = 0; i < pos.count; i++) {
+        const x = pos.getX(i); const y = pos.getY(i); const u = (x + 8) / 16; const v = (y + 5) / 10;
+        const edge = Math.min(Math.max((u - 0.0) / 0.85, 0), 1);
+        const disp = (Math.sin(u * 2.4 - t * 0.55) * 0.55 + Math.sin(u * 3.6 + v * 1.7 + t * 0.75) * 0.32 + Math.cos(v * 2.3 + u * 1.4 + t * 0.4) * 0.22) * edge;
+        const d = Math.hypot(u - (mouse.x * 0.5 + 0.5), v - (-mouse.y * 0.5 + 0.5));
+        const pull = Math.exp(-d * d * 5.0) * edge * 0.55;
+        pos.setZ(i, (disp + pull) * intro);
+      }
+      pos.needsUpdate = true; geometry.computeVertexNormals();
+      renderer.render(scene, camera); requestAnimationFrame(tick);
+    };
+    tick();
+
+    return () => { window.removeEventListener("resize", resize); window.removeEventListener("mousemove", onMove); geometry.dispose(); material.dispose(); renderer.dispose(); };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-16">
-      {/* Background Video - Full Screen with Proper Aspect Ratio */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <div className="absolute inset-0" style={{ width: '100%', height: '100%', padding: '56.25% 0 0 0', position: 'relative' }}>
-          <iframe
-            src="https://player.vimeo.com/video/1054768432?autoplay=1&loop=1&autopause=0&muted=1&background=1&controls=0&playsinline=1&quality=auto"
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              width: '177.78vh',
-              height: '100vw',
-              minWidth: '100%',
-              minHeight: '100%',
-              transform: 'translate(-50%, -50%)',
-            }}
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
-            title="Hero Background Video"
-          />
-        </div>
-        {/* Dark overlay with radial gradient */}
-        <div className="absolute inset-0 bg-black/70 blur-gradient-inward"></div>
-      </div>
+      <canvas ref={canvasRef} id="cloth-canvas" className="absolute inset-0 h-full w-full" />
+      <div className="absolute inset-0 bg-black/60 [background:linear-gradient(90deg,rgba(5,5,5,0.92)_0%,rgba(5,5,5,0.7)_25%,rgba(5,5,5,0.2)_50%,rgba(5,5,5,0)_65%),linear-gradient(180deg,rgba(5,5,5,0.5)_0%,rgba(5,5,5,0)_30%,rgba(5,5,5,0)_70%,rgba(5,5,5,0.6)_100%)]" />
 
-      {/* Ambient glow orbs - subtle, Apple-like */}
       <div className="absolute inset-0 z-[1] pointer-events-none">
         <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-orange-500/12 rounded-full animate-glow-pulse blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-purple-600/12 rounded-full animate-glow-pulse blur-3xl" style={{ animationDelay: '2s' }}></div>
