@@ -4,10 +4,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Info,
   Briefcase,
+  Rocket,
+  Users2,
   MessageCircle,
   Newspaper,
   MoreHorizontal,
   HelpCircle,
+  Megaphone,
   Menu,
   X,
   Globe,
@@ -52,11 +55,14 @@ export function HeaderDE() {
   const navItems: NavItem[] = [
     { path: "/de/ueber-uns", label: t("nav.about"), icon: Info },
     { path: "/de/leistungen", label: t("nav.services"), icon: Briefcase },
+    { path: "/de/referenzen", label: t("nav.projects"), icon: Rocket },
     { path: "/de/kontakt", label: t("nav.contact"), icon: MessageCircle },
     { path: "/de/blog", label: t("nav.blog"), icon: Newspaper },
   ];
 
   const moreLinks: MoreLink[] = [
+    { path: "/de/team", label: t("nav.team"), icon: Users2 },
+    { path: "/de/kampagnen", label: t("nav.campaigns"), icon: Megaphone },
     { path: "/de/faq", label: "FAQ", icon: HelpCircle },
   ];
 
