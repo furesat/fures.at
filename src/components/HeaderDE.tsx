@@ -1,18 +1,23 @@
 import type { CSSProperties } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Info,
   Briefcase,
+  Rocket,
+  Users2,
   MessageCircle,
   Newspaper,
   MoreHorizontal,
   HelpCircle,
+  Megaphone,
   Menu,
   X,
   Globe,
 } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
+import type { Language } from "../contexts/LanguageContext";
+import { getPath } from "../utils/routes";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,6 +32,7 @@ type MoreLink = { path: string; label: string; icon: LucideIcon };
 export function HeaderDE() {
   const { t, language, setLanguage } = useLanguage();
   const location = useLocation();
+  const navigate = useNavigate();
   const navRef = useRef<HTMLElement | null>(null);
   const activeItemRef = useRef<HTMLElement | null>(null);
   const moreTriggerRef = useRef<HTMLButtonElement | null>(null);
@@ -49,13 +55,21 @@ export function HeaderDE() {
   const navItems: NavItem[] = [
     { path: "/de/ueber-uns", label: t("nav.about"), icon: Info },
     { path: "/de/leistungen", label: t("nav.services"), icon: Briefcase },
+    { path: "/de/referenzen", label: t("nav.projects"), icon: Rocket },
     { path: "/de/kontakt", label: t("nav.contact"), icon: MessageCircle },
     { path: "/de/blog", label: t("nav.blog"), icon: Newspaper },
   ];
 
   const moreLinks: MoreLink[] = [
-    { path: "/de/sss", label: "FAQ", icon: HelpCircle },
+    { path: "/de/team", label: t("nav.team"), icon: Users2 },
+    { path: "/de/kampagnen", label: t("nav.campaigns"), icon: Megaphone },
+    { path: "/de/faq", label: "FAQ", icon: HelpCircle },
   ];
+
+  const handleLanguageSwitch = (lang: Language) => {
+    setLanguage(lang);
+    navigate(getPath(lang, 'home'));
+  };
 
   const navItemPaths = new Set(navItems.map((i) => normalizePath(i.path)));
   const moreMenuActive = moreLinks.some((l) => {
@@ -252,7 +266,7 @@ export function HeaderDE() {
                 {languages.map((lang) => (
                   <DropdownMenuItem key={lang.code} asChild className="p-0 focus:bg-transparent">
                     <button
-                      onClick={() => setLanguage(lang.code as any)}
+                      onClick={() => handleLanguageSwitch(lang.code as Language)}
                       className={`fures-dropdown-item flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm ${language === lang.code ? "text-white" : "text-white/65 hover:text-white"}`}
                     >
                       <span className="text-base">{lang.flag}</span>
@@ -281,7 +295,7 @@ export function HeaderDE() {
                 {languages.map((lang) => (
                   <DropdownMenuItem key={lang.code} asChild className="p-0 focus:bg-transparent">
                     <button
-                      onClick={() => setLanguage(lang.code as any)}
+                      onClick={() => handleLanguageSwitch(lang.code as Language)}
                       className={`fures-dropdown-item flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm ${language === lang.code ? "text-white" : "text-white/65 hover:text-white"}`}
                     >
                       <span className="text-base">{lang.flag}</span>

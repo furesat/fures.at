@@ -26,20 +26,30 @@ import { ServicesPageDE } from "./pages/de/ServicesPageDE";
 import { ContactPageDE } from "./pages/de/ContactPageDE";
 import AssistantWidget from "./furesai/components/AssistantWidget";
 import ChatWindow from "./furesai/components/ChatWindow";
+import { detectLanguageByCountry } from "./utils/routes";
+import type { Language } from "./contexts/LanguageContext";
 
-// Detects browser language and redirects to /de or /tr
+// Detects visitor country via IP geolocation (cached 24 h) and redirects accordingly.
+// Falls back to browser language if the API is unavailable.
 function RootRedirect() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const langs = Array.isArray(navigator.languages)
-      ? navigator.languages
-      : [navigator.language];
-    const isDE = langs.some((l) => {
-      const code = l.toLowerCase();
-      return code.startsWith('de') || code.startsWith('at') || code === 'gsw';
+    let cancelled = false;
+
+    detectLanguageByCountry().then((lang: Language) => {
+      if (!cancelled) {
+        const roots: Record<Language, string> = {
+          tr: '/tr',
+          en: '/en',
+          ru: '/ru',
+          de: '/de',
+        };
+        navigate(roots[lang], { replace: true });
+      }
     });
-    navigate(isDE ? '/de' : '/tr', { replace: true });
+
+    return () => { cancelled = true; };
   }, [navigate]);
 
   return null;
@@ -82,7 +92,81 @@ function TRLayout() {
   );
 }
 
-// DE site layout – dark glass theme matching TR design
+// EN site layout
+function ENLayout() {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  return (
+    <ThemeProvider theme="dark">
+      <LanguageProvider initialLanguage="en">
+        <div className="min-h-screen bg-black text-white overflow-x-hidden">
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about/*" element={<AboutPage />} />
+              <Route path="/services/*" element={<ServicesPage />} />
+              <Route path="/projects/*" element={<ProjectsPage />} />
+              <Route path="/team/*" element={<TeamPage />} />
+              <Route path="/faq/*" element={<FAQPage />} />
+              <Route path="/contact/*" element={<ContactPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+              <Route path="/gdpr-disclosure" element={<KvkkDisclosurePage />} />
+              <Route path="/blog" element={<BlogListPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/campaigns" element={<CampaignListPage />} />
+              <Route path="/campaigns/:slug" element={<CampaignPostPage />} />
+              <Route path="*" element={<Navigate to="/en" replace />} />
+            </Routes>
+          </main>
+          <Footer />
+          <AssistantWidget isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
+          {isChatOpen && <ChatWindow closeChat={() => setIsChatOpen(false)} />}
+        </div>
+      </LanguageProvider>
+    </ThemeProvider>
+  );
+}
+
+// RU site layout
+function RULayout() {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  return (
+    <ThemeProvider theme="dark">
+      <LanguageProvider initialLanguage="ru">
+        <div className="min-h-screen bg-black text-white overflow-x-hidden">
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about/*" element={<AboutPage />} />
+              <Route path="/services/*" element={<ServicesPage />} />
+              <Route path="/projects/*" element={<ProjectsPage />} />
+              <Route path="/team/*" element={<TeamPage />} />
+              <Route path="/faq/*" element={<FAQPage />} />
+              <Route path="/contact/*" element={<ContactPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+              <Route path="/gdpr-disclosure" element={<KvkkDisclosurePage />} />
+              <Route path="/blog" element={<BlogListPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/campaigns" element={<CampaignListPage />} />
+              <Route path="/campaigns/:slug" element={<CampaignPostPage />} />
+              <Route path="*" element={<Navigate to="/ru" replace />} />
+            </Routes>
+          </main>
+          <Footer />
+          <AssistantWidget isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
+          {isChatOpen && <ChatWindow closeChat={() => setIsChatOpen(false)} />}
+        </div>
+      </LanguageProvider>
+    </ThemeProvider>
+  );
+}
+
+// DE site layout – DACH hotel-focused
 function DELayout() {
   return (
     <ThemeProvider theme="dark">
@@ -92,8 +176,15 @@ function DELayout() {
           <main>
             <Routes>
               <Route path="/" element={<HomePageDE />} />
-              <Route path="/leistungen" element={<ServicesPageDE />} />
-              <Route path="/kontakt" element={<ContactPageDE />} />
+              <Route path="/ueber-uns/*" element={<AboutPage />} />
+              <Route path="/leistungen/*" element={<ServicesPageDE />} />
+              <Route path="/referenzen/*" element={<ProjectsPage />} />
+              <Route path="/team/*" element={<TeamPage />} />
+              <Route path="/faq/*" element={<FAQPage />} />
+              <Route path="/kontakt/*" element={<ContactPageDE />} />
+              <Route path="/datenschutz" element={<PrivacyPolicyPage />} />
+              <Route path="/cookies" element={<CookiePolicyPage />} />
+              <Route path="/datenschutzhinweis" element={<KvkkDisclosurePage />} />
               <Route path="/blog" element={<BlogListPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="*" element={<Navigate to="/de" replace />} />
@@ -110,7 +201,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Root: auto-redirect by browser language */}
+        {/* Root: auto-redirect by IP country (falls back to browser language) */}
         <Route path="/" element={<RootRedirect />} />
         <Route path="/preview_page.html" element={<RootRedirect />} />
 
@@ -143,10 +234,10 @@ export default function App() {
           </LanguageProvider>
         } />
 
-        {/* TR locale */}
+        {/* Language-prefixed locales */}
         <Route path="/tr/*" element={<TRLayout />} />
-
-        {/* DE locale */}
+        <Route path="/en/*" element={<ENLayout />} />
+        <Route path="/ru/*" element={<RULayout />} />
         <Route path="/de/*" element={<DELayout />} />
 
         {/* Catch-all */}

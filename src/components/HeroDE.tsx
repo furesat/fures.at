@@ -77,10 +77,15 @@ export function HeroDE() {
           initial="hidden"
           animate="visible"
           custom={0}
-          className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-white/5 border border-white/12 text-orange-300 text-sm font-medium backdrop-blur-sm"
+          className="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 mb-8 rounded-full bg-white/5 border border-white/12 text-orange-300 text-sm font-medium backdrop-blur-sm"
         >
-          <MapPin className="w-4 h-4 shrink-0" />
-          Büro in Maria Alm, Salzburgerland · DACH-Markt
+          <span className="flex items-center gap-1.5"><span>🏨</span> Hotel-Website</span>
+          <span className="text-white/20">·</span>
+          <span className="flex items-center gap-1.5"><span>📍</span> Local SEO</span>
+          <span className="text-white/20">·</span>
+          <span className="flex items-center gap-1.5"><span>🤖</span> Gäste-Automatisierung</span>
+          <span className="text-white/20">·</span>
+          <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" /> Österreich · Deutschland · Schweiz</span>
         </motion.div>
 
         {/* Headline */}
@@ -94,12 +99,8 @@ export function HeroDE() {
         >
           Mehr{" "}
           <span
-            className="inline-block transition-all duration-300"
+            className="inline-block transition-all duration-300 text-orange-400"
             style={{
-              background: "linear-gradient(135deg, #FF7A29 0%, #a855f7 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(6px)",
             }}

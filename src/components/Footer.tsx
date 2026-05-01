@@ -1,25 +1,27 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
+import { LANGUAGE_ROUTES } from "../utils/routes";
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const logoSrc = "/images/fures.png";
+  const r = LANGUAGE_ROUTES[language];
 
   const footerLinks = [
-    { title: t('nav.about'), href: "/tr/hakkimizda" },
-    { title: t('nav.services'), href: "/tr/hizmetler" },
-    { title: t('nav.projects'), href: "/tr/projeler" },
-    { title: t('nav.campaigns'), href: "/tr/kampanyalar" },
-    { title: t('nav.blog'), href: "/tr/blog" },
-    { title: 'Ekip', href: "/tr/ekip" },
-    { title: 'SSS', href: "/tr/sss" },
-    { title: t('nav.contact'), href: "/tr/iletisim" }
+    { title: t('nav.about'), href: r.about },
+    { title: t('nav.services'), href: r.services },
+    { title: t('nav.projects'), href: r.projects },
+    { title: t('nav.campaigns'), href: r.campaigns },
+    { title: t('nav.blog'), href: r.blog },
+    { title: t('nav.team') || 'Team', href: r.team },
+    { title: 'FAQ', href: r.faq },
+    { title: t('nav.contact'), href: r.contact },
   ];
 
   const legalLinks = [
-    { title: t('footer.privacy'), href: "/tr/gizlilik-politikasi" },
-    { title: t('footer.cookies'), href: "/tr/cerez-politikasi" },
-    { title: t('footer.kvkk'), href: "/tr/kvkk-aydinlatma-metni" }
+    { title: t('footer.privacy'), href: r.privacy },
+    { title: t('footer.cookies'), href: r.cookies },
+    { title: t('footer.kvkk'), href: r.legal },
   ];
 
   return (

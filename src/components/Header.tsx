@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Info,
   Briefcase,
@@ -19,6 +19,8 @@ import {
   Globe,
 } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
+import type { Language } from "../contexts/LanguageContext";
+import { getPath, LANGUAGE_ROUTES } from "../utils/routes";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,6 +35,7 @@ type MoreLink = { path: string; label: string; icon: LucideIcon; external?: bool
 export function Header() {
   const { t, language, setLanguage } = useLanguage();
   const location = useLocation();
+  const navigate = useNavigate();
   const logoSrc = "/images/fures.png";
   const navRef = useRef<HTMLElement | null>(null);
   const activeItemRef = useRef<HTMLElement | null>(null);
@@ -51,22 +54,24 @@ export function Header() {
     return current === target || current.startsWith(`${target}/`);
   };
 
+  const r = LANGUAGE_ROUTES[language];
+
   const navItems: NavItem[] = [
-    { path: "/tr/hakkimizda", label: t("nav.about"), icon: Info },
-    { path: "/tr/hizmetler", label: t("nav.services"), icon: Briefcase },
-    { path: "/tr/projeler", label: t("nav.projects"), icon: Rocket },
-    { path: "/tr/kampanyalar", label: t("nav.campaigns"), icon: Megaphone },
-    { path: "/tr/blog", label: t("nav.blog"), icon: Newspaper },
-    { path: "/tr/ekip", label: "Ekip", icon: Users2 },
-    { path: "/tr/iletisim", label: t("nav.contact"), icon: MessageCircle },
+    { path: r.about, label: t("nav.about"), icon: Info },
+    { path: r.services, label: t("nav.services"), icon: Briefcase },
+    { path: r.projects, label: t("nav.projects"), icon: Rocket },
+    { path: r.campaigns, label: t("nav.campaigns"), icon: Megaphone },
+    { path: r.blog, label: t("nav.blog"), icon: Newspaper },
+    { path: r.team, label: t("nav.team") || "Team", icon: Users2 },
+    { path: r.contact, label: t("nav.contact"), icon: MessageCircle },
   ];
 
   const navItemPaths = new Set(navItems.map((item) => normalizePath(item.path)));
 
   const moreLinks: MoreLink[] = [
-    { path: "/tr/kampanyalar", label: t("nav.campaigns"), icon: Megaphone },
-    { path: "/tr/blog", label: t("nav.blog"), icon: Newspaper },
-    { path: "/tr/sss", label: "SSS", icon: HelpCircle },
+    { path: r.campaigns, label: t("nav.campaigns"), icon: Megaphone },
+    { path: r.blog, label: t("nav.blog"), icon: Newspaper },
+    { path: r.faq, label: "FAQ", icon: HelpCircle },
     { path: "/gulbeneser", label: "Gülben Eser", icon: Users2, external: true },
     { path: "/furkanyonat", label: "Furkan Yonat", icon: UserRound, external: true },
     { path: "/kariyer", label: "Kariyer Asistanı", icon: Sparkles, external: true },
@@ -169,6 +174,11 @@ export function Header() {
     { code: "de", name: "Deutsch", flag: "🇩🇪" },
   ];
 
+  const handleLanguageSwitch = (lang: Language) => {
+    setLanguage(lang);
+    navigate(getPath(lang, 'home'));
+  };
+
   return (
     <>
       <header className="fixed inset-x-0 top-3 z-50 px-3 sm:px-4">
@@ -270,7 +280,7 @@ export function Header() {
                 {languages.map((lang) => (
                   <DropdownMenuItem key={lang.code} asChild className="p-0 focus:bg-transparent">
                     <button
-                      onClick={() => setLanguage(lang.code as any)}
+                      onClick={() => handleLanguageSwitch(lang.code as Language)}
                       className={`fures-dropdown-item flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm ${language === lang.code ? "text-white" : "text-white/65 hover:text-white"}`}
                     >
                       <span className="text-base">{lang.flag}</span>
@@ -281,7 +291,7 @@ export function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link to="/tr/iletisim">
+            <Link to={r.contact}>
               <button className="fures-cta-pill">{t("nav.lets_talk")}</button>
             </Link>
           </div>
@@ -299,7 +309,7 @@ export function Header() {
                 {languages.map((lang) => (
                   <DropdownMenuItem key={lang.code} asChild className="p-0 focus:bg-transparent">
                     <button
-                      onClick={() => setLanguage(lang.code as any)}
+                      onClick={() => handleLanguageSwitch(lang.code as Language)}
                       className={`fures-dropdown-item flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm ${language === lang.code ? "text-white" : "text-white/65 hover:text-white"}`}
                     >
                       <span className="text-base">{lang.flag}</span>
@@ -348,7 +358,7 @@ export function Header() {
               );
             })}
             <div className="mt-1 border-t border-white/10 pt-2">
-              <Link to="/tr/iletisim" onClick={() => setMobileOpen(false)}>
+              <Link to={r.contact} onClick={() => setMobileOpen(false)}>
                 <button className="fures-cta-pill w-full">{t("nav.lets_talk")}</button>
               </Link>
             </div>
