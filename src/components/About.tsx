@@ -33,10 +33,8 @@ export function About() {
           <div className="liquid-icon w-20 h-20">
             <Lightbulb className="w-10 h-10 text-white" />
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
-            <span className="gradient-flow bg-clip-text text-transparent">
-              {t('why_fures.title')}
-            </span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+            {t('why_fures.title')}
           </h2>
           <p className="max-w-3xl text-lg sm:text-xl text-gray-300/85">
             {t('why_fures.description')}

@@ -78,10 +78,8 @@ export function CTA() {
             {t('contact.title')}
           </h2>
           
-          <h3 className="text-4xl sm:text-5xl lg:text-6xl mb-6 font-bold">
-            <span className="gradient-flow bg-clip-text text-transparent">
-              {t('contact.subtitle')}
-            </span>
+          <h3 className="text-4xl sm:text-5xl lg:text-6xl mb-6 font-bold text-white">
+            {t('contact.subtitle')}
           </h3>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12">

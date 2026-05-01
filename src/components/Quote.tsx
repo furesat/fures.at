@@ -61,7 +61,7 @@ export function Quote() {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold gradient-flow bg-clip-text text-transparent italic">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white italic">
                 "{quotes[currentQuote]}"
               </p>
             </motion.div>

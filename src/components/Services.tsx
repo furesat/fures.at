@@ -58,10 +58,8 @@ export function Services() {
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl mb-6" style={{ letterSpacing: '-0.03em' }}>
-            <span className="gradient-flow bg-clip-text text-transparent font-bold">
-              {t('services.title')}
-            </span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl mb-6 font-bold text-white" style={{ letterSpacing: '-0.03em' }}>
+            {t('services.title')}
           </h2>
         </motion.div>
 
