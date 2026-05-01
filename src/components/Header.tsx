@@ -1,7 +1,6 @@
 import type { CSSProperties } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "./ui/button";
 import {
   Info,
   Briefcase,
@@ -15,9 +14,11 @@ import {
   UserRound,
   Newspaper,
   Megaphone,
+  Menu,
+  X,
+  Globe,
 } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
-import { LanguageSelector } from "./LanguageSelector";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,46 +27,27 @@ import {
 } from "./ui/dropdown-menu";
 import type { LucideIcon } from "lucide-react";
 
-type NavItem = {
-  path: string;
-  label: string;
-  icon: LucideIcon;
-};
-
-type MoreLink = {
-  path: string;
-  label: string;
-  icon: LucideIcon;
-  external?: boolean;
-};
+type NavItem = { path: string; label: string; icon: LucideIcon };
+type MoreLink = { path: string; label: string; icon: LucideIcon; external?: boolean };
 
 export function Header() {
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
   const location = useLocation();
   const logoSrc = "/images/fures.png";
   const navRef = useRef<HTMLElement | null>(null);
   const activeItemRef = useRef<HTMLElement | null>(null);
   const moreTriggerRef = useRef<HTMLButtonElement | null>(null);
-  const [highlightBoxStyle, setHighlightBoxStyle] = useState<CSSProperties | null>(
-    null,
-  );
+  const [highlightBoxStyle, setHighlightBoxStyle] = useState<CSSProperties | null>(null);
   const [isMobileNav, setIsMobileNav] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const normalizePath = (path: string) => {
-    if (path === "/") {
-      return "/";
-    }
-    return path.replace(/\/+$/, "");
-  };
+  const normalizePath = (path: string) =>
+    path === "/" ? "/" : path.replace(/\/+$/, "");
 
   const isActive = (path: string) => {
     const current = normalizePath(location.pathname);
     const target = normalizePath(path);
-
-    if (target === "/") {
-      return current === "/";
-    }
-
+    if (target === "/") return current === "/";
     return current === target || current.startsWith(`${target}/`);
   };
 
@@ -92,42 +74,23 @@ export function Header() {
 
   const moreMenuActive = moreLinks.some((link) => {
     const linkPath = normalizePath(link.path);
-
-    if (navItemPaths.has(linkPath)) {
-      return false;
-    }
-
+    if (navItemPaths.has(linkPath)) return false;
     return isActive(link.path);
   });
 
   const navBaseClasses =
-    "ios-nav-item group relative z-10 flex min-w-[92px] flex-col items-center justify-center gap-1 px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] transition-all duration-500 focus-visible:outline-none";
+    "ios-nav-item group relative z-10 flex min-w-[72px] flex-col items-center justify-center gap-1 rounded-full px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.2em] transition-all duration-500 focus-visible:outline-none";
 
   const updateHighlightPosition = useCallback(() => {
-    if (isMobileNav) {
-      setHighlightBoxStyle(null);
-      return;
-    }
-
+    if (isMobileNav) { setHighlightBoxStyle(null); return; }
     const navEl = navRef.current;
-    if (!navEl) {
-      setHighlightBoxStyle(null);
-      return;
-    }
-
-    const targetEl =
-      activeItemRef.current ?? (moreMenuActive ? moreTriggerRef.current : null);
-
-    if (!targetEl) {
-      setHighlightBoxStyle(null);
-      return;
-    }
-
+    if (!navEl) { setHighlightBoxStyle(null); return; }
+    const targetEl = activeItemRef.current ?? (moreMenuActive ? moreTriggerRef.current : null);
+    if (!targetEl) { setHighlightBoxStyle(null); return; }
     const navRect = navEl.getBoundingClientRect();
     const targetRect = targetEl.getBoundingClientRect();
-    const paddingX = 14;
-    const paddingY = 8;
-
+    const paddingX = 12;
+    const paddingY = 7;
     setHighlightBoxStyle({
       width: `${targetRect.width + paddingX * 2}px`,
       height: `${targetRect.height + paddingY * 2}px`,
@@ -139,147 +102,49 @@ export function Header() {
   const setActiveItemRef = useCallback(
     (node: HTMLAnchorElement | null) => {
       activeItemRef.current = node;
-
-      if (node) {
-        requestAnimationFrame(() => {
-          updateHighlightPosition();
-        });
-      } else {
-        setHighlightBoxStyle(null);
-      }
+      if (node) requestAnimationFrame(() => updateHighlightPosition());
+      else setHighlightBoxStyle(null);
     },
     [updateHighlightPosition],
   );
 
-  useEffect(() => {
-    updateHighlightPosition();
-  }, [location.pathname, updateHighlightPosition]);
+  useEffect(() => { updateHighlightPosition(); }, [location.pathname, updateHighlightPosition]);
+  useEffect(() => { setMobileOpen(false); }, [location.pathname]);
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(max-width: 768px)");
+    const handler = (e: MediaQueryListEvent) => setIsMobileNav(e.matches);
+    setIsMobileNav(mq.matches);
+    if (typeof mq.addEventListener === "function") {
+      mq.addEventListener("change", handler);
+      return () => mq.removeEventListener("change", handler);
     }
-
-    const mediaQuery = window.matchMedia("(max-width: 640px)");
-
-    const handleChange = (event: MediaQueryListEvent) => {
-      setIsMobileNav(event.matches);
-    };
-
-    setIsMobileNav(mediaQuery.matches);
-
-    if (typeof mediaQuery.addEventListener === "function") {
-      mediaQuery.addEventListener("change", handleChange);
-      return () => {
-        mediaQuery.removeEventListener("change", handleChange);
-      };
-    }
-
-    mediaQuery.addListener(handleChange);
-    return () => {
-      mediaQuery.removeListener(handleChange);
-    };
+    mq.addListener(handler);
+    return () => mq.removeListener(handler);
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      updateHighlightPosition();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    window.addEventListener("resize", updateHighlightPosition);
+    return () => window.removeEventListener("resize", updateHighlightPosition);
   }, [updateHighlightPosition]);
 
   useEffect(() => {
     const navEl = navRef.current;
-    if (!navEl) {
-      return;
-    }
-
-    const handleScroll = () => {
-      updateHighlightPosition();
-    };
-
-    navEl.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      navEl.removeEventListener("scroll", handleScroll);
-    };
-  }, [updateHighlightPosition]);
-
-  useEffect(() => {
-    if (typeof ResizeObserver === "undefined") {
-      return;
-    }
-
-    const navEl = navRef.current;
-    if (!navEl) {
-      return;
-    }
-
-    const observer = new ResizeObserver(() => {
-      updateHighlightPosition();
-    });
-
+    if (!navEl) return;
+    const observer = new ResizeObserver(() => updateHighlightPosition());
     observer.observe(navEl);
-
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, [updateHighlightPosition]);
-
-  useEffect(() => {
-    if (typeof ResizeObserver === "undefined") {
-      return;
-    }
-
-    const targetEl =
-      activeItemRef.current ?? (moreMenuActive ? moreTriggerRef.current : null);
-
-    if (!targetEl) {
-      return;
-    }
-
-    const observer = new ResizeObserver(() => {
-      updateHighlightPosition();
-    });
-
-    observer.observe(targetEl);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [location.pathname, moreMenuActive, updateHighlightPosition]);
 
   const navItemClasses = (path: string) =>
     `${navBaseClasses} ${
       isActive(path)
         ? "liquid-pill is-active text-white"
-        : "fures-nav-item-idle text-slate-200/75 hover:text-white"
+        : "fures-nav-item-idle text-slate-200/70 hover:text-white"
     }`;
 
-  const navGlassStyle = {
-    "--glass-surface-bg": "rgba(15, 15, 20, 0.4)",
-    "--glass-surface-border": "rgba(255, 255, 255, 0.16)",
-    "--glass-surface-highlight": "rgba(255, 255, 255, 0.5)",
-    "--glass-surface-reflection": "rgba(210, 230, 255, 0.28)",
-    "--glass-highlight-height": "9%",
-    "--glass-reflection-height": "42%",
-  } as CSSProperties;
-
-  const dropdownGlassStyle = {
-    "--glass-surface-bg": "rgba(8, 14, 28, 0.12)",
-    "--glass-surface-border": "rgba(255, 255, 255, 0.18)",
-    "--glass-surface-highlight": "rgba(255, 255, 255, 0.32)",
-    "--glass-surface-reflection": "rgba(210, 230, 255, 0.24)",
-    "--glass-highlight-height": "10%",
-    "--glass-reflection-height": "40%",
-  } as CSSProperties;
-
-  const highlightGlassStyle = {
+  const highlightGlassStyle: CSSProperties = {
     "--glass-surface-bg": "rgba(12, 20, 42, 0.32)",
     "--glass-surface-border": "rgba(255, 255, 255, 0.32)",
     "--glass-surface-highlight": "rgba(255, 255, 255, 0.55)",
@@ -288,46 +153,55 @@ export function Header() {
     "--glass-reflection-height": "58%",
   } as CSSProperties;
 
+  const dropdownGlassStyle: CSSProperties = {
+    "--glass-surface-bg": "rgba(8, 14, 28, 0.12)",
+    "--glass-surface-border": "rgba(255, 255, 255, 0.18)",
+    "--glass-surface-highlight": "rgba(255, 255, 255, 0.32)",
+    "--glass-surface-reflection": "rgba(210, 230, 255, 0.24)",
+    "--glass-highlight-height": "10%",
+    "--glass-reflection-height": "40%",
+  } as CSSProperties;
+
+  const languages = [
+    { code: "tr", name: "Türkçe", flag: "🇹🇷" },
+    { code: "en", name: "English", flag: "🇺🇸" },
+    { code: "ru", name: "Русский", flag: "🇷🇺" },
+    { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  ];
+
   return (
-    <header className="fixed inset-x-0 top-4 z-50 px-4">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex w-full items-center justify-between sm:w-auto sm:flex-none">
-          <Link to="/" className="group relative flex items-center">
+    <>
+      <header className="fixed inset-x-0 top-3 z-50 px-3 sm:px-4">
+        <div className="mx-auto flex w-full max-w-[1200px] items-center gap-2 sm:gap-3">
+
+          {/* Logo */}
+          <Link to="/" className="group relative shrink-0">
             <span className="fures-logo-pill relative flex items-center">
               <img
                 src={logoSrc}
                 alt="Fures"
-                className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105 sm:h-10"
               />
             </span>
           </Link>
-          <div className="flex items-center gap-2 sm:hidden">
-            <LanguageSelector />
-          </div>
-        </div>
 
-        <div className="order-last sm:order-none sm:flex-1">
-          <div className="group relative">
-            <div className="absolute inset-0 -z-10 rounded-full bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),rgba(9,9,11,0))] opacity-50 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
+          {/* Nav pill — hidden on mobile, shown md+ */}
+          <div className="relative hidden min-w-0 flex-1 md:block">
+            <div className="absolute inset-0 -z-10 rounded-full bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15),transparent)] opacity-40 blur-2xl" />
             <nav
               ref={navRef}
-              className="fures-nav-glass group relative flex items-center gap-3 overflow-x-auto rounded-full px-4 py-3 transition-all duration-500 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-              style={navGlassStyle}
-              >
-                {!isMobileNav && highlightBoxStyle && (
-                  <span
-                    aria-hidden="true"
-                    className="glass-spotlight"
-                    style={{
-                      ...highlightGlassStyle,
-                      ...highlightBoxStyle,
-                    }}
-                  />
-                )}
-                {navItems.map((item) => {
+              className="fures-nav-glass relative flex items-center gap-1 overflow-x-auto rounded-full px-3 py-2.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {highlightBoxStyle && (
+                <span
+                  aria-hidden="true"
+                  className="glass-spotlight"
+                  style={{ ...highlightGlassStyle, ...highlightBoxStyle }}
+                />
+              )}
+              {navItems.map((item) => {
                 const Icon = item.icon;
                 const active = isActive(item.path);
-
                 return (
                   <Link
                     key={item.path}
@@ -336,92 +210,151 @@ export function Header() {
                     data-active={active || undefined}
                     ref={active ? setActiveItemRef : undefined}
                   >
-                    <Icon
-                      className={`relative z-10 h-5 w-5 transition-all duration-300 ${
-                        active
-                          ? "text-white drop-shadow-[0_10px_22px_rgba(15,23,42,0.4)]"
-                          : "text-white/80 group-hover:text-white"
-                      }`}
-                    />
-                    <span className="relative z-10 text-[10px] font-semibold uppercase tracking-[0.24em]">
-                      {item.label}
-                    </span>
+                    <Icon className={`relative z-10 h-4 w-4 transition-all duration-300 ${active ? "text-white" : "text-white/75"}`} />
+                    <span className="relative z-10">{item.label}</span>
                   </Link>
                 );
               })}
 
+              {/* More dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button
                     type="button"
-                    className={`${navBaseClasses} fures-nav-item-idle text-slate-200/75 transition-all duration-300 hover:text-white focus-visible:outline-none ${moreMenuActive ? "text-white" : ""}`}
+                    className={`${navBaseClasses} fures-nav-item-idle text-slate-200/70 hover:text-white focus-visible:outline-none ${moreMenuActive ? "text-white" : ""}`}
                     data-active={moreMenuActive || undefined}
                     ref={moreTriggerRef}
                   >
-                    <MoreHorizontal
-                      className={`relative z-10 h-5 w-5 transition-all duration-300 ${
-                        moreMenuActive
-                          ? "text-white drop-shadow-[0_10px_22px_rgba(15,23,42,0.4)]"
-                          : "text-white/80 group-hover:text-white"
-                      }`}
-                    />
-                    <span className="relative z-10 text-[10px] font-semibold uppercase tracking-[0.24em]">
-                      {t("nav.more")}
-                    </span>
+                    <MoreHorizontal className={`relative z-10 h-4 w-4 ${moreMenuActive ? "text-white" : "text-white/75"}`} />
+                    <span className="relative z-10">{t("nav.more")}</span>
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  className="liquid-glass mt-3 w-72 rounded-3xl p-3 text-white backdrop-blur-[42px] backdrop-saturate-[1.75]"
-                  style={dropdownGlassStyle}
-                >
-                  <div className="space-y-2">
-                    {moreLinks.map((link) => {
-                      const Icon = link.icon;
-                      const active = isActive(link.path);
-
-                      return (
-                        <DropdownMenuItem
-                          key={link.path}
-                          asChild
-                          className="rounded-2xl p-0 focus:bg-transparent focus:text-white"
+                <DropdownMenuContent className="fures-dropdown-content mt-2 w-64 p-2" style={dropdownGlassStyle}>
+                  {moreLinks.map((link) => {
+                    const Icon = link.icon;
+                    const active = isActive(link.path);
+                    return (
+                      <DropdownMenuItem key={link.path} asChild className="p-0 focus:bg-transparent">
+                        <Link
+                          to={link.path}
+                          className={`fures-dropdown-item flex w-full items-center justify-between rounded-2xl px-3 py-2.5 text-sm ${active ? "text-white bg-white/10" : "text-white/70 hover:text-white"}`}
+                          data-active={active || undefined}
                         >
-                          <Link
-                            to={link.path}
-                            className={`liquid-glass ios-nav-menu-item relative flex items-center justify-between overflow-hidden rounded-2xl px-4 py-3 text-sm transition-all duration-500 ${
-                              active
-                                ? "is-active text-white"
-                                : "text-slate-200/75 hover:text-white"
-                            }`}
-                            data-active={active || undefined}
-                            style={dropdownGlassStyle}
-                          >
-                            <span className="flex items-center gap-3">
-                              <span className="relative flex size-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white">
-                                <Icon className="h-4 w-4 text-white" />
-                              </span>
-                              {link.label}
+                          <span className="flex items-center gap-3">
+                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/8">
+                              <Icon className="h-3.5 w-3.5 text-white/80" />
                             </span>
-                            {link.external && <ExternalLink className="h-4 w-4 text-white/80" />}
-                          </Link>
-                        </DropdownMenuItem>
-                      );
-                    })}
-                  </div>
+                            {link.label}
+                          </span>
+                          {link.external && <ExternalLink className="h-3.5 w-3.5 text-white/40" />}
+                        </Link>
+                      </DropdownMenuItem>
+                    );
+                  })}
                 </DropdownMenuContent>
               </DropdownMenu>
             </nav>
           </div>
-        </div>
 
-        <div className="hidden items-center gap-3 sm:flex">
-          <LanguageSelector />
-          <Link to="/tr/iletisim">
-            <button className="fures-cta-pill">
-              {t("nav.lets_talk")}
+          {/* Right: lang + CTA — desktop */}
+          <div className="hidden shrink-0 items-center gap-2 md:flex">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="fures-lang-pill text-white/65 hover:text-white/90">
+                  <Globe className="h-3.5 w-3.5" />
+                  <span className="text-white/40">{language.toUpperCase()}</span>
+                  <span className="font-semibold text-white">{language.toUpperCase()}</span>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="fures-dropdown-content mt-2 w-44 p-2" style={dropdownGlassStyle}>
+                {languages.map((lang) => (
+                  <DropdownMenuItem key={lang.code} asChild className="p-0 focus:bg-transparent">
+                    <button
+                      onClick={() => setLanguage(lang.code as any)}
+                      className={`fures-dropdown-item flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm ${language === lang.code ? "text-white" : "text-white/65 hover:text-white"}`}
+                    >
+                      <span className="text-base">{lang.flag}</span>
+                      {lang.name}
+                    </button>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Link to="/tr/iletisim">
+              <button className="fures-cta-pill">{t("nav.lets_talk")}</button>
+            </Link>
+          </div>
+
+          {/* Mobile: lang + hamburger */}
+          <div className="ml-auto flex shrink-0 items-center gap-2 md:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="fures-lang-pill-sm text-white/70">
+                  <Globe className="h-3.5 w-3.5" />
+                  <span className="font-semibold text-white text-xs">{language.toUpperCase()}</span>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="fures-dropdown-content mt-2 w-44 p-2" style={dropdownGlassStyle}>
+                {languages.map((lang) => (
+                  <DropdownMenuItem key={lang.code} asChild className="p-0 focus:bg-transparent">
+                    <button
+                      onClick={() => setLanguage(lang.code as any)}
+                      className={`fures-dropdown-item flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm ${language === lang.code ? "text-white" : "text-white/65 hover:text-white"}`}
+                    >
+                      <span className="text-base">{lang.flag}</span>
+                      {lang.name}
+                    </button>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <button
+              type="button"
+              onClick={() => setMobileOpen((p) => !p)}
+              className="fures-nav-item-idle flex h-9 w-9 items-center justify-center rounded-full text-white/70 hover:text-white"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
-          </Link>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile nav drawer */}
+      <div
+        className={`fixed inset-x-3 top-[4.5rem] z-40 transition-all duration-300 ease-out md:hidden ${
+          mobileOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
+        }`}
+      >
+        <div className="fures-nav-glass rounded-3xl p-3">
+          <nav className="flex flex-col gap-1">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const active = isActive(item.path);
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setMobileOpen(false)}
+                  className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-colors duration-200 ${
+                    active ? "bg-white/10 text-white" : "text-white/65 hover:bg-white/5 hover:text-white"
+                  }`}
+                >
+                  <Icon className="h-4 w-4 shrink-0" />
+                  {item.label}
+                </Link>
+              );
+            })}
+            <div className="mt-1 border-t border-white/10 pt-2">
+              <Link to="/tr/iletisim" onClick={() => setMobileOpen(false)}>
+                <button className="fures-cta-pill w-full">{t("nav.lets_talk")}</button>
+              </Link>
+            </div>
+          </nav>
         </div>
       </div>
-    </header>
+    </>
   );
 }

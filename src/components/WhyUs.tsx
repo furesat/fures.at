@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Zap, Palette, BarChart3, Building2, CheckCircle2 } from "lucide-react";
 
@@ -70,12 +69,7 @@ export function WhyUs() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group liquid-glass p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_22px_70px_-58px_rgba(10,18,38,0.75)]"
-              style={{
-                '--glass-surface-bg': 'rgba(6, 12, 30, 0.08)',
-                '--glass-surface-border': 'rgba(255, 255, 255, 0.14)',
-                '--glass-highlight-height': '8%',
-              } as CSSProperties}
+              className="group fures-nav-glass rounded-[2rem] p-8 transition-all duration-300 hover:-translate-y-1"
             >
               <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-br from-orange-500/0 to-purple-600/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:from-orange-500/12 group-hover:to-purple-600/10"></div>
 
@@ -103,12 +97,7 @@ export function WhyUs() {
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="liquid-glass p-8 transition-all duration-500 hover:-translate-y-1"
-                style={{
-                  '--glass-surface-bg': 'rgba(6, 12, 30, 0.08)',
-                  '--glass-surface-border': 'rgba(255, 255, 255, 0.14)',
-                  '--glass-highlight-height': '8%',
-                } as CSSProperties}
+                className="fures-nav-glass rounded-[2rem] p-8 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
