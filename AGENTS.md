@@ -186,3 +186,10 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - Bakım iyileştirmesi: kırılgan Tailwind utility zinciri seçicileri kaldırılıp `premium-card`, `page-hero-glow`, `whyus-*` semantik sınıflarına geçildi; WhyUs içindeki gereksiz tema koşulları temizlenip tema mantığı globals.css merkezine alındı.
 
 - Konsolidasyon notu: Light-mode görsel iyileştirmeleri (semantic class refactor + WhyUs/Mission + hero uyumu) tek PR anlatımında birleştirilerek teslim edilecek; sitemap kontrolü yapıldı, yeni rota bulunmadı.
+
+## Güncelleme Notu (2026-05-02 / Blog Dil + Robot Konu Odak)
+- `blog/de/` altındaki mevcut içeriklerde Türkçe kalan tema başlıkları Almancaya çevrildi (ör. "Gezi ve yapay zekâ" → "Reisen und künstliche Intelligenz").
+- `scripts/gemini_daily.py` içinde konu başlıkları dil bazlı (`labels`) yönetilecek şekilde güncellendi; böylece her dilin blog başlığı kendi yerel dilinde üretilir.
+- Blog robotunun haftalık araştırma sorguları Avusturya, Almanya ve dünya turizmi + turizmde yapay zekâ + turizm otomasyonu eksenine kaydırıldı.
+- Görsel tema eşlemesi yeni turizm-odaklı konu kimliklerine göre yenilendi.
+- Sitemap kontrol adımı bu güncellemede de tamamlandı; yeni rota eklenmedi.
