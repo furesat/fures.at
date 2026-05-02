@@ -180,3 +180,5 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - WhyUs bölümü component seviyesinde tema duyarlı hale getirildi; light mode’da Referenzen ile uyumlu açık yüzey, başlık gradyanı ve metin kontrastı doğrudan bileşen içinde kontrol ediliyor.
 
 - WhyUs light görünümü JSX seviyesinde ayrı render dallarıyla kesinleştirildi; light branch artık koyu gradient sınıflarını hiç üretmiyor.
+
+- /de/ueber-uns WhyUs arka planında light modda koyu gradient zorla kaldırıldı; non-homepage hero başlık/üst etiket tipografisi Referenzen tasarım diline yaklaştırıldı.

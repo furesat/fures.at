@@ -40,3 +40,5 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 - Ek not: WhyUs componenti light/dark temaya göre ayrı sınıflar kullanacak şekilde güncellendi.
 
 - Ek not: WhyUs light branch koyu overlay sınıflarını render etmez şekilde güncellendi.
+
+- Ek not: Non-homepage hero tipografi ve üst etiketleri light modda Referenzen stiline hizalandı.

@@ -673,7 +673,42 @@ html.theme-light .whyus-section .absolute.inset-0.bg-gradient-to-b,
 html.theme-light .mission-section .absolute.inset-0.bg-gradient-to-br,
 html[data-theme="light"] .whyus-section .absolute.inset-0.bg-gradient-to-b,
 html[data-theme="light"] .mission-section .absolute.inset-0.bg-gradient-to-br {
-  opacity: 0.08;
+  opacity: 0.04;
+}
+
+/* Force-remove dark backdrop behind "Warum Fures" in light mode */
+html.theme-light .whyus-section .absolute.inset-0.bg-gradient-to-b.from-black.via-gray-900\/30.to-black,
+html[data-theme="light"] .whyus-section .absolute.inset-0.bg-gradient-to-b.from-black.via-gray-900\/30.to-black {
+  background: linear-gradient(180deg, rgba(248, 245, 242, 0.92) 0%, rgba(243, 239, 236, 0.9) 100%);
+  opacity: 1;
+}
+
+/* Non-homepage hero typography should match References style in light mode */
+html.theme-light .min-h-screen.py-32 header h1,
+html[data-theme="light"] .min-h-screen.py-32 header h1 {
+  color: #1e232c;
+  letter-spacing: -0.02em;
+  font-weight: 650;
+}
+
+html.theme-light .min-h-screen.py-32 header p,
+html[data-theme="light"] .min-h-screen.py-32 header p {
+  color: #647184;
+}
+
+html.theme-light .min-h-screen.py-32 header span.inline-flex,
+html[data-theme="light"] .min-h-screen.py-32 header span.inline-flex {
+  color: #7c8798;
+  border-color: rgba(104, 112, 127, 0.24);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(246, 242, 238, 0.62));
+}
+
+/* Hero headings that use white gradients become References-like */
+html.theme-light .min-h-screen.py-32 header .bg-gradient-to-r.from-white.to-gray-300.bg-clip-text.text-transparent,
+html.theme-light .min-h-screen.py-32 header .bg-gradient-to-r.from-white.via-gray-100.to-white.bg-clip-text.text-transparent,
+html[data-theme="light"] .min-h-screen.py-32 header .bg-gradient-to-r.from-white.to-gray-300.bg-clip-text.text-transparent,
+html[data-theme="light"] .min-h-screen.py-32 header .bg-gradient-to-r.from-white.via-gray-100.to-white.bg-clip-text.text-transparent {
+  background-image: linear-gradient(90deg, #cc6a8a 0%, #a062d8 55%, #6f7ea2 100%);
 }
 
 /* Mobile nav glass in light mode (same as desktop nav) */
