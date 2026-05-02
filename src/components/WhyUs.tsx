@@ -43,12 +43,12 @@ export function WhyUs() {
   ];
 
   return (
-    <section className="py-32 relative overflow-hidden bg-black">
+    <section className="whyus-section py-32 relative overflow-hidden bg-black">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/30 to-black"></div>
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+        <div className="whyus-bg-layer absolute inset-0 bg-gradient-to-b from-black via-gray-900/30 to-black" />
+        <div className="whyus-glow-left absolute top-1/4 left-10 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl" />
+        <div className="whyus-glow-right absolute bottom-1/4 right-10 h-96 w-96 rounded-full bg-purple-600/10 blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +58,7 @@ export function WhyUs() {
             {t('why_us.subtitle')}
           </h2>
           <h3 className="text-4xl sm:text-5xl lg:text-6xl mb-6">
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <span className="whyus-title-gradient bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               {t('why_us.title')}
             </span>
           </h3>
@@ -78,8 +78,8 @@ export function WhyUs() {
                   <feature.icon className="h-7 w-7 text-white" />
                 </div>
 
-                <h4 className="text-xl text-white mb-3 font-semibold">{feature.title}</h4>
-                <p className="text-gray-300/80 leading-relaxed">{feature.description}</p>
+                <h4 className="whyus-card-title text-xl mb-3 font-semibold text-white">{feature.title}</h4>
+                <p className="whyus-card-description text-gray-300/80 leading-relaxed">{feature.description}</p>
               </div>
             </div>
           ))}
@@ -88,7 +88,7 @@ export function WhyUs() {
         {/* Benefits Section */}
         <div className="mt-20">
           <h3 className="text-3xl sm:text-4xl text-center mb-12">
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <span className="whyus-benefits-gradient bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               {t('benefits.title')}
             </span>
           </h3>
@@ -104,8 +104,8 @@ export function WhyUs() {
                     <CheckCircle2 className="w-6 h-6 text-orange-400" />
                   </div>
                   <div>
-                    <h4 className="text-lg text-white mb-2">{benefit.title}</h4>
-                    <p className="text-gray-400">{benefit.description}</p>
+                    <h4 className="whyus-card-title text-lg text-white mb-2">{benefit.title}</h4>
+                    <p className="whyus-benefit-description text-gray-400">{benefit.description}</p>
                   </div>
                 </div>
               </div>
