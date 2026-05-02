@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useTheme } from "../contexts/ThemeContext";
 import { MapPin, TrendingUp, Hotel, ArrowRight } from "lucide-react";
 import { ClothCanvas } from "./ClothCanvas";
 
@@ -41,6 +42,8 @@ const STATS = [
 
 export function HeroDE() {
   const { t } = useLanguage();
+  const theme = useTheme();
+  const isLight = theme === "light";
   const [wordIndex, setWordIndex] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -56,17 +59,21 @@ export function HeroDE() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden pt-16">
+    <section
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16"
+      style={{ background: isLight ? "#f5f5f7" : "#000" }}
+    >
       {/* Three.js silk cloth background */}
       <ClothCanvas />
 
-      {/* Gradient overlay — left readable, edges darkened */}
+      {/* Gradient overlay — readable text area, edges softened */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           zIndex: 2,
-          background:
-            "linear-gradient(90deg, rgba(5,5,5,0.88) 0%, rgba(5,5,5,0.6) 30%, rgba(5,5,5,0.15) 60%, rgba(5,5,5,0) 75%), linear-gradient(180deg, rgba(5,5,5,0.45) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.55) 100%)",
+          background: isLight
+            ? "linear-gradient(90deg, rgba(245,245,247,0.78) 0%, rgba(245,245,247,0.5) 30%, rgba(245,245,247,0.1) 60%, rgba(245,245,247,0) 75%), linear-gradient(180deg, rgba(245,245,247,0.45) 0%, rgba(245,245,247,0) 30%, rgba(245,245,247,0) 70%, rgba(245,245,247,0.55) 100%)"
+            : "linear-gradient(90deg, rgba(5,5,5,0.88) 0%, rgba(5,5,5,0.6) 30%, rgba(5,5,5,0.15) 60%, rgba(5,5,5,0) 75%), linear-gradient(180deg, rgba(5,5,5,0.45) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.55) 100%)",
         }}
       />
 
@@ -145,10 +152,11 @@ export function HeroDE() {
           </Link>
           <Link
             to="/de/kontakt"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold text-white rounded-full transition-all duration-200 hover:-translate-y-px active:translate-y-0"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-full transition-all duration-200 hover:-translate-y-px active:translate-y-0"
             style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.12)",
+              background: isLight ? "rgba(0,0,0,0.04)" : "rgba(255,255,255,0.04)",
+              border: isLight ? "1px solid rgba(0,0,0,0.10)" : "1px solid rgba(255,255,255,0.12)",
+              color: isLight ? "#1d1d1f" : "#ffffff",
             }}
           >
             Jetzt Beratung anfragen
