@@ -167,3 +167,16 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
   - **Hero Portresi:** Hero bölümünde merkezde blur aurası olan yuvarlak profil fotoğrafı gösterilir; `App.tsx` içindeki `<Hero>` bileşeninde yer alır. Fotoğrafın görünür olduğundan emin olmak için build öncesi lokal görüntü kontrolü yap.
   - **Güncel Ton & Sıralama (2025-02):** Hero/bio metinleri tekil ve “sahada teslimat” odaklı tut; Almanca başlıkta verilen hiyerarşi vurgusunu koru. `features`/`Meine Kernkompetenzen` bloklarını ajans çoğul dili yerine bireysel yetkinlik anlatımıyla yaz. `experienceOrder` ters kronolojik ilerler: Dorana → Fures (yan iş) → Mimoza (müdür yrd./resepsiyon) → Concorde → Granada → Almanya bloğu (2012–2017) tek kutu halinde. Almanya başlığında BMW/Continental/Infineon/FedEx örnekleri toplu durmalı, eski tekil kayıtlar gösterilmemeli. Web Tasarımı & Kodlama detay satırında RWR “Datenverarbeitung/Techniker” uygunluk notunu koru.
   - **Deneyim Kartları:** Header’daki PDF butonundan ayrı olarak deneyim bölümünün başlığında `experience.controls` metinleriyle çevirilmiş “Tüm kartları aç”/“Kartları tek tek görüntüle” toggle’ı bulunur. Açık modda tüm kartlar genişler, kart butonları devre dışı (`aria-disabled`) kalır; tekli moda dönerken varsayılan olarak `neu` kartı seçilir.
+
+## Güncelleme Notu (2026-05-02)
+- Light mode iyileştirmelerinde yalnızca `src/styles/globals.css` içindeki `html.theme-light` / `[data-theme="light"]` seçicileri üzerinden açık tema yüzeyleri, overlay yumuşatma, blog okunabilirliği ve footer geçişleri güncellendi.
+- Dark mode tokenları ve dark bileşen stilleri bilinçli olarak değiştirilmedi.
+- Yeni rota eklenmediği için sitemap dosyalarında ek kayıt gerekmemektedir; yine de deploy öncesi kontrol adımı korunmalıdır.
+
+- Ek light-mode okunabilirlik revizyonu: white-gradient başlıklar, kart açıklama metinleri ve nav glass şeffaflık/kontrast dengesi iyileştirildi (yalnızca light selector kapsamı).
+
+- Ek görsel uyum düzeni: Blog hero altyazı kontrastı artırıldı; WhyUs ve Mission bölümleri Referenzen light yüzey mantığına yaklaştırıldı; header light mode cam katmanı iPhone Aero (buzlu-su) etkisiyle güncellendi.
+
+- WhyUs bölümü component seviyesinde tema duyarlı hale getirildi; light mode’da Referenzen ile uyumlu açık yüzey, başlık gradyanı ve metin kontrastı doğrudan bileşen içinde kontrol ediliyor.
+
+- WhyUs light görünümü JSX seviyesinde ayrı render dallarıyla kesinleştirildi; light branch artık koyu gradient sınıflarını hiç üretmiyor.

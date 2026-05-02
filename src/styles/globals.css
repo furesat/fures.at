@@ -146,16 +146,26 @@ html.theme-light .text-white\/65,
 html[data-theme="light"] .text-white\/65 { color: rgba(29, 29, 31, 0.65); }
 
 html.theme-light .text-white\/40,
-html[data-theme="light"] .text-white\/40 { color: rgba(29, 29, 31, 0.40); }
+html[data-theme="light"] .text-white\/40 { color: rgba(29, 29, 31, 0.58); }
 
 html.theme-light .text-slate-200\/70,
 html[data-theme="light"] .text-slate-200\/70 { color: rgba(29, 29, 31, 0.65); }
 
 html.theme-light .text-gray-300,
-html[data-theme="light"] .text-gray-300 { color: #374151; }
+html[data-theme="light"] .text-gray-300 { color: #4b5563; }
 
 html.theme-light .text-gray-400,
-html[data-theme="light"] .text-gray-400 { color: #6e6e73; }
+html[data-theme="light"] .text-gray-400 { color: #5f6775; }
+
+html.theme-light .text-gray-300\/80,
+html[data-theme="light"] .text-gray-300\/80 {
+  color: rgba(75, 85, 99, 0.92);
+}
+
+html.theme-light .text-white\/50,
+html[data-theme="light"] .text-white\/50 {
+  color: rgba(60, 67, 80, 0.9);
+}
 
 /* ── Border overrides ── */
 html.theme-light .border-white\/10,
@@ -176,6 +186,28 @@ html[data-theme="light"] .bg-white\/5 { background-color: rgba(0, 0, 0, 0.03); }
 
 html.theme-light [class*="bg-white\/"],
 html[data-theme="light"] [class*="bg-white\/"] { background-color: rgba(0, 0, 0, 0.04); }
+
+/* ── Dark gradient/overlay cleanup for light mode ── */
+html.theme-light .from-black,
+html.theme-light .via-black,
+html.theme-light .to-black,
+html[data-theme="light"] .from-black,
+html[data-theme="light"] .via-black,
+html[data-theme="light"] .to-black {
+  --tw-gradient-from: rgba(248, 246, 244, 0.86) var(--tw-gradient-from-position);
+  --tw-gradient-via: rgba(241, 239, 237, 0.54) var(--tw-gradient-via-position);
+  --tw-gradient-to: rgba(247, 245, 243, 0.72) var(--tw-gradient-to-position);
+}
+
+html.theme-light .via-gray-900\/30,
+html[data-theme="light"] .via-gray-900\/30 {
+  --tw-gradient-via: rgba(233, 231, 230, 0.48) var(--tw-gradient-via-position);
+}
+
+html.theme-light .via-purple-950\/20,
+html[data-theme="light"] .via-purple-950\/20 {
+  --tw-gradient-via: rgba(232, 226, 243, 0.36) var(--tw-gradient-via-position);
+}
 
 /* ── Selection in light mode ── */
 html.theme-light ::selection,
@@ -205,47 +237,54 @@ html[data-theme="light"] .liquid-pill.is-active {
 html.theme-light .fures-nav-glass,
 html[data-theme="light"] .fures-nav-glass {
   background:
-    radial-gradient(140% 100% at 50% -60%, rgba(255, 255, 255, 0.88) 0%, transparent 55%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.62) 55%, rgba(255, 255, 255, 0.70) 100%),
-    rgba(255, 255, 255, 0.70);
-  backdrop-filter: blur(40px) saturate(130%) brightness(1.02);
-  -webkit-backdrop-filter: blur(40px) saturate(130%) brightness(1.02);
+    radial-gradient(125% 110% at 14% -36%, rgba(255, 255, 255, 0.84) 0%, transparent 58%),
+    radial-gradient(120% 130% at 85% 130%, rgba(199, 184, 234, 0.2) 0%, transparent 64%),
+    linear-gradient(178deg, rgba(255, 255, 255, 0.60) 0%, rgba(246, 244, 250, 0.38) 52%, rgba(238, 238, 245, 0.46) 100%),
+    rgba(255, 255, 255, 0.34);
+  backdrop-filter: blur(38px) saturate(165%) brightness(1.04);
+  -webkit-backdrop-filter: blur(38px) saturate(165%) brightness(1.04);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.04),
-    inset 0 0 0 0.5px rgba(255, 255, 255, 0.55),
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    0 2px 8px rgba(0, 0, 0, 0.05),
-    0 1px 2px rgba(0, 0, 0, 0.03);
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(64, 71, 84, 0.08),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.42),
+    0 20px 44px -28px rgba(43, 48, 59, 0.32),
+    0 2px 8px rgba(43, 48, 59, 0.12);
 }
 
 html.theme-light .fures-nav-glass::before,
 html[data-theme="light"] .fures-nav-glass::before {
   background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.88) 0%,
-    rgba(255, 255, 255, 0.30) 22%,
-    rgba(0, 0, 0, 0.02) 42%,
-    rgba(0, 0, 0, 0.01) 58%,
-    rgba(255, 255, 255, 0.22) 78%,
-    rgba(255, 255, 255, 0.65) 100%
+    130deg,
+    rgba(255, 255, 255, 0.76) 0%,
+    rgba(255, 255, 255, 0.18) 26%,
+    rgba(165, 177, 212, 0.08) 46%,
+    rgba(255, 255, 255, 0.10) 68%,
+    rgba(255, 255, 255, 0.52) 100%
   );
 }
 
 /* ── Nav item idle in light mode ── */
 html.theme-light .fures-nav-item-idle,
 html[data-theme="light"] .fures-nav-item-idle {
-  color: rgba(29, 29, 31, 0.65);
+  color: rgba(42, 47, 58, 0.78);
 }
 
 html.theme-light .fures-nav-item-idle:hover,
 html[data-theme="light"] .fures-nav-item-idle:hover {
-  color: rgba(29, 29, 31, 0.9);
+  color: rgba(25, 29, 36, 0.98);
   background:
     radial-gradient(80% 100% at 50% 0%, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.02) 60%, rgba(0, 0, 0, 0.01) 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.8),
     inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+}
+
+/* Headings that used white gradient text become readable in light mode */
+html.theme-light .bg-gradient-to-r.from-white.to-gray-300.bg-clip-text.text-transparent,
+html.theme-light .bg-gradient-to-r.from-white.via-gray-100.to-white.bg-clip-text.text-transparent,
+html[data-theme="light"] .bg-gradient-to-r.from-white.to-gray-300.bg-clip-text.text-transparent,
+html[data-theme="light"] .bg-gradient-to-r.from-white.via-gray-100.to-white.bg-clip-text.text-transparent {
+  background-image: linear-gradient(90deg, #1c1f27 0%, #4b5565 100%);
 }
 
 /* ── Logo pill in light mode ── */
@@ -509,6 +548,133 @@ html.theme-light .bg-\[\#121017\],
 html[data-theme="light"] .bg-\[\#121017\] { background-color: #ffffff; }
 html.theme-light .bg-\[\#110d14\],
 html[data-theme="light"] .bg-\[\#110d14\] { background-color: #f5f5f7; }
+
+/* Light mode section rhythm + cleaner overlays */
+html.theme-light section.bg-black,
+html[data-theme="light"] section.bg-black {
+  background-color: transparent;
+}
+
+html.theme-light .bg-orange-500\/10,
+html[data-theme="light"] .bg-orange-500\/10 {
+  background-color: rgba(255, 153, 102, 0.11);
+}
+
+html.theme-light .bg-purple-600\/10,
+html[data-theme="light"] .bg-purple-600\/10 {
+  background-color: rgba(168, 142, 255, 0.1);
+}
+
+html.theme-light .bg-\[radial-gradient\(circle_at_top\,rgba\(255\,122\,41\,0\.18\)\,transparent_55\%\,\)\,radial-gradient\(circle_at_bottom\,rgba\(143\,91\,255\,0\.14\)\,transparent_60\%\,\)\],
+html[data-theme="light"] .bg-\[radial-gradient\(circle_at_top\,rgba\(255\,122\,41\,0\.18\)\,transparent_55\%\,\)\,radial-gradient\(circle_at_bottom\,rgba\(143\,91\,255\,0\.14\)\,transparent_60\%\,\)\] {
+  background:
+    radial-gradient(circle at top, rgba(255, 160, 112, 0.12), transparent 58%),
+    radial-gradient(circle at bottom, rgba(172, 148, 255, 0.1), transparent 63%);
+}
+
+/* Blog readability surfaces in light mode */
+html.theme-light .blog-content,
+html[data-theme="light"] .blog-content {
+  color: #3f4450;
+}
+
+html.theme-light .text-slate-300,
+html[data-theme="light"] .text-slate-300 {
+  color: #5e6a7a;
+}
+
+html.theme-light .blog-content h2,
+html.theme-light .blog-content h3,
+html.theme-light .blog-content strong,
+html[data-theme="light"] .blog-content h2,
+html[data-theme="light"] .blog-content h3,
+html[data-theme="light"] .blog-content strong {
+  color: #17181c;
+}
+
+html.theme-light .blog-content p,
+html.theme-light .blog-content ul,
+html.theme-light .blog-content ol,
+html[data-theme="light"] .blog-content p,
+html[data-theme="light"] .blog-content ul,
+html[data-theme="light"] .blog-content ol {
+  color: #434956;
+}
+
+html.theme-light .blog-content a,
+html[data-theme="light"] .blog-content a {
+  color: #ab4f1d;
+  text-decoration-color: rgba(171, 79, 29, 0.35);
+}
+
+html.theme-light .blog-content a:hover,
+html[data-theme="light"] .blog-content a:hover {
+  color: #8f3f15;
+  text-decoration-color: rgba(143, 63, 21, 0.5);
+}
+
+html.theme-light .blog-content blockquote,
+html[data-theme="light"] .blog-content blockquote {
+  border-left-color: rgba(171, 79, 29, 0.4);
+  background: rgba(255, 255, 255, 0.72);
+  color: #343944;
+}
+
+html.theme-light .blog-content code,
+html[data-theme="light"] .blog-content code {
+  background: rgba(107, 114, 128, 0.12);
+  color: #8f3f15;
+}
+
+/* Premium card readability for light mode */
+html.theme-light .group.relative.overflow-hidden.rounded-3xl.border.border-white\/10.bg-gradient-to-br.from-white\/10.via-white\/5.to-transparent,
+html[data-theme="light"] .group.relative.overflow-hidden.rounded-3xl.border.border-white\/10.bg-gradient-to-br.from-white\/10.via-white\/5.to-transparent,
+html.theme-light .relative.p-8.lg\:p-10.rounded-3xl.bg-gradient-to-br.from-white\/5.to-white\/0.border.border-white\/10,
+html[data-theme="light"] .relative.p-8.lg\:p-10.rounded-3xl.bg-gradient-to-br.from-white\/5.to-white\/0.border.border-white\/10 {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.9), rgba(250, 247, 244, 0.72));
+  border-color: rgba(90, 97, 110, 0.16);
+  box-shadow: 0 16px 44px -32px rgba(32, 35, 45, 0.25);
+}
+
+html.theme-light .group.relative.overflow-hidden.rounded-3xl.border.border-white\/10.bg-gradient-to-br.from-white\/10.via-white\/5.to-transparent:hover,
+html[data-theme="light"] .group.relative.overflow-hidden.rounded-3xl.border.border-white\/10.bg-gradient-to-br.from-white\/10.via-white\/5.to-transparent:hover,
+html.theme-light .relative.p-8.lg\:p-10.rounded-3xl.bg-gradient-to-br.from-white\/5.to-white\/0.border.border-white\/10:hover,
+html[data-theme="light"] .relative.p-8.lg\:p-10.rounded-3xl.bg-gradient-to-br.from-white\/5.to-white\/0.border.border-white\/10:hover {
+  border-color: rgba(171, 79, 29, 0.35);
+  box-shadow: 0 22px 56px -34px rgba(171, 79, 29, 0.24);
+}
+
+/* Footer cleanup in light mode */
+html.theme-light footer.bg-black,
+html[data-theme="light"] footer.bg-black {
+  background:
+    linear-gradient(180deg, rgba(246, 244, 241, 0.86) 0%, rgba(243, 240, 236, 0.96) 100%);
+  border-top-color: rgba(96, 102, 114, 0.18);
+}
+
+/* Blog hero subtitle contrast on light mode */
+html.theme-light .min-h-screen .text-slate-300.sm\:text-lg,
+html[data-theme="light"] .min-h-screen .text-slate-300.sm\:text-lg {
+  color: #6a7485;
+}
+
+/* Align WhyUs and Mission with References light visual language */
+html.theme-light .whyus-section,
+html.theme-light .mission-section,
+html[data-theme="light"] .whyus-section,
+html[data-theme="light"] .mission-section {
+  background:
+    radial-gradient(90% 70% at 50% -10%, rgba(232, 229, 244, 0.72) 0%, transparent 62%),
+    radial-gradient(90% 60% at 100% 100%, rgba(214, 225, 245, 0.26) 0%, transparent 68%),
+    linear-gradient(180deg, #f6f3f0 0%, #f3f1ef 100%);
+}
+
+html.theme-light .whyus-section .absolute.inset-0.bg-gradient-to-b,
+html.theme-light .mission-section .absolute.inset-0.bg-gradient-to-br,
+html[data-theme="light"] .whyus-section .absolute.inset-0.bg-gradient-to-b,
+html[data-theme="light"] .mission-section .absolute.inset-0.bg-gradient-to-br {
+  opacity: 0.08;
+}
 
 /* Mobile nav glass in light mode (same as desktop nav) */
 html.theme-light .fures-nav-glass.rounded-3xl,
