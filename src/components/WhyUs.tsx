@@ -1,8 +1,11 @@
 import { useLanguage } from "../contexts/LanguageContext";
+import { useTheme } from "../contexts/ThemeContext";
 import { Zap, Palette, BarChart3, Building2, CheckCircle2 } from "lucide-react";
 
 export function WhyUs() {
   const { t } = useLanguage();
+  const theme = useTheme();
+  const isLight = theme === "light";
 
   const features = [
     {
@@ -43,12 +46,12 @@ export function WhyUs() {
   ];
 
   return (
-    <section className="whyus-section py-32 relative overflow-hidden bg-black">
+    <section className={`whyus-section py-32 relative overflow-hidden ${isLight ? "bg-[#f6f3f0]" : "bg-black"}`}>
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/30 to-black"></div>
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+        <div className={`absolute inset-0 ${isLight ? "bg-gradient-to-b from-[#f8f5f2] via-[#f1eef4]/70 to-[#f3f0ee]" : "bg-gradient-to-b from-black via-gray-900/30 to-black"}`}></div>
+        <div className={`absolute top-1/4 left-10 w-96 h-96 rounded-full blur-3xl ${isLight ? "bg-orange-300/20" : "bg-orange-500/10"}`}></div>
+        <div className={`absolute bottom-1/4 right-10 w-96 h-96 rounded-full blur-3xl ${isLight ? "bg-violet-300/20" : "bg-purple-600/10"}`}></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,8 +60,8 @@ export function WhyUs() {
           <h2 className="text-sm uppercase tracking-wider text-orange-400 mb-4">
             {t('why_us.subtitle')}
           </h2>
-          <h3 className="text-4xl sm:text-5xl lg:text-6xl mb-6">
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <h3 className={`text-4xl sm:text-5xl lg:text-6xl mb-6 ${isLight ? "text-[#1f2430]" : ""}`}>
+            <span className={isLight ? "bg-gradient-to-r from-[#c96586] to-[#8f5bff] bg-clip-text text-transparent" : "bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"}>
               {t('why_us.title')}
             </span>
           </h3>
@@ -78,8 +81,8 @@ export function WhyUs() {
                   <feature.icon className="h-7 w-7 text-white" />
                 </div>
 
-                <h4 className="text-xl text-white mb-3 font-semibold">{feature.title}</h4>
-                <p className="text-gray-300/80 leading-relaxed">{feature.description}</p>
+                <h4 className={`text-xl mb-3 font-semibold ${isLight ? "text-[#20242d]" : "text-white"}`}>{feature.title}</h4>
+                <p className={`leading-relaxed ${isLight ? "text-[#5c6677]" : "text-gray-300/80"}`}>{feature.description}</p>
               </div>
             </div>
           ))}
@@ -104,8 +107,8 @@ export function WhyUs() {
                     <CheckCircle2 className="w-6 h-6 text-orange-400" />
                   </div>
                   <div>
-                    <h4 className="text-lg text-white mb-2">{benefit.title}</h4>
-                    <p className="text-gray-400">{benefit.description}</p>
+                    <h4 className={`text-lg mb-2 ${isLight ? "text-[#20242d]" : "text-white"}`}>{benefit.title}</h4>
+                    <p className={isLight ? "text-[#5f6775]" : "text-gray-400"}>{benefit.description}</p>
                   </div>
                 </div>
               </div>

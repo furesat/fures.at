@@ -36,3 +36,5 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 - Ek not: Ana repo light-mode okunabilirlik iyileştirmeleri (başlık kontrastı ve nav glass) dark mode kapsamına dahil edilmeden güncellendi.
 
 - Ek not: Header light-mode aero glass ve ana sayfa section kontrast uyumu güncellendi; dark mode etkilenmedi.
+
+- Ek not: WhyUs componenti light/dark temaya göre ayrı sınıflar kullanacak şekilde güncellendi.

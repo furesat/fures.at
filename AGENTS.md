@@ -176,3 +176,5 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - Ek light-mode okunabilirlik revizyonu: white-gradient başlıklar, kart açıklama metinleri ve nav glass şeffaflık/kontrast dengesi iyileştirildi (yalnızca light selector kapsamı).
 
 - Ek görsel uyum düzeni: Blog hero altyazı kontrastı artırıldı; WhyUs ve Mission bölümleri Referenzen light yüzey mantığına yaklaştırıldı; header light mode cam katmanı iPhone Aero (buzlu-su) etkisiyle güncellendi.
+
+- WhyUs bölümü component seviyesinde tema duyarlı hale getirildi; light mode’da Referenzen ile uyumlu açık yüzey, başlık gradyanı ve metin kontrastı doğrudan bileşen içinde kontrol ediliyor.
