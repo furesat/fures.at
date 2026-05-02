@@ -52,6 +52,13 @@ LANG_NAMES = {
 
 INSTAGRAM_CAPTION_LIMIT = 2200
 
+
+def get_topic_label(topic_cfg, lang_code):
+    if not topic_cfg:
+        return "Yapay zekâ" if lang_code == "tr" else "artificial intelligence"
+    labels = topic_cfg.get("labels") or {}
+    return labels.get(lang_code) or labels.get("en") or topic_cfg.get("en", "artificial intelligence")
+
 ROOT = Path(__file__).resolve().parent.parent
 BLOG_DIR = ROOT / "blog"
 FOTOS_DIR = ROOT / "fotos"
@@ -67,80 +74,115 @@ CAMPAIGN_IMAGE_DIR.mkdir(parents=True, exist_ok=True)
 # weekday: 0=Mon, 6=Sun
 TOPIC_BY_WEEKDAY = {
     0: {
-        "id": "tech",
-        "tr": "Teknoloji",
-        "en": "technology",
+        "id": "tourism_ai_strategy",
+        "labels": {
+            "tr": "Turizmde yapay zekâ stratejileri",
+            "en": "AI strategies in tourism",
+            "de": "KI-Strategien im Tourismus",
+            "ru": "ИИ-стратегии в туризме",
+        },
+        "en": "AI strategies in tourism",
         "queries": [
-            "technology trends",
-            "software innovation",
-            "hardware breakthroughs",
-            "consumer electronics innovation",
+            "Austria tourism AI strategy",
+            "Germany tourism digital transformation",
+            "global tourism AI trends",
+            "tourism automation strategy",
         ],
     },
     1: {
-        "id": "tourism",
-        "tr": "Turizm",
-        "en": "tourism and travel",
+        "id": "smart_destinations",
+        "labels": {
+            "tr": "Akıllı destinasyonlar",
+            "en": "smart destinations",
+            "de": "Smarte Reiseziele",
+            "ru": "Умные направления",
+        },
+        "en": "smart destinations",
         "queries": [
-            "tourism industry innovation",
-            "travel technology",
-            "hotel technology",
-            "digital marketing in tourism",
+            "Austria smart destination tourism",
+            "Germany travel tech innovation",
+            "world tourism digital services",
+            "hotel automation in tourism",
         ],
     },
     2: {
-        "id": "ai",
-        "tr": "Yapay zekâ",
-        "en": "artificial intelligence",
+        "id": "tourism_automation",
+        "labels": {
+            "tr": "Turizm otomasyonu",
+            "en": "tourism automation",
+            "de": "Tourismusautomatisierung",
+            "ru": "Автоматизация туризма",
+        },
+        "en": "tourism automation",
         "queries": [
-            "artificial intelligence breakthroughs",
-            "machine learning research",
-            "generative AI",
-            "AI startups",
+            "tourism automation platforms",
+            "AI booking automation",
+            "hospitality process automation",
+            "tourism CRM AI workflows",
         ],
     },
     3: {
-        "id": "space",
-        "tr": "Uzay",
-        "en": "space and astronomy",
+        "id": "hospitality_ai",
+        "labels": {
+            "tr": "Konaklamada yapay zekâ",
+            "en": "AI in hospitality",
+            "de": "KI in der Hotellerie",
+            "ru": "ИИ в гостиничном бизнесе",
+        },
+        "en": "AI in hospitality",
         "queries": [
-            "space exploration",
-            "astronomy discoveries",
-            "space technology",
-            "satellite technology",
+            "Austria hotel AI operations",
+            "Germany hospitality automation",
+            "global hotel AI assistants",
+            "hotel revenue management AI",
         ],
     },
     4: {
-        "id": "microchips",
-        "tr": "Mikroçipler",
-        "en": "microchips and semiconductors",
+        "id": "travel_marketing_ai",
+        "labels": {
+            "tr": "Turizm pazarlamasında yapay zekâ",
+            "en": "AI in tourism marketing",
+            "de": "KI im Tourismusmarketing",
+            "ru": "ИИ в туристическом маркетинге",
+        },
+        "en": "AI in tourism marketing",
         "queries": [
-            "semiconductor industry",
-            "chip design",
-            "microchip technology",
-            "nanometer process technology",
+            "Austria tourism marketing AI",
+            "Germany destination marketing automation",
+            "global travel marketing AI campaigns",
+            "tourism personalization AI",
         ],
     },
     5: {
-        "id": "ai_travel",
-        "tr": "Gezi ve yapay zekâ",
-        "en": "AI and travel",
+        "id": "travel_ops",
+        "labels": {
+            "tr": "Seyahat operasyon teknolojileri",
+            "en": "travel operations technology",
+            "de": "Technologie für Reiseoperationen",
+            "ru": "Технологии туристических операций",
+        },
+        "en": "travel operations technology",
         "queries": [
-            "AI travel planning",
-            "AI in tourism",
-            "personalized travel recommendation AI",
-            "AI powered travel assistants",
+            "tour operator automation",
+            "airline and airport AI operations",
+            "travel agency workflow automation",
+            "world tourism operations technology",
         ],
     },
     6: {
-        "id": "ai_health",
-        "tr": "Sağlık ve yapay zekâ",
-        "en": "AI and healthcare",
+        "id": "tourism_future",
+        "labels": {
+            "tr": "Turizmin geleceği",
+            "en": "future of tourism",
+            "de": "Zukunft des Tourismus",
+            "ru": "Будущее туризма",
+        },
+        "en": "future of tourism",
         "queries": [
-            "AI in healthcare",
-            "medical AI",
-            "clinical decision support AI",
-            "radiology AI",
+            "future of tourism in Austria and Germany",
+            "global tourism innovation forecast",
+            "AI transformation in travel industry",
+            "tourism technology outlook",
         ],
     },
 }
@@ -165,13 +207,13 @@ IMAGE_COLOR_PALETTES = [
 ]
 
 IMAGE_SCENES_BY_TOPIC = {
-    "tech": "screens, holographic dashboards, connected devices, code fragments in the background",
-    "tourism": "maps, suitcases, airports, hotels, coastline silhouettes, airplanes",
-    "ai": "neural networks, digital brains, floating data blocks, abstract circuits",
-    "space": "planets, nebulae, stars, spaceships, orbital stations",
-    "microchips": "circuit boards, microchips, wafers, extreme close up of electronic components",
-    "ai_travel": "route maps, AI assistant icons, devices in hands, travel scenes blended with data flows",
-    "ai_health": "medical icons, heartbeat graphs, doctors silhouettes mixed with data streams and neural nets",
+    "tourism_ai_strategy": "destination maps, analytics dashboards, hotels and airports with AI overlays",
+    "smart_destinations": "smart city travel hubs, interactive maps, connected tourism touchpoints",
+    "tourism_automation": "automated check-in kiosks, booking flows, robotic hospitality and control panels",
+    "hospitality_ai": "hotel lobbies, digital concierge experiences, AI-driven service operations",
+    "travel_marketing_ai": "tourism ad creatives, audience segmentation dashboards, campaign automation visuals",
+    "travel_ops": "operations center, airline and agency workflow boards, route planning maps",
+    "tourism_future": "futuristic travel ecosystems, sustainable mobility, digital tourism networks",
 }
 
 # ==============================
@@ -375,7 +417,7 @@ def fetch_ai_news(limit=5, topic_cfg=None):
 def generate_single_blog(news_list, lang_code, topic_cfg=None):
     language = LANGS[lang_code]
     topic_en = topic_cfg["en"] if topic_cfg else "artificial intelligence"
-    topic_tr = topic_cfg["tr"] if topic_cfg else "Yapay zekâ"
+    topic_local = get_topic_label(topic_cfg, lang_code)
 
     summaries = "\n".join([f"- {n['title']}: {n['link']}" for n in news_list])
 
@@ -383,7 +425,7 @@ def generate_single_blog(news_list, lang_code, topic_cfg=None):
 Write a single {language} blog article (400-600 words) about {topic_en}.
 The article should synthesize the following news items into a coherent narrative and explain why they matter.
 
-Start with a title line formatted exactly as '### <title>' that fits the theme "{topic_tr}".
+Start with a title line formatted exactly as '### <title>' that fits the theme "{topic_local}".
 Write directly to the reader in an exciting, engaging tone. No meta-commentary about being an AI or receiving instructions.
 
 News:
@@ -764,8 +806,8 @@ def save_blog(
     image_alt_json = json.dumps(image_alt or "", ensure_ascii=False)
     caption_json = json.dumps(instagram_caption or "", ensure_ascii=False)
 
-    topic_tr = topic_cfg["tr"] if topic_cfg else "Günlük Haberler"
-    title_text = f"AI Daily - {topic_tr} - {LANG_NAMES[lang_code]}"
+    topic_local = get_topic_label(topic_cfg, lang_code)
+    title_text = f"AI Daily - {topic_local} - {LANG_NAMES[lang_code]}"
 
     front_matter = [
         "---",
@@ -839,7 +881,7 @@ def main():
     weekday = today.weekday()
     topic_cfg = TOPIC_BY_WEEKDAY.get(weekday)
     if topic_cfg:
-        print(f"📅 Bugünün konusu: {topic_cfg['tr']} ({topic_cfg['en']})")
+        print(f"📅 Bugünün konusu: {get_topic_label(topic_cfg, 'tr')} ({topic_cfg['en']})")
     else:
         print("📅 Bugünün konusu bulunamadı, varsayılan AI haberleri kullanılacak.")
 
