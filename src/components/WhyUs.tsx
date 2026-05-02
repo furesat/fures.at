@@ -1,11 +1,8 @@
 import { useLanguage } from "../contexts/LanguageContext";
-import { useTheme } from "../contexts/ThemeContext";
 import { Zap, Palette, BarChart3, Building2, CheckCircle2 } from "lucide-react";
 
 export function WhyUs() {
   const { t } = useLanguage();
-  const theme = useTheme();
-  const isLight = theme === "light";
 
   const features = [
     {
@@ -46,23 +43,12 @@ export function WhyUs() {
   ];
 
   return (
-    <section className={`whyus-section py-32 relative overflow-hidden ${isLight ? "bg-[#f6f3f0]" : "bg-black"}`}>
+    <section className="whyus-section py-32 relative overflow-hidden bg-black">
       {/* Background */}
       <div className="absolute inset-0">
-        {isLight ? (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#f8f5f2] via-[#f2eff5] to-[#f3f0ee]" />
-            <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white/70 to-transparent" />
-            <div className="absolute top-1/4 left-10 h-96 w-96 rounded-full bg-orange-300/20 blur-3xl" />
-            <div className="absolute bottom-1/4 right-10 h-96 w-96 rounded-full bg-violet-300/20 blur-3xl" />
-          </>
-        ) : (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/30 to-black" />
-            <div className="absolute top-1/4 left-10 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl" />
-            <div className="absolute bottom-1/4 right-10 h-96 w-96 rounded-full bg-purple-600/10 blur-3xl" />
-          </>
-        )}
+        <div className="whyus-bg-layer absolute inset-0 bg-gradient-to-b from-black via-gray-900/30 to-black" />
+        <div className="whyus-glow-left absolute top-1/4 left-10 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl" />
+        <div className="whyus-glow-right absolute bottom-1/4 right-10 h-96 w-96 rounded-full bg-purple-600/10 blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,8 +57,8 @@ export function WhyUs() {
           <h2 className="text-sm uppercase tracking-wider text-orange-400 mb-4">
             {t('why_us.subtitle')}
           </h2>
-          <h3 className={`text-4xl sm:text-5xl lg:text-6xl mb-6 ${isLight ? "text-[#1f2430]" : ""}`}>
-            <span className={isLight ? "bg-gradient-to-r from-[#c96586] to-[#8f5bff] bg-clip-text text-transparent" : "bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"}>
+          <h3 className="text-4xl sm:text-5xl lg:text-6xl mb-6">
+            <span className="whyus-title-gradient bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               {t('why_us.title')}
             </span>
           </h3>
@@ -92,8 +78,8 @@ export function WhyUs() {
                   <feature.icon className="h-7 w-7 text-white" />
                 </div>
 
-                <h4 className={`text-xl mb-3 font-semibold ${isLight ? "text-[#20242d]" : "text-white"}`}>{feature.title}</h4>
-                <p className={`leading-relaxed ${isLight ? "text-[#5c6677]" : "text-gray-300/80"}`}>{feature.description}</p>
+                <h4 className="whyus-card-title text-xl mb-3 font-semibold text-white">{feature.title}</h4>
+                <p className="whyus-card-description text-gray-300/80 leading-relaxed">{feature.description}</p>
               </div>
             </div>
           ))}
@@ -102,7 +88,7 @@ export function WhyUs() {
         {/* Benefits Section */}
         <div className="mt-20">
           <h3 className="text-3xl sm:text-4xl text-center mb-12">
-            <span className={isLight ? "bg-gradient-to-r from-[#202733] to-[#5a6677] bg-clip-text text-transparent" : "bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"}>
+            <span className="whyus-benefits-gradient bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               {t('benefits.title')}
             </span>
           </h3>
@@ -118,8 +104,8 @@ export function WhyUs() {
                     <CheckCircle2 className="w-6 h-6 text-orange-400" />
                   </div>
                   <div>
-                    <h4 className={`text-lg mb-2 ${isLight ? "text-[#20242d]" : "text-white"}`}>{benefit.title}</h4>
-                    <p className={isLight ? "text-[#5f6775]" : "text-gray-400"}>{benefit.description}</p>
+                    <h4 className="whyus-card-title text-lg text-white mb-2">{benefit.title}</h4>
+                    <p className="whyus-benefit-description text-gray-400">{benefit.description}</p>
                   </div>
                 </div>
               </div>

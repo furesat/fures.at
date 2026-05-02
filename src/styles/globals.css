@@ -565,8 +565,8 @@ html[data-theme="light"] .bg-purple-600\/10 {
   background-color: rgba(168, 142, 255, 0.1);
 }
 
-html.theme-light .bg-\[radial-gradient\(circle_at_top\,rgba\(255\,122\,41\,0\.18\)\,transparent_55\%\,\)\,radial-gradient\(circle_at_bottom\,rgba\(143\,91\,255\,0\.14\)\,transparent_60\%\,\)\],
-html[data-theme="light"] .bg-\[radial-gradient\(circle_at_top\,rgba\(255\,122\,41\,0\.18\)\,transparent_55\%\,\)\,radial-gradient\(circle_at_bottom\,rgba\(143\,91\,255\,0\.14\)\,transparent_60\%\,\)\] {
+html.theme-light .page-hero-glow,
+html[data-theme="light"] .page-hero-glow {
   background:
     radial-gradient(circle at top, rgba(255, 160, 112, 0.12), transparent 58%),
     radial-gradient(circle at bottom, rgba(172, 148, 255, 0.1), transparent 63%);
@@ -627,19 +627,19 @@ html[data-theme="light"] .blog-content code {
 }
 
 /* Premium card readability for light mode */
-html.theme-light .group.relative.overflow-hidden.rounded-3xl.border.border-white\/10.bg-gradient-to-br.from-white\/10.via-white\/5.to-transparent,
-html[data-theme="light"] .group.relative.overflow-hidden.rounded-3xl.border.border-white\/10.bg-gradient-to-br.from-white\/10.via-white\/5.to-transparent,
-html.theme-light .relative.p-8.lg\:p-10.rounded-3xl.bg-gradient-to-br.from-white\/5.to-white\/0.border.border-white\/10,
-html[data-theme="light"] .relative.p-8.lg\:p-10.rounded-3xl.bg-gradient-to-br.from-white\/5.to-white\/0.border.border-white\/10 {
+html.theme-light .premium-card,
+html.theme-light .whyus-section .fures-nav-glass,
+html[data-theme="light"] .premium-card,
+html[data-theme="light"] .whyus-section .fures-nav-glass {
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.9), rgba(250, 247, 244, 0.72));
   border-color: rgba(90, 97, 110, 0.16);
   box-shadow: 0 16px 44px -32px rgba(32, 35, 45, 0.25);
 }
 
-html.theme-light .group.relative.overflow-hidden.rounded-3xl.border.border-white\/10.bg-gradient-to-br.from-white\/10.via-white\/5.to-transparent:hover,
-html[data-theme="light"] .group.relative.overflow-hidden.rounded-3xl.border.border-white\/10.bg-gradient-to-br.from-white\/10.via-white\/5.to-transparent:hover,
-html.theme-light .relative.p-8.lg\:p-10.rounded-3xl.bg-gradient-to-br.from-white\/5.to-white\/0.border.border-white\/10:hover,
-html[data-theme="light"] .relative.p-8.lg\:p-10.rounded-3xl.bg-gradient-to-br.from-white\/5.to-white\/0.border.border-white\/10:hover {
+html.theme-light .premium-card:hover,
+html.theme-light .whyus-section .fures-nav-glass:hover,
+html[data-theme="light"] .premium-card:hover,
+html[data-theme="light"] .whyus-section .fures-nav-glass:hover {
   border-color: rgba(171, 79, 29, 0.35);
   box-shadow: 0 22px 56px -34px rgba(171, 79, 29, 0.24);
 }
@@ -682,6 +682,32 @@ html[data-theme="light"] .whyus-section .absolute.inset-0.bg-gradient-to-b.from-
   background: linear-gradient(180deg, rgba(248, 245, 242, 0.92) 0%, rgba(243, 239, 236, 0.9) 100%);
   opacity: 1;
 }
+
+html.theme-light .whyus-title-gradient,
+html[data-theme="light"] .whyus-title-gradient {
+  background-image: linear-gradient(90deg, #c96586 0%, #8f5bff 100%);
+}
+
+html.theme-light .whyus-benefits-gradient,
+html[data-theme="light"] .whyus-benefits-gradient {
+  background-image: linear-gradient(90deg, #202733 0%, #5a6677 100%);
+}
+
+html.theme-light .whyus-card-title,
+html[data-theme="light"] .whyus-card-title { color: #20242d; }
+html.theme-light .whyus-card-description,
+html[data-theme="light"] .whyus-card-description { color: #5c6677; }
+html.theme-light .whyus-benefit-description,
+html[data-theme="light"] .whyus-benefit-description { color: #5f6775; }
+
+html.theme-light .whyus-bg-layer,
+html[data-theme="light"] .whyus-bg-layer {
+  background: linear-gradient(180deg, rgba(248, 245, 242, 0.92) 0%, rgba(243, 239, 236, 0.9) 100%);
+}
+html.theme-light .whyus-glow-left,
+html[data-theme="light"] .whyus-glow-left { background-color: rgba(253, 186, 116, 0.2); }
+html.theme-light .whyus-glow-right,
+html[data-theme="light"] .whyus-glow-right { background-color: rgba(196, 181, 253, 0.2); }
 
 /* Non-homepage hero typography should match References style in light mode */
 html.theme-light .min-h-screen.py-32 header h1,
