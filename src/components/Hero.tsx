@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "./ui/button";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useTheme } from "../contexts/ThemeContext";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { ClothCanvas } from "./ClothCanvas";
@@ -15,6 +16,8 @@ const FALLBACK_ROTATING_TEXTS = [
 
 export function Hero() {
   const { t, language } = useLanguage();
+  const theme = useTheme();
+  const isLight = theme === "light";
   const [textIndex, setTextIndex] = useState(0);
 
   const rotatingTexts = useMemo(() => {
@@ -48,28 +51,42 @@ export function Hero() {
   }, [rotatingTexts]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-16">
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
+      style={{ background: isLight ? "#f5f5f7" : "#000" }}
+    >
       {/* Three.js silk cloth background */}
       <ClothCanvas />
 
-      {/* Gradient overlay — left side readable, edges darkened */}
+      {/* Gradient overlay — readable text area, edges softened */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           zIndex: 2,
-          background:
-            "linear-gradient(90deg, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.7) 25%, rgba(5,5,5,0.2) 50%, rgba(5,5,5,0) 65%), linear-gradient(180deg, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.6) 100%)",
+          background: isLight
+            ? "linear-gradient(90deg, rgba(245,245,247,0.82) 0%, rgba(245,245,247,0.55) 25%, rgba(245,245,247,0.15) 50%, rgba(245,245,247,0) 65%), linear-gradient(180deg, rgba(245,245,247,0.5) 0%, rgba(245,245,247,0) 30%, rgba(245,245,247,0) 70%, rgba(245,245,247,0.6) 100%)"
+            : "linear-gradient(90deg, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.7) 25%, rgba(5,5,5,0.2) 50%, rgba(5,5,5,0) 65%), linear-gradient(180deg, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.6) 100%)",
         }}
       />
 
       {/* Ambient glow orbs - subtle, Apple-like */}
       <div className="absolute inset-0 z-[3] pointer-events-none">
-        <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-orange-500/12 rounded-full animate-glow-pulse blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-purple-600/12 rounded-full animate-glow-pulse blur-3xl" style={{ animationDelay: '2s' }}></div>
+        <div
+          className="absolute top-20 left-10 w-[500px] h-[500px] rounded-full animate-glow-pulse blur-3xl"
+          style={{ background: isLight ? "rgba(255, 170, 110, 0.18)" : "rgba(249, 115, 22, 0.12)" }}
+        ></div>
+        <div
+          className="absolute bottom-20 right-10 w-[500px] h-[500px] rounded-full animate-glow-pulse blur-3xl"
+          style={{
+            animationDelay: "2s",
+            background: isLight ? "rgba(170, 150, 255, 0.18)" : "rgba(147, 51, 234, 0.12)",
+          }}
+        ></div>
 
         {/* Floating particles - smaller range, gentler */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-1.5 h-1.5 bg-orange-400/40 rounded-full"
+          className="absolute top-1/4 left-1/4 w-1.5 h-1.5 rounded-full"
+          style={{ background: isLight ? "rgba(255, 140, 70, 0.55)" : "rgba(251, 146, 60, 0.4)" }}
           animate={{
             y: [0, -12, 0],
             opacity: [0.4, 0.8, 0.4]
@@ -81,7 +98,8 @@ export function Hero() {
           }}
         />
         <motion.div
-          className="absolute top-1/3 right-1/3 w-2 h-2 bg-purple-400/35 rounded-full"
+          className="absolute top-1/3 right-1/3 w-2 h-2 rounded-full"
+          style={{ background: isLight ? "rgba(150, 130, 240, 0.5)" : "rgba(192, 132, 252, 0.35)" }}
           animate={{
             y: [0, 16, 0],
             opacity: [0.25, 0.6, 0.25]
@@ -94,7 +112,8 @@ export function Hero() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-1.5 h-1.5 bg-orange-300/30 rounded-full"
+          className="absolute bottom-1/4 right-1/4 w-1.5 h-1.5 rounded-full"
+          style={{ background: isLight ? "rgba(255, 165, 100, 0.45)" : "rgba(253, 186, 116, 0.3)" }}
           animate={{
             y: [0, -10, 0],
             opacity: [0.3, 0.65, 0.3]

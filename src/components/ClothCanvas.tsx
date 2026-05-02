@@ -1,12 +1,16 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { useTheme } from "../contexts/ThemeContext";
 
 export function ClothCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const theme = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    const isLight = theme === "light";
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -26,16 +30,31 @@ export function ClothCanvas() {
       c.height = 2048;
       const ctx = c.getContext("2d")!;
 
-      ctx.fillStyle = "#0a0508";
-      ctx.fillRect(0, 0, 4096, 2048);
+      if (isLight) {
+        // Light silk — warm cream base with soft pastel drift
+        ctx.fillStyle = "#f6f0ea";
+        ctx.fillRect(0, 0, 4096, 2048);
 
-      const colorDrift = ctx.createLinearGradient(0, 0, 4096, 0);
-      colorDrift.addColorStop(0, "rgba(8, 10, 22, 0.7)");
-      colorDrift.addColorStop(0.4, "rgba(15, 8, 12, 0.5)");
-      colorDrift.addColorStop(0.8, "rgba(28, 14, 10, 0.6)");
-      colorDrift.addColorStop(1, "rgba(35, 18, 12, 0.7)");
-      ctx.fillStyle = colorDrift;
-      ctx.fillRect(0, 0, 4096, 2048);
+        const colorDrift = ctx.createLinearGradient(0, 0, 4096, 0);
+        colorDrift.addColorStop(0, "rgba(232, 222, 255, 0.55)");
+        colorDrift.addColorStop(0.4, "rgba(255, 240, 230, 0.45)");
+        colorDrift.addColorStop(0.8, "rgba(255, 220, 198, 0.55)");
+        colorDrift.addColorStop(1, "rgba(255, 210, 180, 0.6)");
+        ctx.fillStyle = colorDrift;
+        ctx.fillRect(0, 0, 4096, 2048);
+      } else {
+        // Dark silk — original deep, warm-tinted base
+        ctx.fillStyle = "#0a0508";
+        ctx.fillRect(0, 0, 4096, 2048);
+
+        const colorDrift = ctx.createLinearGradient(0, 0, 4096, 0);
+        colorDrift.addColorStop(0, "rgba(8, 10, 22, 0.7)");
+        colorDrift.addColorStop(0.4, "rgba(15, 8, 12, 0.5)");
+        colorDrift.addColorStop(0.8, "rgba(28, 14, 10, 0.6)");
+        colorDrift.addColorStop(1, "rgba(35, 18, 12, 0.7)");
+        ctx.fillStyle = colorDrift;
+        ctx.fillRect(0, 0, 4096, 2048);
+      }
 
       const tex = new THREE.CanvasTexture(c);
       tex.wrapS = tex.wrapT = THREE.ClampToEdgeWrapping;
@@ -135,6 +154,17 @@ export function ClothCanvas() {
       uniform sampler2D uTex;
       uniform float uTime;
       uniform float uIntro;
+      uniform vec3 uLight1Color;
+      uniform vec3 uLight2Color;
+      uniform float uAmbient;
+      uniform float uDiffuse1;
+      uniform float uDiffuse2;
+      uniform float uSpecular1;
+      uniform float uSpecular2;
+      uniform float uRimStrength;
+      uniform float uAoFloor;
+      uniform float uVignetteFloor;
+      uniform float uExposure;
 
       varying vec2 vUv;
       varying vec3 vNormal;
@@ -156,10 +186,7 @@ export function ClothCanvas() {
         vec3 V = normalize(vViewDir);
 
         vec3 light1Dir = normalize(vec3(-0.55, 0.45, 0.85));
-        vec3 light1Color = vec3(0.42, 0.62, 1.05);
-
         vec3 light2Dir = normalize(vec3(0.85, -0.35, 0.55));
-        vec3 light2Color = vec3(1.15, 0.55, 0.22);
 
         float NdotL1 = max(dot(N, light1Dir), 0.0);
         float NdotL2 = max(dot(N, light2Dir), 0.0);
@@ -179,27 +206,55 @@ export function ClothCanvas() {
         vec3 albedo = texture2D(uTex, vUv).rgb;
 
         float ao = smoothstep(-0.6, 0.4, vDisplacement);
-        ao = mix(0.55, 1.0, ao);
+        ao = mix(uAoFloor, 1.0, ao);
 
-        vec3 ambient = albedo * 0.18;
-        vec3 diffuse = albedo * (NdotL1 * 0.7 * light1Color + NdotL2 * 0.55 * light2Color);
-        vec3 specular = light1Color * spec1 * 0.55 + light2Color * spec2 * 1.1;
-        vec3 rim = mix(light2Color, light1Color, 0.4) * fresnel * 0.7;
+        vec3 ambient = albedo * uAmbient;
+        vec3 diffuse = albedo * (NdotL1 * uDiffuse1 * uLight1Color + NdotL2 * uDiffuse2 * uLight2Color);
+        vec3 specular = uLight1Color * spec1 * uSpecular1 + uLight2Color * spec2 * uSpecular2;
+        vec3 rim = mix(uLight2Color, uLight1Color, 0.4) * fresnel * uRimStrength;
 
         vec3 col = ambient + diffuse + specular + rim;
         col *= ao;
         col *= 1.0 + weave;
 
         float vignette = smoothstep(1.2, 0.3, length(vUv - 0.5) * 1.4);
-        col *= mix(0.7, 1.0, vignette);
+        col *= mix(uVignetteFloor, 1.0, vignette);
 
-        col *= clamp(uIntro * 1.1, 0.0, 1.0);
+        col *= clamp(uIntro * uExposure, 0.0, 1.0);
 
         gl_FragColor = vec4(col, 1.0);
       }
     `;
 
     const geometry = new THREE.PlaneGeometry(16, 10, 140, 90);
+
+    const lightUniforms = isLight
+      ? {
+          uLight1Color: new THREE.Color(0.78, 0.86, 1.05),
+          uLight2Color: new THREE.Color(1.1, 0.86, 0.62),
+          uAmbient: 0.85,
+          uDiffuse1: 0.32,
+          uDiffuse2: 0.28,
+          uSpecular1: 0.22,
+          uSpecular2: 0.42,
+          uRimStrength: 0.35,
+          uAoFloor: 0.82,
+          uVignetteFloor: 0.92,
+          uExposure: 1.0,
+        }
+      : {
+          uLight1Color: new THREE.Color(0.42, 0.62, 1.05),
+          uLight2Color: new THREE.Color(1.15, 0.55, 0.22),
+          uAmbient: 0.18,
+          uDiffuse1: 0.7,
+          uDiffuse2: 0.55,
+          uSpecular1: 0.55,
+          uSpecular2: 1.1,
+          uRimStrength: 0.7,
+          uAoFloor: 0.55,
+          uVignetteFloor: 0.7,
+          uExposure: 1.1,
+        };
 
     const material = new THREE.ShaderMaterial({
       uniforms: {
@@ -208,6 +263,17 @@ export function ClothCanvas() {
         uMouseInfluence: { value: 0 },
         uIntro: { value: 0 },
         uTex: { value: clothTex },
+        uLight1Color: { value: lightUniforms.uLight1Color },
+        uLight2Color: { value: lightUniforms.uLight2Color },
+        uAmbient: { value: lightUniforms.uAmbient },
+        uDiffuse1: { value: lightUniforms.uDiffuse1 },
+        uDiffuse2: { value: lightUniforms.uDiffuse2 },
+        uSpecular1: { value: lightUniforms.uSpecular1 },
+        uSpecular2: { value: lightUniforms.uSpecular2 },
+        uRimStrength: { value: lightUniforms.uRimStrength },
+        uAoFloor: { value: lightUniforms.uAoFloor },
+        uVignetteFloor: { value: lightUniforms.uVignetteFloor },
+        uExposure: { value: lightUniforms.uExposure },
       },
       vertexShader,
       fragmentShader,
@@ -306,7 +372,7 @@ export function ClothCanvas() {
       material.dispose();
       clothTex.dispose();
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas
