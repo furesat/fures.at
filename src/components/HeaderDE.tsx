@@ -25,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import type { LucideIcon } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 type NavItem = { path: string; label: string; icon: LucideIcon };
 type MoreLink = { path: string; label: string; icon: LucideIcon };
@@ -252,8 +253,9 @@ export function HeaderDE() {
             </nav>
           </div>
 
-          {/* Desktop right: lang + CTA */}
+          {/* Desktop right: theme toggle + lang + CTA */}
           <div className="hidden shrink-0 items-center gap-2 md:flex">
+            <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="fures-lang-pill text-white/65 hover:text-white/90">
@@ -282,8 +284,9 @@ export function HeaderDE() {
             </Link>
           </div>
 
-          {/* Mobile: lang + hamburger */}
+          {/* Mobile: theme toggle + lang + hamburger */}
           <div className="ml-auto flex shrink-0 items-center gap-2 md:hidden">
+            <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="fures-lang-pill-sm text-white/70">
