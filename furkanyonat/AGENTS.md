@@ -34,3 +34,5 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 - Yeni rota eklenmediği için sitemap güncellemesi gerekmedi.
 
 - Ek not: Ana repo light-mode okunabilirlik iyileştirmeleri (başlık kontrastı ve nav glass) dark mode kapsamına dahil edilmeden güncellendi.
+
+- Ek not: Header light-mode aero glass ve ana sayfa section kontrast uyumu güncellendi; dark mode etkilenmedi.

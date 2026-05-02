@@ -43,7 +43,7 @@ export function WhyUs() {
   ];
 
   return (
-    <section className="py-32 relative overflow-hidden bg-black">
+    <section className="whyus-section py-32 relative overflow-hidden bg-black">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/30 to-black"></div>

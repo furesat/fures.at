@@ -174,3 +174,5 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - Yeni rota eklenmediği için sitemap dosyalarında ek kayıt gerekmemektedir; yine de deploy öncesi kontrol adımı korunmalıdır.
 
 - Ek light-mode okunabilirlik revizyonu: white-gradient başlıklar, kart açıklama metinleri ve nav glass şeffaflık/kontrast dengesi iyileştirildi (yalnızca light selector kapsamı).
+
+- Ek görsel uyum düzeni: Blog hero altyazı kontrastı artırıldı; WhyUs ve Mission bölümleri Referenzen light yüzey mantığına yaklaştırıldı; header light mode cam katmanı iPhone Aero (buzlu-su) etkisiyle güncellendi.
