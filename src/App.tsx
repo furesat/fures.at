@@ -55,12 +55,12 @@ function RootRedirect() {
   return null;
 }
 
-// TR site layout – dark neon theme
+// TR site layout
 function TRLayout() {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
-    <ThemeProvider theme="dark">
+    <ThemeProvider>
       <LanguageProvider initialLanguage="tr">
         <div className="min-h-screen bg-black text-white overflow-x-hidden">
           <Header />
@@ -97,7 +97,7 @@ function ENLayout() {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
-    <ThemeProvider theme="dark">
+    <ThemeProvider>
       <LanguageProvider initialLanguage="en">
         <div className="min-h-screen bg-black text-white overflow-x-hidden">
           <Header />
@@ -134,7 +134,7 @@ function RULayout() {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
-    <ThemeProvider theme="dark">
+    <ThemeProvider>
       <LanguageProvider initialLanguage="ru">
         <div className="min-h-screen bg-black text-white overflow-x-hidden">
           <Header />
@@ -169,7 +169,7 @@ function RULayout() {
 // DE site layout – DACH hotel-focused
 function DELayout() {
   return (
-    <ThemeProvider theme="dark">
+    <ThemeProvider>
       <LanguageProvider initialLanguage="de">
         <div className="min-h-screen bg-black text-white overflow-x-hidden">
           <HeaderDE />
