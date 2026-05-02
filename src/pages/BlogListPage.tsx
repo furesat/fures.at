@@ -36,7 +36,7 @@ export function BlogListPage() {
   }, []);
   return (
     <section className="relative min-h-screen bg-black py-32 text-white">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,122,41,0.18),transparent_55%),radial-gradient(circle_at_bottom,rgba(143,91,255,0.14),transparent_60%)]" />
+      <div className="page-hero-glow absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,122,41,0.18),transparent_55%),radial-gradient(circle_at_bottom,rgba(143,91,255,0.14),transparent_60%)]" />
       <div className="mx-auto w-full max-w-6xl px-4">
         <header className="mb-16 text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.4em] text-white/70">
@@ -59,7 +59,7 @@ export function BlogListPage() {
             {renderedPosts.map((post) => (
               <article
                 key={post.slug}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_28px_72px_-42px_rgba(255,122,41,0.75)]"
+                className="premium-card group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_28px_72px_-42px_rgba(255,122,41,0.75)]"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-[0.35em] text-orange-300/80">
                   <span>{formatDate(post.date, language)}</span>

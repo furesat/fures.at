@@ -28,3 +28,21 @@ Bu klasör Furkan Yonat'ın ÖNORM uyumlu CV sayfasını barındırır. Buradaki
 - "Mehr", "Mehr entdecken", "Erzählen Sie uns von Ihrem Projekt", "Angetrieben von Fures" gibi ifadeler ve abartılı asistan selamlamaları kullanılmaz; metinlerde bu kalıpları görürsen temizle.
 
 Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya ekle.
+
+## Güncelleme Notu (2026-05-02)
+- Bu klasör özelinde değişiklik yapılmadı; ana repo light mode revizyonlarında dark mode davranışını koruma ilkesi teyit edildi.
+- Yeni rota eklenmediği için sitemap güncellemesi gerekmedi.
+
+- Ek not: Ana repo light-mode okunabilirlik iyileştirmeleri (başlık kontrastı ve nav glass) dark mode kapsamına dahil edilmeden güncellendi.
+
+- Ek not: Header light-mode aero glass ve ana sayfa section kontrast uyumu güncellendi; dark mode etkilenmedi.
+
+- Ek not: WhyUs componenti light/dark temaya göre ayrı sınıflar kullanacak şekilde güncellendi.
+
+- Ek not: WhyUs light branch koyu overlay sınıflarını render etmez şekilde güncellendi.
+
+- Ek not: Non-homepage hero tipografi ve üst etiketleri light modda Referenzen stiline hizalandı.
+
+- Ek not: WhyUs/Blog/Campaign için semantik sınıf bazlı light-mode override yapısına geçildi.
+
+- Konsolidasyon notu: Bu turda kod değişiklikleri ana repo light-mode iyileştirmelerinin tek PR özetinde toplandı; yeni rota yok.

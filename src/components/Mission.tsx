@@ -7,7 +7,7 @@ export function Mission() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-32 relative overflow-hidden bg-black">
+    <section className="mission-section py-32 relative overflow-hidden bg-black">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-orange-900/20"></div>
