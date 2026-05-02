@@ -32,3 +32,5 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 ## Güncelleme Notu (2026-05-02)
 - Bu klasör özelinde değişiklik yapılmadı; ana repo light mode revizyonlarında dark mode davranışını koruma ilkesi teyit edildi.
 - Yeni rota eklenmediği için sitemap güncellemesi gerekmedi.
+
+- Ek not: Ana repo light-mode okunabilirlik iyileştirmeleri (başlık kontrastı ve nav glass) dark mode kapsamına dahil edilmeden güncellendi.

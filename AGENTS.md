@@ -172,3 +172,5 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - Light mode iyileştirmelerinde yalnızca `src/styles/globals.css` içindeki `html.theme-light` / `[data-theme="light"]` seçicileri üzerinden açık tema yüzeyleri, overlay yumuşatma, blog okunabilirliği ve footer geçişleri güncellendi.
 - Dark mode tokenları ve dark bileşen stilleri bilinçli olarak değiştirilmedi.
 - Yeni rota eklenmediği için sitemap dosyalarında ek kayıt gerekmemektedir; yine de deploy öncesi kontrol adımı korunmalıdır.
+
+- Ek light-mode okunabilirlik revizyonu: white-gradient başlıklar, kart açıklama metinleri ve nav glass şeffaflık/kontrast dengesi iyileştirildi (yalnızca light selector kapsamı).

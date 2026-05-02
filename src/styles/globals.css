@@ -146,16 +146,26 @@ html.theme-light .text-white\/65,
 html[data-theme="light"] .text-white\/65 { color: rgba(29, 29, 31, 0.65); }
 
 html.theme-light .text-white\/40,
-html[data-theme="light"] .text-white\/40 { color: rgba(29, 29, 31, 0.40); }
+html[data-theme="light"] .text-white\/40 { color: rgba(29, 29, 31, 0.58); }
 
 html.theme-light .text-slate-200\/70,
 html[data-theme="light"] .text-slate-200\/70 { color: rgba(29, 29, 31, 0.65); }
 
 html.theme-light .text-gray-300,
-html[data-theme="light"] .text-gray-300 { color: #374151; }
+html[data-theme="light"] .text-gray-300 { color: #4b5563; }
 
 html.theme-light .text-gray-400,
-html[data-theme="light"] .text-gray-400 { color: #6e6e73; }
+html[data-theme="light"] .text-gray-400 { color: #5f6775; }
+
+html.theme-light .text-gray-300\/80,
+html[data-theme="light"] .text-gray-300\/80 {
+  color: rgba(75, 85, 99, 0.92);
+}
+
+html.theme-light .text-white\/50,
+html[data-theme="light"] .text-white\/50 {
+  color: rgba(60, 67, 80, 0.9);
+}
 
 /* ── Border overrides ── */
 html.theme-light .border-white\/10,
@@ -227,18 +237,17 @@ html[data-theme="light"] .liquid-pill.is-active {
 html.theme-light .fures-nav-glass,
 html[data-theme="light"] .fures-nav-glass {
   background:
-    radial-gradient(140% 100% at 50% -60%, rgba(255, 255, 255, 0.88) 0%, transparent 55%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.62) 55%, rgba(255, 255, 255, 0.70) 100%),
-    rgba(255, 255, 255, 0.70);
-  backdrop-filter: blur(40px) saturate(130%) brightness(1.02);
-  -webkit-backdrop-filter: blur(40px) saturate(130%) brightness(1.02);
+    radial-gradient(140% 100% at 50% -60%, rgba(255, 255, 255, 0.72) 0%, transparent 56%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.56) 0%, rgba(255, 255, 255, 0.40) 55%, rgba(255, 255, 255, 0.48) 100%),
+    rgba(255, 255, 255, 0.44);
+  backdrop-filter: blur(34px) saturate(152%) brightness(1.03);
+  -webkit-backdrop-filter: blur(34px) saturate(152%) brightness(1.03);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.04),
-    inset 0 0 0 0.5px rgba(255, 255, 255, 0.55),
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    0 2px 8px rgba(0, 0, 0, 0.05),
-    0 1px 2px rgba(0, 0, 0, 0.03);
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(64, 71, 84, 0.08),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.42),
+    0 20px 44px -28px rgba(43, 48, 59, 0.32),
+    0 2px 8px rgba(43, 48, 59, 0.12);
 }
 
 html.theme-light .fures-nav-glass::before,
@@ -257,17 +266,25 @@ html[data-theme="light"] .fures-nav-glass::before {
 /* ── Nav item idle in light mode ── */
 html.theme-light .fures-nav-item-idle,
 html[data-theme="light"] .fures-nav-item-idle {
-  color: rgba(29, 29, 31, 0.65);
+  color: rgba(42, 47, 58, 0.78);
 }
 
 html.theme-light .fures-nav-item-idle:hover,
 html[data-theme="light"] .fures-nav-item-idle:hover {
-  color: rgba(29, 29, 31, 0.9);
+  color: rgba(25, 29, 36, 0.98);
   background:
     radial-gradient(80% 100% at 50% 0%, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.02) 60%, rgba(0, 0, 0, 0.01) 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.8),
     inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+}
+
+/* Headings that used white gradient text become readable in light mode */
+html.theme-light .bg-gradient-to-r.from-white.to-gray-300.bg-clip-text.text-transparent,
+html.theme-light .bg-gradient-to-r.from-white.via-gray-100.to-white.bg-clip-text.text-transparent,
+html[data-theme="light"] .bg-gradient-to-r.from-white.to-gray-300.bg-clip-text.text-transparent,
+html[data-theme="light"] .bg-gradient-to-r.from-white.via-gray-100.to-white.bg-clip-text.text-transparent {
+  background-image: linear-gradient(90deg, #1c1f27 0%, #4b5565 100%);
 }
 
 /* ── Logo pill in light mode ── */
