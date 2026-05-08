@@ -233,6 +233,75 @@ html[data-theme="light"] .liquid-pill.is-active {
   color: #1d1d1f;
 }
 
+/* ── Apple Liquid Glass utilities in light mode ── */
+html.theme-light .apple-glass,
+html[data-theme="light"] .apple-glass {
+  background:
+    radial-gradient(125% 110% at 14% -36%, rgba(255, 255, 255, 0.84) 0%, transparent 58%),
+    radial-gradient(120% 130% at 85% 130%, rgba(199, 184, 234, 0.20) 0%, transparent 64%),
+    linear-gradient(178deg, rgba(255, 255, 255, 0.60) 0%, rgba(246, 244, 250, 0.38) 52%, rgba(238, 238, 245, 0.46) 100%),
+    rgba(255, 255, 255, 0.34);
+  backdrop-filter: blur(48px) saturate(170%) brightness(1.04);
+  -webkit-backdrop-filter: blur(48px) saturate(170%) brightness(1.04);
+  box-shadow:
+    inset 0 1.2px 0 rgba(255, 255, 255, 0.92),
+    inset 0 -1px 0 rgba(64, 71, 84, 0.08),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.5),
+    0 22px 48px -28px rgba(43, 48, 59, 0.32),
+    0 4px 10px rgba(43, 48, 59, 0.10);
+  color: #1d1d1f;
+}
+
+html.theme-light .apple-glass::before,
+html[data-theme="light"] .apple-glass::before {
+  background: linear-gradient(
+    130deg,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(255, 255, 255, 0.20) 26%,
+    rgba(165, 177, 212, 0.08) 46%,
+    rgba(255, 255, 255, 0.10) 68%,
+    rgba(255, 255, 255, 0.55) 100%
+  );
+}
+
+html.theme-light .apple-glass::after,
+html[data-theme="light"] .apple-glass::after {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.32) 0%,
+    rgba(255, 255, 255, 0.06) 30%,
+    rgba(255, 255, 255, 0) 56%
+  );
+}
+
+html.theme-light .apple-glass-pill,
+html[data-theme="light"] .apple-glass-pill {
+  background:
+    radial-gradient(120% 100% at 50% -50%, rgba(255, 255, 255, 0.85) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.50) 60%, rgba(255, 255, 255, 0.58) 100%),
+    rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(36px) saturate(140%) brightness(1.02);
+  -webkit-backdrop-filter: blur(36px) saturate(140%) brightness(1.02);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.10),
+    0 2px 4px rgba(0, 0, 0, 0.06);
+  color: #1d1d1f;
+}
+
+html.theme-light .apple-glass-pill::before,
+html[data-theme="light"] .apple-glass-pill::before {
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.78) 0%,
+    rgba(255, 255, 255, 0.10) 28%,
+    rgba(0, 0, 0, 0.02) 55%,
+    rgba(255, 255, 255, 0.06) 76%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+}
+
 /* ── Main nav glass pill ── */
 html.theme-light .fures-nav-glass,
 html[data-theme="light"] .fures-nav-glass {
@@ -446,21 +515,23 @@ html[data-theme="light"] .glass-spotlight::before {
   opacity: 0.6;
 }
 
-/* ── Theme toggle pill ── */
+/* ── Theme toggle pill — Apple Liquid Glass ── */
 .theme-toggle-pill {
   position: relative;
   isolation: isolate;
   border-radius: 9999px;
   border: none;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%),
-    rgba(18, 18, 22, 0.50);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
+    radial-gradient(130% 110% at 50% -60%, rgba(255,255,255,0.18) 0%, transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.015) 60%, rgba(255,255,255,0.05) 100%),
+    rgba(20,20,28,0.26);
+  backdrop-filter: blur(38px) saturate(180%) brightness(1.08);
+  -webkit-backdrop-filter: blur(38px) saturate(180%) brightness(1.08);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
-    0 2px 8px rgba(0, 0, 0, 0.2);
+    inset 0 1px 0 rgba(255,255,255,0.32),
+    inset 0 -1px 0 rgba(0,0,0,0.18),
+    0 6px 18px rgba(0,0,0,0.28),
+    0 1px 3px rgba(0,0,0,0.18);
   padding: 8px;
   width: 34px;
   height: 34px;
@@ -478,7 +549,14 @@ html[data-theme="light"] .glass-spotlight::before {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.02) 50%, rgba(255, 255, 255, 0.14));
+  background: linear-gradient(
+    140deg,
+    rgba(255,255,255,0.55) 0%,
+    rgba(255,255,255,0.08) 28%,
+    rgba(255,255,255,0) 55%,
+    rgba(255,255,255,0.05) 76%,
+    rgba(255,255,255,0.28) 100%
+  );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -489,8 +567,9 @@ html[data-theme="light"] .glass-spotlight::before {
   transform: translateY(-1px);
   color: rgba(255, 255, 255, 0.90);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 100%),
-    rgba(28, 28, 32, 0.55);
+    radial-gradient(130% 110% at 50% -60%, rgba(255,255,255,0.26) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.025) 60%, rgba(255,255,255,0.07) 100%),
+    rgba(30,30,38,0.30);
 }
 
 .theme-toggle-pill:active {
@@ -1276,25 +1355,132 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
 /* ─── Fures enhanced glass system (Apple iridescent specular) ──────── */
 @layer components {
 
-  /* ── Main nav pill wrapper ── */
+  /* ──────────────────────────────────────────────────────────────────
+     Apple Liquid Glass (iOS 26 Tahoe) — canonical recipe
+     Replicates the floating pill aesthetic from iOS system UI:
+     heavy backdrop blur, near-transparent base, bright top specular
+     rim, soft inner gloss, and a wide floating drop shadow.
+     ────────────────────────────────────────────────────────────────── */
+  .apple-glass {
+    position: relative;
+    isolation: isolate;
+    border-radius: 9999px;
+    border: none;
+    background:
+      radial-gradient(150% 110% at 50% -70%, rgba(255,255,255,0.22) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.02) 55%, rgba(255,255,255,0.06) 100%),
+      rgba(20,20,28,0.22);
+    backdrop-filter: blur(56px) saturate(200%) brightness(1.12);
+    -webkit-backdrop-filter: blur(56px) saturate(200%) brightness(1.12);
+    box-shadow:
+      inset 0 1.2px 0 rgba(255,255,255,0.42),
+      inset 0 -1px 0 rgba(0,0,0,0.22),
+      inset 0 0 0 0.5px rgba(255,255,255,0.08),
+      0 18px 48px rgba(0,0,0,0.38),
+      0 6px 16px rgba(0,0,0,0.22),
+      0 1px 2px rgba(0,0,0,0.18);
+    will-change: transform;
+  }
+
+  /* Iridescent specular border — Apple signature edge highlight (mask trick) */
+  .apple-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.78) 0%,
+      rgba(255,255,255,0.14) 24%,
+      rgba(255,255,255,0) 44%,
+      rgba(255,255,255,0) 56%,
+      rgba(255,255,255,0.08) 78%,
+      rgba(255,255,255,0.42) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Inner top gloss — refraction sheen on the upper third */
+  .apple-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.16) 0%,
+      rgba(255,255,255,0.04) 28%,
+      rgba(255,255,255,0) 55%
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
+    opacity: 0.8;
+    z-index: 1;
+  }
+
+  /* Compact pill variant — same look, lighter shadow for inline buttons */
+  .apple-glass-pill {
+    position: relative;
+    isolation: isolate;
+    border-radius: 9999px;
+    border: none;
+    background:
+      radial-gradient(140% 110% at 50% -60%, rgba(255,255,255,0.20) 0%, transparent 58%),
+      linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.015) 60%, rgba(255,255,255,0.05) 100%),
+      rgba(20,20,28,0.24);
+    backdrop-filter: blur(44px) saturate(190%) brightness(1.10);
+    -webkit-backdrop-filter: blur(44px) saturate(190%) brightness(1.10);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.36),
+      inset 0 -1px 0 rgba(0,0,0,0.20),
+      0 8px 24px rgba(0,0,0,0.32),
+      0 2px 6px rgba(0,0,0,0.20);
+  }
+
+  .apple-glass-pill::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      140deg,
+      rgba(255,255,255,0.62) 0%,
+      rgba(255,255,255,0.10) 26%,
+      rgba(255,255,255,0) 52%,
+      rgba(255,255,255,0.06) 76%,
+      rgba(255,255,255,0.34) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ── Main nav pill wrapper — uses the canonical Apple Glass recipe ── */
   .fures-nav-glass {
     position: relative;
     isolation: isolate;
     border-radius: 9999px;
     border: none;
     background:
-      radial-gradient(140% 100% at 50% -60%, rgba(255,255,255,0.16) 0%, transparent 55%),
-      linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.012) 55%, rgba(255,255,255,0.05) 100%),
-      rgba(15,15,20,0.4);
-    backdrop-filter: blur(40px) saturate(180%) brightness(1.08);
-    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.08);
+      radial-gradient(150% 110% at 50% -70%, rgba(255,255,255,0.22) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.02) 55%, rgba(255,255,255,0.06) 100%),
+      rgba(20,20,28,0.22);
+    backdrop-filter: blur(56px) saturate(200%) brightness(1.12);
+    -webkit-backdrop-filter: blur(56px) saturate(200%) brightness(1.12);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.16),
-      inset 0 -1px 0 rgba(0,0,0,0.2),
-      inset 0 0 0 0.5px rgba(255,255,255,0.05),
-      0 12px 40px rgba(0,0,0,0.35),
-      0 4px 12px rgba(0,0,0,0.2),
-      0 1px 2px rgba(0,0,0,0.15);
+      inset 0 1.2px 0 rgba(255,255,255,0.42),
+      inset 0 -1px 0 rgba(0,0,0,0.22),
+      inset 0 0 0 0.5px rgba(255,255,255,0.08),
+      0 18px 48px rgba(0,0,0,0.38),
+      0 6px 16px rgba(0,0,0,0.22),
+      0 1px 2px rgba(0,0,0,0.18);
     will-change: transform;
   }
 
@@ -1307,18 +1493,36 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
     padding: 1px;
     background: linear-gradient(
       135deg,
-      rgba(255,255,255,0.5) 0%,
-      rgba(255,255,255,0.08) 22%,
-      rgba(255,255,255,0) 42%,
-      rgba(255,255,255,0) 58%,
-      rgba(255,255,255,0.06) 78%,
-      rgba(255,255,255,0.28) 100%
+      rgba(255,255,255,0.78) 0%,
+      rgba(255,255,255,0.14) 24%,
+      rgba(255,255,255,0) 44%,
+      rgba(255,255,255,0) 56%,
+      rgba(255,255,255,0.08) 78%,
+      rgba(255,255,255,0.42) 100%
     );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
     z-index: 2;
+  }
+
+  /* Top gloss / refraction sheen on nav pill */
+  .fures-nav-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.16) 0%,
+      rgba(255,255,255,0.04) 28%,
+      rgba(255,255,255,0) 55%
+    );
+    mix-blend-mode: screen;
+    pointer-events: none;
+    opacity: 0.8;
+    z-index: 1;
   }
 
   /* ── Nav item idle state with radial spotlight hover ── */
@@ -1344,13 +1548,17 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
     border-radius: 9999px;
     border: none;
     background:
-      linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.02) 100%),
-      rgba(0,0,0,0.3);
+      radial-gradient(140% 110% at 50% -60%, rgba(255,255,255,0.18) 0%, transparent 58%),
+      linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.015) 60%, rgba(255,255,255,0.05) 100%),
+      rgba(20,20,28,0.24);
+    backdrop-filter: blur(44px) saturate(190%) brightness(1.10);
+    -webkit-backdrop-filter: blur(44px) saturate(190%) brightness(1.10);
     padding: 12px 28px;
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.08),
-      inset 0 -1px 0 rgba(0,0,0,0.25),
-      inset 0 0 20px rgba(0,0,0,0.2);
+      inset 0 1px 0 rgba(255,255,255,0.36),
+      inset 0 -1px 0 rgba(0,0,0,0.20),
+      0 8px 24px rgba(0,0,0,0.32),
+      0 2px 6px rgba(0,0,0,0.20);
   }
 
   .fures-logo-pill::before {
@@ -1359,7 +1567,14 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(140deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.1));
+    background: linear-gradient(
+      140deg,
+      rgba(255,255,255,0.62) 0%,
+      rgba(255,255,255,0.10) 26%,
+      rgba(255,255,255,0) 52%,
+      rgba(255,255,255,0.06) 76%,
+      rgba(255,255,255,0.34) 100%
+    );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -1412,23 +1627,23 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
       0 2px 4px rgba(0,0,0,0.2);
   }
 
-  /* ── Language / small glass pill (e.g. "DE DE") ── */
+  /* ── Language / small glass pill (e.g. "DE DE") — Apple Liquid Glass ── */
   .fures-lang-pill {
     position: relative;
     isolation: isolate;
     border-radius: 9999px;
     border: none;
     background:
-      radial-gradient(120% 100% at 50% -50%, rgba(255,255,255,0.14) 0%, transparent 55%),
-      linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.012) 60%, rgba(255,255,255,0.04) 100%),
-      rgba(18,18,22,0.42);
-    backdrop-filter: blur(30px) saturate(180%) brightness(1.05);
-    -webkit-backdrop-filter: blur(30px) saturate(180%) brightness(1.05);
+      radial-gradient(140% 110% at 50% -60%, rgba(255,255,255,0.20) 0%, transparent 58%),
+      linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.015) 60%, rgba(255,255,255,0.05) 100%),
+      rgba(20,20,28,0.24);
+    backdrop-filter: blur(44px) saturate(190%) brightness(1.10);
+    -webkit-backdrop-filter: blur(44px) saturate(190%) brightness(1.10);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.14),
-      inset 0 -1px 0 rgba(0,0,0,0.18),
-      0 4px 16px rgba(0,0,0,0.25),
-      0 1px 2px rgba(0,0,0,0.2);
+      inset 0 1px 0 rgba(255,255,255,0.36),
+      inset 0 -1px 0 rgba(0,0,0,0.20),
+      0 8px 24px rgba(0,0,0,0.32),
+      0 2px 6px rgba(0,0,0,0.20);
     padding: 10px 18px;
     display: inline-flex;
     align-items: center;
@@ -1446,11 +1661,11 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
     padding: 1px;
     background: linear-gradient(
       140deg,
-      rgba(255,255,255,0.4) 0%,
-      rgba(255,255,255,0.06) 25%,
-      rgba(255,255,255,0) 55%,
-      rgba(255,255,255,0.05) 75%,
-      rgba(255,255,255,0.22) 100%
+      rgba(255,255,255,0.62) 0%,
+      rgba(255,255,255,0.10) 26%,
+      rgba(255,255,255,0) 52%,
+      rgba(255,255,255,0.06) 76%,
+      rgba(255,255,255,0.34) 100%
     );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -1461,26 +1676,28 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
   .fures-lang-pill:hover {
     transform: translateY(-1px);
     background:
-      radial-gradient(120% 100% at 50% -50%, rgba(255,255,255,0.2) 0%, transparent 55%),
-      linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.025) 60%, rgba(255,255,255,0.06) 100%),
-      rgba(28,28,32,0.5);
+      radial-gradient(140% 110% at 50% -60%, rgba(255,255,255,0.28) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.025) 60%, rgba(255,255,255,0.07) 100%),
+      rgba(30,30,38,0.30);
   }
 
-  /* ── Small lang pill (compact, for mobile & inline use) ── */
+  /* ── Small lang pill (compact, for mobile & inline use) — Apple Liquid Glass ── */
   .fures-lang-pill-sm {
     position: relative;
     isolation: isolate;
     border-radius: 9999px;
     border: none;
     background:
-      linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%),
-      rgba(18,18,22,0.5);
-    backdrop-filter: blur(24px) saturate(160%);
-    -webkit-backdrop-filter: blur(24px) saturate(160%);
+      radial-gradient(130% 110% at 50% -60%, rgba(255,255,255,0.18) 0%, transparent 58%),
+      linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.015) 60%, rgba(255,255,255,0.05) 100%),
+      rgba(20,20,28,0.26);
+    backdrop-filter: blur(38px) saturate(180%) brightness(1.08);
+    -webkit-backdrop-filter: blur(38px) saturate(180%) brightness(1.08);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.12),
-      inset 0 -1px 0 rgba(0,0,0,0.15),
-      0 2px 8px rgba(0,0,0,0.2);
+      inset 0 1px 0 rgba(255,255,255,0.32),
+      inset 0 -1px 0 rgba(0,0,0,0.18),
+      0 6px 18px rgba(0,0,0,0.28),
+      0 1px 3px rgba(0,0,0,0.18);
     padding: 7px 12px;
     display: inline-flex;
     align-items: center;
@@ -1496,7 +1713,14 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(140deg, rgba(255,255,255,0.3), rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.12));
+    background: linear-gradient(
+      140deg,
+      rgba(255,255,255,0.55) 0%,
+      rgba(255,255,255,0.08) 28%,
+      rgba(255,255,255,0) 55%,
+      rgba(255,255,255,0.05) 76%,
+      rgba(255,255,255,0.28) 100%
+    );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -1505,27 +1729,31 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
 
   .fures-lang-pill-sm:hover {
     transform: translateY(-1px);
-    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%), rgba(28,28,32,0.55);
+    background:
+      radial-gradient(130% 110% at 50% -60%, rgba(255,255,255,0.26) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.025) 60%, rgba(255,255,255,0.07) 100%),
+      rgba(30,30,38,0.30);
   }
 
-  /* ── Dropdown content (glass portal) ── */
+  /* ── Dropdown content (glass portal) — Apple Liquid Glass ── */
   .fures-dropdown-content {
     position: relative;
     isolation: isolate;
     border-radius: 1.5rem;
     border: none;
     background:
-      radial-gradient(140% 100% at 50% -40%, rgba(255,255,255,0.12) 0%, transparent 55%),
-      linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%),
-      rgba(12,14,22,0.72);
-    backdrop-filter: blur(40px) saturate(180%) brightness(1.06);
-    -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.06);
+      radial-gradient(150% 110% at 50% -50%, rgba(255,255,255,0.20) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.02) 55%, rgba(255,255,255,0.06) 100%),
+      rgba(20,22,32,0.46);
+    backdrop-filter: blur(56px) saturate(200%) brightness(1.10);
+    -webkit-backdrop-filter: blur(56px) saturate(200%) brightness(1.10);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.14),
-      inset 0 -1px 0 rgba(0,0,0,0.18),
-      0 16px 48px rgba(0,0,0,0.45),
-      0 4px 12px rgba(0,0,0,0.25),
-      0 1px 2px rgba(0,0,0,0.2);
+      inset 0 1.2px 0 rgba(255,255,255,0.38),
+      inset 0 -1px 0 rgba(0,0,0,0.20),
+      inset 0 0 0 0.5px rgba(255,255,255,0.06),
+      0 24px 56px rgba(0,0,0,0.45),
+      0 8px 20px rgba(0,0,0,0.25),
+      0 1px 2px rgba(0,0,0,0.20);
     color: white;
     overflow: hidden;
     animation: mac-menu-in 0.28s cubic-bezier(0.2, 0.85, 0.25, 1) forwards;
@@ -1567,6 +1795,8 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
   }
 
   @media (prefers-reduced-transparency: reduce) {
+    .apple-glass,
+    .apple-glass-pill,
     .fures-nav-glass,
     .fures-logo-pill,
     .fures-lang-pill,
@@ -1575,6 +1805,11 @@ html.theme-light @media (prefers-reduced-transparency: reduce) .fures-dropdown-c
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
       background: rgba(12, 16, 30, 0.96);
+    }
+
+    .apple-glass::after,
+    .fures-nav-glass::after {
+      display: none;
     }
   }
 }
