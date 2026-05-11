@@ -1,5 +1,61 @@
 import { useLanguage } from "../contexts/LanguageContext";
 import { Zap, Palette, BarChart3, Building2, CheckCircle2 } from "lucide-react";
+import { useLiquidPointer } from "../hooks/useLiquidPointer";
+
+const FEATURE_DEPTHS = ["depth-near", "", "", "depth-far"] as const;
+
+function FeatureCard({
+  index,
+  feature,
+}: {
+  index: number;
+  feature: { icon: typeof Zap; title: string; description: string };
+}) {
+  const pointer = useLiquidPointer<HTMLDivElement>();
+  const Icon = feature.icon;
+  return (
+    <div
+      ref={pointer.ref}
+      onPointerMove={pointer.onPointerMove}
+      onPointerLeave={pointer.onPointerLeave}
+      style={pointer.initialStyle}
+      className={`group liquid-glass-card ${FEATURE_DEPTHS[index % FEATURE_DEPTHS.length]} p-8`}
+    >
+      <div className="liquid-spotlight" aria-hidden="true" />
+      <div className="relative z-10">
+        <div className="liquid-icon mb-6 flex h-14 w-14 items-center justify-center rounded-2xl group-hover:-rotate-3 transition-transform duration-300">
+          <Icon className="h-7 w-7 text-white" />
+        </div>
+        <h4 className="whyus-card-title text-xl mb-3 font-semibold text-white">{feature.title}</h4>
+        <p className="whyus-card-description text-gray-300/80 leading-relaxed">{feature.description}</p>
+      </div>
+    </div>
+  );
+}
+
+function BenefitCard({ benefit }: { benefit: { title: string; description: string } }) {
+  const pointer = useLiquidPointer<HTMLDivElement>();
+  return (
+    <div
+      ref={pointer.ref}
+      onPointerMove={pointer.onPointerMove}
+      onPointerLeave={pointer.onPointerLeave}
+      style={pointer.initialStyle}
+      className="liquid-glass-card p-8"
+    >
+      <div className="liquid-spotlight" aria-hidden="true" />
+      <div className="relative z-10 flex items-start gap-4">
+        <div className="flex-shrink-0">
+          <CheckCircle2 className="w-6 h-6 text-orange-400" />
+        </div>
+        <div>
+          <h4 className="whyus-card-title text-lg text-white mb-2">{benefit.title}</h4>
+          <p className="whyus-benefit-description text-gray-400">{benefit.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function WhyUs() {
   const { t } = useLanguage();
@@ -67,21 +123,7 @@ export function WhyUs() {
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group fures-nav-glass rounded-[2rem] p-8 transition-all duration-300 hover:-translate-y-1"
-            >
-              <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-br from-orange-500/0 to-purple-600/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:from-orange-500/12 group-hover:to-purple-600/10"></div>
-
-              <div className="relative z-10">
-                <div className="liquid-icon mb-6 flex h-14 w-14 items-center justify-center rounded-2xl group-hover:-rotate-3 transition-transform duration-300">
-                  <feature.icon className="h-7 w-7 text-white" />
-                </div>
-
-                <h4 className="whyus-card-title text-xl mb-3 font-semibold text-white">{feature.title}</h4>
-                <p className="whyus-card-description text-gray-300/80 leading-relaxed">{feature.description}</p>
-              </div>
-            </div>
+            <FeatureCard key={index} index={index} feature={feature} />
           ))}
         </div>
 
@@ -95,20 +137,7 @@ export function WhyUs() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="fures-nav-glass rounded-[2rem] p-8 transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <CheckCircle2 className="w-6 h-6 text-orange-400" />
-                  </div>
-                  <div>
-                    <h4 className="whyus-card-title text-lg text-white mb-2">{benefit.title}</h4>
-                    <p className="whyus-benefit-description text-gray-400">{benefit.description}</p>
-                  </div>
-                </div>
-              </div>
+              <BenefitCard key={index} benefit={benefit} />
             ))}
           </div>
         </div>

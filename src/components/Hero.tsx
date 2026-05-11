@@ -55,8 +55,15 @@ export function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
       style={{ background: isLight ? "#f5f5f7" : "#000" }}
     >
-      {/* Three.js silk cloth background */}
+      {/* Three.js silk cloth background — preserved untouched */}
       <ClothCanvas />
+
+      {/* Liquid atmosphere — slow drifting light waves over the curtain */}
+      <div className="liquid-atmosphere" style={{ zIndex: 1.5 as unknown as number, mixBlendMode: "screen" }}>
+        <div className="liquid-wave liquid-wave-a" />
+        <div className="liquid-wave liquid-wave-b" />
+        <div className="liquid-wave liquid-wave-c" />
+      </div>
 
       {/* Gradient overlay — readable text area, edges softened */}
       <div
@@ -68,6 +75,17 @@ export function Hero() {
             : "linear-gradient(90deg, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.7) 25%, rgba(5,5,5,0.2) 50%, rgba(5,5,5,0) 65%), linear-gradient(180deg, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.6) 100%)",
         }}
       />
+
+      {/* Soft glowing liquid glass orb — cinematic centerpiece behind text */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[3] pointer-events-none"
+        style={{ filter: "saturate(1.1)" }}
+      >
+        <div className="liquid-orb w-[460px] h-[460px] sm:w-[560px] sm:h-[560px] lg:w-[720px] lg:h-[720px]" />
+      </motion.div>
 
       {/* Ambient glow orbs - subtle, Apple-like */}
       <div className="absolute inset-0 z-[3] pointer-events-none">

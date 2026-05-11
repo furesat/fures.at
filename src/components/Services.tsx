@@ -3,6 +3,60 @@ import { Search, MapPin, Share2, Hotel, Cpu, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLiquidPointer } from "../hooks/useLiquidPointer";
+
+// Stagger card depths so the grid feels like a layered glass landscape:
+// near cards float forward, far cards sit deeper in the interface.
+const DEPTH_PATTERN = ["depth-near", "", "depth-far", "depth-far", "", "depth-near"] as const;
+
+function ServiceCard({
+  index,
+  isInView,
+  service,
+}: {
+  index: number;
+  isInView: boolean;
+  service: { icon: typeof Search; title: string; description: string };
+}) {
+  const pointer = useLiquidPointer<HTMLDivElement>();
+  const depthClass = DEPTH_PATTERN[index % DEPTH_PATTERN.length];
+  const Icon = service.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+      animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      className="group"
+    >
+      <div
+        ref={pointer.ref}
+        onPointerMove={pointer.onPointerMove}
+        onPointerLeave={pointer.onPointerLeave}
+        style={pointer.initialStyle}
+        className={`liquid-glass-card ${depthClass} relative p-7 h-full`}
+      >
+        <div className="liquid-spotlight" aria-hidden="true" />
+        <div className="relative z-10">
+          <motion.div
+            whileHover={{ rotate: 4, scale: 1.05 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="liquid-icon mb-5 flex h-11 w-11 items-center justify-center rounded-2xl"
+          >
+            <Icon className="h-5 w-5 text-white/90" />
+          </motion.div>
+          <h3
+            className="text-base text-white mb-2.5 font-semibold"
+            style={{ letterSpacing: "-0.02em" }}
+          >
+            {service.title}
+          </h3>
+          <p className="text-sm text-white/55 leading-relaxed">{service.description}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export function Services() {
   const { t } = useLanguage();
@@ -63,32 +117,14 @@ export function Services() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <motion.div
+            <ServiceCard
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-              className="group fures-nav-glass rounded-[2.5rem] p-7 transition-all duration-300 hover:-translate-y-0.5"
-            >
-              <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                style={{ backgroundImage: 'linear-gradient(135deg, rgba(255,122,41,0.07), rgba(143,91,255,0.05))' }} />
-
-              <div className="relative z-10">
-                <motion.div
-                  whileHover={{ rotate: 4, scale: 1.05 }}
-                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="liquid-icon mb-5 flex h-11 w-11 items-center justify-center rounded-2xl"
-                >
-                  <service.icon className="h-5 w-5 text-white/90" />
-                </motion.div>
-                <h3 className="text-base text-white mb-2.5 font-semibold" style={{ letterSpacing: '-0.02em' }}>
-                  {service.title}
-                </h3>
-                <p className="text-sm text-white/50 leading-relaxed">{service.description}</p>
-              </div>
-            </motion.div>
+              index={index}
+              isInView={isInView}
+              service={service}
+            />
           ))}
         </div>
       </div>
