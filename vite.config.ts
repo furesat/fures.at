@@ -120,6 +120,9 @@ export default defineConfig(({ mode }) => {
     "";
 
   return {
+    // Eleventy owns the repository-level public/ tree; avoid copying it into dist
+    // where it conflicts with passthrough pages such as aboutcyprus.
+    publicDir: false,
     plugins: [react(), fotosDevServerPlugin(), fotosBuildCopyPlugin()],
     define: {
       'process.env.API_KEY': JSON.stringify(geminiKey),

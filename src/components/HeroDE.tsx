@@ -66,25 +66,32 @@ export function HeroDE() {
       {/* Three.js silk cloth background */}
       <ClothCanvas />
 
-      {/* Gradient overlay — readable text area, edges softened */}
+      {/* Advanced liquid glass atmosphere — ClothCanvas background stays untouched below this layer. */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="liquid-ambient-layer absolute inset-0 pointer-events-none"
         style={{
           zIndex: 2,
           background: isLight
-            ? "linear-gradient(90deg, rgba(245,245,247,0.78) 0%, rgba(245,245,247,0.5) 30%, rgba(245,245,247,0.1) 60%, rgba(245,245,247,0) 75%), linear-gradient(180deg, rgba(245,245,247,0.45) 0%, rgba(245,245,247,0) 30%, rgba(245,245,247,0) 70%, rgba(245,245,247,0.55) 100%)"
-            : "linear-gradient(90deg, rgba(5,5,5,0.88) 0%, rgba(5,5,5,0.6) 30%, rgba(5,5,5,0.15) 60%, rgba(5,5,5,0) 75%), linear-gradient(180deg, rgba(5,5,5,0.45) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.55) 100%)",
+            ? "linear-gradient(90deg, rgba(245,245,247,0.76) 0%, rgba(245,245,247,0.48) 30%, rgba(245,245,247,0.10) 62%, rgba(245,245,247,0) 78%), linear-gradient(180deg, rgba(245,245,247,0.44) 0%, rgba(245,245,247,0) 30%, rgba(245,245,247,0) 70%, rgba(245,245,247,0.56) 100%)"
+            : "linear-gradient(90deg, rgba(3,7,18,0.86) 0%, rgba(5,10,24,0.58) 30%, rgba(8,16,34,0.14) 62%, rgba(5,5,5,0) 78%), linear-gradient(180deg, rgba(5,10,24,0.44) 0%, rgba(5,10,24,0) 30%, rgba(5,10,24,0) 70%, rgba(3,7,18,0.58) 100%)",
         }}
-      />
+      >
+        <span className="liquid-wave liquid-wave-one" />
+        <span className="liquid-wave liquid-wave-two" />
+        <span className="liquid-prism liquid-prism-one" />
+        <span className="liquid-prism liquid-prism-two" />
+      </div>
 
-      <div className="relative z-[5] max-w-5xl mx-auto px-6 py-24 flex flex-col items-center text-center">
+      <div className="liquid-hero-shell relative z-[5] max-w-5xl mx-auto px-6 py-24 flex flex-col items-center text-center">
+        <div className="liquid-hero-orb liquid-hero-orb-left" aria-hidden="true" />
+        <div className="liquid-hero-orb liquid-hero-orb-right" aria-hidden="true" />
         {/* Trust badge */}
         <motion.div
           variants={FADE_IN}
           initial="hidden"
           animate="visible"
           custom={0}
-          className="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 mb-8 rounded-full bg-white/5 border border-white/12 text-orange-300 text-sm font-medium backdrop-blur-sm"
+          className="liquid-glass-badge inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 mb-8 rounded-full text-orange-300 text-sm font-medium"
         >
           <span className="flex items-center gap-1.5"><span>🏨</span> Hotel-Website</span>
           <span className="text-white/20">·</span>
@@ -101,7 +108,7 @@ export function HeroDE() {
           initial="hidden"
           animate="visible"
           custom={0.08}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
+          className="liquid-hero-title text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4"
           style={{ letterSpacing: "-0.03em" }}
         >
           Mehr{" "}
@@ -124,7 +131,7 @@ export function HeroDE() {
           initial="hidden"
           animate="visible"
           custom={0.16}
-          className="text-lg sm:text-xl text-white/65 max-w-2xl mx-auto leading-relaxed mb-10"
+          className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-10 liquid-hero-copy"
         >
           Professionelle Digitalstrategien für Hotels im DACH-Raum — von der
           Website über SEO bis zur Social-Media-Betreuung. Alles aus einer Hand.
@@ -140,7 +147,7 @@ export function HeroDE() {
         >
           <Link
             to="/de/leistungen"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-full transition-all duration-200 hover:-translate-y-px active:translate-y-0"
+            className="liquid-cta-shell inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-full transition-all duration-200 hover:-translate-y-px active:translate-y-0"
             style={{
               background: "linear-gradient(90deg, #6ee7e0 0%, #c4e870 50%, #f4d35e 100%)",
               color: "#0a0a0a",
@@ -152,7 +159,7 @@ export function HeroDE() {
           </Link>
           <Link
             to="/de/kontakt"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-full transition-all duration-200 hover:-translate-y-px active:translate-y-0"
+            className="liquid-cta-shell inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-full transition-all duration-200 hover:-translate-y-px active:translate-y-0"
             style={{
               background: isLight ? "rgba(0,0,0,0.04)" : "rgba(255,255,255,0.04)",
               border: isLight ? "1px solid rgba(0,0,0,0.10)" : "1px solid rgba(255,255,255,0.12)",
@@ -179,7 +186,7 @@ export function HeroDE() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.38 + i * 0.08 }}
-                className="fures-nav-glass flex flex-col items-center gap-3 p-6 rounded-3xl"
+                className="liquid-depth-card fures-nav-glass flex flex-col items-center gap-3 p-6 rounded-3xl"
               >
                 <div className="flex items-center justify-center w-11 h-11 rounded-2xl bg-orange-500/20 border border-orange-400/20">
                   <Icon className="w-5 h-5 text-orange-400" />
