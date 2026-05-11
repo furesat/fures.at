@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, MouseEvent as ReactMouseEvent } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -29,6 +29,9 @@ import {
 } from "./ui/dropdown-menu";
 import type { LucideIcon } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { bounceIconsIn } from "../utils/iconBounce";
+
+const triggerDockBounce = (e: ReactMouseEvent<HTMLElement>) => bounceIconsIn(e.currentTarget);
 
 type NavItem = { path: string; label: string; icon: LucideIcon };
 type MoreLink = { path: string; label: string; icon: LucideIcon; external?: boolean };
@@ -186,11 +189,12 @@ export function Header() {
         <div className="mx-auto flex w-full max-w-[1200px] items-center gap-2 sm:gap-3">
 
           {/* Logo */}
-          <Link to="/" className="group relative shrink-0">
+          <Link to="/" className="group relative shrink-0" onClick={triggerDockBounce}>
             <span className="fures-logo-pill relative flex items-center">
               <img
                 src={logoSrc}
                 alt="Fures"
+                data-dock-icon
                 className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105 sm:h-10"
               />
             </span>
@@ -220,8 +224,9 @@ export function Header() {
                     className={navItemClasses(item.path)}
                     data-active={active || undefined}
                     ref={active ? setActiveItemRef : undefined}
+                    onClick={triggerDockBounce}
                   >
-                    <Icon className={`relative z-10 h-4 w-4 transition-all duration-300 ${active ? "text-white" : "text-white/75"}`} />
+                    <Icon data-dock-icon className={`relative z-10 h-4 w-4 transition-all duration-300 ${active ? "text-white" : "text-white/75"}`} />
                     <span className="relative z-10">{item.label}</span>
                   </Link>
                 );
@@ -235,12 +240,13 @@ export function Header() {
                     className={`${navBaseClasses} fures-nav-item-idle text-slate-200/70 hover:text-white focus-visible:outline-none ${moreMenuActive ? "text-white" : ""}`}
                     data-active={moreMenuActive || undefined}
                     ref={moreTriggerRef}
+                    onClick={triggerDockBounce}
                   >
-                    <MoreHorizontal className={`relative z-10 h-4 w-4 ${moreMenuActive ? "text-white" : "text-white/75"}`} />
+                    <MoreHorizontal data-dock-icon className={`relative z-10 h-4 w-4 ${moreMenuActive ? "text-white" : "text-white/75"}`} />
                     <span className="relative z-10">{t("nav.more")}</span>
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="fures-dropdown-content mt-2 w-64 p-2" style={dropdownGlassStyle}>
+                <DropdownMenuContent className="fures-dropdown-content mt-2 w-64 border-0 p-2" style={dropdownGlassStyle}>
                   {moreLinks.map((link) => {
                     const Icon = link.icon;
                     const active = isActive(link.path);
@@ -250,10 +256,11 @@ export function Header() {
                           to={link.path}
                           className={`fures-dropdown-item flex w-full items-center justify-between rounded-2xl px-3 py-2.5 text-sm ${active ? "text-white bg-white/10" : "text-white/70 hover:text-white"}`}
                           data-active={active || undefined}
+                          onClick={triggerDockBounce}
                         >
                           <span className="flex items-center gap-3">
                             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/8">
-                              <Icon className="h-3.5 w-3.5 text-white/80" />
+                              <Icon data-dock-icon className="h-3.5 w-3.5 text-white/80" />
                             </span>
                             {link.label}
                           </span>
@@ -272,17 +279,17 @@ export function Header() {
             <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="fures-lang-pill text-white/65 hover:text-white/90">
-                  <Globe className="h-3.5 w-3.5" />
+                <button className="fures-lang-pill text-white/65 hover:text-white/90" onClick={triggerDockBounce}>
+                  <Globe data-dock-icon className="h-3.5 w-3.5" />
                   <span className="text-white/40">{language.toUpperCase()}</span>
                   <span className="font-semibold text-white">{language.toUpperCase()}</span>
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="fures-dropdown-content mt-2 w-44 p-2" style={dropdownGlassStyle}>
+              <DropdownMenuContent className="fures-dropdown-content mt-2 w-44 border-0 p-2" style={dropdownGlassStyle}>
                 {languages.map((lang) => (
                   <DropdownMenuItem key={lang.code} asChild className="p-0 focus:bg-transparent">
                     <button
-                      onClick={() => handleLanguageSwitch(lang.code as Language)}
+                      onClick={(e) => { triggerDockBounce(e); handleLanguageSwitch(lang.code as Language); }}
                       className={`fures-dropdown-item flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm ${language === lang.code ? "text-white" : "text-white/65 hover:text-white"}`}
                     >
                       <span className="text-base">{lang.flag}</span>
@@ -293,7 +300,7 @@ export function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link to={r.contact}>
+            <Link to={r.contact} onClick={triggerDockBounce}>
               <button className="fures-cta-pill">{t("nav.lets_talk")}</button>
             </Link>
           </div>
@@ -303,16 +310,16 @@ export function Header() {
             <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="fures-lang-pill-sm text-white/70">
-                  <Globe className="h-3.5 w-3.5" />
+                <button className="fures-lang-pill-sm text-white/70" onClick={triggerDockBounce}>
+                  <Globe data-dock-icon className="h-3.5 w-3.5" />
                   <span className="font-semibold text-white text-xs">{language.toUpperCase()}</span>
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="fures-dropdown-content mt-2 w-44 p-2" style={dropdownGlassStyle}>
+              <DropdownMenuContent className="fures-dropdown-content mt-2 w-44 border-0 p-2" style={dropdownGlassStyle}>
                 {languages.map((lang) => (
                   <DropdownMenuItem key={lang.code} asChild className="p-0 focus:bg-transparent">
                     <button
-                      onClick={() => handleLanguageSwitch(lang.code as Language)}
+                      onClick={(e) => { triggerDockBounce(e); handleLanguageSwitch(lang.code as Language); }}
                       className={`fures-dropdown-item flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm ${language === lang.code ? "text-white" : "text-white/65 hover:text-white"}`}
                     >
                       <span className="text-base">{lang.flag}</span>
@@ -325,11 +332,11 @@ export function Header() {
 
             <button
               type="button"
-              onClick={() => setMobileOpen((p) => !p)}
+              onClick={(e) => { triggerDockBounce(e); setMobileOpen((p) => !p); }}
               className="fures-nav-item-idle flex h-9 w-9 items-center justify-center rounded-full text-white/70 hover:text-white"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
-              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileOpen ? <X data-dock-icon className="h-5 w-5" /> : <Menu data-dock-icon className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -350,18 +357,18 @@ export function Header() {
                 <Link
                   key={item.path}
                   to={item.path}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => { triggerDockBounce(e); setMobileOpen(false); }}
                   className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-colors duration-200 ${
                     active ? "bg-white/10 text-white" : "text-white/65 hover:bg-white/5 hover:text-white"
                   }`}
                 >
-                  <Icon className="h-4 w-4 shrink-0" />
+                  <Icon data-dock-icon className="h-4 w-4 shrink-0" />
                   {item.label}
                 </Link>
               );
             })}
             <div className="mt-1 border-t border-white/10 pt-2">
-              <Link to={r.contact} onClick={() => setMobileOpen(false)}>
+              <Link to={r.contact} onClick={(e) => { triggerDockBounce(e); setMobileOpen(false); }}>
                 <button className="fures-cta-pill w-full">{t("nav.lets_talk")}</button>
               </Link>
             </div>
