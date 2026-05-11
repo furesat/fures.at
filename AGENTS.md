@@ -204,3 +204,8 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 ## Güncelleme Notu (2026-05-11 / Maria Alm Referans Kartı)
 - `src/components/Projects.tsx` içindeki ana site referans koleksiyonuna `maria-alm-route-atlas` kartı eklendi; bağlantı `https://inmariaalm.netlify.app/` olarak bırakıldı ve tr/en/de/ru açıklamalarında yapım aşamasında olduğu açık belirtildi.
 - Yeni iç rota oluşturulmadığı, yalnızca dış Netlify bağlantısı eklendiği için `public/sitemap.xml` kontrol edildi ve ek sitemap kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Über uns Light Hero)
+- `src/components/About.tsx` içindeki About/Hero bölümü için semantik `about-*` sınıfları eklendi; böylece açık tema düzeltmeleri koyu tema utility zincirlerine bağımlı kalmadan yönetilir.
+- `src/styles/globals.css` içinde yalnızca `html.theme-light` / `[data-theme="light"]` kapsamındaki About hero yüzeyi beyaz, sıcak turuncu ve mor marka tonlarıyla güncellendi; dark mode arka planı bilinçli olarak değiştirilmedi.
+- `/de/ueber-uns` mevcut rota olduğu için sitemap kontrolünde yeni URL eklenmesi gerekmedi; SEO canonical/alternate yapısı `AboutPage` üzerinden korunur.
