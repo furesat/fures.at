@@ -204,3 +204,10 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 ## Güncelleme Notu (2026-05-11 / Maria Alm Referans Kartı)
 - `src/components/Projects.tsx` içindeki ana site referans koleksiyonuna `maria-alm-route-atlas` kartı eklendi; bağlantı `https://inmariaalm.netlify.app/` olarak bırakıldı ve tr/en/de/ru açıklamalarında yapım aşamasında olduğu açık belirtildi.
 - Yeni iç rota oluşturulmadığı, yalnızca dış Netlify bağlantısı eklendiği için `public/sitemap.xml` kontrol edildi ve ek sitemap kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Advanced Liquid Glass Arayüz)
+- Ana site hero alanları `src/components/Hero.tsx` ve Almanca özel hero `src/components/HeroDE.tsx` üzerinde Advanced Liquid Glass görsel diline yaklaştırıldı: cam kapsül CTA'lar, katmanlı yansıma yüzeyleri, yavaş sıvı ışık dalgaları, prism/refraction katmanları ve derinlik hissi eklendi.
+- Kullanıcının “arka plan Hali/perde efektini koru” talebi doğrultusunda `ClothCanvas` bileşenine dokunulmadı; yeni atmosfer katmanı yalnızca canvas üzerinde çalışan CSS/JSX overlay olarak konumlandırıldı.
+- `src/styles/globals.css` içinde liquid-glass semantik yardımcı sınıfları ve erişilebilirlik için `prefers-reduced-motion` fallback'i eklendi; mevcut light/dark tema tokenlarıyla uyum korunacak şekilde tasarlandı.
+- Build doğrulaması sırasında Vite'ın `public/` ağacını `dist/` içine kopyalayıp Eleventy passthrough ile çakışmasını önlemek için `vite.config.ts` içinde ana site `publicDir: false` olarak sabitlendi; Eleventy repository-level `public/` ağacının sahibi olmaya devam eder.
+- Yeni rota veya sayfa eklenmediği için sitemap kaydı gerekmedi; `rg --files -g '*sitemap*.xml' -g 'sitemap*'` kontrolünde repo içinde mevcut sitemap dosyası bulunmadığı not edildi. SEO Perfect ilkesi açısından hero metin hiyerarşisi, CTA yönleri ve çok dilli ana sayfa yapısı korunmuştur.

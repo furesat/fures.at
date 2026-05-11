@@ -58,16 +58,21 @@ export function Hero() {
       {/* Three.js silk cloth background */}
       <ClothCanvas />
 
-      {/* Gradient overlay — readable text area, edges softened */}
+      {/* Advanced liquid glass atmosphere — ClothCanvas background stays untouched below this layer. */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="liquid-ambient-layer absolute inset-0 pointer-events-none"
         style={{
           zIndex: 2,
           background: isLight
-            ? "linear-gradient(90deg, rgba(245,245,247,0.82) 0%, rgba(245,245,247,0.55) 25%, rgba(245,245,247,0.15) 50%, rgba(245,245,247,0) 65%), linear-gradient(180deg, rgba(245,245,247,0.5) 0%, rgba(245,245,247,0) 30%, rgba(245,245,247,0) 70%, rgba(245,245,247,0.6) 100%)"
-            : "linear-gradient(90deg, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.7) 25%, rgba(5,5,5,0.2) 50%, rgba(5,5,5,0) 65%), linear-gradient(180deg, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.6) 100%)",
+            ? "linear-gradient(90deg, rgba(245,245,247,0.78) 0%, rgba(245,245,247,0.48) 24%, rgba(245,245,247,0.12) 52%, rgba(245,245,247,0) 70%), linear-gradient(180deg, rgba(245,245,247,0.46) 0%, rgba(245,245,247,0) 32%, rgba(245,245,247,0) 70%, rgba(245,245,247,0.58) 100%)"
+            : "linear-gradient(90deg, rgba(3,7,18,0.90) 0%, rgba(5,10,24,0.66) 27%, rgba(8,16,34,0.18) 54%, rgba(5,5,5,0) 72%), linear-gradient(180deg, rgba(5,10,24,0.48) 0%, rgba(5,10,24,0) 30%, rgba(5,10,24,0) 70%, rgba(3,7,18,0.62) 100%)",
         }}
-      />
+      >
+        <span className="liquid-wave liquid-wave-one" />
+        <span className="liquid-wave liquid-wave-two" />
+        <span className="liquid-prism liquid-prism-one" />
+        <span className="liquid-prism liquid-prism-two" />
+      </div>
 
       {/* Ambient glow orbs - subtle, Apple-like */}
       <div className="absolute inset-0 z-[3] pointer-events-none">
@@ -128,13 +133,15 @@ export function Hero() {
       </div>
 
       <div className="relative z-[5] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center">
+        <div className="liquid-hero-shell text-center">
+          <div className="liquid-hero-orb liquid-hero-orb-left" aria-hidden="true" />
+          <div className="liquid-hero-orb liquid-hero-orb-right" aria-hidden="true" />
           {/* Badge - fades in softly */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/12 mb-8 backdrop-blur-md"
+            className="liquid-glass-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8"
           >
             <Sparkles className="w-3.5 h-3.5 text-orange-400/90" />
             <span className="text-xs font-medium tracking-wide text-white/70">{t('hero.badge')}</span>
@@ -147,7 +154,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl sm:text-6xl lg:text-8xl mb-6 tracking-tight"
+            className="liquid-hero-title text-5xl sm:text-6xl lg:text-8xl mb-6 tracking-tight"
           >
             <span className="block text-white font-bold" style={{ letterSpacing: '-0.03em' }}>
               {rotatingTexts[textIndex]}
@@ -162,7 +169,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="text-xl sm:text-2xl lg:text-3xl text-white/75 mb-8 font-light tracking-tight"
+            className="text-xl sm:text-2xl lg:text-3xl text-white/75 mb-8 font-light tracking-tight liquid-hero-kicker"
           >
             {t('hero.ai_powered')}
           </motion.p>
@@ -172,7 +179,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="text-base sm:text-lg text-white/55 max-w-3xl mx-auto mb-12 leading-relaxed"
+            className="text-base sm:text-lg text-white/60 max-w-3xl mx-auto mb-12 leading-relaxed liquid-hero-copy"
           >
             {t('hero.description')}
           </motion.p>
@@ -193,7 +200,7 @@ export function Hero() {
                 <Button
                   size="lg"
                   variant="gradient"
-                  className="group"
+                  className="group liquid-cta-shell"
                 >
                   {t('hero.cta_discover')}
                   <ArrowRight className="ml-1.5 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
@@ -210,6 +217,7 @@ export function Hero() {
                 <Button
                   size="lg"
                   variant="outline"
+                  className="liquid-cta-shell"
                 >
                   {t('hero.secondary_cta')}
                 </Button>
