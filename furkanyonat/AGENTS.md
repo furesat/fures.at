@@ -50,3 +50,7 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 ## Güncelleme Notu (2026-05-11)
 - Ana sitenin referans koleksiyonuna Maria Alm Dijital Keşif Atlası dış bağlantı kartı eklendi; furkanyonat CV sayfası içeriğine dokunulmadı.
 - Bu klasörde yeni rota veya SEO sayfası oluşturulmadığı için `public/sitemap.xml` tarafında furkanyonat kapsamlı ek kayıt gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Netlify Python Deploy)
+- Bu klasör özelinde kod/içerik değişikliği yapılmadı; ana repo deploy hatası Python bağımlılık pinleri ve Netlify Python 3.11 seçimiyle giderildi.
+- Yeni furkanyonat rotası veya SEO sayfası oluşturulmadığı için sitemap ek kaydı gerekmedi.

@@ -204,3 +204,8 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 ## Güncelleme Notu (2026-05-11 / Maria Alm Referans Kartı)
 - `src/components/Projects.tsx` içindeki ana site referans koleksiyonuna `maria-alm-route-atlas` kartı eklendi; bağlantı `https://inmariaalm.netlify.app/` olarak bırakıldı ve tr/en/de/ru açıklamalarında yapım aşamasında olduğu açık belirtildi.
 - Yeni iç rota oluşturulmadığı, yalnızca dış Netlify bağlantısı eklendiği için `public/sitemap.xml` kontrol edildi ve ek sitemap kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Netlify Python Deploy)
+- Netlify deploy loglarında görülen `google-cloud-bigquery` eski wheel metadata hatasını önlemek için Python bağımlılıkları modern aralıklara sabitlendi; özellikle `google-cloud-aiplatform` ve `google-cloud-bigquery` aynı uyumlu sürüm ailesinde tutulmalıdır.
+- Netlify build ortamında eski Python seçilmesini engellemek için `netlify.toml` içinde `PYTHON_VERSION = "3.11"` ve kökte `runtime.txt` kullanılır; bu dosyaları kaldırmadan önce gereksinimlerin yeni Python sürümünde kurulduğunu test et.
+- Yeni rota eklenmediği için `public/sitemap.xml` kontrolünde ek URL kaydı gerekmedi.

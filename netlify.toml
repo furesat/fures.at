@@ -4,6 +4,7 @@
 
 [build.environment]
   TZ = "Europe/Istanbul"
+  PYTHON_VERSION = "3.11"
 
 [[redirects]]
   from = "/gulbeneser/assets/*"
