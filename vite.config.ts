@@ -120,6 +120,7 @@ export default defineConfig(({ mode }) => {
     "";
 
   return {
+    publicDir: false,
     plugins: [react(), fotosDevServerPlugin(), fotosBuildCopyPlugin()],
     define: {
       'process.env.API_KEY': JSON.stringify(geminiKey),

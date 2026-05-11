@@ -52,7 +52,7 @@ export function Hero() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
+      className="relative flex min-h-screen items-center justify-center overflow-x-hidden overflow-y-visible pt-16"
       style={{ background: isLight ? "#f5f5f7" : "#000" }}
     >
       {/* Three.js silk cloth background */}
