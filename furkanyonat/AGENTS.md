@@ -46,3 +46,7 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 - Ek not: WhyUs/Blog/Campaign için semantik sınıf bazlı light-mode override yapısına geçildi.
 
 - Konsolidasyon notu: Bu turda kod değişiklikleri ana repo light-mode iyileştirmelerinin tek PR özetinde toplandı; yeni rota yok.
+
+## Güncelleme Notu (2026-05-11)
+- Ana sitenin referans koleksiyonuna Maria Alm Dijital Keşif Atlası dış bağlantı kartı eklendi; furkanyonat CV sayfası içeriğine dokunulmadı.
+- Bu klasörde yeni rota veya SEO sayfası oluşturulmadığı için `public/sitemap.xml` tarafında furkanyonat kapsamlı ek kayıt gerekmedi.

@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { ExternalLink, Cpu, Globe, Hotel, Users, Camera, ChefHat, BarChart3, Briefcase, Plane, ShieldCheck, Shirt } from "lucide-react";
+import { ExternalLink, Cpu, Globe, Hotel, Users, Camera, ChefHat, BarChart3, Briefcase, Plane, ShieldCheck, Shirt, MapPinned } from "lucide-react";
 import { useLanguage, type Language } from "../contexts/LanguageContext";
 import { Link } from "react-router-dom";
 
@@ -68,6 +68,33 @@ export const PROJECTS: readonly ProjectConfig[] = [
         name: 'Бутик e-commerce проект ZuzuMood',
         description:
           'Бутик-витрина для ZuzuMood (Техас) с Etsy-first исполнением заказов, архитектурой категорий и ежедневным контент-потоком блога.',
+      },
+    },
+  },
+  {
+    id: 'maria-alm-route-atlas',
+    link: 'https://inmariaalm.netlify.app/',
+    icon: MapPinned,
+    translations: {
+      tr: {
+        name: 'in Maria Alm Dijital Keşif Atlası',
+        description:
+          'Yapım aşamasında: Maria Alm için akıllı rota filtreleri, sezon rehberi, gece/fotoğraf deneyimleri ve AI destekli günlük planlayıcı.',
+      },
+      en: {
+        name: 'in Maria Alm Digital Discovery Atlas',
+        description:
+          'Under construction: a smart Maria Alm route atlas with filters, seasonal guides, night/photo experiences, and AI-powered day planning.',
+      },
+      de: {
+        name: 'in Maria Alm Digitaler Entdeckungsatlas',
+        description:
+          'In Umsetzung: smarter Maria-Alm-Routenatlas mit Filtern, Saisonwelten, Nacht-/Foto-Erlebnissen und KI-gestützter Tagesplanung.',
+      },
+      ru: {
+        name: 'Цифровой атлас in Maria Alm',
+        description:
+          'В разработке: умный атлас маршрутов Maria Alm с фильтрами, сезонными гидами, ночными/фото-впечатлениями и AI-планером дня.',
       },
     },
   },
