@@ -50,3 +50,20 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 ## Güncelleme Notu (2026-05-11)
 - Ana sitenin referans koleksiyonuna Maria Alm Dijital Keşif Atlası dış bağlantı kartı eklendi; furkanyonat CV sayfası içeriğine dokunulmadı.
 - Bu klasörde yeni rota veya SEO sayfası oluşturulmadığı için `public/sitemap.xml` tarafında furkanyonat kapsamlı ek kayıt gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Python Otomasyon Bağımlılıkları)
+- Bu klasör özelinde kod/içerik değişikliği yapılmadı; ana repo Python otomasyon bağımlılıkları `scripts/requirements.txt` altına taşındı ve Netlify build Python kurulumundan ayrıldı.
+- Yeni furkanyonat rotası veya SEO sayfası oluşturulmadığı için sitemap ek kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Netlify Deploy Paket Optimizasyonu)
+- Ana repo deploy paketi optimize edildi; furkanyonat içerik/rota yapısı değişmedi, ancak alt proje `dist/` klasörlerinin Eleventy tarafından ek sayfa olarak yayınlanması genel build düzeyinde engellendi.
+- Yeni furkanyonat rotası veya SEO sayfası oluşturulmadığı için sitemap ek kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Deploy Optimizasyonu Kontrol)
+- Ana repo `/fotos` kopyalama ve geliştirme sunucusu güvenlik kontrolleri sıkılaştırıldı; furkanyonat sayfa içeriği veya rota yapısı değişmedi.
+- Yeni furkanyonat rotası oluşturulmadığı için sitemap ek kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Netlify Python Kurulum Hatası Analizi)
+- Netlify hatası zorunlu Python 3.11 kurulumunun GitHub/pyenv HTTP 500 yanıtı almasıydı; furkanyonat uygulamasında içerik veya rota hatası bulunmadı.
+- Ana build Node-only hale getirildiği için furkanyonat deploy'u Python kurulum adımına bağlı değildir.
+- Yeni furkanyonat rotası oluşturulmadığı için sitemap ek kaydı gerekmedi.
