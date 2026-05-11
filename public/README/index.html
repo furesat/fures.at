@@ -1,0 +1,28 @@
+<h1><a href="http://Fures.at">Fures.at</a> Automation Notes</h1>
+<p>This repository powers the multilingual AI news blog for <strong><a href="http://fures.at">fures.at</a></strong>. A daily GitHub Action runs <code>scripts/gemini_daily.py</code> to fetch fresh AI headlines, generate articles with Google Gemini, and commit the new markdown files back to the repo.</p>
+<h2>Where to find the generated blog posts</h2>
+<p>The automation stores its output inside the <a href="blog"><code>blog/</code></a> directory. Each supported language has its own subfolder:</p>
+<ul>
+<li><a href="blog/tr"><code>blog/tr</code></a> – Turkish posts</li>
+<li><a href="blog/en"><code>blog/en</code></a> – English posts</li>
+<li><a href="blog/de"><code>blog/de</code></a> – German posts</li>
+<li><a href="blog/ru"><code>blog/ru</code></a> – Russian posts</li>
+</ul>
+<p>Every run creates a new markdown file named with the timestamp and language code. The timestamp includes the day and minute so t
+hat multiple runs in the same day never overwrite previous posts. For example:</p>
+<pre><code>blog/en/2025-10-12-1630-en-ai-news.md
+</code></pre>
+<p>Each file includes front‑matter that the site can use for titles, publish dates, and the language tag. You can open these markdown files directly on GitHub or clone the repository and read them locally with any markdown viewer.</p>
+<h2>Previewing the site locally</h2>
+<p>If you want to verify the content in the development build:</p>
+<ol>
+<li>Install dependencies once: <code>npm install</code></li>
+<li>Start the Vite dev server: <code>npm run dev</code></li>
+<li>Visit <code>http://localhost:5173</code> and navigate to the blog section that reads from the generated markdown files.</li>
+</ol>
+<h2>Triggering the automation manually</h2>
+<p>The workflow <code>build-and-publish</code> executes <code>scripts/gemini_daily.py</code>. You can run the same script locally after exporting a valid <code>GEMINI_API_KEY</code>:</p>
+<pre><code class="language-bash">export GEMINI_API_KEY=&quot;your-api-key&quot;
+python scripts/gemini_daily.py
+</code></pre>
+<p>The script generates multilingual posts using the latest RSS feeds, saves them to the <code>blog/</code> directory, and commits the results if there are changes.</p>
