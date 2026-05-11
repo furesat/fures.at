@@ -141,6 +141,12 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - **Operasyon Notları:** Siparişlerin Etsy üzerinden karşılandığı mesajı (`Orders Fulfilled Globally via Etsy`) korunmalı; kullanıcıyı Etsy dışı checkout’a yönlendiren çelişkili ifadeler eklenmemeli.
 - **Referans Entegrasyonu:** Bu proje hem `furkanyonat/data/translations.ts` içindeki çok dilli referans listesinde hem de ana sitenin `src/components/Projects.tsx` dosyasındaki `PROJECTS` koleksiyonunda (tr/en/de/ru çevirileriyle) bulunmalı; iki tarafta isim/mesaj uyumu korunmalı.
 
+### mariaalm – Maria Alm Dijital Keşif Atlası
+- **Amaç:** `https://inmariaalm.netlify.app/` üzerinde geliştirilmekte olan Maria Alm am Steinernen Meer odaklı premium dijital keşif haritasını, rota atlasını ve AI destekli günlük planlayıcıyı tanıtmak. Proje ana sitenin `src/components/Projects.tsx` içindeki `maria-alm-route-atlas` kartında yer alır ve tüm dillerde açıkça yapım aşamasında/under construction olarak etiketlenmelidir.
+- **İçerik Yapısı:** Ana deneyim; Tag/Nacht karşılaştırması, 65 rotalık filtrelenebilir rota sistemi, interaktif harita görünümü, dört sezon anlatısı, blog/keşif kartları ve kişisel rota planlayıcı akışından oluşur. Metinlerde Maria Alm, Hochkönig-Region, Tauernradweg, Natrun, Hütten & Kulinarik, Nachtführer ve Fotomodus gibi SEO anahtarları korunmalı.
+- **Güncelleme İpuçları:** Proje canlı yayına çıkana kadar referans kartındaki açıklamalar “yapım aşamasında” statüsünü kaldırmamalı. URL değişirse `src/components/Projects.tsx` kart linkini güncelle ve external link davranışını koru. Tam vaka sayfası veya yeni iç rota eklenirse `public/sitemap.xml` dosyasına ilgili URL'yi ekle; yalnızca Netlify dış bağlantısı kullanıldığında sitemap'e yeni kayıt gerekmez.
+- **Veri ve Harita Notları:** Rota filtreleri gerçek rota veri tabanına bağlı gibi sunulur; aktivite, zorluk, süre ve seyahat stili sınıflandırmalarını değiştirirken kart/harita sayıları ve planlayıcı metinleri tutarlı kalmalı. Harita veya rota verisi eklersen harici isteklerde timeout ve güvenli fallback kullan.
+
 ### travel – Fures Travel AI Companion
 - **Amaç:** Sesli/yazılı komutlarla çalışan, Gemini Live API ve Google Maps'i harmanlayan seyahat asistanını tanıtır.
 - **İçerik Yapısı:** "Bölüm 1: Bu Uygulama Nedir", "Bölüm 2: Teknik Derinlemesine İnceleme", "Bölüm 3: Geliştirme ve Dağıtım" başlıklarıyla kullanıcı senaryoları, teknik mimari ve devops sürecini anlatır. CTA `/travel` altındaki canlı demoyu açar.
@@ -193,3 +199,8 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - Blog robotunun haftalık araştırma sorguları Avusturya, Almanya ve dünya turizmi + turizmde yapay zekâ + turizm otomasyonu eksenine kaydırıldı.
 - Görsel tema eşlemesi yeni turizm-odaklı konu kimliklerine göre yenilendi.
 - Sitemap kontrol adımı bu güncellemede de tamamlandı; yeni rota eklenmedi.
+
+
+## Güncelleme Notu (2026-05-11 / Maria Alm Referans Kartı)
+- `src/components/Projects.tsx` içindeki ana site referans koleksiyonuna `maria-alm-route-atlas` kartı eklendi; bağlantı `https://inmariaalm.netlify.app/` olarak bırakıldı ve tr/en/de/ru açıklamalarında yapım aşamasında olduğu açık belirtildi.
+- Yeni iç rota oluşturulmadığı, yalnızca dış Netlify bağlantısı eklendiği için `public/sitemap.xml` kontrol edildi ve ek sitemap kaydı gerekmedi.
