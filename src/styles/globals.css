@@ -669,6 +669,55 @@ html[data-theme="light"] .page-hero-glow {
     radial-gradient(circle at bottom, rgba(172, 148, 255, 0.1), transparent 63%);
 }
 
+
+/* About page hero light-mode surface */
+html.theme-light .about-section,
+html[data-theme="light"] .about-section {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 151, 96, 0.16), transparent 42%),
+    radial-gradient(circle at 80% 70%, rgba(168, 142, 255, 0.12), transparent 45%),
+    linear-gradient(180deg, #fffaf6 0%, #f7f7fb 58%, #ffffff 100%);
+}
+
+html.theme-light .about-bg-layer,
+html[data-theme="light"] .about-bg-layer {
+  background:
+    linear-gradient(135deg, rgba(255, 230, 214, 0.58) 0%, rgba(255, 255, 255, 0.9) 48%, rgba(238, 232, 255, 0.62) 100%);
+}
+
+html.theme-light .about-center-glow,
+html[data-theme="light"] .about-center-glow {
+  background:
+    radial-gradient(circle, rgba(255, 136, 82, 0.18) 0%, rgba(168, 142, 255, 0.12) 38%, transparent 68%);
+  opacity: 0.9;
+}
+
+html.theme-light .about-grid-pattern,
+html[data-theme="light"] .about-grid-pattern {
+  opacity: 0.28;
+}
+
+html.theme-light .about-hero-title,
+html[data-theme="light"] .about-hero-title {
+  color: #17181c;
+}
+
+html.theme-light .about-hero-description,
+html[data-theme="light"] .about-hero-description {
+  color: rgba(63, 68, 80, 0.88);
+}
+
+html.theme-light .about-section .liquid-glass,
+html[data-theme="light"] .about-section .liquid-glass {
+  border-color: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 42px 110px -62px rgba(64, 71, 98, 0.55), 0 18px 48px -36px rgba(255, 122, 41, 0.45);
+}
+
+html.theme-light .about-section .liquid-glass > .pointer-events-none,
+html[data-theme="light"] .about-section .liquid-glass > .pointer-events-none {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.08), transparent);
+}
+
 /* Blog readability surfaces in light mode */
 html.theme-light .blog-content,
 html[data-theme="light"] .blog-content {

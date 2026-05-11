@@ -10,15 +10,15 @@ export function About() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-32 relative overflow-hidden bg-black">
+    <section ref={ref} className="about-section py-32 relative overflow-hidden bg-black">
       {/* Background with center glow */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-900/10 via-black to-purple-900/10"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-orange-500/15 via-purple-600/10 to-transparent rounded-full blur-3xl animate-glow-pulse"></div>
+        <div className="about-bg-layer absolute inset-0 bg-gradient-to-br from-orange-900/10 via-black to-purple-900/10"></div>
+        <div className="about-center-glow absolute top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-gradient-radial from-orange-500/15 via-purple-600/10 to-transparent blur-3xl animate-glow-pulse"></div>
       </div>
 
       {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-5" style={{
+      <div className="about-grid-pattern absolute inset-0 opacity-5" style={{
         backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
         backgroundSize: '50px 50px'
       }}></div>
@@ -33,10 +33,10 @@ export function About() {
           <div className="liquid-icon w-20 h-20">
             <Lightbulb className="w-10 h-10 text-white" />
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+          <h2 className="about-hero-title text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
             {t('why_fures.title')}
           </h2>
-          <p className="max-w-3xl text-lg sm:text-xl text-gray-300/85">
+          <p className="about-hero-description max-w-3xl text-lg sm:text-xl text-gray-300/85">
             {t('why_fures.description')}
           </p>
         </motion.div>
