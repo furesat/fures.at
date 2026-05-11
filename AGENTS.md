@@ -204,3 +204,19 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 ## Güncelleme Notu (2026-05-11 / Maria Alm Referans Kartı)
 - `src/components/Projects.tsx` içindeki ana site referans koleksiyonuna `maria-alm-route-atlas` kartı eklendi; bağlantı `https://inmariaalm.netlify.app/` olarak bırakıldı ve tr/en/de/ru açıklamalarında yapım aşamasında olduğu açık belirtildi.
 - Yeni iç rota oluşturulmadığı, yalnızca dış Netlify bağlantısı eklendiği için `public/sitemap.xml` kontrol edildi ve ek sitemap kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Netlify Python Deploy)
+- Netlify deploy loglarında görülen `google-cloud-bigquery` eski wheel metadata hatasını önlemek için Python bağımlılıkları modern aralıklara sabitlendi; özellikle `google-cloud-aiplatform` ve `google-cloud-bigquery` aynı uyumlu sürüm ailesinde tutulmalıdır.
+- Netlify build ortamında eski Python seçilmesini engellemek için `netlify.toml` içinde `PYTHON_VERSION = "3.11"` ve kökte `runtime.txt` kullanılır; bu dosyaları kaldırmadan önce gereksinimlerin yeni Python sürümünde kurulduğunu test et.
+- Yeni rota eklenmediği için `public/sitemap.xml` kontrolünde ek URL kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Netlify Deploy Paket Optimizasyonu)
+- Netlify deploy aşamasındaki iç hata büyük/şişkin publish paketlerinde görülebildiği için Vite görsel kopyalama mantığı artık yalnızca içerikte `/fotos/...` olarak referanslanan görselleri deploy çıktısına alır; kullanılmayan ham görseller `public/fotos` içine taşınmaz.
+- `scripts/optimize_public_images.py` Eleventy çıktısından sonra `public/fotos` altındaki yayın görsellerini URL değiştirmeden sıkıştırır; Zapier/Instagram/LinkedIn otomasyonlarının beklediği yollar korunur.
+- Üretim source map çıktısı kapatıldı ve Eleventy'nin AGENTS/README/yardımcı dokümanlar ile alt proje `dist/` klasörlerini sayfa olarak yayınlaması engellendi; bu hem SEO temizliği hem deploy paket boyutu için gereklidir.
+- Yeni rota eklenmediği için `public/sitemap.xml` kontrolünde ek URL kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Deploy Optimizasyonu Kontrol)
+- Deploy paket optimizasyonu tekrar kontrol edildi; `/fotos` referans yakalayıcısı artık yalnızca gerçek görsel uzantısına kadar okur ve Markdown kapanış parantezi gibi ayırıcıları dosya adına dahil etmez.
+- Yerel `/fotos` geliştirme sunucusunda path traversal koruması `path.resolve` ve `fotosDir + path.sep` kontrolüyle sıkılaştırıldı.
+- Build sonrası `public/fotos` referanslarının dosya karşılıkları, source map üretilmemesi ve sitemap varlığı kontrol edilmelidir; yeni rota eklenmediği için sitemap ek kaydı gerekmedi.

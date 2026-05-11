@@ -1,10 +1,14 @@
-google-generativeai
-google-genai
-feedparser
-PyYAML
-python-dateutil
-requests
-google-cloud-aiplatform
-Pillow
-replicate
-openai>=1.13.3
+# Netlify installs this file before the static build because Python automation scripts live in the repo.
+# Keep cloud packages on modern releases: older google-cloud-bigquery wheels have metadata
+# that pip 24.1+ rejects during dependency resolution.
+google-generativeai>=0.8.6,<0.9
+google-genai>=1.75.0,<2.0
+feedparser>=6.0.12,<7
+PyYAML>=6.0.3,<7
+python-dateutil>=2.9.0.post0,<3
+requests>=2.33.1,<3
+google-cloud-aiplatform>=1.151.0,<2
+google-cloud-bigquery>=3.41.0,<4
+Pillow>=12.2.0,<13
+replicate>=1.0.7,<2
+openai>=2.36.0,<3
