@@ -39,9 +39,9 @@ function fotosDevServerPlugin(): Plugin {
         }
 
         const relativePath = url.replace(/^\/fotos\//, "");
-        const absolutePath = path.join(fotosDir, relativePath);
+        const absolutePath = path.resolve(fotosDir, relativePath);
 
-        if (!absolutePath.startsWith(fotosDir)) {
+        if (!absolutePath.startsWith(fotosDir + path.sep)) {
           return next();
         }
 
@@ -76,6 +76,59 @@ function fotosDevServerPlugin(): Plugin {
   };
 }
 
+const FOTO_REFERENCE_SOURCE_DIRS = ["blog", "kampanyalar", "content", "src"] as const;
+const FOTO_REFERENCE_FILE_EXTENSIONS = new Set([
+  ".md",
+  ".mdx",
+  ".njk",
+  ".html",
+  ".js",
+  ".jsx",
+  ".ts",
+  ".tsx",
+  ".json",
+  ".xml",
+]);
+const FOTO_REFERENCE_PATTERN = /\/fotos\/([^\s"'`)<>\]]+?\.(?:jpe?g|png|webp|gif))/gi;
+
+async function collectReferencedFotos() {
+  const referencedFotos = new Set<string>();
+
+  async function scanDirectory(directory: string) {
+    if (!fs.existsSync(directory)) {
+      return;
+    }
+
+    const entries = await fs.promises.readdir(directory, { withFileTypes: true });
+
+    await Promise.all(
+      entries.map(async (entry) => {
+        const absolutePath = path.join(directory, entry.name);
+
+        if (entry.isDirectory()) {
+          await scanDirectory(absolutePath);
+          return;
+        }
+
+        if (!entry.isFile() || !FOTO_REFERENCE_FILE_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+          return;
+        }
+
+        const fileContent = await fs.promises.readFile(absolutePath, "utf8");
+
+        for (const match of fileContent.matchAll(FOTO_REFERENCE_PATTERN)) {
+          const referencedPath = match[1].split(/[?#]/)[0];
+          referencedFotos.add(path.normalize(referencedPath));
+        }
+      }),
+    );
+  }
+
+  await Promise.all(FOTO_REFERENCE_SOURCE_DIRS.map((directory) => scanDirectory(path.resolve(__dirname, directory))));
+
+  return referencedFotos;
+}
+
 function fotosBuildCopyPlugin(): Plugin {
   const fotosDir = path.resolve(__dirname, "fotos");
 
@@ -88,22 +141,43 @@ function fotosBuildCopyPlugin(): Plugin {
         return;
       }
 
-      const entries = await fs.promises.readdir(fotosDir, { withFileTypes: true });
+      const referencedFotos = await collectReferencedFotos();
 
       await Promise.all(
-        entries
-          .filter((entry) => entry.isFile())
-          .map(async (entry) => {
-            const filePath = path.join(fotosDir, entry.name);
+        [...referencedFotos].map(async (relativePath) => {
+          const filePath = path.resolve(fotosDir, relativePath);
+
+          if (!filePath.startsWith(fotosDir + path.sep)) {
+            this.warn(`[fotos] Güvenlik nedeniyle atlandı: ${relativePath}`);
+            return;
+          }
+
+          try {
+            const stats = await fs.promises.stat(filePath);
+
+            if (!stats.isFile()) {
+              return;
+            }
+
             const fileBuffer = await fs.promises.readFile(filePath);
 
             this.emitFile({
               type: "asset",
-              fileName: `fotos/${entry.name}`,
+              fileName: `fotos/${relativePath.split(path.sep).join("/")}`,
               source: fileBuffer,
             });
-          }),
+          } catch (error) {
+            if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+              this.warn(`[fotos] Referans verilen görsel bulunamadı: ${relativePath}`);
+              return;
+            }
+
+            throw error;
+          }
+        }),
       );
+
+      this.info(`[fotos] ${referencedFotos.size} referanslı görsel üretim çıktısına eklendi.`);
     },
   };
 }
@@ -127,7 +201,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       outDir: "dist",
-      sourcemap: true
+      sourcemap: false
     }
   };
 });

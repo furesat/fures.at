@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r scripts/requirements.txt
 
       # --- GCP (Vertex AI yedeği) kullanacaksan açık kalsın; istemiyorsan bu iki adımı kaldır. ---
       - name: Configure Google Cloud Credentials

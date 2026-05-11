@@ -204,3 +204,25 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 ## Güncelleme Notu (2026-05-11 / Maria Alm Referans Kartı)
 - `src/components/Projects.tsx` içindeki ana site referans koleksiyonuna `maria-alm-route-atlas` kartı eklendi; bağlantı `https://inmariaalm.netlify.app/` olarak bırakıldı ve tr/en/de/ru açıklamalarında yapım aşamasında olduğu açık belirtildi.
 - Yeni iç rota oluşturulmadığı, yalnızca dış Netlify bağlantısı eklendiği için `public/sitemap.xml` kontrol edildi ve ek sitemap kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Python Otomasyon Bağımlılıkları)
+- Netlify deploy aşamasında Python kurulumu dış servis hatasına takılabildiği için kök `requirements.txt`, `runtime.txt` ve `PYTHON_VERSION` ayarı kaldırıldı; statik Netlify build artık Python kurulumu tetiklemez.
+- Günlük blog/kampanya robotu bağımlılıkları `scripts/requirements.txt` altında tutulur ve GitHub Actions workflow'u bu dosyayı kurar; `google-cloud-aiplatform` ve `google-cloud-bigquery` modern uyumlu sürüm ailesinde kalmalıdır.
+- Yeni rota eklenmediği için `public/sitemap.xml` kontrolünde ek URL kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Netlify Deploy Paket Optimizasyonu)
+- Netlify deploy aşamasındaki iç hata büyük/şişkin publish paketlerinde görülebildiği için Vite görsel kopyalama mantığı artık yalnızca içerikte `/fotos/...` olarak referanslanan görselleri deploy çıktısına alır; kullanılmayan ham görseller `public/fotos` içine taşınmaz.
+- `scripts/optimize-public-images.mjs` Eleventy çıktısından sonra `public/fotos` altındaki yayın görsellerini URL değiştirmeden sıkıştırır; Zapier/Instagram/LinkedIn otomasyonlarının beklediği yollar korunur.
+- Üretim source map çıktısı kapatıldı ve Eleventy'nin AGENTS/README/yardımcı dokümanlar ile alt proje `dist/` klasörlerini sayfa olarak yayınlaması engellendi; bu hem SEO temizliği hem deploy paket boyutu için gereklidir.
+- Yeni rota eklenmediği için `public/sitemap.xml` kontrolünde ek URL kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Deploy Optimizasyonu Kontrol)
+- Deploy paket optimizasyonu tekrar kontrol edildi; `/fotos` referans yakalayıcısı artık yalnızca gerçek görsel uzantısına kadar okur ve Markdown kapanış parantezi gibi ayırıcıları dosya adına dahil etmez.
+- Yerel `/fotos` geliştirme sunucusunda path traversal koruması `path.resolve` ve `fotosDir + path.sep` kontrolüyle sıkılaştırıldı.
+- Build sonrası `public/fotos` referanslarının dosya karşılıkları, source map üretilmemesi ve sitemap varlığı kontrol edilmelidir; yeni rota eklenmediği için sitemap ek kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Netlify Python Kurulum Hatası Analizi)
+- 16:00 deploy hatasının nedeni uygulama kodu değil, Netlify `mise` aracının zorunlu kılınan `python@3.11` sürüm listesini GitHub/pyenv üzerinden indirirken HTTP 500 almasıydı.
+- Bu sınıf dış bağımlılık hatasını tekrar tetiklememek için deploy build'i Node-only hale getirildi; görsel optimizasyonu Python yerine `sharp` kullanan `scripts/optimize-public-images.mjs` ile çalışır.
+- Python bağımlılıkları yalnızca GitHub Actions otomasyonunda `scripts/requirements.txt` üzerinden kurulmalıdır; Netlify publish akışına Python gereksinimi ekleme.
+- Yeni rota eklenmediği için `public/sitemap.xml` kontrolünde ek URL kaydı gerekmedi.

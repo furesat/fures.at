@@ -33,6 +33,7 @@ If you want to verify the content in the development build:
 The workflow `build-and-publish` executes `scripts/gemini_daily.py`. You can run the same script locally after exporting a valid `GEMINI_API_KEY`:
 
 ```bash
+python -m pip install -r scripts/requirements.txt
 export GEMINI_API_KEY="your-api-key"
 python scripts/gemini_daily.py
 ```
