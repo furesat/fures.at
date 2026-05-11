@@ -1,5 +1,5 @@
 import type { CSSProperties, MouseEvent as ReactMouseEvent } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Info,
@@ -84,12 +84,10 @@ export function HeaderDE() {
   const navBaseClasses =
     "ios-nav-item group relative z-10 flex min-w-[72px] flex-col items-center justify-center gap-1 rounded-full px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.2em] transition-all duration-500 focus-visible:outline-none";
 
-  const updateHighlightPosition = useCallback(() => {
+  const moveHighlightToElement = useCallback((targetEl: HTMLElement | null) => {
     if (isMobileNav) { setHighlightBoxStyle(null); return; }
     const navEl = navRef.current;
-    if (!navEl) { setHighlightBoxStyle(null); return; }
-    const targetEl = activeItemRef.current ?? (moreMenuActive ? moreTriggerRef.current : null);
-    if (!targetEl) { setHighlightBoxStyle(null); return; }
+    if (!navEl || !targetEl) { setHighlightBoxStyle(null); return; }
     const navRect = navEl.getBoundingClientRect();
     const targetRect = targetEl.getBoundingClientRect();
     const paddingX = 12;
@@ -100,7 +98,12 @@ export function HeaderDE() {
       transform: `translate3d(${targetRect.left - navRect.left - paddingX}px, ${targetRect.top - navRect.top - paddingY}px, 0)`,
       opacity: 1,
     });
-  }, [isMobileNav, moreMenuActive]);
+  }, [isMobileNav]);
+
+  const updateHighlightPosition = useCallback(() => {
+    const targetEl = activeItemRef.current ?? (moreMenuActive ? moreTriggerRef.current : null);
+    moveHighlightToElement(targetEl);
+  }, [moreMenuActive, moveHighlightToElement]);
 
   const setActiveItemRef = useCallback(
     (node: HTMLAnchorElement | null) => {
@@ -111,7 +114,7 @@ export function HeaderDE() {
     [updateHighlightPosition],
   );
 
-  useEffect(() => { updateHighlightPosition(); }, [location.pathname, updateHighlightPosition]);
+  useLayoutEffect(() => { updateHighlightPosition(); }, [location.pathname, updateHighlightPosition]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -142,9 +145,18 @@ export function HeaderDE() {
   const navItemClasses = (path: string) =>
     `${navBaseClasses} ${
       isActive(path)
-        ? "liquid-pill is-active text-white"
+        ? "fures-nav-item-active text-white"
         : "fures-nav-item-idle text-slate-200/70 hover:text-white"
     }`;
+
+  const handleNavPointerDown = (event: ReactMouseEvent<HTMLElement>) => {
+    moveHighlightToElement(event.currentTarget);
+  };
+
+  const handleNavClick = (event: ReactMouseEvent<HTMLElement>) => {
+    moveHighlightToElement(event.currentTarget);
+    triggerDockBounce(event);
+  };
 
   const highlightGlassStyle: CSSProperties = {
     "--glass-surface-bg": "rgba(12, 20, 42, 0.32)",
@@ -212,7 +224,8 @@ export function HeaderDE() {
                     className={navItemClasses(item.path)}
                     data-active={active || undefined}
                     ref={active ? setActiveItemRef : undefined}
-                    onClick={triggerDockBounce}
+                    onPointerDown={handleNavPointerDown}
+                    onClick={handleNavClick}
                   >
                     <Icon data-dock-icon className={`relative z-10 h-4 w-4 transition-all duration-300 ${active ? "text-white" : "text-white/75"}`} />
                     <span className="relative z-10">{item.label}</span>
@@ -228,7 +241,8 @@ export function HeaderDE() {
                       className={`${navBaseClasses} fures-nav-item-idle text-slate-200/70 hover:text-white focus-visible:outline-none ${moreMenuActive ? "text-white" : ""}`}
                       data-active={moreMenuActive || undefined}
                       ref={moreTriggerRef}
-                      onClick={triggerDockBounce}
+                      onPointerDown={handleNavPointerDown}
+                      onClick={handleNavClick}
                     >
                       <MoreHorizontal data-dock-icon className={`relative z-10 h-4 w-4 ${moreMenuActive ? "text-white" : "text-white/75"}`} />
                       <span className="relative z-10">Mehr</span>
