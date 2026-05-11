@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, MouseEvent as ReactMouseEvent } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,6 +7,9 @@ import {
 } from "./ui/dropdown-menu";
 import { Globe } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { bounceIconsIn } from "../utils/iconBounce";
+
+const triggerDockBounce = (e: ReactMouseEvent<HTMLElement>) => bounceIconsIn(e.currentTarget);
 
 const languages = [
   { code: "tr", name: "Türkçe", flag: "🇹🇷" },
@@ -30,14 +33,14 @@ export function LanguageSelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="fures-lang-pill-sm text-white/70 hover:text-white/90">
-          <Globe className="h-3.5 w-3.5" />
+        <button className="fures-lang-pill-sm text-white/70 hover:text-white/90" onClick={triggerDockBounce}>
+          <Globe data-dock-icon className="h-3.5 w-3.5" />
           <span className="font-semibold text-white text-xs">{language.toUpperCase()}</span>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="fures-dropdown-content mt-2 w-44 p-2"
+        className="fures-dropdown-content mt-2 w-44 border-0 p-2"
         style={dropdownGlassStyle}
       >
         {languages.map((lang) => (
@@ -47,7 +50,7 @@ export function LanguageSelector() {
             className="p-0 focus:bg-transparent"
           >
             <button
-              onClick={() => setLanguage(lang.code as any)}
+              onClick={(e) => { triggerDockBounce(e); setLanguage(lang.code as any); }}
               className={`fures-dropdown-item flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm ${
                 language === lang.code ? "text-white" : "text-white/65 hover:text-white"
               }`}
