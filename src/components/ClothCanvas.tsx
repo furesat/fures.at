@@ -9,6 +9,7 @@ export function ClothCanvas() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    const currentCanvas = canvas;
 
     const isLight = theme === "light";
 
@@ -286,8 +287,9 @@ export function ClothCanvas() {
     scene.add(cloth);
 
     function resize() {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
+      const rect = currentCanvas.getBoundingClientRect();
+      const w = Math.max(1, Math.round(rect.width));
+      const h = Math.max(1, Math.round(rect.height));
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
@@ -306,7 +308,7 @@ export function ClothCanvas() {
     const mouse = { x: 0, y: 0, tx: 0, ty: 0, influence: 0, tInfluence: 0 };
 
     const onMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
+      const rect = currentCanvas.getBoundingClientRect();
       mouse.tx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.ty = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
       mouse.tInfluence = 1.0;
@@ -317,7 +319,7 @@ export function ClothCanvas() {
     const onTouchMove = (e: TouchEvent) => {
       if (e.touches.length) {
         const t = e.touches[0];
-        const rect = canvas.getBoundingClientRect();
+        const rect = currentCanvas.getBoundingClientRect();
         mouse.tx = ((t.clientX - rect.left) / rect.width) * 2 - 1;
         mouse.ty = -(((t.clientY - rect.top) / rect.height) * 2 - 1);
         mouse.tInfluence = 1.0;
@@ -382,9 +384,13 @@ export function ClothCanvas() {
         top: 0,
         left: 0,
         width: "100%",
-        height: "100%",
+        height: "145vh",
         zIndex: 1,
         pointerEvents: "none",
+        maskImage:
+          "linear-gradient(to bottom, #000 0%, #000 58%, rgba(0,0,0,0.72) 72%, rgba(0,0,0,0.26) 88%, transparent 100%)",
+        WebkitMaskImage:
+          "linear-gradient(to bottom, #000 0%, #000 58%, rgba(0,0,0,0.72) 72%, rgba(0,0,0,0.26) 88%, transparent 100%)",
       }}
     />
   );

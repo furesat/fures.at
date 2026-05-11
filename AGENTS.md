@@ -215,3 +215,9 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - Aktif nav öğelerinde ekstra `liquid-pill` katmanı kaldırıldı; tek görsel aktif yüzey `glass-spotlight` üzerinden yönetildiği için `/de/ueber-uns` gibi ilk nav öğelerinde solda görünen gereksiz dikdörtgen cam çerçeve ortadan kalktı.
 - `src/styles/globals.css` içinde yalnızca `glass-spotlight` geçiş süresi yavaşlatıldı; arka plan halı/perde efekti, dark/light tema yüzeyleri ve ana likit cam atmosferi korunarak daha sakin Apple Liquid Glass hareketi hedeflendi.
 - Yeni rota veya SEO sayfası eklenmedi. Sitemap kontrolünde depoda `public/sitemap.xml` veya başka `sitemap*.xml` dosyası bulunmadı; bu görev için ek sitemap kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Hero Perde Uzatma)
+- `src/components/ClothCanvas.tsx` içindeki Three.js ipek/perde canvas'ı hero yüksekliğinin altına taşacak şekilde 145vh'e uzatıldı ve CSS maskesiyle aşağı indikçe şeffaflaşıp en altta tamamen kaybolacak hale getirildi.
+- `src/components/Hero.tsx` hero sarmalayıcısı yatay taşmayı gizleyip dikey taşmaya izin verecek şekilde güncellendi; böylece perde efekti sonraki bölüme doğru yumuşakça akarken içerik ve CTA hiyerarşisi korunur.
+- Yeni rota veya SEO sayfası eklenmedi. Depoda `public/sitemap.xml` ya da başka `sitemap*.xml` dosyası bulunmadığı için sitemap kaydı gerekmemektedir.
+- Build kontrolünde Vite çıktısının `public/` klasörünü tekrar `dist/` içine kopyalaması Eleventy passthrough ile çakıştığı için `vite.config.ts` içinde `publicDir: false` ayarı eklendi; statik varlıklar hâlâ Eleventy/public akışından korunur.
