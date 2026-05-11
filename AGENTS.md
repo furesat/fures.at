@@ -209,3 +209,9 @@ Bu dosyayı güncel tut ve yeni önemli süreçler eklendiğinde buraya belgelem
 - `src/components/About.tsx` içindeki About/Hero bölümü için semantik `about-*` sınıfları eklendi; böylece açık tema düzeltmeleri koyu tema utility zincirlerine bağımlı kalmadan yönetilir.
 - `src/styles/globals.css` içinde yalnızca `html.theme-light` / `[data-theme="light"]` kapsamındaki About hero yüzeyi beyaz, sıcak turuncu ve mor marka tonlarıyla güncellendi; dark mode arka planı bilinçli olarak değiştirilmedi.
 - `/de/ueber-uns` mevcut rota olduğu için sitemap kontrolünde yeni URL eklenmesi gerekmedi; SEO canonical/alternate yapısı `AboutPage` üzerinden korunur.
+
+## Güncelleme Notu (2026-05-11 / Header Liquid Glass Etkileşimi)
+- `src/components/Header.tsx` ve `src/components/HeaderDE.tsx` içindeki masaüstü nav aktif göstergesi ilk tıklamada hedef elemana taşınacak şekilde pointer-down/click aşamasında ölçüm yapar; rota değişimini bekleyen ikinci tıklama hissi önlendi.
+- Aktif nav öğelerinde ekstra `liquid-pill` katmanı kaldırıldı; tek görsel aktif yüzey `glass-spotlight` üzerinden yönetildiği için `/de/ueber-uns` gibi ilk nav öğelerinde solda görünen gereksiz dikdörtgen cam çerçeve ortadan kalktı.
+- `src/styles/globals.css` içinde yalnızca `glass-spotlight` geçiş süresi yavaşlatıldı; arka plan halı/perde efekti, dark/light tema yüzeyleri ve ana likit cam atmosferi korunarak daha sakin Apple Liquid Glass hareketi hedeflendi.
+- Yeni rota veya SEO sayfası eklenmedi. Sitemap kontrolünde depoda `public/sitemap.xml` veya başka `sitemap*.xml` dosyası bulunmadı; bu görev için ek sitemap kaydı gerekmedi.
