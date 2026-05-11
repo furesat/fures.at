@@ -54,3 +54,7 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 ## Güncelleme Notu (2026-05-11 / Netlify Python Deploy)
 - Bu klasör özelinde kod/içerik değişikliği yapılmadı; ana repo deploy hatası Python bağımlılık pinleri ve Netlify Python 3.11 seçimiyle giderildi.
 - Yeni furkanyonat rotası veya SEO sayfası oluşturulmadığı için sitemap ek kaydı gerekmedi.
+
+## Güncelleme Notu (2026-05-11 / Netlify Deploy Paket Optimizasyonu)
+- Ana repo deploy paketi optimize edildi; furkanyonat içerik/rota yapısı değişmedi, ancak alt proje `dist/` klasörlerinin Eleventy tarafından ek sayfa olarak yayınlanması genel build düzeyinde engellendi.
+- Yeni furkanyonat rotası veya SEO sayfası oluşturulmadığı için sitemap ek kaydı gerekmedi.
