@@ -175,9 +175,12 @@ function parsePost(filePath) {
   const slug = path.basename(filePath, ".md");
   const stats = fs.statSync(filePath);
 
+  const directoryLang = path.basename(path.dirname(filePath)).toLowerCase();
   const lang = typeof data.lang === "string" && SUPPORTED_LANGS.has(data.lang.toLowerCase())
     ? data.lang.toLowerCase()
-    : "tr";
+    : SUPPORTED_LANGS.has(directoryLang)
+      ? directoryLang
+      : "tr";
 
   const title = typeof data.title === "string" && data.title.trim().length > 0
     ? data.title.trim()
@@ -225,7 +228,7 @@ module.exports = () => {
   posts.sort((a, b) => b.timestamp - a.timestamp);
 
   const englishPosts = posts.filter((post) => post.lang === "en").slice(0, MAX_ITEMS);
-  const allPosts = posts.slice(0, MAX_ITEMS);
+  const allPosts = posts;
 
   return {
     all: allPosts,

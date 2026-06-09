@@ -73,7 +73,7 @@ export const PROJECTS: readonly ProjectConfig[] = [
   },
   {
     id: 'maria-alm-route-atlas',
-    link: 'https://inmariaalm.netlify.app/',
+    link: 'https://inmariaalm.at',
     icon: MapPinned,
     translations: {
       tr: {
