@@ -85,6 +85,15 @@ export function FooterDE() {
             >
               fures.at
             </a>
+            &nbsp;|&nbsp;
+            <a
+              href="https://tourismusverband.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-orange-400 transition-colors duration-200"
+            >
+              ein Projekt von Tourismus Förder Verband
+            </a>
           </p>
           <div className="flex gap-5">
             <Link

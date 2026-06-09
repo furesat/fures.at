@@ -75,8 +75,34 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addFilter("readableDate", readableDate);
   eleventyConfig.addNunjucksFilter("readableDate", readableDate);
+  const sitemapDate = (dateObj) => {
+    if (!dateObj) {
+      return "";
+    }
+
+    try {
+      const parsed = DateTime.fromISO(dateObj, { zone: "utc" });
+
+      if (parsed.isValid) {
+        return parsed.toUTC().toISODate();
+      }
+    } catch {
+      // Fall through to JS Date fallback.
+    }
+
+    try {
+      const parsed = DateTime.fromJSDate(new Date(dateObj));
+
+      return parsed.isValid ? parsed.toUTC().toISODate() : "";
+    } catch {
+      return "";
+    }
+  };
+
   eleventyConfig.addFilter("rssDate", rssDate);
   eleventyConfig.addNunjucksFilter("rssDate", rssDate);
+  eleventyConfig.addFilter("sitemapDate", sitemapDate);
+  eleventyConfig.addNunjucksFilter("sitemapDate", sitemapDate);
   eleventyConfig.addFilter("markdown", markdownFilter);
   eleventyConfig.addNunjucksFilter("markdown", markdownFilter);
   eleventyConfig.addFilter("plainText", toPlainText);
