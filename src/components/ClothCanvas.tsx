@@ -126,13 +126,18 @@ export function ClothCanvas() {
         float edgeY = mix(0.72, 1.0,
                          smoothstep(0.0, 0.28, uv.y) * smoothstep(1.0, 0.72, uv.y));
 
-        // Primary drape folds — slow, wide
-        float f1 = sin(uv.x * 2.2  - t * 0.48) * 0.60;
-        float f2 = sin(uv.x * 3.8  + uv.y * 1.6 + t * 0.68) * 0.34;
+        // Wind — a travelling gust envelope that swells fold amplitude as it
+        // passes across the curtain (cheap: single evolving noise lookup)
+        float gust    = noise(vec2(uv.x * 0.9 - t * 0.18, t * 0.12));
+        float gustAmp = 0.75 + gust * 0.9;   // 0.75 .. 1.65 amplitude swell
+
+        // Primary drape folds — slow, wide; amplitude driven by wind
+        float f1 = sin(uv.x * 2.2  - t * 0.48) * 0.60 * gustAmp;
+        float f2 = sin(uv.x * 3.8  + uv.y * 1.6 + t * 0.68) * 0.34 * gustAmp;
         float f3 = cos(uv.y * 2.6  + uv.x * 1.3 + t * 0.38) * 0.24;
 
-        // Mid-frequency ripples
-        float r1 = sin(uv.x * 7.2  + uv.y * 3.1  + t * 1.15) * 0.10;
+        // Mid-frequency ripples — phase nudged by the gust for organic drift
+        float r1 = sin(uv.x * 7.2  + uv.y * 3.1  + t * 1.15 + gust * 2.0) * 0.10;
         float r2 = cos(uv.x * 11.4 + uv.y * 5.8  + t * 0.85) * 0.055;
 
         // High-frequency micro-wrinkle via fBm
@@ -278,6 +283,13 @@ export function ClothCanvas() {
         vec3  iriColor = iridescence(NdotV, iridThickness);
         float iriMask  = fresnel * 0.55 * vEdge;
 
+        // Travelling satin sheen — a bright soft band that sweeps across the
+        // silk on a slow loop, the signature glint of real satin curtains
+        float sweepPos  = fract(uTime * 0.05) * 1.5 - 0.25;   // -0.25 .. 1.25
+        float sheenBand = smoothstep(0.11, 0.0, abs(vUv.x - sweepPos));
+        sheenBand      *= 0.6 + 0.4 * NdotL1;                 // brighter where lit
+        iriMask        *= 1.0 + sheenBand * 1.6;              // iridescence flares in the band
+
         // Micro-weave texture (warp + weft directions at different scales)
         float warp   = (noise(vUv * vec2(1600.0, 80.0)) - 0.5) * 0.18;
         float weft   = (noise(vUv * vec2(80.0, 1600.0)) - 0.5) * 0.15;
@@ -297,8 +309,10 @@ export function ClothCanvas() {
                       + uLight2Color * spec2 * uSpecular2;
         vec3 rim      = mix(uLight2Color, uLight1Color, 0.4) * fresnel * uRimStrength;
         vec3 iri      = iriColor * iriMask * (uIsLight == 1 ? 0.10 : 0.22);
+        vec3 sheen    = mix(uLight1Color, vec3(1.0), 0.4) * sheenBand
+                      * (uIsLight == 1 ? 0.16 : 0.30) * vEdge;
 
-        vec3 col = ambient + diffuse + specular + rim + iri;
+        vec3 col = ambient + diffuse + specular + rim + iri + sheen;
         col *= ao;
         col *= 1.0 + weave;
 

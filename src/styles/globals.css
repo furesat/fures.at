@@ -49,10 +49,15 @@
     linear-gradient(180deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.025) 55%, rgba(255,255,255,0.07) 100%),
     rgba(18,18,26,0.24);
   --alg-backdrop: blur(64px) saturate(200%) brightness(1.14);
+  /* Refraction variants — base blur + SVG lensing filter (progressive) */
+  --alg-backdrop-std: var(--alg-backdrop) url(#fures-liquid-glass);
+  --alg-backdrop-sm:  var(--alg-backdrop) url(#fures-liquid-glass-sm);
   --alg-shadow:
     inset 0 1.5px 0 rgba(255,255,255,0.48),
     inset 0 -1px 0 rgba(0,0,0,0.24),
     inset 0 0 0 0.75px rgba(255,255,255,0.10),
+    inset 1px 0 1.5px rgba(120,200,255,0.10),
+    inset -1px 0 1.5px rgba(255,150,230,0.10),
     0 20px 56px rgba(0,0,0,0.42),
     0 6px 18px rgba(0,0,0,0.24),
     0 1px 2px rgba(0,0,0,0.20);
@@ -64,7 +69,10 @@
       rgba(255,255,255,0.00) 60%,
       rgba(255,255,255,0.10) 80%,
       rgba(255,255,255,0.46) 100%);
+  /* Pointer-tracking specular highlight + static top gloss (screen blended) */
   --alg-gloss:
+    radial-gradient(220px 150px at var(--glass-mx, 50%) var(--glass-my, -12%),
+      rgba(255,255,255,0.22), transparent 60%),
     linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.05) 28%, rgba(255,255,255,0) 55%);
   /* Apple HIG spring curve */
   --glass-transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -144,6 +152,8 @@
     inset 0 1.5px 0 rgba(255,255,255,0.98),
     inset 0 -1px 0 rgba(0,0,0,0.06),
     inset 0 0 0 0.75px rgba(255,255,255,0.70),
+    inset 1px 0 1.5px rgba(90,160,255,0.08),
+    inset -1px 0 1.5px rgba(255,130,210,0.08),
     0 22px 56px -28px rgba(40,46,60,0.28),
     0 4px 12px rgba(40,46,60,0.10);
   --alg-border-grad:
@@ -155,6 +165,8 @@
       rgba(255,255,255,0.45) 82%,
       rgba(255,255,255,0.88) 100%);
   --alg-gloss:
+    radial-gradient(220px 150px at var(--glass-mx, 50%) var(--glass-my, -12%),
+      rgba(255,255,255,0.55), transparent 60%),
     linear-gradient(180deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.20) 28%, rgba(255,255,255,0) 55%);
 }
 
@@ -280,7 +292,10 @@ html[data-theme="light"] .liquid-pill.is-active {
   color: #1d1d1f;
 }
 
-/* ── Apple Liquid Glass in light mode — variables do the work ── */
+/* ── Apple Liquid Glass in light mode ──────────────────────────────────
+   All surface/backdrop/rim/gloss values are driven by theme-aware
+   --alg-* variables (redefined under .theme-light), so the component-layer
+   rules adapt automatically. Only the text colour needs flipping here. ── */
 html.theme-light .apple-glass,
 html.theme-light .apple-glass-pill,
 html.theme-light .fures-nav-glass,
@@ -295,43 +310,7 @@ html[data-theme="light"] .fures-logo-pill,
 html[data-theme="light"] .fures-lang-pill,
 html[data-theme="light"] .fures-lang-pill-sm,
 html[data-theme="light"] .fures-dropdown-content {
-  background: var(--alg-bg);
-  backdrop-filter: var(--alg-backdrop);
-  -webkit-backdrop-filter: var(--alg-backdrop);
-  box-shadow: var(--alg-shadow);
   color: #1d1d1f;
-}
-
-html.theme-light .apple-glass::before,
-html.theme-light .apple-glass-pill::before,
-html.theme-light .fures-nav-glass::before,
-html.theme-light .fures-logo-pill::before,
-html.theme-light .fures-lang-pill::before,
-html.theme-light .fures-lang-pill-sm::before,
-html.theme-light .fures-dropdown-content::before,
-html[data-theme="light"] .apple-glass::before,
-html[data-theme="light"] .apple-glass-pill::before,
-html[data-theme="light"] .fures-nav-glass::before,
-html[data-theme="light"] .fures-logo-pill::before,
-html[data-theme="light"] .fures-lang-pill::before,
-html[data-theme="light"] .fures-lang-pill-sm::before,
-html[data-theme="light"] .fures-dropdown-content::before {
-  background: var(--alg-border-grad);
-}
-
-html.theme-light .apple-glass::after,
-html.theme-light .apple-glass-pill::after,
-html.theme-light .fures-nav-glass::after,
-html.theme-light .fures-logo-pill::after,
-html.theme-light .fures-lang-pill::after,
-html.theme-light .fures-lang-pill-sm::after,
-html[data-theme="light"] .apple-glass::after,
-html[data-theme="light"] .apple-glass-pill::after,
-html[data-theme="light"] .fures-nav-glass::after,
-html[data-theme="light"] .fures-logo-pill::after,
-html[data-theme="light"] .fures-lang-pill::after,
-html[data-theme="light"] .fures-lang-pill-sm::after {
-  background: var(--alg-gloss);
 }
 
 /* ── Nav item idle in light mode ── */
@@ -1369,13 +1348,10 @@ html[data-theme="light"] .fures-nav-glass .hover\:text-white { color: rgba(29, 2
     z-index: 2;
   }
 
-  /* Inner top gloss — refraction sheen on upper third */
+  /* Inner top gloss + pointer-tracking specular — on the large panels that
+     carry the highlight (small inline pills keep just the ::before rim) */
   .apple-glass::after,
-  .apple-glass-pill::after,
-  .fures-nav-glass::after,
-  .fures-logo-pill::after,
-  .fures-lang-pill::after,
-  .fures-lang-pill-sm::after {
+  .fures-nav-glass::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -1390,7 +1366,7 @@ html[data-theme="light"] .fures-nav-glass .hover\:text-white { color: rgba(29, 2
   .apple-glass {
     border-radius: 9999px;
     background: var(--alg-bg);
-    backdrop-filter: var(--alg-backdrop);
+    backdrop-filter: var(--alg-backdrop-std);
     -webkit-backdrop-filter: var(--alg-backdrop);
     box-shadow: var(--alg-shadow);
   }
@@ -1399,7 +1375,7 @@ html[data-theme="light"] .fures-nav-glass .hover\:text-white { color: rgba(29, 2
   .apple-glass-pill {
     border-radius: 9999px;
     background: var(--alg-bg);
-    backdrop-filter: var(--alg-backdrop);
+    backdrop-filter: var(--alg-backdrop-sm);
     -webkit-backdrop-filter: var(--alg-backdrop);
     box-shadow: var(--alg-shadow);
   }
@@ -1408,7 +1384,7 @@ html[data-theme="light"] .fures-nav-glass .hover\:text-white { color: rgba(29, 2
   .fures-nav-glass {
     border-radius: 9999px;
     background: var(--alg-bg);
-    backdrop-filter: var(--alg-backdrop);
+    backdrop-filter: var(--alg-backdrop-std);
     -webkit-backdrop-filter: var(--alg-backdrop);
     box-shadow: var(--alg-shadow);
   }
@@ -1433,7 +1409,7 @@ html[data-theme="light"] .fures-nav-glass .hover\:text-white { color: rgba(29, 2
   .fures-logo-pill {
     border-radius: 9999px;
     background: var(--alg-bg);
-    backdrop-filter: var(--alg-backdrop);
+    backdrop-filter: var(--alg-backdrop-sm);
     -webkit-backdrop-filter: var(--alg-backdrop);
     padding: 12px 28px;
     box-shadow: var(--alg-shadow);
@@ -1489,7 +1465,7 @@ html[data-theme="light"] .fures-nav-glass .hover\:text-white { color: rgba(29, 2
   .fures-lang-pill {
     border-radius: 9999px;
     background: var(--alg-bg);
-    backdrop-filter: var(--alg-backdrop);
+    backdrop-filter: var(--alg-backdrop-sm);
     -webkit-backdrop-filter: var(--alg-backdrop);
     box-shadow: var(--alg-shadow);
     padding: 10px 18px;
@@ -1511,7 +1487,7 @@ html[data-theme="light"] .fures-nav-glass .hover\:text-white { color: rgba(29, 2
   .fures-lang-pill-sm {
     border-radius: 9999px;
     background: var(--alg-bg);
-    backdrop-filter: var(--alg-backdrop);
+    backdrop-filter: var(--alg-backdrop-sm);
     -webkit-backdrop-filter: var(--alg-backdrop);
     box-shadow: var(--alg-shadow);
     padding: 7px 12px;
@@ -1554,7 +1530,7 @@ html[data-theme="light"] .fures-nav-glass .hover\:text-white { color: rgba(29, 2
   .fures-dropdown-content {
     border-radius: 1.5rem;
     background: var(--alg-bg);
-    backdrop-filter: var(--alg-backdrop);
+    backdrop-filter: var(--alg-backdrop-std);
     -webkit-backdrop-filter: var(--alg-backdrop);
     box-shadow: var(--alg-shadow);
     color: white;
@@ -1590,11 +1566,7 @@ html[data-theme="light"] .fures-nav-glass .hover\:text-white { color: rgba(29, 2
     }
 
     .apple-glass::after,
-    .apple-glass-pill::after,
-    .fures-nav-glass::after,
-    .fures-logo-pill::after,
-    .fures-lang-pill::after,
-    .fures-lang-pill-sm::after {
+    .fures-nav-glass::after {
       display: none;
     }
   }
