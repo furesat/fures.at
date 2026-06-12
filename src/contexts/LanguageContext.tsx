@@ -267,6 +267,11 @@ const translations = {
     'form.submit': 'Teklif Hazırla',
     'form.success': 'Teşekkürler! 1 iş günü içinde dönüş yapacağız.',
     'form.error': 'Bir şeyler ters gitti. Lütfen alanları kontrol edin.',
+    'form.helper': 'Mesajınız Netlify Forms üzerinden güvenli şekilde Furkan Yonat ekibine iletilir.',
+    'form.message_placeholder': 'Web sitesi, SEO, yapay zekâ otomasyonu veya sosyal medya ihtiyacınızı kısaca anlatın.',
+    'form.date_placeholder': 'Örn. hemen, 2 hafta içinde veya belirli bir tarih',
+    'form.submitting': 'Gönderiliyor...',
+    'form.success_title': 'Teşekkürler! Mesajınız alındı.',
   },
   en: {
     // Header
@@ -513,6 +518,11 @@ const translations = {
     'form.submit': 'Prepare Quote',
     'form.success': 'Thank you! We\'ll get back to you within 1 business day.',
     'form.error': 'Something went wrong. Please check the fields.',
+    'form.helper': 'Your message is securely delivered to Furkan Yonat via Netlify Forms.',
+    'form.message_placeholder': 'Briefly describe your website, SEO, AI automation, or social media need.',
+    'form.date_placeholder': 'E.g. immediately, within 2 weeks, or a specific date',
+    'form.submitting': 'Sending...',
+    'form.success_title': 'Thank you! Your message has been received.',
   },
   ru: {
     // Header
@@ -759,6 +769,11 @@ const translations = {
     'form.submit': 'Подготовить Предложение',
     'form.success': 'Спасибо! Мы свяжемся с вами в течение 1 рабочего дня.',
     'form.error': 'Что-то пошло не так. Пожалуйста, проверьте поля.',
+    'form.helper': 'Ваше сообщение безопасно отправляется Фуркану Йонату через Netlify Forms.',
+    'form.message_placeholder': 'Кратко опишите задачу: сайт, SEO, AI-автоматизация или социальные сети.',
+    'form.date_placeholder': 'Например: сразу, в течение 2 недель или конкретная дата',
+    'form.submitting': 'Отправляется...',
+    'form.success_title': 'Спасибо! Ваше сообщение получено.',
   },
   de: {
     // Nav
@@ -1005,6 +1020,11 @@ const translations = {
     'form.submit': 'Anfrage senden',
     'form.success': 'Vielen Dank! Wir melden uns innerhalb von 24 Stunden.',
     'form.error': 'Etwas ist schiefgelaufen. Bitte überprüfen Sie Ihre Eingaben.',
+    'form.helper': 'Ihre Nachricht wird sicher über Netlify Forms an Furkan Yonat übermittelt.',
+    'form.message_placeholder': 'Beschreiben Sie kurz Ihren Bedarf an Website, SEO, KI-Automation oder Social Media.',
+    'form.date_placeholder': 'z. B. sofort, innerhalb von 2 Wochen oder ein konkretes Datum',
+    'form.submitting': 'Wird gesendet...',
+    'form.success_title': 'Vielen Dank! Ihre Nachricht ist eingegangen.',
   }
 };
 

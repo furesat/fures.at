@@ -147,6 +147,17 @@
     </script>
   </head>
   <body class="bg-black">
+    <form name="fures-contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="fures-contact" />
+      <input name="bot-field" />
+      <input type="hidden" name="recipient" value="furkanyonat@gmail.com" />
+      <input type="hidden" name="language" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <input type="text" name="start-date" />
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
