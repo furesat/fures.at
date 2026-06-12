@@ -54,3 +54,8 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 ## Güncelleme Notu (2026-05-11 / Ana Hero Perde Efekti)
 - Bu görevde yalnızca ana site hero perde/canvas görseli aşağı doğru uzatıldı; `furkanyonat/` CV sayfası bileşenlerine dokunulmadı.
 - Yeni rota veya CV kapsamlı SEO sayfası eklenmedi; depoda sitemap dosyası bulunmadığı için bu klasör özelinde sitemap güncellemesi gerekmedi.
+
+## Güncelleme Notu (2026-06-12 / Ana Site Netlify Forms)
+- Bu görevde `furkanyonat/` CV uygulamasına kod değişikliği yapılmadı; ana sitenin iletişim formları Netlify Forms üzerinden `furkanyonat@gmail.com` alıcısını hedefleyecek şekilde güncellendi.
+- CV sayfasında yeni form eklenirse Netlify form adı çakışmayacak şekilde ayrı tutulmalı ve ÖNORM odaklı sade profil tonu korunmalıdır.
+- Yeni CV rotası eklenmediği için furkanyonat kapsamlı sitemap kaydı gerekmedi; ana build sırasında `public/sitemap.xml` üretimi kontrol edildi.

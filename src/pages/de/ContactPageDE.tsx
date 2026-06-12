@@ -3,6 +3,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { useSEO } from "../../hooks/useSEO";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { NetlifyContactForm } from "../../components/NetlifyContactForm";
 
 const CARD_FADE = {
   hidden: { opacity: 0, y: 16 },
@@ -131,6 +132,10 @@ export function ContactPageDE() {
           </p>
         </motion.div>
 
+        <div className="mb-16">
+          <NetlifyContactForm />
+        </div>
+
         {/* Contact cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
           {contactItems.map((item, i) => {
@@ -193,26 +198,6 @@ export function ContactPageDE() {
           })}
         </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.34 }}
-          className="text-center"
-        >
-          <a href="mailto:info@fures.at">
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-              className="fures-cta-pill inline-flex items-center gap-2 px-8 py-4 text-base"
-            >
-              <Mail className="w-5 h-5" />
-              {t("contact.send_message")}
-            </motion.button>
-          </a>
-        </motion.div>
       </div>
     </div>
   );
