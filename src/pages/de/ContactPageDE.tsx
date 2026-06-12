@@ -3,6 +3,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { useSEO } from "../../hooks/useSEO";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { ContactForm } from "../../components/ContactForm";
 
 const CARD_FADE = {
   hidden: { opacity: 0, y: 16 },
@@ -35,7 +36,7 @@ export function ContactPageDE() {
         description: t("seo.organization.description"),
         url: "https://fures.at/de",
         telephone: "+4366499735268",
-        email: "info@fures.at",
+        email: "furkanyonat@gmail.com",
         address: {
           "@type": "PostalAddress",
           streetAddress: "Maria Alm",
@@ -70,10 +71,10 @@ export function ContactPageDE() {
 
   const contactItems = [
     {
-      href: "mailto:info@fures.at",
+      href: "mailto:furkanyonat@gmail.com",
       icon: Mail,
       label: t("contact.email"),
-      value: "info@fures.at",
+      value: "furkanyonat@gmail.com",
       color: "orange",
     },
     {
@@ -193,26 +194,7 @@ export function ContactPageDE() {
           })}
         </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.34 }}
-          className="text-center"
-        >
-          <a href="mailto:info@fures.at">
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-              className="fures-cta-pill inline-flex items-center gap-2 px-8 py-4 text-base"
-            >
-              <Mail className="w-5 h-5" />
-              {t("contact.send_message")}
-            </motion.button>
-          </a>
-        </motion.div>
+        <ContactForm />
       </div>
     </div>
   );

@@ -54,3 +54,8 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 ## Güncelleme Notu (2026-05-11 / Ana Hero Perde Efekti)
 - Bu görevde yalnızca ana site hero perde/canvas görseli aşağı doğru uzatıldı; `furkanyonat/` CV sayfası bileşenlerine dokunulmadı.
 - Yeni rota veya CV kapsamlı SEO sayfası eklenmedi; depoda sitemap dosyası bulunmadığı için bu klasör özelinde sitemap güncellemesi gerekmedi.
+
+## Güncelleme Notu (2026-06-12 / Ana Site İletişim Formu)
+- Bu görevde `furkanyonat/` CV uygulamasının kaynak dosyalarına dokunulmadı; ana site iletişim formu gönderimleri `furkanyonat@gmail.com` adresine yönlendirilecek şekilde güncellendi.
+- CV sayfasının telefon/e-posta/adres hero düzeni, PDF butonu, deneyim kartı toggle mantığı ve ÖNORM odaklı içerik kuralları aynen korunmalıdır.
+- Yeni CV rotası veya proje sayfası eklenmediği için furkanyonat kapsamındaki sitemap yönergelerinde ek kayıt gerekmemektedir.

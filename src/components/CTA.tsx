@@ -1,9 +1,10 @@
 import { Button } from "./ui/button";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { ContactForm } from "./ContactForm";
 
 export function CTA() {
   const { t } = useLanguage();
@@ -87,20 +88,7 @@ export function CTA() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-20">
-            <a href="mailto:info@fures.at">
-              <motion.div
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <Button size="lg" variant="gradient" className="group">
-                  <Send className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform duration-200" />
-                  {t('contact.send_message')}
-                </Button>
-              </motion.div>
-            </a>
-
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-12">
             <a href="https://calendly.com/fures" target="_blank" rel="noopener noreferrer">
               <motion.div
                 whileHover={{ scale: 1.02, y: -1 }}
@@ -113,6 +101,8 @@ export function CTA() {
               </motion.div>
             </a>
           </div>
+
+          <ContactForm />
         </motion.div>
 
         {/* Contact Info Cards */}
@@ -121,8 +111,8 @@ export function CTA() {
             {
               icon: Mail,
               title: t('contact.email'),
-              content: "info@fures.at",
-              href: "mailto:info@fures.at"
+              content: "furkanyonat@gmail.com",
+              href: "mailto:furkanyonat@gmail.com"
             },
             {
               icon: Phone,
