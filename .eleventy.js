@@ -8,6 +8,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "aboutcyprus": "aboutcyprus" });
   eleventyConfig.ignores.add("static/images/ai-daily/.gitkeep");
   eleventyConfig.ignores.add("dist/static/images/ai-daily/.gitkeep");
+  eleventyConfig.ignores.add("AGENTS.md");
+  eleventyConfig.ignores.add(".ai/**");
 
   // TR tarih formatı
   const readableDate = (dateObj) => {
