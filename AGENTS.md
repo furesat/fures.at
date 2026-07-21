@@ -555,3 +555,37 @@ At the end of every task, respond with:
 If the task was split, also include completed/remaining phases and the instruction to write `devam`.
 
 Never finish without checking and reporting `AGENTS.md`, continuation file, sitemap, robots.txt if relevant, SEO impact, build/test/lint/typecheck possibility, project stability, and next phase.
+
+### 2026-07-21: Furkan CV Design, Language, and SEO Polish
+
+#### Summary
+
+Improved the existing `/furkanyonat` CV microsite source and generated public output with clearer hero presentation, accessible navigation/focus states, project-card CTA affordance, static/dynamic SEO metadata, and targeted TR/EN/DE/ES language consistency fixes.
+
+#### Files Changed
+
+- `AGENTS.md`
+- `.ai/CONTINUATION.md`
+- `furkanyonat/AGENTS.md`
+- `furkanyonat/index.html`
+- `furkanyonat/App.tsx`
+- `furkanyonat/components/Sidebar.tsx`
+- `furkanyonat/components/ui/ProjectCard.tsx`
+- `furkanyonat/data/translations.ts`
+- `public/furkanyonat/index.html`
+- `public/furkanyonat/assets/*`
+
+#### SEO Status
+
+Existing `/furkanyonat/` route received stronger static metadata in the microsite shell and runtime language-aware title/description synchronization. No new public route was added.
+
+#### Sitemap Status
+
+The existing `src/sitemap.xml.njk` and generated `public/sitemap.xml` already include `https://fures.at/furkanyonat/`; no sitemap entry change was required. No root/public `robots.txt` file was found, so robots remains technical debt.
+
+#### Commands Run
+
+- `npm run build --prefix furkanyonat`
+- `npm run build`
+- `npx --yes playwright --version`
+- `npx --yes playwright install chromium && npx --yes playwright screenshot --viewport-size=1440,1200 http://127.0.0.1:4174/furkanyonat/ furkanyonat-screenshot.png` (failed because the container lacks `libatk-1.0.so.0`)
