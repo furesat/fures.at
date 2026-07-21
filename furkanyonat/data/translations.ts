@@ -3,8 +3,8 @@ import profileImage from '../fotofurkan.jpeg';
 export const translations = {
   tr: {
     name: 'Furkan Yonat',
-    title: 'IT Sistem Destek Uzmanı & Front Office Manager | Web Tasarımı ve Kodlama (Önlisans)',
-    vision: 'Avusturya\'da uzun vadeli çalışmaya hazır, C1 Almanca bilgisine ve ön büro/IT altyapısı kurulumunda saha deneyimine sahip. Konaklama operasyonlarını güvence altına alırken web altyapısını ve sistem desteğini de yönetir.',
+    title: 'Pazarlama ve Büyüme Uzmanı | Dijital Reklam, AI İçerik Üretimi, Saha Aktivasyonu ve İş Ortaklıkları',
+    vision: 'Dijital pazarlama, büyüme, yapay zekâ destekli içerik üretimi, saha operasyonları ve iş ortaklıkları alanlarında deneyimli; Avusturya otel operasyonu, KKTC turizm pazarı ve uluslararası web projelerini birleştiren profesyonel profil.',
     nav: {
       experience: 'Deneyim',
       skills: 'Yetenekler',
@@ -17,192 +17,176 @@ export const translations = {
       downloadPdf: 'PDF İndir',
     },
     hero: {
-      pretitle: 'IT & Ön Büro Operasyonları',
-      title: 'Ön Büro ve IT\'de Sahada.',
-      titleGradient: 'Teslimat Odaklı.',
+      pretitle: 'Dijital Reklam | AI İçerik Üretimi | Saha Aktivasyonu | İş Ortaklıkları',
+      title: 'Pazarlama, büyüme ve turizm operasyonlarını',
+      titleGradient: 'AI destekli üretimle birleştiriyorum.',
       subtitle:
-        'Dijital pazarlama odaklı IT-Systembetreuer & Ön Büro Yöneticisi. Sadece resepsiyonu Gastrodat/Opera ile sorunsuz yürütmekle kalmam, Google Ads, SEO ve profesyonel içerik tasarımıyla doğrudan rezervasyonlarınızı artırırım. Teknoloji, misafirperverlik ve ciro artışı için tam donanımlı bir jokerim.',
+        'Dijital pazarlama, büyüme, yapay zekâ destekli içerik üretimi, saha operasyonları ve iş ortaklıkları alanlarında deneyimli bir profesyonelim. Şu anda Avusturya’da Eder Hotels bünyesinde IT Support ve Front Office Uzmanı olarak çalışıyorum.',
       imageAlt: 'Furkan Yonat profil fotoğrafı',
-      contact: { phone: 'Telefon', email: 'E-Posta', address: 'Adres' },
+      contact: { phone: 'Telefon', email: 'E-posta', address: 'Mevcut Konum' },
     },
     features: {
-      title: 'Temel Yetkinliklerim',
+      title: 'Temel Yetkinlikler',
       items: {
-        operations: { title: 'Süreç İyileştirme & Otomasyon', description: 'Gastrodat, Opera gibi dijital araçlarla manuel adımları azaltır, operasyonu hızlandırırım.' },
-        design: { title: 'IT & Web Altyapısı', description: 'Otel web sitelerini yönetir, sistem stabilitesini ve güvenliğini sağlarım.' },
-        data: { title: 'Veriyle İzleme', description: 'Paneller ve raporlarla hataları erken yakalar, kararları veriye bağlarım.' },
-        marketing: {
-          title: 'Online Pazarlama & Tasarım',
-          description:
-            'Ciro artışı için Google Ads & Analytics yönetimi. Dış ajans maliyeti olmadan sosyal medya içeriği ve otel tasarımları (menü, broşür) üretimi.',
-        },
-        sector: { title: 'Konaklama Odaklı Deneyim', description: 'Ön büro, kanal yönetimi ve misafir iletişimini sahada yönettim; turizm KOBİ’lerine teknik destek verdim.' },
+        operations: { title: 'Saha Aktivasyonu & İş Ortaklıkları', description: 'Üniversiteler, işletmeler, etkinlik organizatörleri ve tedarikçilerle yüz yüze iletişim kurarak iş birliği ve marka görünürlüğü geliştiririm.' },
+        design: { title: 'AI İçerik & Tasarım Üretimi', description: 'Görsel, video, reklam metni, Reels, kampanya afişi, web içeriği ve çok dilli pazarlama materyallerini yapay zekâ destekli araçlarla hızlı üretirim.' },
+        data: { title: 'Performans & Dönüşüm Takibi', description: 'Google Analytics, Search Console, dönüşüm takibi ve haftalık KPI raporlarıyla kampanyaları rezervasyon, satış ve reklam maliyeti üzerinden değerlendiririm.' },
+        marketing: { title: 'Dijital Reklam & Büyüme', description: 'Google Ads, Search Ads 360, SEO, SEM, sosyal medya ve doğrudan rezervasyon kampanyalarını büyüme hedefleriyle yönetirim.' },
+        sector: { title: 'Turizm, Otelcilik & Operasyon', description: 'Altı otel, seyahat acentası, restoranlar, etkinlik alanları ve uluslararası misafir operasyonlarında pazarlama, IT ve front office deneyimi taşırım.' },
       }
     },
     experience: {
-      title: 'Deneyim',
+      title: 'İş Deneyimi',
       controls: {
         expandAll: 'Tüm kartları aç',
         collapseAll: 'Kartları tek tek görüntüle',
       },
+      eder: {
+        role: 'IT Support & Front Office Uzmanı',
+        company: 'Eder Hotels, Maria Alm, Salzburg, Avusturya',
+        date: '2026 – Günümüz',
+        tasks: [
+          'Front Office ve otel IT sistemlerinin günlük operasyonunu destekliyorum.',
+          'Teknik problemler, kullanıcı cihazları, yazıcılar, bağlantı sistemleri ve resepsiyon yazılımları için destek sağlıyorum.',
+          'Uluslararası misafirlerle Almanca ve İngilizce iletişim kuruyorum.',
+          'Resepsiyon, rezervasyon ve diğer departmanlar arasındaki operasyonel koordinasyona destek veriyorum.',
+          'Yoğun otel operasyonunda teknik ve misafir odaklı süreçleri birlikte yönetiyorum.',
+          'Otelcilik, teknoloji ve müşteri deneyimini aynı operasyon içinde birleştiriyorum.',
+        ],
+      },
       neu: {
-        role: 'Operatif Lider & IT Yöneticisi — Oteller & Seyahat Acentası',
-        company: 'Dorana Tourism Group / Near East University',
-        date: 'Mayıs 2023 – Halen',
-        problem: '6 otel ve bir acente için ön büro, Gastrodat/Opera süreçleri ve kanal yöneticilerini tek çatı altında güvence altına almak; IT altyapısını standartlara uygun kurmak gerekiyordu.',
-        action:
-          'Gastrodat ve Booking.com/Expedia entegrasyonlarını devreye aldım, resepsiyon ekibini ön büro SOP’leri ve kalite kontrol konusunda eğittim. Ağ, POS ve yazıcı altyapılarını kurup bakımını yaptım; Booking motoru ve sadakat sistemi için web geliştirme yaptım. Dijital pazarlama kampanyalarını (Google Ads) yönettim ve doğrudan web sitesi rezervasyonlarını artırdım.',
-        result: 'Altı tesiste check-in hatalarını ve rezervasyon uyuşmazlıklarını azalttım, kanal yönetimi hatalarını düşürdüm, ekip eğitimleri sayesinde hizmet sürekliliğini sağladım. IT güvenliği ve veri yedekleme süreçleri kurularak denetime hazır hale getirildi.',
+        role: 'Operasyon, Pazarlama ve IT Yöneticisi',
+        company: 'Dorana Tourism Group / Near East University, KKTC',
+        date: 'Mayıs 2023 – 2026',
+        problem: 'Altı otel, bir seyahat acentası, restoranlar ve etkinlik alanlarının pazarlama, operasyon, dijital satış ve teknoloji süreçlerini yönettim.',
+        action: 'Google Ads kampanyaları, marka/destinasyon arama kampanyaları, Analytics ve Search Console analizleri, Google Business profilleri, SEO, doğrudan rezervasyon kampanyaları, sosyal medya/Reels, reklam videoları, kampanya afişleri, AI destekli çok dilli içerik üretimi ve içerik takvimleri hazırladım.',
+        result: 'Kongre, konser, mezuniyet, festival ve kurumsal organizasyonlarda satış-pazarlama süreçlerini yürüttüm; yaklaşık 4.500 kişilik açık hava etkinlik alanında operasyon ve tanıtım görevleri aldım; tedarikçi, sponsor, yerel işletme ve kurumsal müşterilerle iş birlikleri geliştirdim.',
+        tasks: [
+          'Altı otelin rezervasyon, kanal yönetimi ve satış sistemlerini koordine ettim.',
+          'ElektraWeb, Opera, Booking.com ve Expedia süreçlerini yönettim.',
+          'Resepsiyon ekiplerine satış, misafir iletişimi ve operasyon standartları konusunda eğitim verdim.',
+          'Web sitesi, online rezervasyon ve dijital satış sistemlerinin geliştirilmesini sağladım.',
+        ],
       },
       fures: {
-        role: 'Kıdemli Web Geliştirici & IT Danışmanı (Yan İş)',
-        company: 'Fures Tech (Uluslararası)',
-        date: 'Ocak 2023 – Halen',
-        problem: 'Turizm ve KOBİ müşterileri, otel web sitelerini ve rezervasyon motorlarını güncel tutacak, aynı zamanda sistem desteği verecek güvenilir bir uzmana ihtiyaç duyuyordu.',
-        action: 'Yan iş olarak otel web siteleri ve rezervasyon motorları geliştirdim (React/JS), SEO ve güvenlik ayarlarını kurdum. Sedna/ElektraWeb API entegrasyonları ve teknik destek sağladım; teslim sonrası bakım ve içerik güncellemelerini bizzat yaptım.',
-        result: 'Yan projelerde hızlı devreye alma ve düşük bakım maliyeti sağladım; çağrı başına çözüm süresini kısaltarak müşteri memnuniyetini yükselttim. Ana işime engel olmayacak esnek bir destek modeli kurdum.',
+        role: 'Kıdemli Web Geliştirici ve Dijital Pazarlama Danışmanı',
+        company: 'Fures Tech, Uluslararası',
+        date: 'Ocak 2023 – Günümüz',
         tasks: [
-          'React/JS ile otel web sitelerini geliştirme ve bakım.',
-          'Turizm işletmelerine dijitalleşme projelerinde teknik danışmanlık.',
-          'Misafir iletişimi için yapay zeka araçlarının devreye alınması.',
+          'Turizm, e-ticaret ve yerel işletmeler için web siteleri ve dijital kampanyalar geliştirdim.',
+          'React, TypeScript ve JavaScript tabanlı web projeleri hazırladım.',
+          'Yapay zekâ destekli içerik, ürün açıklaması ve reklam metni sistemleri geliştirdim.',
+          'Markalar için SEO, içerik stratejisi ve dönüşüm odaklı kullanıcı deneyimleri tasarladım.',
+          'E-ticaret ürün vitrini, kategori yapısı ve satış odaklı içerik sistemleri oluşturdum.',
+          'Çok dilli web siteleri ve pazarlama materyalleri hazırladım.',
+          'AI destekli turizm, içerik ve müşteri deneyimi uygulamaları geliştirdim.',
         ],
       },
       mimoza_manager: {
         role: 'Otel Müdür Yardımcısı',
         company: 'Mimoza Beach Hotel & Dorana Hotels',
-        date: 'Tem 2021 – May 2023',
+        date: 'Temmuz 2021 – Mayıs 2023',
         tasks: [
-          'Günlük operasyonu ve personel planlamasını yönettim.',
-          'Misafir memnuniyeti ve şikayet yönetiminden sorumlu oldum.',
-          'Hijyen ve kalite standartlarını denetledim.',
+          'Günlük otel operasyonlarını ve personel planlamasını yönettim.',
+          'Satış, rezervasyon, fiyatlandırma ve online kanal süreçlerini takip ettim.',
+          'Özel etkinlik, grup rezervasyonu ve kurumsal müşteri süreçlerini koordine ettim.',
+          'Sosyal medya, kampanya ve sezonluk tanıtım çalışmalarına katkı sağladım.',
+          'Misafir yorumları ve geri bildirimlerinden iyileştirme alanları belirledim.',
+          'Şikâyet yönetimi, satış geliştirme ve misafir memnuniyeti süreçlerini yürüttüm.',
         ]
       },
       mimoza_reception: {
         role: 'Resepsiyonist',
         company: 'Mimoza Beach Hotel',
-        date: 'Kas 2019 – Tem 2021',
+        date: 'Kasım 2019 – Temmuz 2021',
         tasks: [
-          'Check-in/check-out, kasa ve faturalama işlemleri.',
-          'Misafirlerle ilgilenme ve rezervasyonların (OTA & direkt) yönetimi.',
+          'Telefon, e-posta ve online kanallardan gelen rezervasyonları yönettim.',
+          'Misafirlere oda, restoran, etkinlik ve ek hizmet satışları yaptım.',
+          'Misafir davranışları ve talepleri hakkında doğrudan saha deneyimi kazandım.',
+          'Online yorumlar ve müşteri geri bildirimleriyle ilgilendim.',
+          'Check-in, check-out, faturalandırma ve kasa işlemlerini yürüttüm.',
         ]
       },
       concorde: {
         role: 'Resepsiyonist',
         company: 'Concorde Luxury Resort & Casino',
-        date: 'Ağu 2018 – Kas 2019',
+        date: 'Ağustos 2018 – Kasım 2019',
         tasks: [
-          '5 yıldızlı ortamda misafir ilişkileri yönetimi.',
-          'Uluslararası VIP misafirlerle iletişim.',
+          'Beş yıldızlı otel ortamında uluslararası ve VIP misafirlerle çalıştım.',
+          'Opera PMS üzerinden rezervasyon, check-in ve ödeme işlemlerini yönettim.',
+          'Yoğun operasyonlarda hızlı problem çözme ve ikna becerisi geliştirdim.',
+          'Misafir sadakati ve satış fırsatlarını destekleyen birebir iletişim kurdum.',
         ]
       },
       granada: {
         role: 'Resepsiyonist',
         company: 'Granada Luxury Hotels',
-        date: 'May 2018 – Ağu 2018',
+        date: 'Mayıs 2018 – Ağustos 2018',
         tasks: [
-          '5 yıldızlı ortamda misafir ilişkileri yönetimi.',
-          'Uluslararası VIP misafirlerle iletişim.',
+          'Yüksek sezonda yoğun misafir operasyonlarını yönettim.',
+          'Oda dağılımı, misafir karşılama ve satış destek süreçlerinde görev aldım.',
+          'Otel hizmetlerinin tanıtımı ve ek satış süreçlerini destekledim.',
         ]
       },
       germany: {
-        role: 'Almanya Deneyimi (Sanayi & Lojistik)',
-        company: 'Regensburg, Bavyera',
+        role: 'Sanayi ve Lojistik Deneyimi',
+        company: 'BMW Group, FedEx, Continental ve Infineon — Regensburg, Almanya',
         date: '2012 – 2017',
         tasks: [
-          '2015–2016 BMW Group: Kalite kontrol ve üretim hatlarında çalıştım.',
-          '2013–2014 Continental & Infineon: Makine kullanımı ve teknik süreç takibi.',
-          '2014 FedEx: Lojistik ve sevkiyat koordinasyonu.',
-          'Alman iş disiplini, dakiklik ve süreç hassasiyetini bu dönemde içselleştirdim.',
+          'Uluslararası şirketlerde üretim, kalite, lojistik ve teknik süreçlerde çalıştım.',
+          'Disiplinli çalışma, zaman yönetimi, kalite kontrol ve süreç takibi deneyimi kazandım.',
+          'Almanca iş ortamında ekip çalışması ve operasyon standartlarına uyum sağladım.',
         ],
       },
-      anar_metal: {
-        role: 'Makine Operatörü',
-        company: 'Anar Metal',
-        date: 'Kas 2017 – May 2018',
-        tasks: ['Metal işleme makinelerini çalıştırdı ve kalite standartlarına uygun üretimi sağladı.']
-      },
-      saribekir: {
-        role: 'Makine Operatörü',
-        company: 'SARIBEKİR AMBALAJ',
-        date: 'Haz 2017 – Kas 2017',
-        tasks: ['Ambalaj üretim hatlarında makine operasyonlarını yönetti ve verimliliği denetetledi.']
-      },
-      bmw: {
-        role: 'Üretim ve Kalite Kontrol',
-        company: 'BMW Group, Regensburg',
-        date: 'Haz 2015 – Eki 2016',
-        tasks: ['Montaj hattı operasyonlarını ve SOP\'lere göre kalite güvence kontrollerini gerçekleştirdi.', 'Süreç izleme, sorun giderme ve dokümantasyon yaptı.']
-      },
-      fedex: {
-        role: 'Lojistik Sorumlusu',
-        company: 'FedEx Services, Regensburg',
-        date: 'Şub 2014 – Kas 2014',
-        tasks: ['Gelen ve giden gönderilerin koordinasyonunu sağladı, envanter yönetimi ve takibi yaptı.']
-      },
-      infineon: {
-        role: 'Makine Operatörü',
-        company: 'Infineon Technologies, Regensburg',
-        date: 'Tem 2013 – Eki 2014',
-        tasks: ['Yarı iletken üretimi için hassas makineleri çalıştırdı ve temiz oda protokollerine uydu.']
-      },
-      scheugenpflug: {
-        role: 'Üretim Yönetimi Stajyeri',
-        company: 'Scheugenpflug Global',
-        date: 'Şub 2014 – Ağu 2014',
-        tasks: ['Üretim süreçlerinin optimizasyonuna yardımcı oldu ve verimlilik raporları hazırladı.']
-      },
-      continental: {
-        role: 'Makine Operatörü',
-        company: 'Continental Automotive, Regensburg',
-        date: 'Haz 2012 – Şub 2014',
-        tasks: ['Otomotiv bileşenleri için üretim makinelerini çalıştırdı ve bakımını yaptı.', 'Üretim hedeflerini karşılamak için verimliliği sağladı.']
-      },
-      edag: {
-        role: 'Robotik Teknisyeni',
-        company: 'EDAG Group',
-        date: 'Eyl 2012 – Mar 2013',
-        tasks: ['Üretim hatlarındaki robotik sistemlerin kurulum ve bakımına destek oldu.']
-      },
-      tasksTitle: 'Görev ve Sorumluluklar', problemTitle: 'Zorluk', actionTitle: 'Yaklaşım', resultTitle: 'Sonuç',
+      tasksTitle: 'Görev ve Sorumluluklar', problemTitle: 'Kapsam', actionTitle: 'Pazarlama ve İçerik', resultTitle: 'Saha, Etkinlik ve İş Ortaklıkları',
     },
     education: {
         title: 'Eğitim',
-        tourism: { degree: 'Turizm ve Otel İşletmeciliği (Önlisans)', university: 'Anadolu Üniversitesi', date: '2025 – Devam ediyor', details: ['Ön büro yönetimi, konaklama hukuku ve gelir/gayrimenkul modülleri; Avusturya RWR başvurusuna uygun müfredat.'] },
-        aof: { degree: 'Web Tasarımı ve Kodlama (Önlisans)', university: 'Anadolu Üniversitesi', date: '2020 – 2023', details: ['Web geliştirme ve IT sistemleri odağı. (Bu diploma, RWR Kart için “Veri İşleme/Teknisyen” eksik meslek grubuna yeterlilik sağlar.)'] },
-        oth: { degree: 'Üretim ve Otomasyon Teknolojileri', university: 'OTH Regensburg, Almanya', date: '2015 – 2017', details: ['Teknik üretim temelleri, otomasyon prensipleri ve Alman teknik dil yetkinliği.'] }
+        tourism: { degree: 'Turizm ve Otel İşletmeciliği, Önlisans', university: 'Anadolu Üniversitesi', date: '2025 – Devam ediyor', details: [] },
+        aof: { degree: 'Web Tasarımı ve Kodlama, Önlisans', university: 'Anadolu Üniversitesi', date: '2020 – 2023', details: [] },
+        oth: { degree: 'Üretim ve Otomasyon Teknolojileri', university: 'OTH Regensburg, Almanya', date: '2015 – 2017', details: [] }
     },
     certificates: {
-        title: 'Sertifikalar ve Yetkinlikler',
+        title: 'Sertifikalar',
         certified: 'Onaylı',
         verify: 'Sertifikayı Doğrula',
         items: [
-            { name: 'Search Ads 360 Sertifikası', issuer: 'Google, 2025', type: 'google', details: ['Arama ağı kampanyaları için gelişmiş stratejiler, teklif yönetimi ve raporlama konularında uzmanlık.'] },
-            { name: 'Opera PMS Otel Yazılımı', issuer: 'Next Learn Academy, 2023', type: 'hospitality', details: ['Ön büro yönetimi ve endüstri standardı Opera PMS yazılımı üzerine kapsamlı eğitim.'] },
-            { name: 'Sosyal Medya Pazarlama', issuer: 'HubSpot Academy, 2023', type: 'hubspot', details: ['Etkili sosyal medya stratejileri geliştirme, uygulama ve analiz etme becerileri.'] },
-            { name: 'Ofis Yönetimi & Resepsiyonist - Seviye 7', issuer: 'One Education, 2023', type: 'default', details: ['İleri düzey ofis yönetimi, idari prosedürler ve resepsiyonist becerileri.'] },
-            { name: 'Müşteri Hizmetleri (CUST150)', issuer: 'Saylor Academy, 2023', type: 'saylor', details: ['Profesyonel müşteri hizmetleri ilkeleri ve etkili iletişim stratejileri.'] },
-            { name: 'Konaklama Sektörü için Sosyal Medya', issuer: 'Institute of Hospitality, 2022', type: 'hospitality', details: ['Otel ve turizm işletmeleri için özelleştirilmiş sosyal medya ve Instagram pazarlama teknikleri.'] },
-            { name: 'Google IT Destek Uzmanlığı', issuer: 'Google / Coursera, 2020', type: 'google', details: ['5 kursluk sertifika: Teknik Destek, Ağlar, OS, Sistem Yönetimi ve BT Güvenliği.'] },
-            { name: 'Uygulamalı Yeminli Tercümanlık', issuer: 'Anadolu Üniversitesi, 2020', type: 'default', details: ['Yazılı ve sözlü çeviri teknikleri üzerine e-sertifika programı.'] },
-            { name: 'Java ile Nesne Yönelimli Programlama', issuer: 'Hasso Plattner Institute, 2019', type: 'programming', details: ['Java dilinde nesne yönelimli programlama temelleri ve kavramları.'] },
+            { name: 'Yapay Zekâ Destekli Performans Reklamları', issuer: 'Google, 2026', type: 'google', details: ['Yapay zekâ destekli performans reklamları ve kampanya optimizasyonu.'] },
+            { name: 'Search Ads 360 Sertifikası', issuer: 'Google, 2025', type: 'google', details: ['Search Ads 360 kampanya yönetimi, teklif yönetimi ve raporlama.'] },
+            { name: 'Sosyal Medya Pazarlama', issuer: 'HubSpot Academy, 2023', type: 'hubspot', details: ['Sosyal medya stratejisi, içerik planlama ve performans analizi.'] },
+            { name: 'Konaklama Sektörü için Sosyal Medya', issuer: 'Institute of Hospitality, 2022', type: 'hospitality', details: ['Otel ve turizm işletmeleri için sosyal medya pazarlaması.'] },
+            { name: 'Google IT Destek Uzmanlığı', issuer: 'Google / Coursera, 2020', type: 'google', details: ['Teknik destek, ağlar, işletim sistemleri, sistem yönetimi ve IT güvenliği.'] },
+            { name: 'Opera PMS Otel Yazılımı', issuer: 'Next Learn Academy, 2023', type: 'hospitality', details: ['Opera PMS ile ön büro ve otel operasyon yönetimi.'] },
         ]
     },
     skills: {
-        title: 'Uzmanlık Alanları',
-        hospitality: { title: 'Konaklama Teknolojileri', items: [{ name: 'ElektraWeb', level: 'Uzman', percentage: 95 }, { name: 'Opera PMS', level: 'Uzman', percentage: 90 }, { name: 'Sedna/Protel/MICROS', level: 'Çok İyi', percentage: 85 }] },
-        web: { title: 'Web & AI Geliştirme', items: [{ name: 'JavaScript', level: 'Çok İyi', percentage: 88 }, { name: 'React/TypeScript', level: 'Çok İyi', percentage: 82 }, { name: 'AI & Otomasyon (Gemini API)', level: 'Uzman', percentage: 95 }] },
-        digital: {
-          title: 'Dijital Pazarlama & Tasarım',
+        title: 'Dijital Araçlar ve Yetkinlikler',
+        marketingMethods: {
+          title: 'Pazarlama Yöntemleri',
           items: [
-            { name: 'Google Marketing Platform (Ads, Analytics, Search Console, My Business)', level: 'Uzman', percentage: 95 },
-            { name: 'Grafik & Tasarım (Adobe Photoshop, Canva, Video)', level: 'Çok İyi', percentage: 90 },
-            { name: 'Social Media Growth (Instagram Reels, içerik planlama)', level: 'Uzman', percentage: 92 },
-            { name: 'SEO & SEM (Otel SEO)', level: 'Uzman', percentage: 95 },
+            { name: 'Google Search reklamları', level: 'Uzman', percentage: 95 },
+            { name: 'Search Ads 360 kampanya yönetimi', level: 'Uzman', percentage: 92 },
+            { name: 'Yerel SEO ve Google Business optimizasyonu', level: 'Uzman', percentage: 94 },
+            { name: 'Web sitesi SEO ve içerik geliştirme', level: 'Uzman', percentage: 94 },
+            { name: 'Sosyal medya içerik takvimi', level: 'Çok İyi', percentage: 90 },
+            { name: 'Instagram Reels ve kısa video', level: 'Çok İyi', percentage: 90 },
+            { name: 'AI destekli görsel ve video üretimi', level: 'Uzman', percentage: 95 },
+            { name: 'Kampanya afişi ve banner tasarımı', level: 'Çok İyi', percentage: 90 },
+            { name: 'Influencer ve yerel iş birliği modelleri', level: 'Çok İyi', percentage: 88 },
+            { name: 'Sponsorluk ve tedarikçi ortak kampanyaları', level: 'Çok İyi', percentage: 88 },
+            { name: 'Etkinlik ve kampüs aktivasyonları', level: 'Çok İyi', percentage: 90 },
+            { name: 'Push bildirimi ve uygulama içi kampanya metinleri', level: 'Çok İyi', percentage: 86 },
+            { name: 'Yeniden hedefleme ve dönüşüm odaklı reklam', level: 'Çok İyi', percentage: 88 },
+            { name: 'Haftalık KPI, CAC, kullanıcı ve satış analizi', level: 'Çok İyi', percentage: 90 },
           ],
         },
-        languages: { title: 'Diller', items: [{ name: 'Türkçe', level: 'Ana Dil', percentage: 100 }, { name: 'Almanca', level: 'İleri (C1)', percentage: 90 }, { name: 'İngilizce', level: 'Akıcı (B2.2)', percentage: 80 }] }
+        advertising: { title: 'Reklam ve Analiz', items: [{ name: 'Google Ads', level: 'Uzman', percentage: 95 }, { name: 'Search Ads 360', level: 'Uzman', percentage: 92 }, { name: 'Google Analytics', level: 'Uzman', percentage: 92 }, { name: 'Search Console', level: 'Uzman', percentage: 92 }, { name: 'Google Business Profile', level: 'Uzman', percentage: 90 }] },
+        content: { title: 'İçerik ve Tasarım', items: [{ name: 'Adobe Photoshop', level: 'Çok İyi', percentage: 88 }, { name: 'Canva', level: 'Uzman', percentage: 95 }, { name: 'AI görsel üretim araçları', level: 'Uzman', percentage: 95 }, { name: 'AI video araçları', level: 'Çok İyi', percentage: 90 }, { name: 'Kısa video düzenleme', level: 'Çok İyi', percentage: 88 }] },
+        web: { title: 'Web ve Otomasyon', items: [{ name: 'JavaScript', level: 'Çok İyi', percentage: 88 }, { name: 'React', level: 'Çok İyi', percentage: 84 }, { name: 'TypeScript', level: 'Çok İyi', percentage: 82 }, { name: 'Gemini API', level: 'Çok İyi', percentage: 88 }, { name: 'AI otomasyon sistemleri', level: 'Uzman', percentage: 92 }] },
+        hospitality: { title: 'Otel ve Operasyon', items: [{ name: 'ElektraWeb', level: 'Uzman', percentage: 95 }, { name: 'Opera PMS', level: 'Uzman', percentage: 90 }, { name: 'Protel', level: 'Çok İyi', percentage: 85 }, { name: 'Sedna', level: 'Çok İyi', percentage: 85 }, { name: 'MICROS', level: 'Çok İyi', percentage: 82 }, { name: 'Booking.com', level: 'Uzman', percentage: 92 }, { name: 'Expedia', level: 'Çok İyi', percentage: 88 }] },
+        languages: { title: 'Diller', items: [{ name: 'Türkçe', level: 'Ana dil', percentage: 100 }, { name: 'Almanca', level: 'İleri seviye, C1', percentage: 90 }, { name: 'İngilizce', level: 'İleri seviye, B2.2', percentage: 82 }] }
     },
-     projects: {
+    projects: {
       title: 'Öne Çıkan Projeler',
       visitProject: 'Ziyaret Et',
       items: [
@@ -222,11 +206,14 @@ export const translations = {
     },
     contactInfo: {
       email: 'furkanyonat@gmail.com',
-      phone: '+905338704176',
-      phoneDisplay: '+90 533 870 41 76',
-      address: 'Famagusta, Zypern',
-      whatsapp: 'https://wa.me/905338704176',
+      phone: '+436604849181',
+      phoneDisplay: '+43 660 484 9181',
+      address: 'Maria Alm, Salzburg, Avusturya',
+      cyprusConnection: 'Gazimağusa, KKTC',
+      web: 'https://www.fures.at',
       portfolio: 'https://www.fures.at/furkanyonat/',
+      license: 'B Sınıfı',
+      whatsapp: 'https://wa.me/436604849181',
       profileImage,
       linkedin: 'https://www.linkedin.com/in/furkan-yonat-2745061ba/',
       facebook: 'https://www.facebook.com/furkanyonat900/',
@@ -880,7 +867,7 @@ export const translations = {
 };
 
 export const experienceOrder = [
-  'neu', 'fures',
+  'eder', 'neu', 'fures',
   'mimoza_manager', 'mimoza_reception', 'concorde', 'granada',
   'germany'
 ];

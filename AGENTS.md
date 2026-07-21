@@ -620,3 +620,34 @@ No new public route was added. `src/sitemap.xml.njk` already includes `https://f
 - `npm run build:profiles`
 - `npm run build`
 - `npx --yes playwright install chromium >/tmp/playwright-install.log 2>&1 && npm run preview -- --host 127.0.0.1 ... && npx --yes playwright screenshot --viewport-size=1440,1200 http://127.0.0.1:4173/furkanyonat/ furkanyonat-light-apple.png` (failed because the container lacks `libatk-1.0.so.0`)
+
+### 2026-07-21: Furkan CV Marketing and Growth Content Update
+
+#### Summary
+
+Replaced the Turkish `/furkanyonat` CV content with the owner-provided marketing and growth specialist profile while preserving the existing project cards and non-Turkish translation content. Added Eder Hotels as the current Turkish experience entry and kept multilingual experience rendering safe by hiding entries missing in a selected language.
+
+#### Files Changed
+
+- `AGENTS.md`
+- `.ai/CONTINUATION.md`
+- `furkanyonat/index.html`
+- `furkanyonat/components/Experience.tsx`
+- `furkanyonat/data/translations.ts`
+- `public/furkanyonat/index.html`
+- `public/furkanyonat/assets/*`
+
+#### SEO Status
+
+Existing `/furkanyonat/` route received updated static metadata and Turkish runtime content for the new marketing/growth positioning. No new public route was added.
+
+#### Sitemap Status
+
+No new public route was added. `src/sitemap.xml.njk` and generated `public/sitemap.xml` already include `https://fures.at/furkanyonat/`; no sitemap change was required. No root/public `robots.txt` file was found, so robots remains technical debt.
+
+#### Commands Run
+
+- `npm run build --prefix furkanyonat`
+- `npm run build:profiles`
+- `npm run build`
+- `npx --yes playwright install chromium >/tmp/playwright-install.log 2>&1 && npm run preview -- --host 127.0.0.1 ... && npx --yes playwright screenshot --viewport-size=1440,1200 http://127.0.0.1:4173/furkanyonat/ furkanyonat-cv-update.png` (failed because the container lacks `libatk-1.0.so.0`)

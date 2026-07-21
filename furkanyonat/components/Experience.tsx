@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import AnimatedSection from './AnimatedSection';
 import ExperienceCard from './ui/ExperienceCard';
 
@@ -8,13 +8,31 @@ interface ExperienceProps {
 }
 
 const Experience: React.FC<ExperienceProps> = ({ t, experienceOrder }) => {
-  const [expandedKey, setExpandedKey] = useState<string | null>('neu');
+  const visibleExperienceOrder = useMemo(
+    () => experienceOrder.filter((key) => {
+      const exp = t.experience[key as keyof typeof t.experience];
+      return typeof exp === 'object' && exp !== null && 'role' in exp;
+    }),
+    [experienceOrder, t]
+  );
+  const [expandedKey, setExpandedKey] = useState<string | null>(visibleExperienceOrder[0] || null);
   const [expandAll, setExpandAll] = useState(false);
+
+  useEffect(() => {
+    if (!visibleExperienceOrder.length) {
+      setExpandedKey(null);
+      return;
+    }
+
+    if (!expandedKey || !visibleExperienceOrder.includes(expandedKey)) {
+      setExpandedKey(visibleExperienceOrder[0]);
+    }
+  }, [expandedKey, visibleExperienceOrder]);
 
   const handleToggleAll = () => {
     setExpandAll((prev) => {
       const next = !prev;
-      setExpandedKey(next ? null : 'neu');
+      setExpandedKey(next ? null : visibleExperienceOrder[0] || null);
       return next;
     });
   };
@@ -35,7 +53,7 @@ const Experience: React.FC<ExperienceProps> = ({ t, experienceOrder }) => {
         </div>
       </div>
       <div className="space-y-4">
-        {experienceOrder.map(key => (
+        {visibleExperienceOrder.map(key => (
           <ExperienceCard
             key={key}
             expKey={key}
