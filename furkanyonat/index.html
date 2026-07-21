@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070811">
+  <meta name="description" content="Furkan Yonat - Teknoloji, dijital pazarlama ve otelcilik profesyoneli. IT support, web geliştirme, AI destekli içerik üretimi ve otel operasyonları.">
+  <title>Furkan Yonat | Portfolio & CV</title>
+  <style>
+    :root {
+      --bg: #05060b;
+      --panel: rgba(18, 20, 34, .56);
+      --panel-strong: rgba(21, 24, 40, .82);
+      --text: #f7f9ff;
+      --muted: rgba(241, 245, 255, .69);
+      --soft: rgba(241, 245, 255, .44);
+      --line: rgba(255, 255, 255, .12);
+      --line-strong: rgba(255, 255, 255, .22);
+      --blue: #abcaff;
+      --violet: #d6b8ff;
+      --mint: #77eed8;
+      --rose: #ffb6d6;
+      --radius: 26px;
+      --shadow: 0 30px 90px rgba(0, 0, 0, .38);
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 16% 8%, rgba(67, 98, 255, .12), transparent 34%),
+        radial-gradient(circle at 86% 20%, rgba(147, 83, 255, .12), transparent 32%),
+        radial-gradient(circle at 51% 85%, rgba(33, 189, 186, .08), transparent 40%),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: rgba(171, 202, 255, .28); color: #fff; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    button { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid rgba(171, 202, 255, .95);
+      outline-offset: 4px;
+    }
+
+    .ambient { position: fixed; inset: 0; z-index: -10; overflow: hidden; pointer-events: none; }
+    .ambient::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 76px 76px;
+      -webkit-mask-image: linear-gradient(to bottom, #000, transparent 92%);
+      mask-image: linear-gradient(to bottom, #000, transparent 92%);
+    }
+    .orb { position: absolute; border-radius: 50%; filter: blur(125px); will-change: transform; }
+    .orb-a { width: 58vw; height: 58vw; left: -15vw; top: -22vh; background: rgba(60, 92, 255, .15); animation: orbA 23s ease-in-out infinite; }
+    .orb-b { width: 54vw; height: 54vw; right: -16vw; top: 7vh; background: rgba(151, 89, 255, .13); filter: blur(145px); animation: orbB 27s ease-in-out infinite; }
+    .orb-c { width: 49vw; height: 49vw; left: 30vw; bottom: -24vh; background: rgba(45, 201, 184, .09); filter: blur(145px); animation: orbC 29s ease-in-out infinite; }
+    .ambient-vignette { position: absolute; inset: 0; background: radial-gradient(circle at center, transparent, rgba(5,6,11,.12) 55%, rgba(5,6,11,.8)); }
+
+    @keyframes orbA { 0%,100% { transform: translate3d(-4%,-2%,0) scale(1); } 50% { transform: translate3d(18%,14%,0) scale(1.13); } }
+    @keyframes orbB { 0%,100% { transform: translate3d(8%,0,0) scale(1.05); } 50% { transform: translate3d(-17%,18%,0) scale(.91); } }
+    @keyframes orbC { 0%,100% { transform: translate3d(0,10%,0) scale(.94); } 50% { transform: translate3d(15%,-14%,0) scale(1.12); } }
+    @keyframes shimmer { to { background-position: 220% center; } }
+    @keyframes pulse { 0%,100% { opacity: .5; transform: scale(1); } 50% { opacity: 0; transform: scale(2.4); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    @keyframes toastIn { from { opacity: 0; transform: translate(-50%, 14px); } to { opacity: 1; transform: translate(-50%, 0); } }
+
+    .shell { width: min(1220px, calc(100% - 34px)); margin-inline: auto; }
+    .section { padding-block: clamp(72px, 9vw, 126px); scroll-margin-top: 100px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 38px; }
+    .section-head > p { max-width: 560px; margin: 0; }
+    .eyebrow { margin: 0; color: rgba(220, 230, 255, .7); font-size: .72rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    .title { margin: 12px 0 0; font-size: clamp(2.2rem, 5vw, 4.8rem); line-height: .96; letter-spacing: -.055em; font-weight: 680; text-wrap: balance; }
+    .body-copy { color: var(--muted); line-height: 1.78; }
+    .metallic {
+      background: linear-gradient(115deg, #fff 0%, #cadbff 23%, #fff 42%, #c3acff 70%, #dcfff8 100%);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmer 10s linear infinite;
+    }
+
+    .glass {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.018)), var(--panel);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.09), inset 0 -1px 0 rgba(255,255,255,.025), var(--shadow);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-radius: var(--radius);
+    }
+    .glass::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: linear-gradient(120deg, rgba(255,255,255,.07), transparent 35%); opacity: .6; }
+    .glass > * { position: relative; z-index: 2; }
+
+    .tilt {
+      --mx: 50%;
+      --my: 50%;
+      transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .tilt::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(440px circle at var(--mx) var(--my), rgba(194, 218, 255, .14), transparent 42%);
+      opacity: 0;
+      transition: opacity .28s ease;
+    }
+    .tilt:hover { border-color: var(--line-strong); box-shadow: 0 38px 112px rgba(0,0,0,.47); }
+    .tilt:hover::before { opacity: 1; }
+
+    .icon { width: 20px; height: 20px; display: inline-block; vertical-align: middle; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    .icon-sm { width: 16px; height: 16px; }
+
+    .top-wrap { position: fixed; inset-inline: 0; top: 18px; z-index: 70; padding-inline: 16px; }
+    .topbar { width: min(1220px, 100%); min-height: 58px; margin: auto; padding: 7px 8px 7px 16px; display: flex; align-items: center; gap: 12px; border-radius: 999px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: .93rem; font-weight: 800; white-space: nowrap; }
+    .brand-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 22px rgba(119, 238, 216, .75); }
+    .desktop-nav { display: flex; align-items: center; justify-content: center; gap: 4px; margin-left: auto; }
+    .nav-link { display: inline-flex; align-items: center; gap: 7px; padding: 10px 13px; border-radius: 999px; color: rgba(255,255,255,.58); font-size: .83rem; transition: .24s ease; }
+    .nav-link:hover, .nav-link.active { color: #fff; background: rgba(255,255,255,.075); }
+    .top-actions { display: flex; align-items: center; gap: 7px; margin-left: 6px; }
+    .lang-group { display: flex; gap: 2px; padding: 3px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.035); border-radius: 999px; }
+    .lang-btn { min-width: 34px; height: 32px; padding: 0 8px; border: 0; border-radius: 999px; background: none; color: rgba(255,255,255,.43); font-size: .68rem; font-weight: 800; cursor: pointer; transition: .2s ease; }
+    .lang-btn:hover, .lang-btn.active { color: #fff; background: rgba(255,255,255,.09); }
+    .menu-btn { display: none; align-items: center; gap: 8px; min-height: 42px; padding: 0 14px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05); border-radius: 999px; cursor: pointer; }
+
+    .mobile-menu { display: none; position: fixed; z-index: 69; top: 84px; left: 16px; right: 16px; padding: 12px; }
+    .mobile-menu.open { display: grid; gap: 6px; }
+    .mobile-menu a, .mobile-menu button { width: 100%; min-height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; border: 0; border-radius: 15px; background: rgba(255,255,255,.035); color: rgba(255,255,255,.72); text-align: left; cursor: pointer; }
+    .mobile-lang { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 5px; }
+    .mobile-lang button { justify-content: center; padding: 0; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 20px; border-radius: 999px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.055); color: rgba(255,255,255,.86); font-size: .86rem; font-weight: 760; cursor: pointer; transition: transform .22s ease, background .22s ease, border-color .22s ease, box-shadow .22s ease; }
+    .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); }
+    .btn-primary { color: #090a10; background: #fff; border-color: rgba(255,255,255,.2); box-shadow: 0 14px 44px rgba(178,201,255,.22); }
+    .btn-primary:hover { background: #fff; box-shadow: 0 18px 56px rgba(178,201,255,.32); }
+    .btn-small { min-height: 40px; padding: 0 14px; font-size: .76rem; }
+
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 122px 0 70px; }
+    .hero-grid { width: 100%; display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(34px, 6vw, 72px); align-items: center; }
+    .status { display: inline-flex; align-items: center; gap: 9px; padding: 9px 14px; border-radius: 999px; border: 1px solid rgba(167,243,208,.15); background: rgba(167,243,208,.06); color: rgba(236,253,245,.86); font-size: .75rem; box-shadow: inset 0 1px rgba(255,255,255,.08); }
+    .status-dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--mint); }
+    .status-dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--mint); animation: pulse 1.8s infinite; }
+    .hero-name { margin: 24px 0 0; font-size: clamp(4rem, 10vw, 8.2rem); line-height: .84; letter-spacing: -.075em; font-weight: 690; }
+    .hero-role { margin: 25px 0 0; font-size: clamp(1.3rem, 2.8vw, 2.25rem); line-height: 1.12; letter-spacing: -.035em; font-weight: 640; }
+    .hero-specialties { margin: 12px 0 0; color: rgba(255,255,255,.73); font-size: clamp(.95rem, 1.8vw, 1.12rem); line-height: 1.6; }
+    .hero-tagline { margin: 26px 0 0; max-width: 760px; font-size: clamp(1.08rem, 2vw, 1.34rem); line-height: 1.62; color: rgba(255,255,255,.83); }
+    .hero-intro { margin: 13px 0 0; max-width: 780px; color: rgba(255,255,255,.57); line-height: 1.78; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 32px; }
+    .contact-strip { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 27px; color: rgba(255,255,255,.5); font-size: .84rem; }
+    .contact-strip a, .contact-strip span { display: inline-flex; align-items: center; gap: 7px; }
+    .contact-strip a:hover { color: #fff; }
+
+    .hero-side { position: relative; min-height: 590px; }
+    .portrait-card { position: absolute; inset: 0 22px 54px 26px; padding: 20px; border-radius: 34px; animation: float 8s ease-in-out infinite; }
+    .portrait-frame { position: relative; height: 100%; overflow: hidden; border: 1px solid rgba(255,255,255,.1); border-radius: 27px; background: linear-gradient(155deg, rgba(119,147,255,.17), rgba(19,21,35,.78) 45%, rgba(92,51,143,.15)); }
+    .portrait-glow { position: absolute; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(180,207,255,.22), transparent 65%); top: 10%; left: 50%; transform: translateX(-50%); filter: blur(10px); }
+    .portrait { position: absolute; top: 54px; left: 50%; transform: translateX(-50%); width: 210px; height: 210px; display: grid; place-items: center; border-radius: 62px; border: 1px solid rgba(255,255,255,.16); background: linear-gradient(145deg, rgba(198,218,255,.2), rgba(192,150,255,.11)); box-shadow: inset 0 1px rgba(255,255,255,.16), 0 32px 75px rgba(0,0,0,.34); font-size: 4.1rem; font-weight: 850; letter-spacing: -.08em; color: rgba(255,255,255,.9); }
+    .portrait::before { content: ""; position: absolute; inset: 14px; border-radius: 49px; border: 1px solid rgba(255,255,255,.08); }
+    .portrait-info { position: absolute; left: 27px; right: 27px; bottom: 27px; }
+    .portrait-info h2 { margin: 0; font-size: 1.75rem; letter-spacing: -.045em; }
+    .portrait-info p { margin: 8px 0 0; color: rgba(255,255,255,.54); line-height: 1.55; }
+    .portrait-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 17px; }
+    .floating-score { position: absolute; right: -2px; bottom: 0; width: min(310px, 72%); padding: 18px; transform: rotate(-2.5deg); }
+    .score-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .score-top span { color: rgba(255,255,255,.44); font-size: .74rem; text-transform: uppercase; letter-spacing: .11em; }
+    .score-top strong { font-size: 1.08rem; }
+    .signal-bars { display: flex; align-items: end; gap: 7px; height: 67px; margin-top: 15px; }
+    .signal-bars i { flex: 1; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, rgba(171,202,255,.95), rgba(214,184,255,.22)); }
+
+    .competency-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .competency-card { min-height: 280px; padding: 22px; display: flex; flex-direction: column; }
+    .competency-icon { width: 47px; height: 47px; display: grid; place-items: center; border-radius: 15px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05); color: rgba(255,255,255,.75); }
+    .competency-card h3 { margin: 22px 0 0; font-size: 1.14rem; line-height: 1.2; letter-spacing: -.03em; }
+    .competency-card p { margin: 11px 0 0; color: rgba(255,255,255,.53); line-height: 1.65; font-size: .86rem; }
+    .competency-line { margin-top: auto; padding-top: 20px; height: 22px; display: flex; gap: 5px; }
+    .competency-line i { flex: 1; height: 3px; border-radius: 99px; background: linear-gradient(90deg, var(--blue), var(--violet)); opacity: .5; }
+
+    .timeline { position: relative; display: grid; gap: 16px; }
+    .timeline::before { content: ""; position: absolute; left: 16px; top: 18px; bottom: 18px; width: 1px; background: linear-gradient(180deg, rgba(171,202,255,.55), rgba(214,184,255,.18), transparent); }
+    .experience { margin-left: 48px; padding: 0; }
+    .experience::before { content: ""; position: absolute; left: -39px; top: 34px; width: 11px; height: 11px; border-radius: 50%; background: #0a0c14; border: 2px solid rgba(171,202,255,.82); box-shadow: 0 0 24px rgba(171,202,255,.45); }
+    .experience.current::before { background: var(--mint); border-color: #d9fff8; }
+    .experience-btn { width: 100%; display: grid; grid-template-columns: 175px 1fr auto; gap: 20px; align-items: start; text-align: left; padding: 27px; border: 0; background: none; cursor: pointer; }
+    .period { color: rgba(220,230,255,.58); font-size: .74rem; letter-spacing: .075em; text-transform: uppercase; padding-top: 5px; }
+    .role { margin: 0; font-size: 1.36rem; line-height: 1.24; letter-spacing: -.035em; }
+    .company { display: block; margin-top: 7px; color: rgba(255,255,255,.56); }
+    .summary { margin: 14px 0 0; max-width: 790px; color: rgba(255,255,255,.52); line-height: 1.66; font-size: .91rem; }
+    .chevron { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 14px; border: 1px solid rgba(255,255,255,.09); background: rgba(255,255,255,.04); transition: .3s ease; }
+    .experience.open .chevron { transform: rotate(45deg); background: rgba(255,255,255,.085); }
+    .experience-details { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .55s ease, opacity .32s ease; }
+    .experience.open .experience-details { max-height: 1000px; opacity: 1; }
+    .experience-inner { margin: 0 27px; padding: 23px 0 28px; border-top: 1px solid rgba(255,255,255,.08); display: grid; grid-template-columns: 1fr auto; gap: 28px; }
+    .detail-groups { display: grid; gap: 23px; }
+    .detail-group h4 { margin: 0 0 11px; font-size: .76rem; letter-spacing: .13em; text-transform: uppercase; color: rgba(216,228,255,.62); }
+    .achievement-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 11px; }
+    .achievement-list li { position: relative; padding-left: 20px; color: rgba(255,255,255,.62); line-height: 1.57; font-size: .89rem; }
+    .achievement-list li::before { content: ""; position: absolute; left: 0; top: .65em; width: 7px; height: 7px; border-radius: 50%; background: linear-gradient(145deg, var(--blue), var(--violet)); box-shadow: 0 0 15px rgba(171,202,255,.4); }
+    .tags { display: flex; flex-wrap: wrap; justify-content: flex-end; align-content: start; gap: 8px; max-width: 265px; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.04); color: rgba(255,255,255,.59); font-size: .7rem; }
+
+    .skills-layout { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .skill-card { padding: 25px; }
+    .skill-head { display: flex; align-items: center; gap: 14px; margin-bottom: 23px; }
+    .skill-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 16px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05); }
+    .skill-head h3 { margin: 0; font-size: 1.3rem; letter-spacing: -.035em; }
+    .skill-head p { margin: 4px 0 0; color: rgba(255,255,255,.42); font-size: .8rem; }
+    .skill-list { display: grid; gap: 10px; }
+    .skill-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 47px; padding: 10px 12px; border: 1px solid rgba(255,255,255,.07); background: rgba(255,255,255,.025); border-radius: 14px; }
+    .skill-row span:first-child { color: rgba(255,255,255,.73); font-size: .88rem; }
+    .level { padding: 7px 9px; border-radius: 999px; background: rgba(171,202,255,.08); border: 1px solid rgba(171,202,255,.12); color: rgba(222,234,255,.75); font-size: .68rem; font-weight: 780; white-space: nowrap; }
+    .language-card { grid-column: 1 / -1; }
+    .language-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+    .language-box { padding: 17px; border: 1px solid rgba(255,255,255,.07); background: rgba(255,255,255,.026); border-radius: 17px; }
+    .language-box strong { display: block; font-size: 1rem; }
+    .language-box span { display: block; margin-top: 6px; color: rgba(255,255,255,.48); font-size: .78rem; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 17px; }
+    .project-card { min-height: 465px; display: flex; flex-direction: column; cursor: pointer; }
+    .project-visual { position: relative; height: 205px; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,.08); background: radial-gradient(circle at 18% 15%, rgba(171,202,255,.16), transparent 38%), radial-gradient(circle at 90% 72%, rgba(214,184,255,.14), transparent 44%), rgba(5,7,14,.62); }
+    .project-index { position: absolute; top: 18px; left: 18px; color: rgba(255,255,255,.34); font-size: .7rem; font-weight: 800; letter-spacing: .13em; }
+    .project-status { position: absolute; top: 14px; right: 14px; z-index: 3; display: inline-flex; align-items: center; gap: 7px; padding: 8px 11px; border: 1px solid rgba(119,238,216,.2); border-radius: 999px; background: rgba(12,35,34,.58); color: rgba(219,255,248,.9); box-shadow: inset 0 1px rgba(255,255,255,.08), 0 10px 28px rgba(0,0,0,.2); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-size: .66rem; font-weight: 800; letter-spacing: .055em; text-transform: uppercase; }
+    .project-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 14px rgba(119,238,216,.75); }
+    .project-orbit { position: absolute; width: 165px; height: 165px; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; top: 25px; left: 50%; transform: translateX(-50%) rotate(-16deg); }
+    .project-orbit::before, .project-orbit::after { content: ""; position: absolute; border-radius: 50%; }
+    .project-orbit::before { width: 22px; height: 22px; background: linear-gradient(145deg, var(--blue), var(--violet)); top: 15px; right: 16px; box-shadow: 0 0 34px rgba(171,202,255,.48); }
+    .project-orbit::after { width: 72px; height: 72px; inset: 46px; background: radial-gradient(circle at 30% 25%, #fff, rgba(171,202,255,.5) 20%, rgba(77,67,137,.28) 60%, transparent 68%); box-shadow: 0 0 55px rgba(166,151,255,.23); }
+    .project-grid-art { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px); background-size: 28px 28px; -webkit-mask-image: radial-gradient(circle, #000, transparent 72%); mask-image: radial-gradient(circle, #000, transparent 72%); }
+    .project-copy { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+    .project-copy h3 { margin: 0; font-size: 1.42rem; line-height: 1.2; letter-spacing: -.042em; }
+    .project-role { display: block; margin-top: 8px; color: rgba(218,229,255,.72); font-size: .76rem; font-weight: 750; letter-spacing: .035em; }
+    .project-copy p { margin: 12px 0 0; color: rgba(255,255,255,.54); line-height: 1.67; font-size: .9rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 17px; }
+    .project-bottom { margin-top: auto; padding-top: 22px; display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,.48); font-size: .78rem; }
+    .project-bottom span { display: inline-flex; align-items: center; gap: 7px; }
+    .project-arrow { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 14px; border: 1px solid rgba(255,255,255,.09); background: rgba(255,255,255,.04); transition: .25s ease; }
+    .project-card:hover .project-arrow { transform: translate(2px,-2px); color: #fff; background: rgba(255,255,255,.08); }
+
+    .dual-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 18px; }
+    .edu-list, .cert-list { display: grid; gap: 12px; }
+    .edu-card, .cert-card { padding: 20px; }
+    .edu-card span, .cert-card span { color: rgba(216,228,255,.54); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+    .edu-card h3, .cert-card h3 { margin: 10px 0 0; font-size: 1.05rem; line-height: 1.34; letter-spacing: -.025em; }
+    .edu-card p, .cert-card p { margin: 6px 0 0; color: rgba(255,255,255,.48); font-size: .83rem; }
+    .cert-list { grid-template-columns: repeat(2, 1fr); }
+
+    .contact-card { padding: clamp(28px, 5vw, 55px); display: grid; grid-template-columns: 1.05fr .95fr; gap: 35px; align-items: center; }
+    .contact-card h2 { margin: 12px 0 0; font-size: clamp(2.5rem, 5vw, 5.2rem); line-height: .96; letter-spacing: -.06em; }
+    .contact-card > div > p { margin: 20px 0 0; max-width: 650px; color: rgba(255,255,255,.56); line-height: 1.72; }
+    .contact-links { display: grid; gap: 10px; }
+    .contact-link { min-height: 63px; padding: 0 17px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-radius: 18px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.035); transition: .23s ease; }
+    .contact-link:hover { background: rgba(255,255,255,.07); transform: translateX(3px); }
+    .contact-link span { display: flex; align-items: center; gap: 11px; color: rgba(255,255,255,.62); }
+    .contact-link strong { font-size: .82rem; color: rgba(255,255,255,.82); text-align: right; }
+    .footer-line { padding: 25px 4px 34px; display: flex; justify-content: space-between; gap: 20px; color: rgba(255,255,255,.34); font-size: .75rem; }
+
+    .modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; background: rgba(3,4,9,.74); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); opacity: 0; visibility: hidden; transition: .25s ease; }
+    .modal.open { opacity: 1; visibility: visible; }
+    .modal-card { width: min(720px, 100%); max-height: min(760px, calc(100vh - 40px)); overflow: auto; padding: 28px; transform: translateY(14px) scale(.98); transition: .28s ease; }
+    .modal.open .modal-card { transform: translateY(0) scale(1); }
+    .modal-head { display: flex; justify-content: space-between; gap: 18px; align-items: start; }
+    .modal-head h3 { margin: 10px 0 0; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1; letter-spacing: -.05em; }
+    .close { width: 44px; height: 44px; display: grid; place-items: center; flex: none; border-radius: 15px; border: 1px solid rgba(255,255,255,.09); background: rgba(255,255,255,.045); cursor: pointer; }
+    .modal-description { margin: 24px 0 0; color: rgba(255,255,255,.62); line-height: 1.75; }
+    .modal-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .modal-note { margin-top: 22px; padding: 16px; border: 1px solid rgba(255,255,255,.08); border-radius: 17px; background: rgba(255,255,255,.035); color: rgba(255,255,255,.46); font-size: .83rem; line-height: 1.6; }
+
+    .chat-trigger { position: fixed; right: 20px; bottom: 20px; z-index: 80; width: 58px; height: 58px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.14); border-radius: 20px; background: rgba(20,22,37,.7); box-shadow: 0 20px 55px rgba(0,0,0,.4), inset 0 1px rgba(255,255,255,.1); backdrop-filter: blur(20px) saturate(180%); cursor: pointer; transition: .25s ease; }
+    .chat-trigger:hover { transform: translateY(-3px); background: rgba(255,255,255,.1); }
+    .chat-panel { position: fixed; z-index: 81; right: 20px; bottom: 88px; width: min(360px, calc(100% - 32px)); padding: 20px; opacity: 0; visibility: hidden; transform: translateY(12px) scale(.98); transition: .25s ease; }
+    .chat-panel.open { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+    .chat-panel h3 { margin: 0; font-size: 1.08rem; }
+    .chat-panel p { margin: 11px 0 0; color: rgba(255,255,255,.53); line-height: 1.6; font-size: .86rem; }
+    .chat-status { display: flex; align-items: center; gap: 9px; margin-top: 16px; padding: 12px; border-radius: 14px; border: 1px solid rgba(255,182,214,.1); background: rgba(255,182,214,.04); color: rgba(255,220,235,.65); font-size: .76rem; }
+    .chat-status i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,182,214,.65); }
+
+    .toast { position: fixed; left: 50%; bottom: 25px; z-index: 150; min-width: 270px; max-width: calc(100% - 32px); padding: 13px 17px; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; background: rgba(20,22,36,.84); box-shadow: 0 18px 55px rgba(0,0,0,.4); backdrop-filter: blur(20px); color: rgba(255,255,255,.74); font-size: .8rem; text-align: center; opacity: 0; visibility: hidden; transform: translate(-50%, 14px); }
+    .toast.show { opacity: 1; visibility: visible; animation: toastIn .25s ease both; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .72s ease, transform .72s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1120px) {
+      .desktop-nav { display: none; }
+      .menu-btn { display: inline-flex; margin-left: auto; }
+      .top-actions .lang-group { display: none; }
+      .competency-grid { grid-template-columns: repeat(3, 1fr); }
+      .competency-card:nth-child(4), .competency-card:nth-child(5) { grid-column: span 1; }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .contact-card, .dual-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 130px; }
+      .hero-side { min-height: 520px; width: min(600px, 100%); margin: 8px auto 0; }
+      .competency-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-layout, .projects-grid { grid-template-columns: 1fr; }
+      .language-grid { grid-template-columns: 1fr; }
+      .cert-list { grid-template-columns: 1fr; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 22px, 1220px); }
+      .top-wrap { top: 10px; padding-inline: 10px; }
+      .topbar { min-height: 54px; padding-left: 13px; }
+      .top-actions .btn { display: none; }
+      .mobile-menu { top: 73px; left: 10px; right: 10px; }
+      .hero { padding-top: 105px; }
+      .hero-name { font-size: clamp(3.45rem, 19vw, 5.4rem); }
+      .hero-side { min-height: 460px; }
+      .portrait-card { inset: 0 7px 48px 7px; }
+      .portrait { width: 175px; height: 175px; border-radius: 52px; font-size: 3.5rem; }
+      .portrait-info { left: 19px; right: 19px; bottom: 21px; }
+      .floating-score { right: 0; width: 74%; }
+      .competency-grid { grid-template-columns: 1fr; }
+      .competency-card { min-height: 230px; }
+      .timeline::before { left: 10px; }
+      .experience { margin-left: 30px; }
+      .experience::before { left: -25px; top: 29px; }
+      .experience-btn { grid-template-columns: 1fr auto; padding: 21px; gap: 13px; }
+      .period { grid-column: 1 / -1; }
+      .experience-inner { margin: 0 21px; grid-template-columns: 1fr; }
+      .tags { justify-content: flex-start; max-width: none; }
+      .skill-card, .project-copy { padding: 20px; }
+      .project-card { min-height: 430px; }
+      .project-visual { height: 180px; }
+      .contact-card { padding: 25px 20px; }
+      .contact-link { align-items: flex-start; flex-direction: column; justify-content: center; gap: 7px; padding-block: 13px; }
+      .contact-link strong { text-align: left; }
+      .footer-line { flex-direction: column; }
+      .chat-trigger { right: 12px; bottom: 12px; }
+      .chat-panel { right: 12px; bottom: 80px; }
+    }
+
+    @media (pointer: coarse) { .tilt { transform: none !important; } .tilt::before { display: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+
+    @media print {
+      :root { color-scheme: light; }
+      body { color: #111; background: #fff; font-family: Arial, sans-serif; }
+      .ambient, .top-wrap, .mobile-menu, .chat-trigger, .chat-panel, .toast, .cta-row, .project-bottom, .modal { display: none !important; }
+      .shell { width: 100%; }
+      .hero { min-height: auto; padding: 20px 0 30px; }
+      .hero-grid, .contact-card, .dual-grid, .skills-layout, .projects-grid { grid-template-columns: 1fr; }
+      .hero-side { display: none; }
+      .section { padding: 28px 0; break-inside: avoid; }
+      .glass { background: #fff; border: 1px solid #ddd; box-shadow: none; backdrop-filter: none; color: #111; }
+      .glass::after, .glass::before { display: none; }
+      .metallic { color: #111; background: none; }
+      .eyebrow, .period, .body-copy, .company, .summary, .achievement-list li, .skill-row span:first-child, .project-copy p, .contact-card > div > p, .edu-card p, .cert-card p, .portrait-info p { color: #333 !important; }
+      .title { font-size: 32px; }
+      .hero-name { font-size: 54px; }
+      .hero-role { font-size: 24px; }
+      .status { color: #111; background: #f2f2f2; border-color: #ddd; }
+      .competency-grid { grid-template-columns: repeat(2, 1fr); }
+      .competency-card { min-height: auto; }
+      .timeline::before, .experience::before { display: none; }
+      .experience { margin-left: 0; break-inside: avoid; }
+      .experience-btn { padding: 18px; }
+      .experience-details { max-height: none !important; opacity: 1 !important; }
+      .experience-inner { padding-bottom: 18px; }
+      .pill, .level { color: #222; border-color: #ddd; background: #f4f4f4; }
+      .project-card { min-height: auto; break-inside: avoid; }
+      .project-visual { display: none; }
+      .footer-line { color: #444; }
+      a { color: #111; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <div class="ambient-vignette"></div>
+  </div>
+
+  <header class="top-wrap">
+    <div class="glass topbar">
+      <a class="brand" href="#home" aria-label="Furkan Yonat ana sayfa"><span class="brand-dot"></span>Furkan Yonat</a>
+      <nav class="desktop-nav" aria-label="Ana menü">
+        <a class="nav-link active" href="#home" data-section="home">Ana Sayfa</a>
+        <a class="nav-link" href="#experience" data-section="experience">Deneyim</a>
+        <a class="nav-link" href="#skills" data-section="skills">Yetenekler</a>
+        <a class="nav-link" href="#projects" data-section="projects">Projeler</a>
+        <a class="nav-link" href="#education" data-section="education">Eğitim</a>
+      </nav>
+      <div class="top-actions">
+        <button class="btn btn-small pdf-btn" type="button"><svg class="icon icon-sm"><use href="#i-download"></use></svg>PDF İndir</button>
+        <div class="lang-group" aria-label="Dil seçimi">
+          <button class="lang-btn active" type="button" data-lang="TR">TR</button>
+          <button class="lang-btn" type="button" data-lang="EN">EN</button>
+          <button class="lang-btn" type="button" data-lang="DE">DE</button>
+          <button class="lang-btn" type="button" data-lang="ES">ES</button>
+        </div>
+      </div>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu"><svg class="icon icon-sm"><use href="#i-menu"></use></svg>Menü</button>
+    </div>
+  </header>
+
+  <nav class="glass mobile-menu" id="mobile-menu" aria-label="Mobil menü">
+    <a href="#home">Ana Sayfa <svg class="icon icon-sm"><use href="#i-arrow-down-right"></use></svg></a>
+    <a href="#experience">Deneyim <svg class="icon icon-sm"><use href="#i-arrow-down-right"></use></svg></a>
+    <a href="#skills">Yetenekler <svg class="icon icon-sm"><use href="#i-arrow-down-right"></use></svg></a>
+    <a href="#projects">Projeler <svg class="icon icon-sm"><use href="#i-arrow-down-right"></use></svg></a>
+    <a href="#education">Eğitim ve Sertifikalar <svg class="icon icon-sm"><use href="#i-arrow-down-right"></use></svg></a>
+    <button class="pdf-btn" type="button">PDF İndir <svg class="icon icon-sm"><use href="#i-download"></use></svg></button>
+    <div class="mobile-lang">
+      <button class="lang-btn active" type="button" data-lang="TR">TR</button>
+      <button class="lang-btn" type="button" data-lang="EN">EN</button>
+      <button class="lang-btn" type="button" data-lang="DE">DE</button>
+      <button class="lang-btn" type="button" data-lang="ES">ES</button>
+    </div>
+  </nav>
+
+  <main>
+    <section id="home" class="hero shell">
+      <div class="hero-grid">
+        <div>
+          <div class="status"><span class="status-dot"></span>Maria Alm, Salzburg, Avusturya</div>
+          <h1 class="hero-name">Furkan <span class="metallic">Yonat</span></h1>
+          <h2 class="hero-role">Teknoloji, Dijital Pazarlama ve Otelcilik Profesyoneli</h2>
+          <p class="hero-specialties">IT Support | Web Geliştirme | Dijital Pazarlama | Otel Operasyonları</p>
+          <p class="hero-tagline">Teknoloji, pazarlama ve operasyonu gerçek iş ihtiyaçları etrafında birleştiriyorum.</p>
+          <p class="hero-intro">Otelcilik, web geliştirme, dijital pazarlama ve yapay zekâ destekli üretim alanlarında deneyim sahibiyim. Şu anda Avusturya’da Eder Hotels bünyesinde IT Support ve Front Office Uzmanı olarak çalışıyor, aynı zamanda turizm ve yerel işletmeler için dijital projeler geliştiriyorum.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#experience">İçeriğe geç <svg class="icon icon-sm"><use href="#i-arrow-down-right"></use></svg></a>
+            <a class="btn" href="#projects">Projeleri incele</a>
+            <button class="btn vcard-btn" type="button"><svg class="icon icon-sm"><use href="#i-contact"></use></svg>vCard Kaydet</button>
+          </div>
+          <div class="contact-strip">
+            <a href="tel:+436604849181"><svg class="icon icon-sm"><use href="#i-phone"></use></svg>+43 660 484 9181</a>
+            <a href="mailto:furkanyonat@gmail.com"><svg class="icon icon-sm"><use href="#i-mail"></use></svg>furkanyonat@gmail.com</a>
+            <span><svg class="icon icon-sm"><use href="#i-pin"></use></svg>Maria Alm, Salzburg, Avusturya</span>
+          </div>
+        </div>
+
+        <div class="hero-side" aria-label="Furkan Yonat profil kartı">
+          <article class="glass portrait-card tilt">
+            <div class="portrait-frame">
+              <div class="portrait-glow"></div>
+              <div class="portrait" role="img" aria-label="Furkan Yonat profil fotoğrafı">FY</div>
+              <div class="portrait-info">
+                <p class="eyebrow">Technology · Hospitality · Digital Projects</p>
+                <h2>Furkan Yonat</h2>
+                <p>Teknik üretimi, otel operasyonunu ve dijital iletişimi aynı iş pratiğinde birleştiren çok yönlü profesyonel.</p>
+                <div class="portrait-pills">
+                  <span class="pill">Google Ads</span>
+                  <span class="pill">AI Content</span>
+                  <span class="pill">React</span>
+                  <span class="pill">Hotel Systems</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="glass floating-score tilt">
+            <div class="score-top"><span>Yetkinlik birleşimi</span><strong>360°</strong></div>
+            <div class="signal-bars" aria-hidden="true">
+              <i style="height:42%"></i><i style="height:60%"></i><i style="height:76%"></i><i style="height:67%"></i><i style="height:91%"></i><i style="height:100%"></i>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="competencies">
+      <div class="section-head reveal">
+        <div><p class="eyebrow">Temel Yetkinlikler</p><h2 class="title">Büyümeyi yalnızca reklamda değil, <span class="metallic">tüm sistemde</span> kurarım.</h2></div>
+        <p class="body-copy">Dijital performans, içerik üretimi, sahadaki ilişki yönetimi, otel operasyonu ve teknoloji tek bir büyüme sisteminin parçalarıdır.</p>
+      </div>
+      <div class="competency-grid">
+        <article class="glass competency-card tilt reveal">
+          <div class="competency-icon"><svg class="icon"><use href="#i-handshake"></use></svg></div>
+          <h3>Saha Aktivasyonu & İş Ortaklıkları</h3>
+          <p>Üniversiteler, işletmeler, etkinlik organizatörleri ve tedarikçilerle yüz yüze iletişim kurarak iş birliği ve marka görünürlüğü geliştiririm.</p>
+          <div class="competency-line"><i></i><i></i><i></i></div>
+        </article>
+        <article class="glass competency-card tilt reveal">
+          <div class="competency-icon"><svg class="icon"><use href="#i-sparkles"></use></svg></div>
+          <h3>AI İçerik & Tasarım Üretimi</h3>
+          <p>Görsel, video, reklam metni, Reels, kampanya afişi, web içeriği ve çok dilli pazarlama materyallerini yapay zekâ destekli araçlarla hızlı üretirim.</p>
+          <div class="competency-line"><i></i><i></i><i></i></div>
+        </article>
+        <article class="glass competency-card tilt reveal">
+          <div class="competency-icon"><svg class="icon"><use href="#i-chart"></use></svg></div>
+          <h3>Performans & Dönüşüm Takibi</h3>
+          <p>Analytics, Search Console, dönüşüm takibi ve haftalık KPI raporlarıyla kampanyaları rezervasyon, satış ve reklam maliyeti üzerinden değerlendiririm.</p>
+          <div class="competency-line"><i></i><i></i><i></i></div>
+        </article>
+        <article class="glass competency-card tilt reveal">
+          <div class="competency-icon"><svg class="icon"><use href="#i-megaphone"></use></svg></div>
+          <h3>Dijital Reklam & Büyüme</h3>
+          <p>Google Ads, Search Ads 360, SEO, SEM, sosyal medya ve doğrudan rezervasyon kampanyalarını büyüme hedefleriyle yönetirim.</p>
+          <div class="competency-line"><i></i><i></i><i></i></div>
+        </article>
+        <article class="glass competency-card tilt reveal">
+          <div class="competency-icon"><svg class="icon"><use href="#i-hotel"></use></svg></div>
+          <h3>Turizm, Otelcilik & Operasyon</h3>
+          <p>Altı otel, seyahat acentası, restoranlar, etkinlik alanları ve uluslararası misafir operasyonlarında pazarlama, IT ve front office deneyimi taşırım.</p>
+          <div class="competency-line"><i></i><i></i><i></i></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="section shell">
+      <div class="section-head reveal">
+        <div><p class="eyebrow">İş Deneyimi</p><h2 class="title">Sahadan yönetime, yönetimden <span class="metallic">dijital büyümeye.</span></h2></div>
+        <p class="body-copy">Kartları tek tek görüntüle. Her rol, operasyon, teknoloji, pazarlama ve misafir deneyimi tarafında oluşan gerçek sorumlulukları gösterir.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="glass experience current tilt open reveal">
+          <button class="experience-btn" type="button" aria-expanded="true">
+            <span class="period">2026 - Günümüz</span>
+            <span><h3 class="role">IT Support & Front Office Uzmanı</h3><span class="company">Eder Hotels, Maria Alm, Salzburg, Avusturya</span><p class="summary">Yoğun otel operasyonunda teknik sistemleri, resepsiyon süreçlerini ve uluslararası misafir deneyimini birlikte yönetiyorum.</p></span>
+            <span class="chevron"><svg class="icon"><use href="#i-plus"></use></svg></span>
+          </button>
+          <div class="experience-details"><div class="experience-inner">
+            <div class="detail-groups"><div class="detail-group"><h4>Görev ve Sorumluluklar</h4><ul class="achievement-list">
+              <li>Front Office ve otel IT sistemlerinin günlük operasyonunu destekliyorum.</li>
+              <li>Teknik problemler, kullanıcı cihazları, yazıcılar, bağlantı sistemleri ve resepsiyon yazılımları için destek sağlıyorum.</li>
+              <li>Uluslararası misafirlerle Almanca ve İngilizce iletişim kuruyorum.</li>
+              <li>Resepsiyon, rezervasyon ve diğer departmanlar arasındaki operasyonel koordinasyona destek veriyorum.</li>
+              <li>Yoğun otel operasyonunda teknik ve misafir odaklı süreçleri birlikte yönetiyorum.</li>
+              <li>Otelcilik, teknoloji ve müşteri deneyimini aynı operasyon içinde birleştiriyorum.</li>
+            </ul></div></div>
+            <div class="tags"><span class="pill">IT Support</span><span class="pill">Front Office</span><span class="pill">Almanca</span><span class="pill">Hotel Systems</span></div>
+          </div></div>
+        </article>
+
+        <article class="glass experience tilt reveal">
+          <button class="experience-btn" type="button" aria-expanded="false">
+            <span class="period">Mayıs 2023 - 2026</span>
+            <span><h3 class="role">Operasyon, Pazarlama ve IT Yöneticisi</h3><span class="company">Dorana Tourism Group / Near East University, KKTC</span><p class="summary">Altı otel, seyahat acentası, restoranlar ve etkinlik alanlarında operasyon, pazarlama, dijital satış ve teknoloji süreçlerini yönettim.</p></span>
+            <span class="chevron"><svg class="icon"><use href="#i-plus"></use></svg></span>
+          </button>
+          <div class="experience-details"><div class="experience-inner">
+            <div class="detail-groups">
+              <div class="detail-group"><h4>Kapsam</h4><ul class="achievement-list"><li>Altı otel, bir seyahat acentası, restoranlar ve etkinlik alanlarının pazarlama, operasyon, dijital satış ve teknoloji süreçlerini yönettim.</li></ul></div>
+              <div class="detail-group"><h4>Pazarlama ve İçerik</h4><ul class="achievement-list"><li>Google Ads, SEO, sosyal medya, web sitesi, doğrudan satış, etkinlik ve dijital dönüşüm süreçlerini yönettim; AI araçlarıyla görsel, video, reklam metni, Reels, kampanya afişi, web içeriği ve çok dilli materyaller ürettim.</li></ul></div>
+              <div class="detail-group"><h4>Saha, Etkinlik ve İş Ortaklıkları</h4><ul class="achievement-list"><li>Kongre, konser, mezuniyet, festival ve kurumsal organizasyonların satış-pazarlama süreçlerinde görev aldım; yaklaşık 4.500 kişilik açık hava etkinlik alanı için operasyon, tanıtım, sponsorluk ve iş ortaklığı süreçlerini destekledim.</li></ul></div>
+              <div class="detail-group"><h4>Görev ve Sorumluluklar</h4><ul class="achievement-list">
+                <li>Google Ads kampanyalarını kurdum, yönettim ve performanslarını takip ettim.</li>
+                <li>Google Analytics, Search Console, Google Business, Booking.com, Expedia, ElektraWeb ve Opera süreçlerini yönettim.</li>
+                <li>Resepsiyon ekiplerine satış, misafir iletişimi ve operasyon standartları konusunda eğitim verdim.</li>
+                <li>Web sitesi, online rezervasyon ve dijital satış sistemlerinin geliştirilmesini sağladım.</li>
+              </ul></div>
+            </div>
+            <div class="tags"><span class="pill">Google Ads</span><span class="pill">AI Content</span><span class="pill">6 Otel</span><span class="pill">Etkinlik</span><span class="pill">Dijital Dönüşüm</span></div>
+          </div></div>
+        </article>
+
+        <article class="glass experience tilt reveal">
+          <button class="experience-btn" type="button" aria-expanded="false">
+            <span class="period">Ocak 2023 - Günümüz</span>
+            <span><h3 class="role">Kıdemli Web Geliştirici ve Dijital Pazarlama Danışmanı</h3><span class="company">Fures Tech, Uluslararası</span><p class="summary">Turizm, e-ticaret ve yerel işletmeler için web ürünleri, AI sistemleri ve dönüşüm odaklı dijital kampanyalar geliştiriyorum.</p></span>
+            <span class="chevron"><svg class="icon"><use href="#i-plus"></use></svg></span>
+          </button>
+          <div class="experience-details"><div class="experience-inner">
+            <div class="detail-groups"><div class="detail-group"><h4>Görev ve Sorumluluklar</h4><ul class="achievement-list">
+              <li>Turizm, e-ticaret ve yerel işletmeler için web siteleri ve dijital kampanyalar geliştirdim.</li>
+              <li>React, TypeScript ve JavaScript tabanlı web projeleri hazırladım.</li>
+              <li>Yapay zekâ destekli içerik, ürün açıklaması ve reklam metni sistemleri geliştirdim.</li>
+              <li>Markalar için SEO, içerik stratejisi ve dönüşüm odaklı kullanıcı deneyimleri tasarladım.</li>
+              <li>Çok dilli web siteleri ve pazarlama materyalleri hazırladım.</li>
+              <li>AI destekli turizm, içerik ve müşteri deneyimi uygulamaları geliştirdim.</li>
+            </ul></div></div>
+            <div class="tags"><span class="pill">React</span><span class="pill">TypeScript</span><span class="pill">AI Systems</span><span class="pill">SEO</span><span class="pill">UX</span></div>
+          </div></div>
+        </article>
+
+        <article class="glass experience tilt reveal">
+          <button class="experience-btn" type="button" aria-expanded="false">
+            <span class="period">Temmuz 2021 - Mayıs 2023</span>
+            <span><h3 class="role">Otel Müdür Yardımcısı</h3><span class="company">Mimoza Beach Hotel & Dorana Hotels</span><p class="summary">Günlük otel operasyonlarını, satış ve rezervasyon süreçlerini, ekip planlamasını ve misafir memnuniyetini yönettim.</p></span>
+            <span class="chevron"><svg class="icon"><use href="#i-plus"></use></svg></span>
+          </button>
+          <div class="experience-details"><div class="experience-inner">
+            <div class="detail-groups"><div class="detail-group"><h4>Görev ve Sorumluluklar</h4><ul class="achievement-list">
+              <li>Günlük otel operasyonlarını ve personel planlamasını yönettim.</li>
+              <li>Satış, rezervasyon, fiyatlandırma ve online kanal süreçlerini takip ettim.</li>
+              <li>Özel etkinlik, grup rezervasyonu ve kurumsal müşteri süreçlerini koordine ettim.</li>
+              <li>Sosyal medya, kampanya ve sezonluk tanıtım çalışmalarına katkı sağladım.</li>
+              <li>Misafir yorumları ve geri bildirimlerinden iyileştirme alanları belirledim.</li>
+              <li>Şikâyet yönetimi, satış geliştirme ve misafir memnuniyeti süreçlerini yürüttüm.</li>
+            </ul></div></div>
+            <div class="tags"><span class="pill">Hotel Management</span><span class="pill">Sales</span><span class="pill">Reservations</span><span class="pill">Guest Experience</span></div>
+          </div></div>
+        </article>
+
+        <article class="glass experience tilt reveal">
+          <button class="experience-btn" type="button" aria-expanded="false">
+            <span class="period">Kasım 2019 - Temmuz 2021</span>
+            <span><h3 class="role">Resepsiyonist</h3><span class="company">Mimoza Beach Hotel</span><p class="summary">Rezervasyon, satış, misafir ilişkileri, faturalandırma ve kasa operasyonlarının tamamında doğrudan saha deneyimi kazandım.</p></span>
+            <span class="chevron"><svg class="icon"><use href="#i-plus"></use></svg></span>
+          </button>
+          <div class="experience-details"><div class="experience-inner">
+            <div class="detail-groups"><div class="detail-group"><h4>Görev ve Sorumluluklar</h4><ul class="achievement-list">
+              <li>Telefon, e-posta ve online kanallardan gelen rezervasyonları yönettim.</li>
+              <li>Misafirlere oda, restoran, etkinlik ve ek hizmet satışları yaptım.</li>
+              <li>Misafir davranışları ve talepleri hakkında doğrudan saha deneyimi kazandım.</li>
+              <li>Online yorumlar ve müşteri geri bildirimleriyle ilgilendim.</li>
+              <li>Check-in, check-out, faturalandırma ve kasa işlemlerini yürüttüm.</li>
+            </ul></div></div>
+            <div class="tags"><span class="pill">Reception</span><span class="pill">Reservations</span><span class="pill">Upselling</span><span class="pill">Guest Relations</span></div>
+          </div></div>
+        </article>
+
+        <article class="glass experience tilt reveal">
+          <button class="experience-btn" type="button" aria-expanded="false">
+            <span class="period">Ağustos 2018 - Kasım 2019</span>
+            <span><h3 class="role">Resepsiyonist</h3><span class="company">Concorde Luxury Resort & Casino</span><p class="summary">Beş yıldızlı, yüksek tempolu otel ortamında uluslararası ve VIP misafir operasyonlarını yönettim.</p></span>
+            <span class="chevron"><svg class="icon"><use href="#i-plus"></use></svg></span>
+          </button>
+          <div class="experience-details"><div class="experience-inner">
+            <div class="detail-groups"><div class="detail-group"><h4>Görev ve Sorumluluklar</h4><ul class="achievement-list">
+              <li>Beş yıldızlı otel ortamında uluslararası ve VIP misafirlerle çalıştım.</li>
+              <li>Opera PMS üzerinden rezervasyon, check-in ve ödeme işlemlerini yönettim.</li>
+              <li>Yoğun operasyonlarda hızlı problem çözme ve ikna becerisi geliştirdim.</li>
+              <li>Misafir sadakati ve satış fırsatlarını destekleyen birebir iletişim kurdum.</li>
+            </ul></div></div>
+            <div class="tags"><span class="pill">Luxury Hotel</span><span class="pill">Opera PMS</span><span class="pill">VIP Guests</span><span class="pill">Problem Solving</span></div>
+          </div></div>
+        </article>
+
+        <article class="glass experience tilt reveal">
+          <button class="experience-btn" type="button" aria-expanded="false">
+            <span class="period">Mayıs 2018 - Ağustos 2018</span>
+            <span><h3 class="role">Resepsiyonist</h3><span class="company">Granada Luxury Hotels</span><p class="summary">Yüksek sezonda yoğun misafir akışını, oda dağılımını, karşılama ve satış destek süreçlerini yönettim.</p></span>
+            <span class="chevron"><svg class="icon"><use href="#i-plus"></use></svg></span>
+          </button>
+          <div class="experience-details"><div class="experience-inner">
+            <div class="detail-groups"><div class="detail-group"><h4>Görev ve Sorumluluklar</h4><ul class="achievement-list">
+              <li>Yüksek sezonda yoğun misafir operasyonlarını yönettim.</li>
+              <li>Oda dağılımı, misafir karşılama ve satış destek süreçlerinde görev aldım.</li>
+              <li>Otel hizmetlerinin tanıtımı ve ek satış süreçlerini destekledim.</li>
+            </ul></div></div>
+            <div class="tags"><span class="pill">Front Office</span><span class="pill">High Season</span><span class="pill">Room Allocation</span><span class="pill">Sales Support</span></div>
+          </div></div>
+        </article>
+
+        <article class="glass experience tilt reveal">
+          <button class="experience-btn" type="button" aria-expanded="false">
+            <span class="period">2012 - 2017</span>
+            <span><h3 class="role">Sanayi ve Lojistik Deneyimi</h3><span class="company">BMW Group, FedEx, Continental ve Infineon - Regensburg, Almanya</span><p class="summary">Uluslararası üretim ve lojistik ortamlarında kalite, süreç disiplini, teknik operasyon ve Almanca ekip çalışması deneyimi kazandım.</p></span>
+            <span class="chevron"><svg class="icon"><use href="#i-plus"></use></svg></span>
+          </button>
+          <div class="experience-details"><div class="experience-inner">
+            <div class="detail-groups"><div class="detail-group"><h4>Görev ve Sorumluluklar</h4><ul class="achievement-list">
+              <li>Uluslararası şirketlerde üretim, kalite, lojistik ve teknik süreçlerde çalıştım.</li>
+              <li>Disiplinli çalışma, zaman yönetimi, kalite kontrol ve süreç takibi deneyimi kazandım.</li>
+              <li>Almanca iş ortamında ekip çalışması ve operasyon standartlarına uyum sağladım.</li>
+            </ul></div></div>
+            <div class="tags"><span class="pill">BMW Group</span><span class="pill">FedEx</span><span class="pill">Quality</span><span class="pill">Logistics</span><span class="pill">German Workplace</span></div>
+          </div></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="section shell">
+      <div class="section-head reveal">
+        <div><p class="eyebrow">Dijital Araçlar ve Yetkinlikler</p><h2 class="title">Stratejiden üretime kadar <span class="metallic">tam araç seti.</span></h2></div>
+        <p class="body-copy">Reklam, analiz, içerik, web geliştirme, otomasyon ve otel sistemlerini aynı büyüme hedefi altında kullanıyorum.</p>
+      </div>
+
+      <div class="skills-layout">
+        <article class="glass skill-card tilt reveal">
+          <div class="skill-head"><div class="skill-icon"><svg class="icon"><use href="#i-chart"></use></svg></div><div><h3>Reklam ve Analiz</h3><p>Performans, görünürlük ve dönüşüm</p></div></div>
+          <div class="skill-list">
+            <div class="skill-row"><span>Google Ads</span><span class="level">Uzman</span></div>
+            <div class="skill-row"><span>Search Ads 360</span><span class="level">Uzman</span></div>
+            <div class="skill-row"><span>Google Analytics</span><span class="level">Uzman</span></div>
+            <div class="skill-row"><span>Search Console</span><span class="level">Uzman</span></div>
+            <div class="skill-row"><span>Google Business Profile</span><span class="level">Uzman</span></div>
+          </div>
+        </article>
+
+        <article class="glass skill-card tilt reveal">
+          <div class="skill-head"><div class="skill-icon"><svg class="icon"><use href="#i-sparkles"></use></svg></div><div><h3>İçerik ve Tasarım</h3><p>Hızlı, çok dilli yaratıcı üretim</p></div></div>
+          <div class="skill-list">
+            <div class="skill-row"><span>Adobe Photoshop</span><span class="level">Çok İyi</span></div>
+            <div class="skill-row"><span>Canva</span><span class="level">Uzman</span></div>
+            <div class="skill-row"><span>AI görsel üretim araçları</span><span class="level">Uzman</span></div>
+            <div class="skill-row"><span>AI video araçları</span><span class="level">Çok İyi</span></div>
+            <div class="skill-row"><span>Kısa video düzenleme</span><span class="level">Çok İyi</span></div>
+          </div>
+        </article>
+
+        <article class="glass skill-card tilt reveal">
+          <div class="skill-head"><div class="skill-icon"><svg class="icon"><use href="#i-code"></use></svg></div><div><h3>Web ve Otomasyon</h3><p>Modern web ürünleri ve AI sistemleri</p></div></div>
+          <div class="skill-list">
+            <div class="skill-row"><span>JavaScript</span><span class="level">Çok İyi</span></div>
+            <div class="skill-row"><span>React</span><span class="level">Çok İyi</span></div>
+            <div class="skill-row"><span>TypeScript</span><span class="level">Çok İyi</span></div>
+            <div class="skill-row"><span>Gemini API</span><span class="level">Çok İyi</span></div>
+            <div class="skill-row"><span>AI otomasyon sistemleri</span><span class="level">Uzman</span></div>
+          </div>
+        </article>
+
+        <article class="glass skill-card tilt reveal">
+          <div class="skill-head"><div class="skill-icon"><svg class="icon"><use href="#i-hotel"></use></svg></div><div><h3>Otel ve Operasyon</h3><p>PMS, satış kanalları ve saha süreçleri</p></div></div>
+          <div class="skill-list">
+            <div class="skill-row"><span>ElektraWeb</span><span class="level">Uzman</span></div>
+            <div class="skill-row"><span>Opera PMS</span><span class="level">Uzman</span></div>
+            <div class="skill-row"><span>Protel</span><span class="level">Çok İyi</span></div>
+            <div class="skill-row"><span>Sedna</span><span class="level">Çok İyi</span></div>
+            <div class="skill-row"><span>MICROS</span><span class="level">Çok İyi</span></div>
+            <div class="skill-row"><span>Booking.com</span><span class="level">Uzman</span></div>
+            <div class="skill-row"><span>Expedia</span><span class="level">Çok İyi</span></div>
+          </div>
+        </article>
+
+        <article class="glass skill-card language-card tilt reveal">
+          <div class="skill-head"><div class="skill-icon"><svg class="icon"><use href="#i-globe"></use></svg></div><div><h3>Diller</h3><p>Uluslararası misafir ve iş ortamı iletişimi</p></div></div>
+          <div class="language-grid">
+            <div class="language-box"><strong>Türkçe</strong><span>Ana dil</span></div>
+            <div class="language-box"><strong>Almanca</strong><span>İleri seviye, C1</span></div>
+            <div class="language-box"><strong>İngilizce</strong><span>İleri seviye, B2.2</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section shell">
+      <div class="section-head reveal">
+        <div><p class="eyebrow">Öne Çıkan Projeler</p><h2 class="title">Fikir değil, çalışan <span class="metallic">ürünler ve sistemler.</span></h2></div>
+        <p class="body-copy">AI, turizm teknolojisi, e-ticaret, içerik otomasyonu ve etkinlik yönetimi alanlarında geliştirilen seçili çalışmalar.</p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="meinhotel">
+          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 01</span><span class="project-status">Yapım Aşamasında</span><div class="project-orbit"></div></div>
+          <div class="project-copy"><h3>MeinHotel PMS</h3><span class="project-role">Ürün Sahibi ve Bağımsız Geliştirici</span><p>Otelcilik ve ön büro deneyiminden doğan, otellerin günlük operasyonlarını tek platformdan yöneten çok kiracılı Property Management System.</p><div class="project-tags"><span class="pill">Next.js</span><span class="pill">TypeScript</span><span class="pill">Supabase</span><span class="pill">PostgreSQL</span></div><div class="project-bottom"><span>Geliştirme Sürümünü Aç <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+        </article>
+
+        <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="serakinci">
+          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 02</span><div class="project-orbit"></div></div>
+          <div class="project-copy"><h3>Serakıncı Yapay Zeka Ürün Platformu</h3><p>Yapay zeka tarafından oluşturulan açıklamalar ve veri kazıma hatları ile otomatik, çok dilli, SEO odaklı katalog.</p><div class="project-tags"><span class="pill">Automation</span><span class="pill">Scraping</span><span class="pill">SEO</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+        </article>
+
+        <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="zuzumood">
+          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 03</span><div class="project-orbit"></div></div>
+          <div class="project-copy"><h3>ZuzuMood E-Ticaret Deneyimi</h3><p>Teksas merkezli ZuzuMood için Etsy odaklı ürün vitrinleri, kategori mimarisi, blog akışı ve dönüşüm odaklı butik marka anlatımı tasarlandı.</p><div class="project-tags"><span class="pill">E-Commerce</span><span class="pill">SEO</span><span class="pill">Brand Experience</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+        </article>
+
+        <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="mariaalm">
+          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 04</span><span class="project-status">Yapım Aşamasında</span><div class="project-orbit"></div></div>
+          <div class="project-copy"><h3>in Maria Alm Dijital Keşif Atlası</h3><p>Yapım aşamasındaki proje; Maria Alm ve Hochkönig bölgesi için rota keşfi, interaktif harita, sezon rehberi ve AI destekli gün planlayıcı sunan turizm portalıdır.</p><div class="project-tags"><span class="pill">Travel Tech</span><span class="pill">AI Planner</span><span class="pill">Tourism UX</span></div><div class="project-bottom"><span>Geliştirme Sürümünü Aç <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+        </article>
+
+        <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="cyprus">
+          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 05</span><div class="project-orbit"></div></div>
+          <div class="project-copy"><h3>Yapay Zeka Destekli Kıbrıs Tatil Planlayıcısı</h3><p>Kullanıcı tercihlerine ve hava durumu bağlamına göre çok dilli, kişiselleştirilmiş seyahat planları oluşturan akıllı uygulama.</p><div class="project-tags"><span class="pill">AI</span><span class="pill">React</span><span class="pill">Travel Tech</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+        </article>
+
+        <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="integration">
+          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 06</span><div class="project-orbit"></div></div>
+          <div class="project-copy"><h3>Otel ve Acente Entegrasyonu</h3><p>6 oteli acente operasyonlarıyla entegre ederek süreçleri kolaylaştırdı, maliyetleri düşürdü ve veri akışlarını birleştirdi.</p><div class="project-tags"><span class="pill">Digital Transformation</span><span class="pill">Systems</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+        </article>
+
+        <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="icalt">
+          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 07</span><div class="project-orbit"></div></div>
+          <div class="project-copy"><h3>ICALT 2024 Kongre Yönetimi</h3><p>Dorana Turizm işbirliğiyle uluslararası bir konferansın planlanması ve koordinasyonu.</p><div class="project-tags"><span class="pill">Event Management</span><span class="pill">Logistics</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="education" class="section shell">
+      <div class="section-head reveal">
+        <div><p class="eyebrow">Eğitim ve Sertifikalar</p><h2 class="title">Sürekli öğrenme, <span class="metallic">uygulamayla tamamlanır.</span></h2></div>
+        <p class="body-copy">Turizm, web teknolojileri, otomasyon, dijital reklam ve otel sistemleri arasında birleşen eğitim altyapısı.</p>
+      </div>
+
+      <div class="dual-grid">
+        <div>
+          <p class="eyebrow" style="margin-bottom:16px">Eğitim</p>
+          <div class="edu-list">
+            <article class="glass edu-card tilt reveal"><span>2025 - Devam ediyor</span><h3>Turizm ve Otel İşletmeciliği, Önlisans</h3><p>Anadolu Üniversitesi</p></article>
+            <article class="glass edu-card tilt reveal"><span>2020 - 2023</span><h3>Web Tasarımı ve Kodlama, Önlisans</h3><p>Anadolu Üniversitesi</p></article>
+            <article class="glass edu-card tilt reveal"><span>2015 - 2017</span><h3>Üretim ve Otomasyon Teknolojileri</h3><p>OTH Regensburg, Almanya</p></article>
+          </div>
+        </div>
+
+        <div>
+          <p class="eyebrow" style="margin-bottom:16px">Sertifikalar</p>
+          <div class="cert-list">
+            <article class="glass cert-card tilt reveal"><span>Google, 2026</span><h3>Yapay Zekâ Destekli Performans Reklamları</h3></article>
+            <article class="glass cert-card tilt reveal"><span>Google, 2025</span><h3>Search Ads 360 Sertifikası</h3></article>
+            <article class="glass cert-card tilt reveal"><span>HubSpot Academy, 2023</span><h3>Sosyal Medya Pazarlama</h3></article>
+            <article class="glass cert-card tilt reveal"><span>Institute of Hospitality, 2022</span><h3>Konaklama Sektörü için Sosyal Medya</h3></article>
+            <article class="glass cert-card tilt reveal"><span>Google / Coursera, 2020</span><h3>Google IT Destek Uzmanlığı</h3></article>
+            <article class="glass cert-card tilt reveal"><span>Next Learn Academy, 2023</span><h3>Opera PMS Otel Yazılımı</h3></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section shell">
+      <article class="glass contact-card tilt reveal">
+        <div>
+          <p class="eyebrow">İletişim</p>
+          <h2>Pazarlama, büyüme ve teknoloji aynı masada.</h2>
+          <p>Yüksek etkili pazarlama, turizm teknolojisi, AI içerik üretimi, saha aktivasyonu veya iş ortaklığı projeleri için doğrudan iletişime geçebilirsiniz.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:furkanyonat@gmail.com"><svg class="icon icon-sm"><use href="#i-mail"></use></svg>E-posta Gönder</a>
+            <button class="btn pdf-btn" type="button"><svg class="icon icon-sm"><use href="#i-download"></use></svg>PDF İndir</button>
+          </div>
+        </div>
+        <div class="contact-links">
+          <a class="contact-link" href="tel:+436604849181"><span><svg class="icon"><use href="#i-phone"></use></svg>Telefon</span><strong>+43 660 484 9181</strong></a>
+          <a class="contact-link" href="mailto:furkanyonat@gmail.com"><span><svg class="icon"><use href="#i-mail"></use></svg>E-posta</span><strong>furkanyonat@gmail.com</strong></a>
+          <div class="contact-link"><span><svg class="icon"><use href="#i-pin"></use></svg>Mevcut Konum</span><strong>Maria Alm, Salzburg, Avusturya</strong></div>
+          <button class="contact-link vcard-btn" type="button" style="width:100%; color:inherit; cursor:pointer"><span><svg class="icon"><use href="#i-contact"></use></svg>vCard</span><strong>Kişilere Kaydet</strong></button>
+        </div>
+      </article>
+      <div class="footer-line"><span>© 2026 Furkan Yonat.</span><span>Pazarlama · Büyüme · Turizm Teknolojisi</span></div>
+    </section>
+  </main>
+
+  <button class="chat-trigger" id="chat-trigger" type="button" aria-label="Profil sohbetini aç" aria-expanded="false"><svg class="icon"><use href="#i-message"></use></svg></button>
+  <aside class="glass chat-panel" id="chat-panel" aria-live="polite">
+    <h3>Profil Sohbeti</h3>
+    <p>AI asistanı şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.</p>
+    <div class="chat-status"><i></i>Asistan çevrimdışı</div>
+  </aside>
+
+  <div class="modal" id="project-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="project-title">
+    <article class="glass modal-card">
+      <div class="modal-head">
+        <div><p class="eyebrow" id="project-eyebrow">Proje</p><h3 id="project-title">Proje Başlığı</h3></div>
+        <button class="close" type="button" aria-label="Pencereyi kapat"><svg class="icon"><use href="#i-x"></use></svg></button>
+      </div>
+      <p class="modal-description" id="project-description"></p>
+      <div class="modal-tags" id="project-tags"></div>
+      <div class="cta-row" id="project-actions" style="margin-top:22px">
+        <a class="btn btn-primary" id="project-link" href="#" target="_blank" rel="noopener noreferrer">Projeyi Aç <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></a>
+      </div>
+      <div class="modal-note" id="project-note">Canlı proje bağlantısı yeni sekmede açılır.</div>
+    </article>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"></path></symbol>
+    <symbol id="i-arrow-down-right" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7v10H7"></path></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></symbol>
+    <symbol id="i-contact" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"></circle><path d="M3 21v-2a6 6 0 0 1 12 0v2M16 11h5M18.5 8.5v5"></path></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.7 2.6a2 2 0 0 1-.5 2.1L9 10.7a16 16 0 0 0 4.3 4.3l1.3-1.3a2 2 0 0 1 2.1-.5c.8.4 1.7.6 2.6.7a2 2 0 0 1 1.7 2Z"></path></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></symbol>
+    <symbol id="i-handshake" viewBox="0 0 24 24"><path d="m8 11 2 2a2 2 0 0 0 3 0l3-3"></path><path d="m2 9 4-4 5 1 2 2 2-2 3-1 4 4-3 7-5 4-3-2-3 1-5-5-1-5Z"></path></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.2 3.8L17 8l-3.8 1.2L12 13l-1.2-3.8L7 8l3.8-1.2L12 3Z"></path><path d="m19 14 .8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8L19 14ZM5 14l.7 1.8L7.5 16l-1.8.7L5 18.5l-.7-1.8L2.5 16l1.8-.2L5 14Z"></path></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"></path></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="m3 11 15-6v14L3 13v-2Z"></path><path d="M11.6 16.5 13 21H8l-1.3-6.1M18 9a3 3 0 0 1 0 6"></path></symbol>
+    <symbol id="i-hotel" viewBox="0 0 24 24"><path d="M4 22V4h16v18M2 22h20M8 8h2m4 0h2M8 12h2m4 0h2M9 22v-5h6v5"></path></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"></path></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"></path><path d="M8 9h8M8 13h5"></path></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></symbol>
+  </svg>
+
+  <script>
+    const projectData = {
+      meinhotel: {
+        eyebrow: 'Ürün Sahibi ve Bağımsız Geliştirici · Yapım Aşamasında',
+        title: 'MeinHotel PMS',
+        description: 'Otelcilik ve ön büro operasyonlarındaki deneyimimi dijital bir ürüne dönüştürerek, otellerin günlük operasyonlarını tek platformdan yönetmesini sağlayan çok kiracılı bir Property Management System geliştirdim. Sistem; rezervasyon ve misafir yönetimi, oda planı, check-in/check-out, housekeeping, folyo işlemleri, ödeme, faturalandırma, fiyat yönetimi ve operasyonel raporlama modüllerini içeriyor. Ürünün kullanıcı deneyimi, iş akışları, veri modeli, güvenlik mimarisi ve yayınlama süreçlerini uçtan uca yönettim.',
+        tags: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'Row Level Security', 'Vercel'],
+        url: 'https://meinhotel.vercel.app/',
+        status: 'Yapım Aşamasında',
+        note: 'MeinHotel PMS aktif olarak geliştirilmektedir. Bağlantı mevcut geliştirme sürümünü yeni sekmede açar.'
+      },
+      serakinci: { eyebrow: 'Automation · Scraping · SEO', title: 'Serakıncı Yapay Zeka Ürün Platformu', description: 'Yapay zeka tarafından oluşturulan açıklamalar ve veri kazıma hatları ile otomatik, çok dilli, SEO odaklı katalog.', tags: ['Automation', 'Scraping', 'SEO'], url: 'https://www.fures.at/projects/serakinci' },
+      zuzumood: { eyebrow: 'E-Commerce · SEO · Brand Experience', title: 'ZuzuMood E-Ticaret Deneyimi', description: 'Teksas merkezli ZuzuMood için Etsy odaklı ürün vitrinleri, kategori mimarisi, blog akışı ve dönüşüm odaklı butik marka anlatımı tasarlandı.', tags: ['E-Commerce', 'SEO', 'Brand Experience'], url: 'https://www.zuzumood.com/' },
+      mariaalm: {
+        eyebrow: 'Travel Tech · AI Planner · Tourism UX · Yapım Aşamasında',
+        title: 'in Maria Alm Dijital Keşif Atlası',
+        description: 'Yapım aşamasındaki proje; Maria Alm ve Hochkönig bölgesi için 65 rotalık veri temeli, filtrelenebilir rota keşfi, interaktif harita, sezon rehberi, gece ve fotoğraf deneyimleri ile AI destekli gün planlayıcı içeren bir turizm portalıdır.',
+        tags: ['Travel Tech', 'AI Planner', 'Tourism UX'],
+        url: 'https://inmariaalm.at/',
+        status: 'Yapım Aşamasında',
+        note: 'in Maria Alm aktif olarak geliştirilmektedir. Bağlantı mevcut geliştirme sürümünü yeni sekmede açar.'
+      },
+      cyprus: { eyebrow: 'AI · React · Travel Tech', title: 'Yapay Zeka Destekli Kıbrıs Tatil Planlayıcısı', description: 'Kullanıcı tercihlerine ve hava durumu bağlamına göre çok dilli, kişiselleştirilmiş seyahat planları oluşturan akıllı uygulama.', tags: ['AI', 'React', 'Travel Tech'], url: 'https://www.fures.at/projects/aboutcyprus/' },
+      integration: { eyebrow: 'Digital Transformation · Systems', title: 'Otel ve Acente Entegrasyonu', description: '6 oteli acente operasyonlarıyla entegre ederek süreçleri kolaylaştırdı, maliyetleri düşürdü ve veri akışlarını birleştirdi.', tags: ['Digital Transformation', 'Systems'], url: 'https://www.fures.at/projects/hotel' },
+      icalt: { eyebrow: 'Event Management · Logistics', title: 'ICALT 2024 Kongre Yönetimi', description: 'Dorana Turizm işbirliğiyle uluslararası bir konferansın planlanması ve koordinasyonu.', tags: ['Event Management', 'Logistics'], url: 'https://www.fures.at/projects/icalt' }
+    };
+
+    const body = document.body;
+    const menuButton = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const projectModal = document.getElementById('project-modal');
+    const toast = document.getElementById('toast');
+    const chatTrigger = document.getElementById('chat-trigger');
+    const chatPanel = document.getElementById('chat-panel');
+    let toastTimer;
+    let lastFocused = null;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    menuButton.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+
+    document.querySelectorAll('.lang-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const lang = button.dataset.lang;
+        if (lang !== 'TR') {
+          showToast(`${lang} dil sürümü için içerik çevirisi henüz eklenmedi.`);
+          return;
+        }
+        document.querySelectorAll('.lang-btn').forEach(item => item.classList.toggle('active', item.dataset.lang === 'TR'));
+        showToast('Türkçe içerik aktif.');
+      });
+    });
+
+    document.querySelectorAll('.pdf-btn').forEach(button => button.addEventListener('click', () => window.print()));
+
+    document.querySelectorAll('.experience-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.experience');
+        card.classList.toggle('open');
+        button.setAttribute('aria-expanded', String(card.classList.contains('open')));
+      });
+    });
+
+    function openProject(key) {
+      const project = projectData[key];
+      if (!project) return;
+      lastFocused = document.activeElement;
+      document.getElementById('project-eyebrow').textContent = project.eyebrow;
+      document.getElementById('project-title').textContent = project.title;
+      document.getElementById('project-description').textContent = project.description;
+      document.getElementById('project-tags').innerHTML = project.tags.map(tag => `<span class="pill">${tag}</span>`).join('');
+      const projectLink = document.getElementById('project-link');
+      const projectActions = document.getElementById('project-actions');
+      const projectNote = document.getElementById('project-note');
+      if (project.url) {
+        projectLink.href = project.url;
+        projectLink.innerHTML = `${project.status ? 'Geliştirme Sürümünü Aç' : 'Projeyi Aç'} <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg>`;
+        projectActions.hidden = false;
+        projectNote.textContent = project.note || 'Canlı proje bağlantısı yeni sekmede açılır.';
+      } else {
+        projectLink.removeAttribute('href');
+        projectActions.hidden = true;
+        projectNote.textContent = project.note || 'Bu proje için canlı bağlantı henüz eklenmedi.';
+      }
+      projectModal.classList.add('open');
+      projectModal.setAttribute('aria-hidden', 'false');
+      body.style.overflow = 'hidden';
+      projectModal.querySelector('.close').focus();
+    }
+
+    function closeProject() {
+      projectModal.classList.remove('open');
+      projectModal.setAttribute('aria-hidden', 'true');
+      body.style.overflow = '';
+      lastFocused?.focus?.();
+    }
+
+    document.querySelectorAll('[data-project]').forEach(card => {
+      const launch = () => openProject(card.dataset.project);
+      card.addEventListener('click', launch);
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          launch();
+        }
+      });
+    });
+    projectModal.querySelector('.close').addEventListener('click', closeProject);
+    projectModal.addEventListener('mousedown', event => { if (event.target === projectModal) closeProject(); });
+
+    chatTrigger.addEventListener('click', () => {
+      const open = chatPanel.classList.toggle('open');
+      chatTrigger.setAttribute('aria-expanded', String(open));
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        if (projectModal.classList.contains('open')) closeProject();
+        mobileMenu.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        chatPanel.classList.remove('open');
+        chatTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    const vCard = `BEGIN:VCARD\nVERSION:3.0\nN:Yonat;Furkan;;;\nFN:Furkan Yonat\nTITLE:Teknoloji, Dijital Pazarlama ve Otelcilik Profesyoneli\nORG:Fures Tech\nTEL;TYPE=CELL:+436604849181\nEMAIL;TYPE=INTERNET:furkanyonat@gmail.com\nADR;TYPE=WORK:;;;Maria Alm;Salzburg;;Austria\nNOTE:IT Support | Web Geliştirme | Dijital Pazarlama | Otel Operasyonları\nEND:VCARD`;
+    document.querySelectorAll('.vcard-btn').forEach(button => button.addEventListener('click', () => {
+      const blob = new Blob([vCard], { type: 'text/vcard;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'furkan-yonat.vcf';
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }));
+
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const coarsePointer = matchMedia('(pointer: coarse)').matches;
+    if (!reduceMotion && !coarsePointer) {
+      document.querySelectorAll('.tilt').forEach(card => {
+        card.addEventListener('mousemove', event => {
+          const rect = card.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+          const rotateY = (x / rect.width - .5) * 7;
+          const rotateX = (y / rect.height - .5) * -7;
+          card.style.setProperty('--mx', `${x}px`);
+          card.style.setProperty('--my', `${y}px`);
+          card.style.transform = `perspective(1100px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1100px) rotateX(0) rotateY(0) translateZ(0)';
+        });
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .1 });
+      document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+
+      const sections = [...document.querySelectorAll('main section[id]')];
+      const navLinks = [...document.querySelectorAll('.desktop-nav [data-section]')];
+      const sectionObserver = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        navLinks.forEach(link => link.classList.toggle('active', link.dataset.section === visible.target.id));
+      }, { rootMargin: '-30% 0px -55% 0px', threshold: [.08, .25, .5] });
+      sections.forEach(section => sectionObserver.observe(section));
+    } else {
+      document.querySelectorAll('.reveal').forEach(element => element.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
