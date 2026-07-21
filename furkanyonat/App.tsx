@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { translations, experienceOrder } from './data/translations';
 import Header from './components/Sidebar';
 import KPIs from './components/KPIs';
@@ -15,8 +15,8 @@ import { AccessibilityModal } from './components/modals/AccessibilityModal';
 type Theme = 'light' | 'dark' | 'system';
 
 const Hero = ({ t }: { t: any }) => (
-  <section id="hero" className="min-h-screen flex items-center justify-center text-center pt-12 md:pt-16">
-    <div className="max-w-3xl mx-auto px-4 space-y-6">
+  <section id="hero" className="min-h-[92vh] flex items-center justify-center text-center pt-20 md:pt-24" aria-labelledby="hero-title">
+    <div className="max-w-4xl mx-auto px-4 space-y-6">
       <div className="flex justify-center">
         <div className="relative">
           <div
@@ -25,14 +25,14 @@ const Hero = ({ t }: { t: any }) => (
           />
           <img
             src={t.contactInfo.profileImage}
-            alt={`${t.name} portrait`}
-            className="relative h-36 w-36 rounded-full border border-white/30 shadow-xl object-cover"
+            alt={t.hero.imageAlt || `${t.name} portrait`}
+            className="relative h-40 w-40 rounded-full border-2 border-white/30 shadow-2xl object-cover ring-8 ring-white/5"
             loading="eager"
           />
         </div>
       </div>
       <div className="space-y-3">
-        <h1 className="text-5xl md:text-7xl font-bold text-primary-text font-display leading-tight">
+        <h1 id="hero-title" className="text-5xl md:text-7xl font-bold text-primary-text font-display leading-tight">
           {t.name}
         </h1>
         <div className="flex flex-wrap items-center justify-center gap-3 text-sm md:text-base text-secondary-text">
@@ -47,11 +47,13 @@ const Hero = ({ t }: { t: any }) => (
           </div>
         </div>
       </div>
-      <div className="inline-block glass-card rounded-full px-4 py-1.5 text-sm font-semibold border-none">
-        {t.title}
-      </div>
-      <div className="inline-block glass-card rounded-full px-4 py-1.5 text-sm font-semibold border-none">
-        {t.hero.pretitle}
+      <div className="flex flex-wrap justify-center gap-3">
+        <div className="inline-block glass-card rounded-full px-4 py-1.5 text-sm font-semibold border-none">
+          {t.title}
+        </div>
+        <div className="inline-block glass-card rounded-full px-4 py-1.5 text-sm font-semibold border-none">
+          {t.hero.pretitle}
+        </div>
       </div>
       <h2 className="text-4xl md:text-6xl font-bold text-primary-text font-display leading-tight">
         {t.hero.title}{' '}
@@ -130,6 +132,22 @@ const App = () => {
 
   const t = translations[language as keyof typeof translations] || translations.tr;
 
+  const seoDescription = useMemo(() => t.hero.subtitle.replace(/\s+/g, ' ').slice(0, 155), [t.hero.subtitle]);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.title = `${t.name} | ${t.title}`;
+
+    const description = document.querySelector<HTMLMetaElement>('meta[name=\"description\"]');
+    if (description) description.content = seoDescription;
+
+    const ogTitle = document.querySelector<HTMLMetaElement>('meta[property=\"og:title\"]');
+    if (ogTitle) ogTitle.content = `${t.name} | ${t.title}`;
+
+    const ogDescription = document.querySelector<HTMLMetaElement>('meta[property=\"og:description\"]');
+    if (ogDescription) ogDescription.content = seoDescription;
+  }, [language, seoDescription, t.name, t.title]);
+
   return (
     <div className="min-h-screen">
       <Header
@@ -142,7 +160,7 @@ const App = () => {
       />
           
       <div ref={contentRef} className="container mx-auto px-4 lg:px-8 max-w-screen-lg">
-          <main className="space-y-24 md:space-y-32 pt-24 pb-16">
+          <main id="main-content" className="space-y-24 md:space-y-32 pt-24 pb-16">
             <Hero t={t} />
             <KPIs t={t} />
             <Experience t={t} experienceOrder={experienceOrder} />

@@ -3,8 +3,8 @@ import profileImage from '../fotofurkan.jpeg';
 export const translations = {
   tr: {
     name: 'Furkan Yonat',
-    title: 'IT-Systembetreuer & Front Office Manager | Web Tasarımı ve Kodlama (Önlisans)',
-    vision: 'Avusturya\'da uzun vadeli çalışmaya hazır, C1 Almancaya ve ön büro/IT altyapısı kurulumunda saha deneyimine sahip. Konaklama operasyonlarını güvence altına alırken aynı anda web altyapısını ve sistem desteğini yönetir.',
+    title: 'IT Sistem Destek Uzmanı & Front Office Manager | Web Tasarımı ve Kodlama (Önlisans)',
+    vision: 'Avusturya\'da uzun vadeli çalışmaya hazır, C1 Almanca bilgisine ve ön büro/IT altyapısı kurulumunda saha deneyimine sahip. Konaklama operasyonlarını güvence altına alırken web altyapısını ve sistem desteğini de yönetir.',
     nav: {
       experience: 'Deneyim',
       skills: 'Yetenekler',
@@ -22,6 +22,7 @@ export const translations = {
       titleGradient: 'Teslimat Odaklı.',
       subtitle:
         'Dijital pazarlama odaklı IT-Systembetreuer & Ön Büro Yöneticisi. Sadece resepsiyonu Gastrodat/Opera ile sorunsuz yürütmekle kalmam, Google Ads, SEO ve profesyonel içerik tasarımıyla doğrudan rezervasyonlarınızı artırırım. Teknoloji, misafirperverlik ve ciro artışı için tam donanımlı bir jokerim.',
+      imageAlt: 'Furkan Yonat profil fotoğrafı',
       contact: { phone: 'Telefon', email: 'E-Posta', address: 'Adres' },
     },
     features: {
@@ -71,9 +72,9 @@ export const translations = {
         company: 'Mimoza Beach Hotel & Dorana Hotels',
         date: 'Tem 2021 – May 2023',
         tasks: [
-          'Günlük operasyonu ve personel planlamasını yönetti.',
-          'Misafir memnuniyeti ve şikayet yönetiminden sorumluydu.',
-          'Hijyen ve kalite standartlarını denetledi.',
+          'Günlük operasyonu ve personel planlamasını yönettim.',
+          'Misafir memnuniyeti ve şikayet yönetiminden sorumlu oldum.',
+          'Hijyen ve kalite standartlarını denetledim.',
         ]
       },
       mimoza_reception: {
@@ -254,8 +255,8 @@ export const translations = {
   },
   en: {
     name: 'Furkan Yonat',
-    title: 'IT Systems Support & Front Office Manager | Web Design & Coding (Associate Degree)',
-    vision: 'Hands-on hotel IT and front office lead with C1 German, ready for a long-term role in Austria. Keeps reception workflows, channel managers, and web infrastructure stable while following the chain of command.',
+    title: 'IT Systems Support Specialist & Front Office Manager | Web Design & Coding (Associate Degree)',
+    vision: 'Hands-on hotel IT and front office lead with C1 German, ready for a long-term role in Austria. Keeps reception workflows, channel managers, and web infrastructure stable with clear operational discipline.',
     nav: {
       experience: 'Experience',
       skills: 'Skills',
@@ -273,6 +274,7 @@ export const translations = {
       titleGradient: 'Delivers Steadily.',
       subtitle:
         'IT systems supporter and front office manager with a focus on digital marketing. I keep reception smooth on Gastrodat/Opera and grow direct bookings through Google Ads, SEO, and professional content design. A hands-on all-rounder for technology, hospitality, and revenue growth.',
+      imageAlt: 'Portrait of Furkan Yonat',
       contact: { phone: 'Phone', email: 'Email', address: 'Address' },
     },
     features: {
@@ -503,8 +505,8 @@ export const translations = {
   },
   de: {
     name: 'Furkan Yonat',
-    title: 'IT-Systembetreuer & Front Office Manager | Webdesign & Coding (Associate Degree / Diplom)',
-    vision: 'Hands-on IT- und Front-Office-Manager mit C1-Deutsch und Bereitschaft zur langfristigen Anstellung in Österreich. Sichert Gastrodat/Opera-Prozesse, Channel-Manager und Web-Infrastruktur im Einklang mit dem Dienstweg.',
+    title: 'IT-Systembetreuer & Front Office Manager | Webdesign & Coding (Associate Degree)',
+    vision: 'Hands-on IT- und Front-Office-Manager mit C1-Deutsch und Bereitschaft zur langfristigen Anstellung in Österreich. Sichert Gastrodat/Opera-Prozesse, Channel-Manager und Web-Infrastruktur mit klarer operativer Disziplin.',
     nav: {
       experience: 'Erfahrung',
       skills: 'Fähigkeiten',
@@ -522,6 +524,7 @@ export const translations = {
       titleGradient: 'Sofort einsatzbereit.',
       subtitle:
         'IT-Systembetreuer & Front Office Manager mit Fokus auf Digitales Marketing. Ich sorge nicht nur für reibungslose Abläufe an der Rezeption, sondern steigere auch Ihre Direktbuchungen durch Google Ads, SEO und professionelles Content-Design. Ein Allrounder für Technik, Gastfreundschaft und Umsatzwachstum.',
+      imageAlt: 'Porträt von Furkan Yonat',
       contact: { phone: 'Telefon', email: 'E-Mail', address: 'Adresse' },
     },
     features: {
@@ -689,8 +692,8 @@ export const translations = {
   },
   es: {
     name: 'Furkan Yonat',
-    title: 'IT-Systembetreuer y Front Office Manager | Diseño y Programación Web (Grado Asociado)',
-    vision: 'Gestor práctico de IT y recepción con alemán C1 y disposición para un puesto estable en Austria. Mantiene SOP de recepción, Channel Manager y la web corporativa bajo una cadena de mando clara.',
+    title: 'Especialista en Soporte IT & Front Office Manager | Diseño y Programación Web (Grado Asociado)',
+    vision: 'Perfil práctico de IT y recepción con alemán C1 y disposición para un puesto estable en Austria. Mantiene SOP de recepción, Channel Manager y web corporativa con disciplina operativa clara.',
     nav: {
       experience: 'Experiencia',
       skills: 'Habilidades',
@@ -708,6 +711,7 @@ export const translations = {
       titleGradient: 'Listo para Austria.',
       subtitle:
         'Gestor de IT y recepción con enfoque en marketing digital. Mantengo la recepción estable con Gastrodat/Opera y aumento las reservas directas mediante Google Ads, SEO y diseño de contenido profesional. Un perfil integral para tecnología, hospitalidad y crecimiento de ingresos.',
+      imageAlt: 'Retrato de Furkan Yonat',
       contact: { phone: 'Teléfono', email: 'Correo', address: 'Dirección' },
     },
     features: {

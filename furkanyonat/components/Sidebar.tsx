@@ -30,7 +30,7 @@ interface NavItemProps {
 }
 
 const NavItem: React.FC<NavItemProps> = ({ itemKey, activeSection, t }) => (
-  <a href={`#${itemKey}`} className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${activeSection === itemKey ? 'bg-white/10 text-primary-text' : 'text-secondary-text hover:text-primary-text'}`}>
+  <a href={`#${itemKey}`} aria-current={activeSection === itemKey ? 'location' : undefined} className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/70 ${activeSection === itemKey ? 'bg-white/10 text-primary-text' : 'text-secondary-text hover:text-primary-text'}`}>
     {NavIcons[itemKey]}
     <span>{t.nav[itemKey]}</span>
   </a>
@@ -70,19 +70,20 @@ const Header: React.FC<HeaderProps> = ({ t, language, setLanguage, activeSection
 
   return (
     <header className='fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] md:w-auto no-print'>
-      <div className="mx-auto glass-card p-2 rounded-full flex items-center justify-between shadow-2xl">
+      <div className="mx-auto glass-card p-2 rounded-3xl md:rounded-full flex items-center justify-between shadow-2xl gap-2">
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
-          <a href="#" className="mr-2">
+          <a href="#hero" className="mr-2 focus:outline-none focus:ring-2 focus:ring-blue-400/70 rounded-full" aria-label={t.name}>
              <img src={t.contactInfo.profileImage} alt={t.name} className="w-8 h-8 rounded-full border-2 border-transparent hover:border-white/50 transition-colors" />
           </a>
           {/* FIX: Pass required props to the standalone NavItem component. */}
           {mainNavItems.map(key => <NavItem key={key} itemKey={key} activeSection={activeSection} t={t} />)}
           <div className="relative">
             <button
+              type="button"
               ref={moreButtonRef}
               onClick={() => setMoreMenuOpen(!isMoreMenuOpen)}
-              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${moreNavItems.includes(activeSection) ? 'bg-white/10 text-primary-text' : 'text-secondary-text hover:text-primary-text'}`}
+              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/70 ${moreNavItems.includes(activeSection) ? 'bg-white/10 text-primary-text' : 'text-secondary-text hover:text-primary-text'}`}
             >
               {NavIcons.more}
               <span>{t.nav.more}</span>
@@ -101,10 +102,10 @@ const Header: React.FC<HeaderProps> = ({ t, language, setLanguage, activeSection
         </nav>
 
         {/* Mobile Nav */}
-        <nav className="md:hidden flex-1 flex items-center overflow-x-auto p-1 scrollbar-hide">
+        <nav className="md:hidden flex-1 flex items-center overflow-x-auto p-1 scrollbar-hide" aria-label="Mobile sections">
             <div className="flex items-center gap-1 min-w-max">
                 {mainNavItems.concat(moreNavItems).map(key => (
-                     <a key={key} href={`#${key}`} className={`flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-full transition-colors duration-300 ${activeSection === key ? 'bg-white/10 text-primary-text' : 'text-secondary-text hover:text-primary-text'}`}>
+                     <a key={key} href={`#${key}`} aria-current={activeSection === key ? 'location' : undefined} className={`flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/70 ${activeSection === key ? 'bg-white/10 text-primary-text' : 'text-secondary-text hover:text-primary-text'}`}>
                         {NavIcons[key]}
                         <span>{t.nav[key]}</span>
                     </a>
@@ -114,8 +115,9 @@ const Header: React.FC<HeaderProps> = ({ t, language, setLanguage, activeSection
 
         <div className="flex items-center gap-2 pl-2">
             <button
+              type="button"
               onClick={handlePrint}
-              className="glass-card px-3 py-2 rounded-full text-sm font-semibold border-none flex items-center gap-2 hover:text-primary-text transition-colors"
+              className="glass-card px-3 py-2 rounded-full text-sm font-semibold border-none flex items-center gap-2 hover:text-primary-text transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400/70"
               aria-label={t.actions?.downloadPdf || 'Download PDF'}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -127,7 +129,7 @@ const Header: React.FC<HeaderProps> = ({ t, language, setLanguage, activeSection
             </button>
             <div className="flex p-1 rounded-full glass-card bg-transparent border-none shadow-none">
               {Object.keys(translations).map(lang => (
-              <button key={lang} onClick={() => setLanguage(lang)} className={`w-8 h-8 flex items-center justify-center text-xs font-semibold rounded-full transition-all duration-300 ${language === lang ? 'active-pill-button' : 'text-secondary-text hover:text-primary-text'}`}>
+              <button key={lang} type="button" onClick={() => setLanguage(lang)} aria-label={`${lang.toUpperCase()} diline geç`} aria-pressed={language === lang} className={`w-8 h-8 flex items-center justify-center text-xs font-semibold rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/70 ${language === lang ? 'active-pill-button' : 'text-secondary-text hover:text-primary-text'}`}>
                   {lang.toUpperCase()}
               </button>
               ))}

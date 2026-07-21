@@ -64,3 +64,8 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 - Furkan Yonat CV proje listesine `https://inmariaalm.at` bağlantılı Maria Alm Dijital Keşif Atlası kaydı TR/EN/DE/ES çevirilerinde eş zamanlı eklendi.
 - Bu değişiklik mevcut `/furkanyonat` rotasındaki içerik kartını günceller; yeni fures.at iç rotası oluşturulmadığı için sitemap şablonuna yeni kayıt gerekmedi.
 - Ana site `src/components/Projects.tsx` içindeki `maria-alm-route-atlas` kartının yapım aşamasında mesajı korunmalıdır; proje sahibi canlı olduğunu net onaylamadan bu durum kaldırılmamalıdır.
+
+## Güncelleme Notu (2026-07-21 / Furkan CV Tasarım, Dil ve SEO Bakımı)
+- `/furkanyonat` CV microsite kaynağında hero, proje kartları, klavye odak stilleri ve dinamik meta/title davranışı iyileştirildi.
+- TR/EN/DE/ES metinlerinde tespit edilen karma dil, zincir-komuta/hiyerarşi çağrışımı ve Türkçe üçüncü şahıs anlatımı gibi dil pürüzleri temizlendi; profil tonu bireysel yetkinlik odaklı tutuldu.
+- Yeni rota eklenmedi; mevcut `/furkanyonat/` sitemap kaydı korundu. Kök `robots.txt` hâlâ yok ve ayrı teknik borç olarak duruyor.
