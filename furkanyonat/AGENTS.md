@@ -69,3 +69,8 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 - `/furkanyonat` CV microsite kaynağında hero, proje kartları, klavye odak stilleri ve dinamik meta/title davranışı iyileştirildi.
 - TR/EN/DE/ES metinlerinde tespit edilen karma dil, zincir-komuta/hiyerarşi çağrışımı ve Türkçe üçüncü şahıs anlatımı gibi dil pürüzleri temizlendi; profil tonu bireysel yetkinlik odaklı tutuldu.
 - Yeni rota eklenmedi; mevcut `/furkanyonat/` sitemap kaydı korundu. Kök `robots.txt` hâlâ yok ve ayrı teknik borç olarak duruyor.
+
+## Güncelleme Notu (2026-07-21 / Apple Açık Mod Kontrastı)
+- CV microsite açık modu Apple benzeri `#F5F5F7` arka plan, `#1D1D1F` ana metin, `#424245` ikincil metin ve `#007AFF` sistem mavisi vurgu ailesine hizalandı.
+- Proje kartı etiketleri artık sabit `text-blue-200` Tailwind renginden değil, tema değişkenli `project-tag` sınıfından beslenir; açık modda okunabilir koyu mavi metin korunur.
+- Yeni rota veya içerik/SEO meta değişikliği yapılmadı; `/furkanyonat/` sitemap kaydı geçerlidir. Kök `robots.txt` hâlâ ayrı teknik borçtur.

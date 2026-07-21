@@ -589,3 +589,34 @@ The existing `src/sitemap.xml.njk` and generated `public/sitemap.xml` already in
 - `npm run build`
 - `npx --yes playwright --version`
 - `npx --yes playwright install chromium && npx --yes playwright screenshot --viewport-size=1440,1200 http://127.0.0.1:4174/furkanyonat/ furkanyonat-screenshot.png` (failed because the container lacks `libatk-1.0.so.0`)
+
+### 2026-07-21: Furkan CV Apple-Style Light Mode Contrast
+
+#### Summary
+
+Adjusted the existing `/furkanyonat` CV microsite light-mode palette to Apple-style neutral surfaces and system-blue accents, and replaced low-contrast project tag utility colors with theme variables so project badges remain readable in light and dark modes.
+
+#### Files Changed
+
+- `AGENTS.md`
+- `.ai/CONTINUATION.md`
+- `furkanyonat/AGENTS.md`
+- `furkanyonat/index.html`
+- `furkanyonat/components/ui/ProjectCard.tsx`
+- `public/furkanyonat/index.html`
+- `public/furkanyonat/assets/*`
+
+#### SEO Status
+
+Existing `/furkanyonat/` visual styling changed only; no title, description, canonical, Open Graph, route, or index/noindex behavior changed.
+
+#### Sitemap Status
+
+No new public route was added. `src/sitemap.xml.njk` already includes `https://fures.at/furkanyonat/`; no sitemap change was required. No root/public `robots.txt` file was found, so robots remains technical debt.
+
+#### Commands Run
+
+- `npm run build --prefix furkanyonat`
+- `npm run build:profiles`
+- `npm run build`
+- `npx --yes playwright install chromium >/tmp/playwright-install.log 2>&1 && npm run preview -- --host 127.0.0.1 ... && npx --yes playwright screenshot --viewport-size=1440,1200 http://127.0.0.1:4173/furkanyonat/ furkanyonat-light-apple.png` (failed because the container lacks `libatk-1.0.so.0`)
