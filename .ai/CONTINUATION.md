@@ -2,64 +2,60 @@
 
 ## Last Completed Phase
 
-Applied the new Furkan Yonat Marketing and Growth Specialist CV content across all supported `/furkanyonat` microsite languages: Turkish, English, German, and Spanish. Existing project cards and routes were preserved.
+Fixed the deploy-blocking build failure in the profile build step and added a production robots file with a sitemap reference.
 
 ## Current Project Status
 
-The repository is stable on the current branch. The latest change is scoped to Furkan Yonat CV translation data, rebuilt `public/furkanyonat/` output, and handoff documentation. No new public route, sitemap entry, RSS automation, campaign/blog content, or main-site project card was added.
+The repository builds successfully on the current branch. The first `npm run build` reproduced the failure: `scripts/build-profiles.mjs` always ran `npm ci` for every profile app, but the current `furkanyonat/` directory no longer contains `package.json` or a lockfile. The build script now skips missing/non-buildable profile sources and keeps existing `public/<app>` output. The build also uses `--no-audit --no-fund` for subproject installs to reduce noisy audit output and small avoidable install overhead.
 
 ## Next Phase
 
-Optional next phase: add a root/public `robots.txt` with `Sitemap: https://fures.at/sitemap.xml` and safe crawl rules, because no robots file is currently present.
+Optional next phase: restore the full `furkanyonat/` source project if future CV content/design edits are needed, or intentionally document that `/furkanyonat` is currently maintained from committed `public/furkanyonat/` output until source is restored.
 
 ## Remaining Phases
 
-1. Optional: add missing public-site `robots.txt` with a sitemap reference.
+1. Optional: restore or reconstruct the full `furkanyonat/` Vite source app so the profile can be rebuilt from source again.
 2. Optional: add root `.env.example` with safe placeholders for `VITE_SITE_URL`, Gemini, Maps, and optional image provider keys.
-3. Optional: run visual screenshot verification in an environment with Playwright system dependencies installed.
-4. Optional: review EN/DE/ES wording with a native speaker if legal/immigration-grade wording is required.
+3. Optional: reduce deploy duration further by consolidating microsite dependency installation or caching strategy.
+4. Optional: address known bundle-size warnings with dynamic imports/manual chunks.
 
 ## Important Files
 
 - `AGENTS.md`
-- `furkanyonat/AGENTS.md`
 - `.ai/CONTINUATION.md`
 - `README.md`
 - `package.json`
 - `netlify.toml`
+- `scripts/build-profiles.mjs`
+- `scripts/build-travel.mjs`
 - `src/sitemap.xml.njk`
-- `furkanyonat/index.html`
-- `furkanyonat/components/Experience.tsx`
-- `furkanyonat/data/translations.ts`
+- `public/robots.txt`
 - `public/furkanyonat/index.html`
 
 ## Commands Verified
 
-- `git status --short --branch && git log --oneline -5` — checked branch, working tree, and latest commits before editing.
-- `cat AGENTS.md`, `cat .ai/CONTINUATION.md`, `cat furkanyonat/AGENTS.md`, and targeted source inspection — read required project and Furkan-specific guides before editing.
-- `npm run build --prefix furkanyonat` — passed; verified the microsite Vite build.
-- `npm run build:profiles` — passed; copied updated Furkan build to `public/furkanyonat/` and rebuilt profile/tool outputs. Output included existing npm audit notices and chunk-size warnings in unrelated subprojects.
-- `npm run build` — passed; rebuilt travel, TypeScript/main Vite, Eleventy output, and profile/microsite public assets. Output included existing warnings about npm `http-proxy`, dependency audit notices, large chunks, outdated browsers data, and Vite CJS API deprecation.
-- `find . -maxdepth 3 \( -iname '*robots*' -o -name 'sitemap.xml' \) -not -path './node_modules/*' -not -path './furkanyonat/node_modules/*' -print` — checked robots/sitemap status; generated sitemap exists and no robots file was found.
-- `npx --yes playwright install chromium >/tmp/playwright-install-2.log 2>&1 && npm run preview -- --host 127.0.0.1 ... && npx --yes playwright screenshot --viewport-size=1440,1200 http://127.0.0.1:4173/furkanyonat/ furkanyonat-all-langs.png` — failed because Chromium cannot launch in this container without `libatk-1.0.so.0`; no screenshot was produced.
+- `git status --short --branch && git log --oneline -5` — checked current branch, working tree, and latest commits before editing.
+- `sed -n '1,260p' AGENTS.md` and `sed -n '1,240p' .ai/CONTINUATION.md` — read required project guide and continuation state before editing.
+- `find . -maxdepth 3 ... -name package.json ...` — inspected root and subproject package scripts without scanning node_modules.
+- `sed -n '1,220p' src/sitemap.xml.njk` and `find ... -iname 'robots.txt'` — checked sitemap/robots setup.
+- `npm run build` — first run failed after about 1m49s at `furkanyonat` because `npm ci` requires a package lock / package metadata that no longer exists there.
+- `npm run build` — passed after the script fix in about 2m04s; output still includes known warnings for npm `http-proxy`, Vite CJS API deprecation, outdated Browserslist/baseline data, some large chunks, and missing optional `/index.css` in some microsites.
 
 ## Known Risks
 
-- No root/public `robots.txt` file was found; this remains technical debt for a public website.
-- The translations are faithful professional translations of the owner-provided Turkish CV content, but native-speaker review is still recommended if the CV will be used for formal HR or immigration processes.
-- The full build runs dependency installation in subprojects and reports known npm audit vulnerabilities; these were not introduced by this scoped CV translation change.
-- Visual screenshot verification is blocked by the container missing Chromium system dependency `libatk-1.0.so.0`.
-- The main site `src/components/Projects.tsx` still marks `maria-alm-route-atlas` as under construction per project rule; do not change it without owner confirmation.
+- `furkanyonat/` currently lacks its full source app (`package.json`, components, translations, Vite config). The deploy now keeps existing committed `public/furkanyonat/` output, but future Furkan CV edits should restore/reconstruct source before changing that microsite.
+- Build time is improved for noisy audit/fund output and local repeated builds no longer forcibly delete `travel/node_modules`, but the overall deploy remains relatively long because the root build compiles travel, the main app, Eleventy content, and multiple profile/tool apps.
+- The first failed build modified generated `public/furkanyonat/index.html` through Eleventy before the final successful build; verify git diff before future source changes.
+- Known dependency audit warnings were not fixed in this scoped deploy-stability pass.
 
 ## Do Not Do
 
-- Do not remove the project cards from `/furkanyonat`; the owner explicitly requested leaving projects and other things intact.
-- Do not add Furkan CV CTA phrases such as “Mehr entdecken”, “Projenizi Anlatalım”, “Erzählen Sie uns von Ihrem Projekt”, or “Angetrieben von Fures”.
-- Do not remove the print/PDF behavior or the profile image import from `fotofurkan.jpeg`.
-- Do not create duplicate SEO, sitemap, RSS, form, or automation systems.
+- Do not run `ls -R` or `grep -R`; use `find`/`rg` with node_modules pruned.
+- Do not hand-edit built `aboutcyprus/` output; update `travel/` source and rebuild/copy instead.
+- Do not remove existing `public/furkanyonat/` output unless the full `furkanyonat/` source app is restored and rebuilt.
 - Do not store real secrets, API keys, tokens, passwords, or sensitive data.
-- Do not skip SEO/sitemap/robots checks on public-page tasks.
+- Do not create duplicate SEO, sitemap, RSS, form, or automation systems.
 
 ## Required First Step For Next Agent
 
-The next agent must first read `AGENTS.md`, `.ai/CONTINUATION.md`, `furkanyonat/AGENTS.md`, latest commit history, and the relevant source files before planning or editing.
+Read `AGENTS.md`, `.ai/CONTINUATION.md`, latest commit history, `scripts/build-profiles.mjs`, `scripts/build-travel.mjs`, `package.json`, `netlify.toml`, and relevant source files before planning or editing.

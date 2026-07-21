@@ -681,3 +681,30 @@ No new public route was added. `src/sitemap.xml.njk` and generated `public/sitem
 - `npm run build`
 - `find . -maxdepth 3 \( -iname '*robots*' -o -name 'sitemap.xml' \) -not -path './node_modules/*' -not -path './furkanyonat/node_modules/*' -print`
 - `npx --yes playwright install chromium >/tmp/playwright-install-2.log 2>&1 && npm run preview -- --host 127.0.0.1 ... && npx --yes playwright screenshot --viewport-size=1440,1200 http://127.0.0.1:4173/furkanyonat/ furkanyonat-all-langs.png` (failed because the container lacks `libatk-1.0.so.0`)
+
+### 2026-07-21: Deploy Build Stability and Robots Fix
+
+#### Summary
+
+Fixed the Netlify build failure caused by the missing `furkanyonat/package.json` after the microsite source was reduced to static files, and made subproject installs quieter/faster by disabling npm audit/fund during build installs. Added a production `robots.txt` with the sitemap reference.
+
+#### Files Changed
+
+- `AGENTS.md`
+- `.ai/CONTINUATION.md`
+- `scripts/build-profiles.mjs`
+- `scripts/build-travel.mjs`
+- `public/robots.txt`
+
+#### SEO Status
+
+No public page route/content changed. Added robots sitemap discovery for crawlers.
+
+#### Sitemap Status
+
+No new public route was added. Existing dynamic sitemap remains at `src/sitemap.xml.njk`; `public/robots.txt` now references `https://fures.at/sitemap.xml`.
+
+#### Commands Run
+
+- `npm run build` — first run reproduced deploy failure at `furkanyonat/package.json` missing / `npm ci` usage error.
+- `npm run build` — passed after build-script fix; warnings remain for known large chunks, outdated Browserslist/baseline data, npm `http-proxy`, and missing optional `/index.css` in some microsites.

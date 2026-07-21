@@ -35,16 +35,11 @@ export function buildTravelProject() {
     return;
   }
 
-  const nodeModulesDir = path.join(travelDir, 'node_modules');
-  if (existsSync(nodeModulesDir)) {
-    rmSync(nodeModulesDir, { recursive: true, force: true });
-  }
-
   const hasLockFile = existsSync(path.join(travelDir, 'package-lock.json'));
   const installCommand = hasLockFile ? ['ci'] : ['install'];
 
   console.log('📦 Installing travel project dependencies...');
-  run('npm', installCommand, { cwd: travelDir });
+  run('npm', [...installCommand, '--no-audit', '--no-fund'], { cwd: travelDir });
 
   if (existsSync(travelDist)) {
     rmSync(travelDist, { recursive: true, force: true });
