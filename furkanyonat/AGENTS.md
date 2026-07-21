@@ -59,3 +59,8 @@ Bu kılavuzu her değişiklik sonrası güncel tut ve yeni gereksinimleri buraya
 - Bu görevde `furkanyonat/` CV uygulamasına kod değişikliği yapılmadı; ana sitenin iletişim formları Netlify Forms üzerinden `furkanyonat@gmail.com` alıcısını hedefleyecek şekilde güncellendi.
 - CV sayfasında yeni form eklenirse Netlify form adı çakışmayacak şekilde ayrı tutulmalı ve ÖNORM odaklı sade profil tonu korunmalıdır.
 - Yeni CV rotası eklenmediği için furkanyonat kapsamlı sitemap kaydı gerekmedi; ana build sırasında `public/sitemap.xml` üretimi kontrol edildi.
+
+## Güncelleme Notu (2026-07-21 / Maria Alm CV Proje Kartı)
+- Furkan Yonat CV proje listesine `https://inmariaalm.at` bağlantılı Maria Alm Dijital Keşif Atlası kaydı TR/EN/DE/ES çevirilerinde eş zamanlı eklendi.
+- Bu değişiklik mevcut `/furkanyonat` rotasındaki içerik kartını günceller; yeni fures.at iç rotası oluşturulmadığı için sitemap şablonuna yeni kayıt gerekmedi.
+- Ana site `src/components/Projects.tsx` içindeki `maria-alm-route-atlas` kartının yapım aşamasında mesajı korunmalıdır; proje sahibi canlı olduğunu net onaylamadan bu durum kaldırılmamalıdır.
