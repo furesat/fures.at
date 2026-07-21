@@ -1,886 +1,124 @@
 import profileImage from '../fotofurkan.jpeg';
 
+const sharedContact = {
+  email: 'furkanyonat@gmail.com',
+  phone: '+436604849181',
+  phoneDisplay: '+43 660 484 9181',
+  address: 'Maria Alm, Salzburg, Austria',
+  cyprusConnection: 'Famagusta, TRNC',
+  web: 'https://www.fures.at',
+  portfolio: 'https://www.fures.at/furkanyonat/',
+  license: 'Class B',
+  whatsapp: 'https://wa.me/436604849181',
+  profileImage,
+  linkedin: 'https://www.linkedin.com/in/furkan-yonat-2745061ba/',
+  facebook: 'https://www.facebook.com/furkanyonat900/',
+  instagram: 'https://www.instagram.com/furkanyonat9/',
+  xing: 'https://www.xing.com/profile/Furkan_Yonat2/'
+};
+
+const trProjects = [
+  { name: 'Serakıncı Yapay Zeka Ürün Platformu', description: 'Yapay zeka tarafından oluşturulan açıklamalar ve veri kazıma hatları ile otomatik, çok dilli, SEO odaklı katalog.', link: 'https://www.fures.at/projects/serakinci', tags: ['Automation', 'Scraping', 'SEO'] },
+  { name: 'ZuzuMood E‑Ticaret Deneyimi', description: 'Teksas merkezli ZuzuMood için Etsy odaklı ürün vitrinleri, kategori mimarisi, blog akışı ve dönüşüm odaklı butik marka anlatımı tasarlandı.', link: 'https://www.zuzumood.com', tags: ['E-Commerce', 'SEO', 'Brand Experience'] },
+  { name: 'in Maria Alm Dijital Keşif Atlası', description: 'Maria Alm ve Hochkönig bölgesi için 65 rotalık veri temeli, filtrelenebilir rota keşfi, interaktif harita, sezon rehberi, gece/fotoğraf deneyimleri ve AI destekli gün planlayıcı içeren turizm portalı.', link: 'https://inmariaalm.at', tags: ['Travel Tech', 'AI Planner', 'Tourism UX'] },
+  { name: 'Yapay Zeka Destekli Kıbrıs Tatil Planlayıcısı', description: 'Kullanıcı tercihlerine ve hava durumu bağlamına göre çok dilli, kişiselleştirilmiş seyahat planları oluşturan akıllı uygulama.', link: 'https://www.fures.at/projects/aboutcyprus', tags: ['AI', 'React', 'Travel Tech'] },
+  { name: 'Otel ve Acente Entegrasyonu', description: '6 oteli acente operasyonlarıyla entegre ederek süreçleri kolaylaştırdı, maliyetleri düşürdü ve veri akışlarını birleştirdi.', link: 'https://www.fures.at/projects/hotel', tags: ['Digital Transformation', 'Systems'] },
+  { name: 'ICALT 2024 Kongre Yönetimi', description: 'Dorana Turizm işbirliğiyle uluslararası bir konferansın planlanması ve koordinasyonu.', link: 'https://www.fures.at/projects/icalt', tags: ['Event Management', 'Logistics'] },
+  { name: 'PixShop AI', description: 'Yapay zeka destekli fotoğraf düzenleme, basitleştirildi. Metin komutlarıyla profesyonel düzenlemeler yapın.', link: 'https://pixshop-720548631405.us-west1.run.app/', tags: ['Generative AI', 'SaaS', 'Image Editing'] },
+  { name: 'Pantry Chef AI', description: 'Elinizdeki malzemelerle ne pişireceğinizi bulun. Yapay zeka şefimiz size lezzetli tarifler sunsun.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/', tags: ['AI', 'Recipe Generation', 'Web App'] }
+];
+
+const enProjects = [
+  { name: 'Serakıncı AI Product Platform', description: 'Automated, multilingual, SEO-focused catalog with AI-generated descriptions and scraping pipelines.', link: 'https://www.fures.at/projects/serakinci', tags: ['Automation', 'Scraping', 'SEO'] },
+  { name: 'ZuzuMood E-Commerce Experience', description: 'Built a conversion-focused boutique storefront for the Texas-based ZuzuMood brand, including Etsy-driven product discovery, category structure, and daily blog flow.', link: 'https://www.zuzumood.com', tags: ['E-Commerce', 'SEO', 'Brand Experience'] },
+  { name: 'in Maria Alm Digital Discovery Atlas', description: 'Tourism portal for Maria Alm and the Hochkönig region with a 65-route data base, filterable route discovery, interactive map, seasonal guides, night/photo experiences, and an AI day planner.', link: 'https://inmariaalm.at', tags: ['Travel Tech', 'AI Planner', 'Tourism UX'] },
+  { name: 'AI-Powered Cyprus Holiday Planner', description: 'Intelligent app that creates multilingual, personalized travel plans based on user preferences and weather context.', link: 'https://www.fures.at/projects/aboutcyprus', tags: ['AI', 'React', 'Travel Tech'] },
+  { name: 'Hotel & Agency Integration', description: 'Integrated 6 hotels with agency operations; streamlined processes, cut costs, and unified data flows.', link: 'https://www.fures.at/projects/hotel', tags: ['Digital Transformation', 'Systems'] },
+  { name: 'ICALT 2024 Congress Management', description: 'Planned and coordinated an international conference in collaboration with Dorana Tourism.', link: 'https://www.fures.at/projects/icalt', tags: ['Event Management', 'Logistics'] },
+  { name: 'PixShop AI', description: 'AI-powered photo editing, simplified. Make professional edits with simple text instructions.', link: 'https://pixshop-720548631405.us-west1.run.app/', tags: ['Generative AI', 'SaaS', 'Image Editing'] },
+  { name: 'Pantry Chef AI', description: 'What\'s in your pantry? Enter your ingredients and let our AI chef whip up something delicious.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/', tags: ['AI', 'Recipe Generation', 'Web App'] }
+];
+
+const deProjects = [
+  { name: 'Serakıncı KI-Produktplattform', description: 'Automatisierter, mehrsprachiger, SEO-orientierter Katalog mit KI-generierten Beschreibungen und Scraping-Pipelines.', link: 'https://www.fures.at/projects/serakinci', tags: ['Automatisierung', 'Scraping', 'SEO'] },
+  { name: 'ZuzuMood E-Commerce Experience', description: 'Conversion-orientierter Boutique-Auftritt für die in Texas ansässige Marke ZuzuMood, inklusive Etsy-basierter Produktentdeckung, Kategoriearchitektur und täglichem Blog-Flow.', link: 'https://www.zuzumood.com', tags: ['E-Commerce', 'SEO', 'Brand Experience'] },
+  { name: 'in Maria Alm Digitaler Entdeckungsatlas', description: 'Tourismusportal für Maria Alm und die Hochkönig-Region mit 65-Routen-Datenbasis, filterbarer Routensuche, interaktiver Karte, Saisonführern, Nacht-/Fotoerlebnissen und KI-Tagesplaner.', link: 'https://inmariaalm.at', tags: ['Travel Tech', 'KI-Planer', 'Tourismus-UX'] },
+  { name: 'KI-gestützter Zypern-Urlaubsplaner', description: 'Intelligente Anwendung für mehrsprachige, personalisierte Reisepläne auf Basis von Nutzerpräferenzen und Wetterkontext.', link: 'https://www.fures.at/projects/aboutcyprus', tags: ['KI', 'React', 'Travel Tech'] },
+  { name: 'Hotel- & Agentur-Integration', description: 'Integration von 6 Hotels mit Agenturprozessen; vereinfachte Abläufe, geringere Kosten und vereinte Datenflüsse.', link: 'https://www.fures.at/projects/hotel', tags: ['Digitale Transformation', 'Systeme'] },
+  { name: 'ICALT 2024 Kongressmanagement', description: 'Planung und Koordination einer internationalen Konferenz in Zusammenarbeit mit Dorana Tourism.', link: 'https://www.fures.at/projects/icalt', tags: ['Eventmanagement', 'Logistik'] },
+  { name: 'PixShop AI', description: 'KI-gestützte Fotobearbeitung, vereinfacht. Professionelle Bearbeitungen per Texteingabe.', link: 'https://pixshop-720548631405.us-west1.run.app/', tags: ['Generative KI', 'SaaS', 'Bildbearbeitung'] },
+  { name: 'Pantry Chef AI', description: 'Was ist in Ihrer Speisekammer? Zutaten eingeben und die KI schlägt passende Rezepte vor.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/', tags: ['KI', 'Rezeptgenerierung', 'Web App'] }
+];
+
+const esProjects = [
+  { name: 'Plataforma de Productos con IA de Serakıncı', description: 'Catálogo automatizado, multilingüe y centrado en SEO con descripciones generadas por IA y pipelines de scraping.', link: 'https://www.fures.at/projects/serakinci', tags: ['Automatización', 'Scraping', 'SEO'] },
+  { name: 'Experiencia E-Commerce de ZuzuMood', description: 'Desarrollé para ZuzuMood una tienda boutique orientada a conversión, con descubrimiento de productos vía Etsy, arquitectura de categorías y flujo editorial diario.', link: 'https://www.zuzumood.com', tags: ['E-Commerce', 'SEO', 'Experiencia de Marca'] },
+  { name: 'Atlas Digital de Descubrimiento in Maria Alm', description: 'Portal turístico para Maria Alm y la región Hochkönig con una base de 65 rutas, búsqueda filtrable, mapa interactivo, guías estacionales, experiencias nocturnas/fotográficas y planificador diario con IA.', link: 'https://inmariaalm.at', tags: ['Travel Tech', 'Planificador IA', 'UX Turística'] },
+  { name: 'Planificador de Vacaciones en Chipre con IA', description: 'Aplicación inteligente que crea planes de viaje multilingües y personalizados basados en las preferencias del usuario y el contexto meteorológico.', link: 'https://www.fures.at/projects/aboutcyprus', tags: ['IA', 'React', 'Tecnología de Viajes'] },
+  { name: 'Integración de Hotel y Agencia', description: 'Integré 6 hoteles con las operaciones de la agencia; optimicé procesos, reduje costos y unifiqué los flujos de datos.', link: 'https://www.fures.at/projects/hotel', tags: ['Transformación Digital', 'Sistemas'] },
+  { name: 'Gestión del Congreso ICALT 2024', description: 'Planifiqué y coordiné una conferencia internacional en colaboración con Dorana Tourism.', link: 'https://www.fures.at/projects/icalt', tags: ['Gestión de Eventos', 'Logística'] },
+  { name: 'PixShop AI', description: 'Edición de fotos con IA, simplificada. Realice ediciones profesionales con sencillas instrucciones de texto.', link: 'https://pixshop-720548631405.us-west1.run.app/', tags: ['IA Generativa', 'SaaS', 'Edición de Imágenes'] },
+  { name: 'Pantry Chef AI', description: '¿Qué hay en su despensa? Introduzca sus ingredientes y deje que nuestro chef de IA prepare algo delicioso.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/', tags: ['IA', 'Generación de Recetas', 'App Web'] }
+];
+
+const baseChatbot = {
+  notConfigured: 'AI assistant is not configured. API key is missing.',
+  unavailable: 'The AI assistant is currently unavailable. Please try again later.',
+};
+
 export const translations = {
   tr: {
     name: 'Furkan Yonat',
-    title: 'IT Sistem Destek Uzmanı & Front Office Manager | Web Tasarımı ve Kodlama (Önlisans)',
-    vision: 'Avusturya\'da uzun vadeli çalışmaya hazır, C1 Almanca bilgisine ve ön büro/IT altyapısı kurulumunda saha deneyimine sahip. Konaklama operasyonlarını güvence altına alırken web altyapısını ve sistem desteğini de yönetir.',
-    nav: {
-      experience: 'Deneyim',
-      skills: 'Yetenekler',
-      projects: 'Projeler',
-      more: 'Menü',
-      education: 'Eğitim',
-      certificates: 'Sertifikalar'
-    },
-    actions: {
-      downloadPdf: 'PDF İndir',
-    },
-    hero: {
-      pretitle: 'IT & Ön Büro Operasyonları',
-      title: 'Ön Büro ve IT\'de Sahada.',
-      titleGradient: 'Teslimat Odaklı.',
-      subtitle:
-        'Dijital pazarlama odaklı IT-Systembetreuer & Ön Büro Yöneticisi. Sadece resepsiyonu Gastrodat/Opera ile sorunsuz yürütmekle kalmam, Google Ads, SEO ve profesyonel içerik tasarımıyla doğrudan rezervasyonlarınızı artırırım. Teknoloji, misafirperverlik ve ciro artışı için tam donanımlı bir jokerim.',
-      imageAlt: 'Furkan Yonat profil fotoğrafı',
-      contact: { phone: 'Telefon', email: 'E-Posta', address: 'Adres' },
-    },
-    features: {
-      title: 'Temel Yetkinliklerim',
-      items: {
-        operations: { title: 'Süreç İyileştirme & Otomasyon', description: 'Gastrodat, Opera gibi dijital araçlarla manuel adımları azaltır, operasyonu hızlandırırım.' },
-        design: { title: 'IT & Web Altyapısı', description: 'Otel web sitelerini yönetir, sistem stabilitesini ve güvenliğini sağlarım.' },
-        data: { title: 'Veriyle İzleme', description: 'Paneller ve raporlarla hataları erken yakalar, kararları veriye bağlarım.' },
-        marketing: {
-          title: 'Online Pazarlama & Tasarım',
-          description:
-            'Ciro artışı için Google Ads & Analytics yönetimi. Dış ajans maliyeti olmadan sosyal medya içeriği ve otel tasarımları (menü, broşür) üretimi.',
-        },
-        sector: { title: 'Konaklama Odaklı Deneyim', description: 'Ön büro, kanal yönetimi ve misafir iletişimini sahada yönettim; turizm KOBİ’lerine teknik destek verdim.' },
-      }
-    },
-    experience: {
-      title: 'Deneyim',
-      controls: {
-        expandAll: 'Tüm kartları aç',
-        collapseAll: 'Kartları tek tek görüntüle',
-      },
-      neu: {
-        role: 'Operatif Lider & IT Yöneticisi — Oteller & Seyahat Acentası',
-        company: 'Dorana Tourism Group / Near East University',
-        date: 'Mayıs 2023 – Halen',
-        problem: '6 otel ve bir acente için ön büro, Gastrodat/Opera süreçleri ve kanal yöneticilerini tek çatı altında güvence altına almak; IT altyapısını standartlara uygun kurmak gerekiyordu.',
-        action:
-          'Gastrodat ve Booking.com/Expedia entegrasyonlarını devreye aldım, resepsiyon ekibini ön büro SOP’leri ve kalite kontrol konusunda eğittim. Ağ, POS ve yazıcı altyapılarını kurup bakımını yaptım; Booking motoru ve sadakat sistemi için web geliştirme yaptım. Dijital pazarlama kampanyalarını (Google Ads) yönettim ve doğrudan web sitesi rezervasyonlarını artırdım.',
-        result: 'Altı tesiste check-in hatalarını ve rezervasyon uyuşmazlıklarını azalttım, kanal yönetimi hatalarını düşürdüm, ekip eğitimleri sayesinde hizmet sürekliliğini sağladım. IT güvenliği ve veri yedekleme süreçleri kurularak denetime hazır hale getirildi.',
-      },
-      fures: {
-        role: 'Kıdemli Web Geliştirici & IT Danışmanı (Yan İş)',
-        company: 'Fures Tech (Uluslararası)',
-        date: 'Ocak 2023 – Halen',
-        problem: 'Turizm ve KOBİ müşterileri, otel web sitelerini ve rezervasyon motorlarını güncel tutacak, aynı zamanda sistem desteği verecek güvenilir bir uzmana ihtiyaç duyuyordu.',
-        action: 'Yan iş olarak otel web siteleri ve rezervasyon motorları geliştirdim (React/JS), SEO ve güvenlik ayarlarını kurdum. Sedna/ElektraWeb API entegrasyonları ve teknik destek sağladım; teslim sonrası bakım ve içerik güncellemelerini bizzat yaptım.',
-        result: 'Yan projelerde hızlı devreye alma ve düşük bakım maliyeti sağladım; çağrı başına çözüm süresini kısaltarak müşteri memnuniyetini yükselttim. Ana işime engel olmayacak esnek bir destek modeli kurdum.',
-        tasks: [
-          'React/JS ile otel web sitelerini geliştirme ve bakım.',
-          'Turizm işletmelerine dijitalleşme projelerinde teknik danışmanlık.',
-          'Misafir iletişimi için yapay zeka araçlarının devreye alınması.',
-        ],
-      },
-      mimoza_manager: {
-        role: 'Otel Müdür Yardımcısı',
-        company: 'Mimoza Beach Hotel & Dorana Hotels',
-        date: 'Tem 2021 – May 2023',
-        tasks: [
-          'Günlük operasyonu ve personel planlamasını yönettim.',
-          'Misafir memnuniyeti ve şikayet yönetiminden sorumlu oldum.',
-          'Hijyen ve kalite standartlarını denetledim.',
-        ]
-      },
-      mimoza_reception: {
-        role: 'Resepsiyonist',
-        company: 'Mimoza Beach Hotel',
-        date: 'Kas 2019 – Tem 2021',
-        tasks: [
-          'Check-in/check-out, kasa ve faturalama işlemleri.',
-          'Misafirlerle ilgilenme ve rezervasyonların (OTA & direkt) yönetimi.',
-        ]
-      },
-      concorde: {
-        role: 'Resepsiyonist',
-        company: 'Concorde Luxury Resort & Casino',
-        date: 'Ağu 2018 – Kas 2019',
-        tasks: [
-          '5 yıldızlı ortamda misafir ilişkileri yönetimi.',
-          'Uluslararası VIP misafirlerle iletişim.',
-        ]
-      },
-      granada: {
-        role: 'Resepsiyonist',
-        company: 'Granada Luxury Hotels',
-        date: 'May 2018 – Ağu 2018',
-        tasks: [
-          '5 yıldızlı ortamda misafir ilişkileri yönetimi.',
-          'Uluslararası VIP misafirlerle iletişim.',
-        ]
-      },
-      germany: {
-        role: 'Almanya Deneyimi (Sanayi & Lojistik)',
-        company: 'Regensburg, Bavyera',
-        date: '2012 – 2017',
-        tasks: [
-          '2015–2016 BMW Group: Kalite kontrol ve üretim hatlarında çalıştım.',
-          '2013–2014 Continental & Infineon: Makine kullanımı ve teknik süreç takibi.',
-          '2014 FedEx: Lojistik ve sevkiyat koordinasyonu.',
-          'Alman iş disiplini, dakiklik ve süreç hassasiyetini bu dönemde içselleştirdim.',
-        ],
-      },
-      anar_metal: {
-        role: 'Makine Operatörü',
-        company: 'Anar Metal',
-        date: 'Kas 2017 – May 2018',
-        tasks: ['Metal işleme makinelerini çalıştırdı ve kalite standartlarına uygun üretimi sağladı.']
-      },
-      saribekir: {
-        role: 'Makine Operatörü',
-        company: 'SARIBEKİR AMBALAJ',
-        date: 'Haz 2017 – Kas 2017',
-        tasks: ['Ambalaj üretim hatlarında makine operasyonlarını yönetti ve verimliliği denetetledi.']
-      },
-      bmw: {
-        role: 'Üretim ve Kalite Kontrol',
-        company: 'BMW Group, Regensburg',
-        date: 'Haz 2015 – Eki 2016',
-        tasks: ['Montaj hattı operasyonlarını ve SOP\'lere göre kalite güvence kontrollerini gerçekleştirdi.', 'Süreç izleme, sorun giderme ve dokümantasyon yaptı.']
-      },
-      fedex: {
-        role: 'Lojistik Sorumlusu',
-        company: 'FedEx Services, Regensburg',
-        date: 'Şub 2014 – Kas 2014',
-        tasks: ['Gelen ve giden gönderilerin koordinasyonunu sağladı, envanter yönetimi ve takibi yaptı.']
-      },
-      infineon: {
-        role: 'Makine Operatörü',
-        company: 'Infineon Technologies, Regensburg',
-        date: 'Tem 2013 – Eki 2014',
-        tasks: ['Yarı iletken üretimi için hassas makineleri çalıştırdı ve temiz oda protokollerine uydu.']
-      },
-      scheugenpflug: {
-        role: 'Üretim Yönetimi Stajyeri',
-        company: 'Scheugenpflug Global',
-        date: 'Şub 2014 – Ağu 2014',
-        tasks: ['Üretim süreçlerinin optimizasyonuna yardımcı oldu ve verimlilik raporları hazırladı.']
-      },
-      continental: {
-        role: 'Makine Operatörü',
-        company: 'Continental Automotive, Regensburg',
-        date: 'Haz 2012 – Şub 2014',
-        tasks: ['Otomotiv bileşenleri için üretim makinelerini çalıştırdı ve bakımını yaptı.', 'Üretim hedeflerini karşılamak için verimliliği sağladı.']
-      },
-      edag: {
-        role: 'Robotik Teknisyeni',
-        company: 'EDAG Group',
-        date: 'Eyl 2012 – Mar 2013',
-        tasks: ['Üretim hatlarındaki robotik sistemlerin kurulum ve bakımına destek oldu.']
-      },
-      tasksTitle: 'Görev ve Sorumluluklar', problemTitle: 'Zorluk', actionTitle: 'Yaklaşım', resultTitle: 'Sonuç',
-    },
-    education: {
-        title: 'Eğitim',
-        tourism: { degree: 'Turizm ve Otel İşletmeciliği (Önlisans)', university: 'Anadolu Üniversitesi', date: '2025 – Devam ediyor', details: ['Ön büro yönetimi, konaklama hukuku ve gelir/gayrimenkul modülleri; Avusturya RWR başvurusuna uygun müfredat.'] },
-        aof: { degree: 'Web Tasarımı ve Kodlama (Önlisans)', university: 'Anadolu Üniversitesi', date: '2020 – 2023', details: ['Web geliştirme ve IT sistemleri odağı. (Bu diploma, RWR Kart için “Veri İşleme/Teknisyen” eksik meslek grubuna yeterlilik sağlar.)'] },
-        oth: { degree: 'Üretim ve Otomasyon Teknolojileri', university: 'OTH Regensburg, Almanya', date: '2015 – 2017', details: ['Teknik üretim temelleri, otomasyon prensipleri ve Alman teknik dil yetkinliği.'] }
-    },
-    certificates: {
-        title: 'Sertifikalar ve Yetkinlikler',
-        certified: 'Onaylı',
-        verify: 'Sertifikayı Doğrula',
-        items: [
-            { name: 'Search Ads 360 Sertifikası', issuer: 'Google, 2025', type: 'google', details: ['Arama ağı kampanyaları için gelişmiş stratejiler, teklif yönetimi ve raporlama konularında uzmanlık.'] },
-            { name: 'Opera PMS Otel Yazılımı', issuer: 'Next Learn Academy, 2023', type: 'hospitality', details: ['Ön büro yönetimi ve endüstri standardı Opera PMS yazılımı üzerine kapsamlı eğitim.'] },
-            { name: 'Sosyal Medya Pazarlama', issuer: 'HubSpot Academy, 2023', type: 'hubspot', details: ['Etkili sosyal medya stratejileri geliştirme, uygulama ve analiz etme becerileri.'] },
-            { name: 'Ofis Yönetimi & Resepsiyonist - Seviye 7', issuer: 'One Education, 2023', type: 'default', details: ['İleri düzey ofis yönetimi, idari prosedürler ve resepsiyonist becerileri.'] },
-            { name: 'Müşteri Hizmetleri (CUST150)', issuer: 'Saylor Academy, 2023', type: 'saylor', details: ['Profesyonel müşteri hizmetleri ilkeleri ve etkili iletişim stratejileri.'] },
-            { name: 'Konaklama Sektörü için Sosyal Medya', issuer: 'Institute of Hospitality, 2022', type: 'hospitality', details: ['Otel ve turizm işletmeleri için özelleştirilmiş sosyal medya ve Instagram pazarlama teknikleri.'] },
-            { name: 'Google IT Destek Uzmanlığı', issuer: 'Google / Coursera, 2020', type: 'google', details: ['5 kursluk sertifika: Teknik Destek, Ağlar, OS, Sistem Yönetimi ve BT Güvenliği.'] },
-            { name: 'Uygulamalı Yeminli Tercümanlık', issuer: 'Anadolu Üniversitesi, 2020', type: 'default', details: ['Yazılı ve sözlü çeviri teknikleri üzerine e-sertifika programı.'] },
-            { name: 'Java ile Nesne Yönelimli Programlama', issuer: 'Hasso Plattner Institute, 2019', type: 'programming', details: ['Java dilinde nesne yönelimli programlama temelleri ve kavramları.'] },
-        ]
-    },
-    skills: {
-        title: 'Uzmanlık Alanları',
-        hospitality: { title: 'Konaklama Teknolojileri', items: [{ name: 'ElektraWeb', level: 'Uzman', percentage: 95 }, { name: 'Opera PMS', level: 'Uzman', percentage: 90 }, { name: 'Sedna/Protel/MICROS', level: 'Çok İyi', percentage: 85 }] },
-        web: { title: 'Web & AI Geliştirme', items: [{ name: 'JavaScript', level: 'Çok İyi', percentage: 88 }, { name: 'React/TypeScript', level: 'Çok İyi', percentage: 82 }, { name: 'AI & Otomasyon (Gemini API)', level: 'Uzman', percentage: 95 }] },
-        digital: {
-          title: 'Dijital Pazarlama & Tasarım',
-          items: [
-            { name: 'Google Marketing Platform (Ads, Analytics, Search Console, My Business)', level: 'Uzman', percentage: 95 },
-            { name: 'Grafik & Tasarım (Adobe Photoshop, Canva, Video)', level: 'Çok İyi', percentage: 90 },
-            { name: 'Social Media Growth (Instagram Reels, içerik planlama)', level: 'Uzman', percentage: 92 },
-            { name: 'SEO & SEM (Otel SEO)', level: 'Uzman', percentage: 95 },
-          ],
-        },
-        languages: { title: 'Diller', items: [{ name: 'Türkçe', level: 'Ana Dil', percentage: 100 }, { name: 'Almanca', level: 'İleri (C1)', percentage: 90 }, { name: 'İngilizce', level: 'Akıcı (B2.2)', percentage: 80 }] }
-    },
-     projects: {
-      title: 'Öne Çıkan Projeler',
-      visitProject: 'Ziyaret Et',
-      items: [
-        { name: 'Serakıncı Yapay Zeka Ürün Platformu', description: 'Yapay zeka tarafından oluşturulan açıklamalar ve veri kazıma hatları ile otomatik, çok dilli, SEO odaklı katalog.', link: 'https://www.fures.at/projects/serakinci', tags: ['Automation', 'Scraping', 'SEO'] },
-        { name: 'ZuzuMood E‑Ticaret Deneyimi', description: 'Teksas merkezli ZuzuMood için Etsy odaklı ürün vitrinleri, kategori mimarisi, blog akışı ve dönüşüm odaklı butik marka anlatımı tasarlandı.', link: 'https://www.zuzumood.com', tags: ['E-Commerce', 'SEO', 'Brand Experience'] },
-        { name: 'in Maria Alm Dijital Keşif Atlası', description: 'Maria Alm ve Hochkönig bölgesi için 65 rotalık veri temeli, filtrelenebilir rota keşfi, interaktif harita, sezon rehberi, gece/fotoğraf deneyimleri ve AI destekli gün planlayıcı içeren turizm portalı.', link: 'https://inmariaalm.at', tags: ['Travel Tech', 'AI Planner', 'Tourism UX'] },
-        { name: 'Yapay Zeka Destekli Kıbrıs Tatil Planlayıcısı', description: 'Kullanıcı tercihlerine ve hava durumu bağlamına göre çok dilli, kişiselleştirilmiş seyahat planları oluşturan akıllı uygulama.', link: 'https://www.fures.at/projects/aboutcyprus', tags: ['AI', 'React', 'Travel Tech'] },
-        { name: 'Otel ve Acente Entegrasyonu', description: '6 oteli acente operasyonlarıyla entegre ederek süreçleri kolaylaştırdı, maliyetleri düşürdü ve veri akışlarını birleştirdi.', link: 'https://www.fures.at/projects/hotel', tags: ['Digital Transformation', 'Systems'] },
-        { name: 'ICALT 2024 Kongre Yönetimi', description: 'Dorana Turizm işbirliğiyle uluslararası bir konferansın planlanması ve koordinasyonu.', link: 'https://www.fures.at/projects/icalt', tags: ['Event Management', 'Logistics'] },
-        { name: 'PixShop AI', description: 'Yapay zeka destekli fotoğraf düzenleme, basitleştirildi. Metin komutlarıyla profesyonel düzenlemeler yapın.', link: 'https://pixshop-720548631405.us-west1.run.app/', tags: ['Generative AI', 'SaaS', 'Image Editing'] },
-        { name: 'Pantry Chef AI', description: 'Elinizdeki malzemelerle ne pişireceğinizi bulun. Yapay zeka şefimiz size lezzetli tarifler sunsun.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/', tags: ['AI', 'Recipe Generation', 'Web App'] }
-      ]
-    },
-    accessibility: {
-      title: 'Erişilebilirlik Bildirimi',
-      statement: 'Bu web sitesi, Web İçeriği Erişilebilirlik Yönergeleri (WCAG) 2.1 AA seviyesine uygun olarak tasarlanmış ve geliştirilmiştir. Tüm kullanıcılar için kapsayıcı bir deneyim sunmayı hedefliyoruz.'
-    },
-    contactInfo: {
-      email: 'furkanyonat@gmail.com',
-      phone: '+905338704176',
-      phoneDisplay: '+90 533 870 41 76',
-      address: 'Famagusta, Zypern',
-      whatsapp: 'https://wa.me/905338704176',
-      portfolio: 'https://www.fures.at/furkanyonat/',
-      profileImage,
-      linkedin: 'https://www.linkedin.com/in/furkan-yonat-2745061ba/',
-      facebook: 'https://www.facebook.com/furkanyonat900/',
-      instagram: 'https://www.instagram.com/furkanyonat9/',
-      xing: 'https://www.xing.com/profile/Furkan_Yonat2/'
-    },
-    chatbot: {
-      greeting: 'Merhaba! Furkan Yonat hakkında sorularınızı yanıtlıyorum.',
-      placeholder: 'Bir soru sorun...',
-      title: 'Profil Sohbeti',
-      notConfigured: 'AI asistanı yapılandırılmamış. API anahtarı eksik.',
-      unavailable: 'AI asistanı şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
-      voiceStart: 'Sesli komutu başlat',
-      voiceStop: 'Dinlemeyi durdur'
-    },
-    footer: {
-        copyright: `© ${new Date().getFullYear()} Furkan Yonat.`,
-        motto: 'Tutku ve hassasiyetle inşa edilmiştir.',
-        poweredBy: ''
-    },
-    theme: {
-        light: 'Açık',
-        dark: 'Koyu',
-        system: 'Sistem'
-    }
+    title: 'Pazarlama ve Büyüme Uzmanı',
+    vision: 'Dijital reklam, AI içerik üretimi, saha aktivasyonu, iş ortaklıkları ve turizm operasyonlarını büyüme odağıyla birleştiren profesyonel profil.',
+    nav: { experience: 'Deneyim', skills: 'Yetenekler', projects: 'Projeler', more: 'Menü', education: 'Eğitim', certificates: 'Sertifikalar' },
+    actions: { downloadPdf: 'PDF İndir' },
+    hero: { pretitle: 'Dijital Reklam | AI İçerik Üretimi | Saha Aktivasyonu | İş Ortaklıkları', title: 'Pazarlama ve büyümeyi', titleGradient: 'turizm teknolojisiyle birleştiriyorum.', subtitle: 'Dijital pazarlama, büyüme, yapay zekâ destekli içerik üretimi, saha operasyonları ve iş ortaklıkları alanlarında deneyimli bir profesyonelim. Şu anda Avusturya’da Eder Hotels bünyesinde IT Support ve Front Office Uzmanı olarak çalışıyorum.', imageAlt: 'Furkan Yonat profil fotoğrafı', contact: { phone: 'Telefon', email: 'E-posta', address: 'Mevcut Konum' } },
+    features: { title: 'Temel Yetkinlikler', items: { operations: { title: 'Saha Aktivasyonu & İş Ortaklıkları', description: 'Üniversiteler, işletmeler, etkinlik organizatörleri ve tedarikçilerle yüz yüze iletişim kurarak iş birliği ve marka görünürlüğü geliştiririm.' }, design: { title: 'AI İçerik & Tasarım Üretimi', description: 'Görsel, video, reklam metni, Reels, kampanya afişi, web içeriği ve çok dilli pazarlama materyallerini yapay zekâ destekli araçlarla hızlı üretirim.' }, data: { title: 'Performans & Dönüşüm Takibi', description: 'Analytics, Search Console, dönüşüm takibi ve haftalık KPI raporlarıyla kampanyaları rezervasyon, satış ve reklam maliyeti üzerinden değerlendiririm.' }, marketing: { title: 'Dijital Reklam & Büyüme', description: 'Google Ads, Search Ads 360, SEO, SEM, sosyal medya ve doğrudan rezervasyon kampanyalarını büyüme hedefleriyle yönetirim.' }, sector: { title: 'Turizm, Otelcilik & Operasyon', description: 'Altı otel, seyahat acentası, restoranlar, etkinlik alanları ve uluslararası misafir operasyonlarında pazarlama, IT ve front office deneyimi taşırım.' } } },
+    experience: { title: 'İş Deneyimi', controls: { expandAll: 'Tüm kartları aç', collapseAll: 'Kartları tek tek görüntüle' }, eder: { role: 'IT Support & Front Office Uzmanı', company: 'Eder Hotels, Maria Alm, Salzburg, Avusturya', date: '2026 – Günümüz', tasks: ['Front Office ve otel IT sistemlerinin günlük operasyonunu destekliyorum.', 'Teknik problemler, kullanıcı cihazları, yazıcılar, bağlantı sistemleri ve resepsiyon yazılımları için destek sağlıyorum.', 'Uluslararası misafirlerle Almanca ve İngilizce iletişim kuruyorum.', 'Resepsiyon, rezervasyon ve diğer departmanlar arasındaki operasyonel koordinasyona destek veriyorum.', 'Yoğun otel operasyonunda teknik ve misafir odaklı süreçleri birlikte yönetiyorum.', 'Otelcilik, teknoloji ve müşteri deneyimini aynı operasyon içinde birleştiriyorum.'] }, neu: { role: 'Operasyon, Pazarlama ve IT Yöneticisi', company: 'Dorana Tourism Group / Near East University, KKTC', date: 'Mayıs 2023 – 2026', problem: 'Altı otel, bir seyahat acentası, restoranlar ve etkinlik alanlarının pazarlama, operasyon, dijital satış ve teknoloji süreçlerini yönettim.', action: 'Google Ads, SEO, sosyal medya, web sitesi, doğrudan satış, etkinlik ve dijital dönüşüm süreçlerini yönettim; AI araçlarıyla görsel, video, reklam metni, Reels, kampanya afişi, web içeriği ve çok dilli materyaller ürettim.', result: 'Kongre, konser, mezuniyet, festival ve kurumsal organizasyonların satış-pazarlama süreçlerinde görev aldım; yaklaşık 4.500 kişilik açık hava etkinlik alanı için operasyon, tanıtım, sponsorluk ve iş ortaklığı süreçlerini destekledim.', tasks: ['Google Ads kampanyalarını kurdum, yönettim ve performanslarını takip ettim.', 'Google Analytics, Search Console, Google Business, Booking.com, Expedia, ElektraWeb ve Opera süreçlerini yönettim.', 'Resepsiyon ekiplerine satış, misafir iletişimi ve operasyon standartları konusunda eğitim verdim.', 'Web sitesi, online rezervasyon ve dijital satış sistemlerinin geliştirilmesini sağladım.'] }, fures: { role: 'Kıdemli Web Geliştirici ve Dijital Pazarlama Danışmanı', company: 'Fures Tech, Uluslararası', date: 'Ocak 2023 – Günümüz', tasks: ['Turizm, e-ticaret ve yerel işletmeler için web siteleri ve dijital kampanyalar geliştirdim.', 'React, TypeScript ve JavaScript tabanlı web projeleri hazırladım.', 'Yapay zekâ destekli içerik, ürün açıklaması ve reklam metni sistemleri geliştirdim.', 'Markalar için SEO, içerik stratejisi ve dönüşüm odaklı kullanıcı deneyimleri tasarladım.', 'Çok dilli web siteleri ve pazarlama materyalleri hazırladım.', 'AI destekli turizm, içerik ve müşteri deneyimi uygulamaları geliştirdim.'] }, mimoza_manager: { role: 'Otel Müdür Yardımcısı', company: 'Mimoza Beach Hotel & Dorana Hotels', date: 'Temmuz 2021 – Mayıs 2023', tasks: ['Günlük otel operasyonlarını ve personel planlamasını yönettim.', 'Satış, rezervasyon, fiyatlandırma ve online kanal süreçlerini takip ettim.', 'Özel etkinlik, grup rezervasyonu ve kurumsal müşteri süreçlerini koordine ettim.', 'Sosyal medya, kampanya ve sezonluk tanıtım çalışmalarına katkı sağladım.', 'Misafir yorumları ve geri bildirimlerinden iyileştirme alanları belirledim.', 'Şikâyet yönetimi, satış geliştirme ve misafir memnuniyeti süreçlerini yürüttüm.'] }, mimoza_reception: { role: 'Resepsiyonist', company: 'Mimoza Beach Hotel', date: 'Kasım 2019 – Temmuz 2021', tasks: ['Telefon, e-posta ve online kanallardan gelen rezervasyonları yönettim.', 'Misafirlere oda, restoran, etkinlik ve ek hizmet satışları yaptım.', 'Misafir davranışları ve talepleri hakkında doğrudan saha deneyimi kazandım.', 'Online yorumlar ve müşteri geri bildirimleriyle ilgilendim.', 'Check-in, check-out, faturalandırma ve kasa işlemlerini yürüttüm.'] }, concorde: { role: 'Resepsiyonist', company: 'Concorde Luxury Resort & Casino', date: 'Ağustos 2018 – Kasım 2019', tasks: ['Beş yıldızlı otel ortamında uluslararası ve VIP misafirlerle çalıştım.', 'Opera PMS üzerinden rezervasyon, check-in ve ödeme işlemlerini yönettim.', 'Yoğun operasyonlarda hızlı problem çözme ve ikna becerisi geliştirdim.', 'Misafir sadakati ve satış fırsatlarını destekleyen birebir iletişim kurdum.'] }, granada: { role: 'Resepsiyonist', company: 'Granada Luxury Hotels', date: 'Mayıs 2018 – Ağustos 2018', tasks: ['Yüksek sezonda yoğun misafir operasyonlarını yönettim.', 'Oda dağılımı, misafir karşılama ve satış destek süreçlerinde görev aldım.', 'Otel hizmetlerinin tanıtımı ve ek satış süreçlerini destekledim.'] }, germany: { role: 'Sanayi ve Lojistik Deneyimi', company: 'BMW Group, FedEx, Continental ve Infineon — Regensburg, Almanya', date: '2012 – 2017', tasks: ['Uluslararası şirketlerde üretim, kalite, lojistik ve teknik süreçlerde çalıştım.', 'Disiplinli çalışma, zaman yönetimi, kalite kontrol ve süreç takibi deneyimi kazandım.', 'Almanca iş ortamında ekip çalışması ve operasyon standartlarına uyum sağladım.'] }, tasksTitle: 'Görev ve Sorumluluklar', problemTitle: 'Kapsam', actionTitle: 'Pazarlama ve İçerik', resultTitle: 'Saha, Etkinlik ve İş Ortaklıkları' },
+    education: { title: 'Eğitim', tourism: { degree: 'Turizm ve Otel İşletmeciliği, Önlisans', university: 'Anadolu Üniversitesi', date: '2025 – Devam ediyor', details: [] }, aof: { degree: 'Web Tasarımı ve Kodlama, Önlisans', university: 'Anadolu Üniversitesi', date: '2020 – 2023', details: [] }, oth: { degree: 'Üretim ve Otomasyon Teknolojileri', university: 'OTH Regensburg, Almanya', date: '2015 – 2017', details: [] } },
+    certificates: { title: 'Sertifikalar', certified: 'Onaylı', verify: 'Sertifikayı Doğrula', items: [{ name: 'Yapay Zekâ Destekli Performans Reklamları', issuer: 'Google, 2026', type: 'google', details: ['Yapay zekâ destekli performans reklamları ve kampanya optimizasyonu.'] }, { name: 'Search Ads 360 Sertifikası', issuer: 'Google, 2025', type: 'google', details: ['Search Ads 360 kampanya yönetimi, teklif yönetimi ve raporlama.'] }, { name: 'Sosyal Medya Pazarlama', issuer: 'HubSpot Academy, 2023', type: 'hubspot', details: ['Sosyal medya stratejisi, içerik planlama ve performans analizi.'] }, { name: 'Konaklama Sektörü için Sosyal Medya', issuer: 'Institute of Hospitality, 2022', type: 'hospitality', details: ['Otel ve turizm işletmeleri için sosyal medya pazarlaması.'] }, { name: 'Google IT Destek Uzmanlığı', issuer: 'Google / Coursera, 2020', type: 'google', details: ['Teknik destek, ağlar, işletim sistemleri, sistem yönetimi ve IT güvenliği.'] }, { name: 'Opera PMS Otel Yazılımı', issuer: 'Next Learn Academy, 2023', type: 'hospitality', details: ['Opera PMS ile ön büro ve otel operasyon yönetimi.'] }] },
+    skills: { title: 'Dijital Araçlar ve Yetkinlikler', advertising: { title: 'Reklam ve Analiz', items: [{ name: 'Google Ads', level: 'Uzman', percentage: 95 }, { name: 'Search Ads 360', level: 'Uzman', percentage: 92 }, { name: 'Google Analytics', level: 'Uzman', percentage: 92 }, { name: 'Search Console', level: 'Uzman', percentage: 92 }, { name: 'Google Business Profile', level: 'Uzman', percentage: 90 }] }, content: { title: 'İçerik ve Tasarım', items: [{ name: 'Adobe Photoshop', level: 'Çok İyi', percentage: 88 }, { name: 'Canva', level: 'Uzman', percentage: 95 }, { name: 'AI görsel üretim araçları', level: 'Uzman', percentage: 95 }, { name: 'AI video araçları', level: 'Çok İyi', percentage: 90 }, { name: 'Kısa video düzenleme', level: 'Çok İyi', percentage: 88 }] }, web: { title: 'Web ve Otomasyon', items: [{ name: 'JavaScript', level: 'Çok İyi', percentage: 88 }, { name: 'React', level: 'Çok İyi', percentage: 84 }, { name: 'TypeScript', level: 'Çok İyi', percentage: 82 }, { name: 'Gemini API', level: 'Çok İyi', percentage: 88 }, { name: 'AI otomasyon sistemleri', level: 'Uzman', percentage: 92 }] }, hospitality: { title: 'Otel ve Operasyon', items: [{ name: 'ElektraWeb', level: 'Uzman', percentage: 95 }, { name: 'Opera PMS', level: 'Uzman', percentage: 90 }, { name: 'Protel', level: 'Çok İyi', percentage: 85 }, { name: 'Sedna', level: 'Çok İyi', percentage: 85 }, { name: 'MICROS', level: 'Çok İyi', percentage: 82 }, { name: 'Booking.com', level: 'Uzman', percentage: 92 }, { name: 'Expedia', level: 'Çok İyi', percentage: 88 }] }, languages: { title: 'Diller', items: [{ name: 'Türkçe', level: 'Ana dil', percentage: 100 }, { name: 'Almanca', level: 'İleri seviye, C1', percentage: 90 }, { name: 'İngilizce', level: 'İleri seviye, B2.2', percentage: 82 }] } },
+    projects: { title: 'Öne Çıkan Projeler', visitProject: 'Ziyaret Et', items: trProjects },
+    accessibility: { title: 'Erişilebilirlik Bildirimi', statement: 'Bu web sitesi WCAG 2.1 AA seviyesine uygun olarak tasarlanmıştır.' },
+    contactInfo: { ...sharedContact, address: 'Maria Alm, Salzburg, Avusturya', cyprusConnection: 'Gazimağusa, KKTC', license: 'B Sınıfı' },
+    chatbot: { greeting: 'Merhaba! Furkan Yonat hakkında sorularınızı yanıtlıyorum.', placeholder: 'Bir soru sorun...', title: 'Profil Sohbeti', notConfigured: 'AI asistanı yapılandırılmamış. API anahtarı eksik.', unavailable: 'AI asistanı şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.', voiceStart: 'Sesli komutu başlat', voiceStop: 'Dinlemeyi durdur' },
+    footer: { copyright: `© ${new Date().getFullYear()} Furkan Yonat.`, motto: 'Tutku ve hassasiyetle inşa edilmiştir.', poweredBy: '' },
+    theme: { light: 'Açık', dark: 'Koyu', system: 'Sistem' }
   },
   en: {
-    name: 'Furkan Yonat',
-    title: 'IT Systems Support Specialist & Front Office Manager | Web Design & Coding (Associate Degree)',
-    vision: 'Hands-on hotel IT and front office lead with C1 German, ready for a long-term role in Austria. Keeps reception workflows, channel managers, and web infrastructure stable with clear operational discipline.',
-    nav: {
-      experience: 'Experience',
-      skills: 'Skills',
-      projects: 'Projects',
-      more: 'Menu',
-      education: 'Education',
-      certificates: 'Certificates'
-    },
-    actions: {
-      downloadPdf: 'Download PDF',
-    },
-    hero: {
-      pretitle: 'IT & Front Office Operations',
-      title: 'On-Site Focused.',
-      titleGradient: 'Delivers Steadily.',
-      subtitle:
-        'IT systems supporter and front office manager with a focus on digital marketing. I keep reception smooth on Gastrodat/Opera and grow direct bookings through Google Ads, SEO, and professional content design. A hands-on all-rounder for technology, hospitality, and revenue growth.',
-      imageAlt: 'Portrait of Furkan Yonat',
-      contact: { phone: 'Phone', email: 'Email', address: 'Address' },
-    },
-    features: {
-      title: 'My Core Competencies',
-      items: {
-        operations: { title: 'Process Optimization & Automation', description: 'Use digital tools like Gastrodat and Opera to cut manual steps and speed up operations.' },
-        design: { title: 'IT & Web Infrastructure', description: 'Manage hotel websites and keep systems stable and secure.' },
-        data: { title: 'Monitoring & Reporting', description: 'Surface issues early with dashboards and reports to guide decisions.' },
-        marketing: {
-          title: 'Online Marketing & Design',
-          description:
-            'Run Google Ads & Analytics to raise revenue. Produce social media content and hotel designs (menus, flyers) without agency costs.',
-        },
-        sector: { title: 'Hospitality Focus', description: 'Ran front office, channel management, and guest comms on-site; deliver technical support for tourism SMEs.' },
-      }
-    },
-    experience: {
-      title: 'Experience',
-      controls: {
-        expandAll: 'Open all cards',
-        collapseAll: 'Collapse to single view',
-      },
-      neu: {
-        role: 'Operations Lead & IT Manager — Hotels & Travel Agency',
-        company: 'Dorana Tourism Group / Near East University',
-        date: 'May 2023 – Present',
-        problem: 'Needed to secure front-office standards across 6 hotels and a travel agency while setting up Gastrodat/Opera, channel managers, and resilient IT infrastructure.',
-        action:
-          'Rolled out Gastrodat with Booking.com/Expedia connections, coached reception teams on SOPs and quality control, and built network/POS/printer setups with ongoing maintenance. Delivered booking engine and loyalty site upgrades to keep sales online. Led digital marketing campaigns (Google Ads) and increased direct website bookings.',
-        result: 'Reduced check-in errors and channel conflicts across six properties, stabilized uptime through backups and access policies, and kept teams audit-ready with repeatable training.',
-      },
-      fures: {
-        role: 'Senior Web Developer & IT Consultant (Side Engagement)',
-        company: 'Fures Tech (International)',
-        date: 'Jan 2023 – Present',
-        problem: 'Hotels and SMBs needed reliable website and booking engine upkeep without pulling focus from my primary role.',
-        action: 'Delivered hotel websites and booking engines (React/JS), set up SEO and security, and supported Sedna/ElektraWeb API integrations. Provided post-launch maintenance personally on an on-call basis.',
-        result: 'Achieved fast turnarounds and low maintenance costs; shortened issue resolution per call and kept all engagements explicitly part-time to avoid conflicts with full-time duties.',
-        tasks: [
-          'Developed and maintained hotel websites using React/JS.',
-          'Provided technical consulting for tourism businesses on digitalization projects.',
-          'Implemented AI tools to support guest services.',
-        ],
-      },
-      mimoza_manager: {
-        role: 'Hotel Assistant Manager',
-        company: 'Mimoza Beach Hotel & Dorana Hotels',
-        date: 'Jul 2021 – May 2023',
-        tasks: [
-          'Led daily operations and workforce planning.',
-          'Accountable for guest satisfaction and complaint management.',
-          'Oversaw hygiene and quality standards.',
-        ]
-      },
-      mimoza_reception: {
-        role: 'Receptionist',
-        company: 'Mimoza Beach Hotel',
-        date: 'Nov 2019 – Jul 2021',
-        tasks: [
-          'Managed check-in/check-out, cash desk, and invoicing.',
-          'Handled guest care and reservations (OTA & direct).',
-        ]
-      },
-      concorde: {
-        role: 'Receptionist',
-        company: 'Concorde Luxury Resort & Casino',
-        date: 'Aug 2018 – Nov 2019',
-        tasks: [
-          'Guest relations in a 5-star environment.',
-          'Handled international VIP guests.',
-        ]
-      },
-      granada: {
-        role: 'Receptionist',
-        company: 'Granada Luxury Hotels',
-        date: 'May 2018 – Aug 2018',
-        tasks: [
-          'Guest relations in a 5-star environment.',
-          'Handled international VIP guests.',
-        ]
-      },
-      germany: {
-        role: 'Germany Experience (Industry & Logistics)',
-        company: 'Regensburg, Bavaria',
-        date: '2012 – 2017',
-        tasks: [
-          '2015–2016 BMW Group: Worked in quality assurance and production lines.',
-          '2013–2014 Continental & Infineon: Operated machinery and followed technical processes.',
-          '2014 FedEx: Coordinated logistics and shipping.',
-          'Internalized German work ethic, punctuality, and process rigor during this period.',
-        ],
-      },
-      anar_metal: {
-        role: 'Machine Operator',
-        company: 'Anar Metal',
-        date: 'Nov 2017 – May 2018',
-        tasks: ['Operated metalworking machinery and ensured production met quality standards.']
-      },
-      saribekir: {
-        role: 'Machine Operator',
-        company: 'SARIBEKİR PACKAGING',
-        date: 'Jun 2017 – Nov 2017',
-        tasks: ['Managed machine operations on packaging production lines and monitored for efficiency.']
-      },
-      bmw: {
-        role: 'Production & Quality Control',
-        company: 'BMW Group, Regensburg',
-        date: 'Jun 2015 – Oct 2016',
-        tasks: ['Performed assembly line operations and quality assurance checks according to SOPs.', 'Conducted process monitoring, troubleshooting, and documentation.']
-      },
-      fedex: {
-        role: 'Logistics Officer',
-        company: 'FedEx Services, Regensburg',
-        date: 'Feb 2014 – Nov 2014',
-        tasks: ['Coordinated inbound and outbound shipments, managed inventory, and tracked logistics.']
-      },
-      infineon: {
-        role: 'Machine Operator',
-        company: 'Infineon Technologies, Regensburg',
-        date: 'Jul 2013 – Oct 2014',
-        tasks: ['Operated precision machinery for semiconductor manufacturing, adhering to cleanroom protocols.']
-      },
-      scheugenpflug: {
-        role: 'Production Management Intern',
-        company: 'Scheugenpflug Global',
-        date: 'Feb 2014 – Aug 2014',
-        tasks: ['Assisted in the optimization of production processes and prepared efficiency reports.']
-      },
-      continental: {
-        role: 'Machine Operator',
-        company: 'Continental Automotive, Regensburg',
-        date: 'Jun 2012 – Feb 2014',
-        tasks: ['Operated and maintained production machinery for automotive components.', 'Ensured efficiency to meet production targets.']
-      },
-      edag: {
-        role: 'Robotics Technician',
-        company: 'EDAG Group',
-        date: 'Sep 2012 – Mar 2013',
-        tasks: ['Assisted with the setup and maintenance of robotic systems on production lines.']
-      },
-      tasksTitle: 'Tasks & Responsibilities', problemTitle: 'Challenge', actionTitle: 'Approach', resultTitle: 'Outcome',
-    },
-    education: {
-        title: 'Education',
-        tourism: { degree: 'Associate Degree in Tourism & Hotel Management', university: 'Anadolu University', date: '2025 – Present', details: ['Front office management, hospitality law, revenue/real-estate modules aligned with Austrian RWR requirements.'] },
-        aof: { degree: 'Associate Degree in Web Design & Coding', university: 'Anadolu University', date: '2020 – 2023', details: ['Focus on web development & IT systems. (This degree qualifies as shortage occupation “Data Processing/Technician” for the Red-White-Red Card.)'] },
-        oth: { degree: 'Production & Automation Technologies', university: 'OTH Regensburg, Germany', date: '2015 – 2017', details: ['Technical production fundamentals, automation principles, and German technical language proficiency.'] }
-    },
-    certificates: {
-        title: 'Certificates & Credentials',
-        certified: 'Certified',
-        verify: 'Verify Certificate',
-        items: [
-            { name: 'Search Ads 360 Certification', issuer: 'Google, 2025', type: 'google', details: ['Expertise in advanced strategies, bid management, and reporting for search campaigns.'] },
-            { name: 'Opera PMS Hotel Software', issuer: 'Next Learn Academy, 2023', type: 'hospitality', details: ['Comprehensive training on the industry-standard Opera PMS software for front-office management.'] },
-            { name: 'Social Media Marketing Certified', issuer: 'HubSpot Academy, 2023', type: 'hubspot', details: ['Skills in developing, implementing, and analyzing effective social media strategies.'] },
-            { name: 'Office Admin & Receptionist - Level 7', issuer: 'One Education, 2023', type: 'default', details: ['Advanced-level skills in office administration, procedures, and receptionist duties.'] },
-            { name: 'Customer Service (CUST150)', issuer: 'Saylor Academy, 2023', type: 'saylor', details: ['Principles of professional customer service and effective communication strategies.'] },
-            { name: 'Social Media for Hospitality Businesses', issuer: 'Institute of Hospitality, 2022', type: 'hospitality', details: ['Specialized techniques in social media and Instagram marketing for hotels and tourism.'] },
-            { name: 'Google IT Support Professional', issuer: 'Google / Coursera, 2020', type: 'google', details: ['5-course certificate: Tech Support, Networking, OS, System Admin, and IT Security.'] },
-            { name: 'Applied e-Certificate in Certified Translation', issuer: 'Anadolu University, 2020', type: 'default', details: ['E-certificate program on written and oral translation techniques.'] },
-            { name: 'Object Oriented Programming in Java', issuer: 'Hasso Plattner Institute, 2019', type: 'programming', details: ['Fundamentals and concepts of object-oriented programming using the Java language.'] },
-        ]
-    },
-    skills: {
-        title: 'Expertise',
-        hospitality: { title: 'Hospitality Tech', items: [{ name: 'ElektraWeb', level: 'Expert', percentage: 95 }, { name: 'Opera PMS', level: 'Expert', percentage: 90 }, { name: 'Sedna/Protel/MICROS', level: 'Excellent', percentage: 85 }] },
-        web: { title: 'Web & AI Development', items: [{ name: 'JavaScript', level: 'Excellent', percentage: 88 }, { name: 'React/TypeScript', level: 'Excellent', percentage: 82 }, { name: 'AI & Automation (Gemini API)', level: 'Expert', percentage: 95 }] },
-        digital: {
-          title: 'Digital Marketing & Design',
-          items: [
-            { name: 'Google Marketing Platform (Ads, Analytics, Search Console, My Business)', level: 'Expert', percentage: 95 },
-            { name: 'Graphic & Design (Adobe Photoshop, Canva, Video)', level: 'Very Good', percentage: 90 },
-            { name: 'Social Media Growth (Instagram Reels, content planning)', level: 'Expert', percentage: 92 },
-            { name: 'SEO & SEM (Hotel SEO)', level: 'Expert', percentage: 95 },
-          ],
-        },
-        languages: { title: 'Languages', items: [{ name: 'Turkish', level: 'Native', percentage: 100 }, { name: 'German', level: 'Advanced (C1)', percentage: 90 }, { name: 'English', level: 'Fluent (B2.2)', percentage: 80 }] }
-    },
-    projects: {
-      title: 'Featured Projects',
-      visitProject: 'Visit',
-      items: [
-        { name: 'Serakıncı AI Product Platform', description: 'Automated, multilingual, SEO-focused catalog with AI-generated descriptions and scraping pipelines.', link: 'https://www.fures.at/projects/serakinci', tags: ['Automation', 'Scraping', 'SEO'] },
-        { name: 'ZuzuMood E-Commerce Experience', description: 'Built a conversion-focused boutique storefront for the Texas-based ZuzuMood brand, including Etsy-driven product discovery, category structure, and daily blog flow.', link: 'https://www.zuzumood.com', tags: ['E-Commerce', 'SEO', 'Brand Experience'] },
-        { name: 'in Maria Alm Digital Discovery Atlas', description: 'Tourism portal for Maria Alm and the Hochkönig region with a 65-route data base, filterable route discovery, interactive map, seasonal guides, night/photo experiences, and an AI day planner.', link: 'https://inmariaalm.at', tags: ['Travel Tech', 'AI Planner', 'Tourism UX'] },
-        { name: 'AI-Powered Cyprus Holiday Planner', description: 'Intelligent app that creates multilingual, personalized travel plans based on user preferences and weather context.', link: 'https://www.fures.at/projects/aboutcyprus', tags: ['AI', 'React', 'Travel Tech'] },
-        { name: 'Hotel & Agency Integration', description: 'Integrated 6 hotels with agency operations; streamlined processes, cut costs, and unified data flows.', link: 'https://www.fures.at/projects/hotel', tags: ['Digital Transformation', 'Systems'] },
-        { name: 'ICALT 2024 Congress Management', description: 'Planned and coordinated an international conference in collaboration with Dorana Tourism.', link: 'https://www.fures.at/projects/icalt', tags: ['Event Management', 'Logistics'] },
-        { name: 'PixShop AI', description: 'AI-powered photo editing, simplified. Make professional edits with simple text instructions.', link: 'https://pixshop-720548631405.us-west1.run.app/', tags: ['Generative AI', 'SaaS', 'Image Editing'] },
-        { name: 'Pantry Chef AI', description: 'What\'s in your pantry? Enter your ingredients and let our AI chef whip up something delicious.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/', tags: ['AI', 'Recipe Generation', 'Web App'] }
-      ]
-    },
-    accessibility: {
-      title: 'Accessibility Statement',
-      statement: 'This website is designed and developed to be compliant with the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA. We aim to provide an inclusive experience for all users.'
-    },
-    contactInfo: {
-      email: 'furkanyonat@gmail.com',
-      phone: '+905338704176',
-      whatsapp: 'https://wa.me/905338704176',
-      portfolio: 'https://www.fures.at/furkanyonat/',
-      profileImage,
-      linkedin: 'https://www.linkedin.com/in/furkan-yonat-2745061ba/',
-      facebook: 'https://www.facebook.com/furkanyonat900/',
-      instagram: 'https://www.instagram.com/furkanyonat9/',
-      xing: 'https://www.xing.com/profile/Furkan_Yonat2/'
-    },
-    chatbot: {
-      greeting: 'Hello! I\'m here to answer questions about Furkan Yonat.',
-      placeholder: 'Ask a question...',
-      title: 'Profile Chat',
-      notConfigured: 'AI assistant is not configured. API key is missing.',
-      unavailable: 'The AI assistant is currently unavailable. Please try again later.',
-      voiceStart: 'Start voice input',
-      voiceStop: 'Stop listening'
-    },
-    footer: {
-      copyright: `© ${new Date().getFullYear()} Furkan Yonat.`,
-      motto: 'Built with passion and precision.',
-      poweredBy: ''
-    },
-    theme: {
-        light: 'Light',
-        dark: 'Dark',
-        system: 'System'
-    }
+    name: 'Furkan Yonat', title: 'Marketing and Growth Specialist', vision: 'A professional profile combining digital advertising, AI-assisted content production, field activation, partnerships, and tourism operations with a growth mindset.',
+    nav: { experience: 'Experience', skills: 'Skills', projects: 'Projects', more: 'Menu', education: 'Education', certificates: 'Certificates' }, actions: { downloadPdf: 'Download PDF' },
+    hero: { pretitle: 'Digital Advertising | AI Content Production | Field Activation | Partnerships', title: 'I connect marketing and growth', titleGradient: 'with tourism technology.', subtitle: 'I am a professional experienced in digital marketing, growth, AI-assisted content production, field operations, and partnerships. I currently work in Austria at Eder Hotels as an IT Support and Front Office Specialist.', imageAlt: 'Portrait of Furkan Yonat', contact: { phone: 'Phone', email: 'Email', address: 'Current Location' } },
+    features: { title: 'Core Competencies', items: { operations: { title: 'Field Activation & Partnerships', description: 'I build collaboration and brand visibility through face-to-face communication with universities, businesses, event organizers, and suppliers.' }, design: { title: 'AI Content & Design Production', description: 'I quickly produce visuals, videos, ad copy, Reels, campaign posters, website content, and multilingual marketing materials with AI-assisted tools.' }, data: { title: 'Performance & Conversion Tracking', description: 'I evaluate campaigns through reservations, sales, ad cost, conversion tracking, Google Analytics, Search Console, and weekly KPI reporting.' }, marketing: { title: 'Digital Advertising & Growth', description: 'I manage Google Ads, Search Ads 360, SEO, SEM, social media, and direct booking campaigns around growth goals.' }, sector: { title: 'Tourism, Hospitality & Operations', description: 'I bring marketing, IT, and front office experience across six hotels, a travel agency, restaurants, event venues, and international guest operations.' } } },
+    experience: { title: 'Work Experience', controls: { expandAll: 'Open all cards', collapseAll: 'Collapse to single view' }, eder: { role: 'IT Support & Front Office Specialist', company: 'Eder Hotels, Maria Alm, Salzburg, Austria', date: '2026 – Present', tasks: ['Support daily front office and hotel IT system operations.', 'Provide support for technical issues, user devices, printers, connectivity systems, and reception software.', 'Communicate with international guests in German and English.', 'Support operational coordination between reception, reservations, and other departments.', 'Manage technical and guest-focused workflows together in a busy hotel operation.', 'Combine hospitality, technology, and customer experience within the same operation.'] }, neu: { role: 'Operations, Marketing and IT Manager', company: 'Dorana Tourism Group / Near East University, TRNC', date: 'May 2023 – 2026', problem: 'Managed marketing, operations, digital sales, and technology processes for six hotels, one travel agency, restaurants, and event venues.', action: 'Managed Google Ads, SEO, social media, websites, direct sales, events, and digital transformation processes; produced visuals, videos, ad copy, Reels, campaign posters, web content, and multilingual materials with AI tools.', result: 'Supported sales and marketing for congresses, concerts, graduations, festivals, and corporate events; contributed to operations, promotion, sponsorship, and partnership work for an open-air event venue of about 4,500 people.', tasks: ['Set up, managed, and tracked Google Ads campaigns.', 'Managed Google Analytics, Search Console, Google Business, Booking.com, Expedia, ElektraWeb, and Opera processes.', 'Trained reception teams on sales, guest communication, and operating standards.', 'Supported website, online booking, and digital sales system development.'] }, fures: { role: 'Senior Web Developer and Digital Marketing Consultant', company: 'Fures Tech, International', date: 'January 2023 – Present', tasks: ['Developed websites and digital campaigns for tourism, e-commerce, and local businesses.', 'Built web projects with React, TypeScript, and JavaScript.', 'Developed AI-assisted content, product description, and ad copy systems.', 'Designed SEO, content strategy, and conversion-focused user experiences for brands.', 'Prepared multilingual websites and marketing materials.', 'Built AI-assisted tourism, content, and customer experience applications.'] }, mimoza_manager: { role: 'Assistant Hotel Manager', company: 'Mimoza Beach Hotel & Dorana Hotels', date: 'July 2021 – May 2023', tasks: ['Managed daily hotel operations and staff planning.', 'Tracked sales, reservations, pricing, and online channel processes.', 'Coordinated special events, group reservations, and corporate customer processes.', 'Contributed to social media, campaign, and seasonal promotion work.', 'Identified improvement areas from guest reviews and feedback.', 'Handled complaint management, sales development, and guest satisfaction processes.'] }, mimoza_reception: { role: 'Receptionist', company: 'Mimoza Beach Hotel', date: 'November 2019 – July 2021', tasks: ['Managed reservations from phone, email, and online channels.', 'Sold rooms, restaurant services, events, and additional services to guests.', 'Gained direct field experience about guest behavior and requests.', 'Handled online reviews and customer feedback.', 'Managed check-in, check-out, invoicing, and cash desk operations.'] }, concorde: { role: 'Receptionist', company: 'Concorde Luxury Resort & Casino', date: 'August 2018 – November 2019', tasks: ['Worked with international and VIP guests in a five-star hotel environment.', 'Managed reservations, check-in, and payment processes through Opera PMS.', 'Developed fast problem-solving and persuasion skills in busy operations.', 'Built one-to-one communication supporting guest loyalty and sales opportunities.'] }, granada: { role: 'Receptionist', company: 'Granada Luxury Hotels', date: 'May 2018 – August 2018', tasks: ['Managed intensive guest operations during high season.', 'Supported room allocation, guest welcoming, and sales support processes.', 'Supported promotion of hotel services and upsell processes.'] }, germany: { role: 'Industry and Logistics Experience', company: 'BMW Group, FedEx, Continental and Infineon — Regensburg, Germany', date: '2012 – 2017', tasks: ['Worked in production, quality, logistics, and technical processes at international companies.', 'Gained experience in disciplined work, time management, quality control, and process tracking.', 'Adapted to teamwork and operating standards in a German-speaking work environment.'] }, tasksTitle: 'Tasks & Responsibilities', problemTitle: 'Scope', actionTitle: 'Marketing & Content', resultTitle: 'Field, Events & Partnerships' },
+    education: { title: 'Education', tourism: { degree: 'Tourism and Hotel Management, Associate Degree', university: 'Anadolu University', date: '2025 – Present', details: [] }, aof: { degree: 'Web Design and Coding, Associate Degree', university: 'Anadolu University', date: '2020 – 2023', details: [] }, oth: { degree: 'Production and Automation Technologies', university: 'OTH Regensburg, Germany', date: '2015 – 2017', details: [] } },
+    certificates: { title: 'Certificates', certified: 'Certified', verify: 'Verify Certificate', items: [{ name: 'AI-Powered Performance Ads', issuer: 'Google, 2026', type: 'google', details: ['AI-assisted performance advertising and campaign optimization.'] }, { name: 'Search Ads 360 Certification', issuer: 'Google, 2025', type: 'google', details: ['Search Ads 360 campaign management, bidding, and reporting.'] }, { name: 'Social Media Marketing', issuer: 'HubSpot Academy, 2023', type: 'hubspot', details: ['Social media strategy, content planning, and performance analysis.'] }, { name: 'Social Media for Hospitality Businesses', issuer: 'Institute of Hospitality, 2022', type: 'hospitality', details: ['Social media marketing for hotels and tourism businesses.'] }, { name: 'Google IT Support Professional', issuer: 'Google / Coursera, 2020', type: 'google', details: ['Technical support, networking, operating systems, system administration, and IT security.'] }, { name: 'Opera PMS Hotel Software', issuer: 'Next Learn Academy, 2023', type: 'hospitality', details: ['Front office and hotel operations management with Opera PMS.'] }] },
+    skills: { title: 'Digital Tools and Skills', advertising: { title: 'Advertising and Analytics', items: [{ name: 'Google Ads', level: 'Expert', percentage: 95 }, { name: 'Search Ads 360', level: 'Expert', percentage: 92 }, { name: 'Google Analytics', level: 'Expert', percentage: 92 }, { name: 'Search Console', level: 'Expert', percentage: 92 }, { name: 'Google Business Profile', level: 'Expert', percentage: 90 }] }, content: { title: 'Content and Design', items: [{ name: 'Adobe Photoshop', level: 'Very Good', percentage: 88 }, { name: 'Canva', level: 'Expert', percentage: 95 }, { name: 'AI image generation tools', level: 'Expert', percentage: 95 }, { name: 'AI video tools', level: 'Very Good', percentage: 90 }, { name: 'Short video editing', level: 'Very Good', percentage: 88 }] }, web: { title: 'Web and Automation', items: [{ name: 'JavaScript', level: 'Very Good', percentage: 88 }, { name: 'React', level: 'Very Good', percentage: 84 }, { name: 'TypeScript', level: 'Very Good', percentage: 82 }, { name: 'Gemini API', level: 'Very Good', percentage: 88 }, { name: 'AI automation systems', level: 'Expert', percentage: 92 }] }, hospitality: { title: 'Hotel and Operations', items: [{ name: 'ElektraWeb', level: 'Expert', percentage: 95 }, { name: 'Opera PMS', level: 'Expert', percentage: 90 }, { name: 'Protel', level: 'Very Good', percentage: 85 }, { name: 'Sedna', level: 'Very Good', percentage: 85 }, { name: 'MICROS', level: 'Very Good', percentage: 82 }, { name: 'Booking.com', level: 'Expert', percentage: 92 }, { name: 'Expedia', level: 'Very Good', percentage: 88 }] }, languages: { title: 'Languages', items: [{ name: 'Turkish', level: 'Native', percentage: 100 }, { name: 'German', level: 'Advanced, C1', percentage: 90 }, { name: 'English', level: 'Advanced, B2.2', percentage: 82 }] } },
+    projects: { title: 'Featured Projects', visitProject: 'Visit', items: enProjects }, accessibility: { title: 'Accessibility Statement', statement: 'This website is designed to comply with WCAG 2.1 AA.' }, contactInfo: sharedContact, chatbot: { greeting: 'Hello! I answer questions about Furkan Yonat.', placeholder: 'Ask a question...', title: 'Profile Chat', ...baseChatbot, voiceStart: 'Start voice input', voiceStop: 'Stop listening' }, footer: { copyright: `© ${new Date().getFullYear()} Furkan Yonat.`, motto: 'Built with passion and precision.', poweredBy: '' }, theme: { light: 'Light', dark: 'Dark', system: 'System' }
   },
   de: {
-    name: 'Furkan Yonat',
-    title: 'IT-Systembetreuer & Front Office Manager | Webdesign & Coding (Associate Degree)',
-    vision: 'Hands-on IT- und Front-Office-Manager mit C1-Deutsch und Bereitschaft zur langfristigen Anstellung in Österreich. Sichert Gastrodat/Opera-Prozesse, Channel-Manager und Web-Infrastruktur mit klarer operativer Disziplin.',
-    nav: {
-      experience: 'Erfahrung',
-      skills: 'Fähigkeiten',
-      projects: 'Projekte',
-      more: 'Menü',
-      education: 'Ausbildung',
-      certificates: 'Zertifikate'
-    },
-    actions: {
-      downloadPdf: 'PDF herunterladen',
-    },
-    hero: {
-      pretitle: 'IT & Front-Office-Betrieb',
-      title: 'IT-Systembetreuer & Front Office Manager',
-      titleGradient: 'Sofort einsatzbereit.',
-      subtitle:
-        'IT-Systembetreuer & Front Office Manager mit Fokus auf Digitales Marketing. Ich sorge nicht nur für reibungslose Abläufe an der Rezeption, sondern steigere auch Ihre Direktbuchungen durch Google Ads, SEO und professionelles Content-Design. Ein Allrounder für Technik, Gastfreundschaft und Umsatzwachstum.',
-      imageAlt: 'Porträt von Furkan Yonat',
-      contact: { phone: 'Telefon', email: 'E-Mail', address: 'Adresse' },
-    },
-    features: {
-      title: 'Meine Kernkompetenzen',
-      items: {
-        operations: { title: 'Prozessoptimierung & Automatisierung', description: 'Reduzierung manueller Arbeitsschritte durch digitale Tools (Gastrodat, Opera).' },
-        design: { title: 'IT & Web-Infrastruktur', description: 'Verwaltung von Hotel-Webseiten und Sicherstellung der Systemstabilität.' },
-        data: { title: 'Monitoring & Reporting', description: 'Frühes Erkennen von Engpässen über Dashboards und klare Kennzahlen.' },
-        marketing: {
-          title: 'Online-Marketing & Design',
-          description:
-            'Professionelle Steuerung von Google Ads & Analytics zur Umsatzsteigerung. Erstellung von Social-Media-Content und Hotel-Designs (Speisekarten, Flyer) ohne externe Agenturkosten.',
-        },
-        sector: { title: 'Hotellerie im Alltag', description: 'Front Office, Channel-Management und Gästekommunikation eigenhändig geführt; technische Unterstützung für Tourismusbetriebe.' },
-      }
-    },
-    experience: {
-      title: 'Berufserfahrung',
-      controls: {
-        expandAll: 'Alle Karten öffnen',
-        collapseAll: 'Einzelansicht verwenden',
-      },
-      neu: {
-        role: 'Operativer Leiter & IT-Manager — Hotels & Reisebüro',
-        company: 'Dorana Tourism Group / Near East University',
-        date: 'Mai 2023 – Heute',
-        problem: 'Rezeptions-Standards über 6 Hotels und ein Reisebüro sichern und gleichzeitig Gastrodat/Opera, Channel-Manager und belastbare IT-Infrastruktur einführen.',
-        action:
-          'Gastrodat mit Booking.com/Expedia-Anbindung ausgerollt, Rezeptions-Teams in SOPs und Qualitätssicherung geschult. Netzwerk-, POS- und Drucker-Setups aufgebaut und gewartet; Buchungsengine und Loyalty-Site technisch erneuert. Steuerung der digitalen Marketingkampagnen (Google Ads) und Steigerung der direkten Webseiten-Buchungen.',
-        result: 'Check-in-Fehler und Channel-Konflikte in allen Häusern reduziert, Verfügbarkeiten durch Backups und Zugriffsrichtlinien stabilisiert und Teams durch wiederholbare Schulungen prüfungsbereit gehalten.',
-      },
-      fures: {
-        role: 'Senior Web Developer & IT-Consultant (Nebentätigkeit)',
-        company: 'Fures Tech (International)',
-        date: 'Jan. 2023 – Heute',
-        problem: 'Hotels und KMU brauchten verlässliche Betreuung von Websites und Buchungsengines, ohne meinen Vollzeitfokus zu stören.',
-        action: 'Nebenberuflich Hotel-Websites und Buchungsengines (React/JS) geliefert, SEO- und Sicherheits-Setups umgesetzt und Sedna/ElektraWeb-API-Integrationen unterstützt. Wartung nach Livegang persönlich im Bereitschaftsmodus übernommen.',
-        result: 'Schnelle Implementierungen und geringe Wartungskosten erreicht; Ticket-Lösungen pro Anruf verkürzt und Engagements ausdrücklich als Nebentätigkeit gekennzeichnet, um Loyalität zum Hauptarbeitgeber zu sichern.',
-        tasks: [
-          'Entwicklung und Wartung von Hotel-Webseiten (React, JS).',
-          'Technische Beratung für Tourismusbetriebe bei Digitalisierungsprojekten.',
-          'Implementierung von KI-Tools zur Gästebetreuung.',
-        ],
-      },
-      mimoza_manager: {
-        role: 'Stellvertretender Hoteldirektor',
-        company: 'Mimoza Beach Hotel & Dorana Hotels',
-        date: 'Juli 2021 – Mai 2023',
-        tasks: [
-          'Leitung des operativen Tagesgeschäfts und Personalplanung.',
-          'Verantwortlich für Gästezufriedenheit und Beschwerdemanagement.',
-          'Überwachung der Hygiene- und Qualitätsstandards.',
-        ]
-      },
-      mimoza_reception: { role: 'Rezeptionist', company: 'Mimoza Beach Hotel', date: 'Nov. 2019 – Juli 2021', tasks: [
-        'Check-in/Check-out, Kassenführung und Rechnungsstellung.',
-        'Betreuung der Gäste und Bearbeitung von Reservierungen (OTA & Direkt).',
-      ] },
-      concorde: { role: 'Rezeptionist', company: 'Concorde Luxury Resort & Casino', date: 'Aug. 2018 – Nov. 2019', tasks: [
-        'Gästebetreuung in einem 5-Sterne-Umfeld.',
-        'Umgang mit internationalen VIP-Gästen.',
-      ] },
-      granada: { role: 'Rezeptionist', company: 'Granada Luxury Hotels', date: 'Mai 2018 – Aug. 2018', tasks: [
-        'Gästebetreuung in einem 5-Sterne-Umfeld.',
-        'Umgang mit internationalen VIP-Gästen.',
-      ] },
-      germany: { role: 'Berufserfahrung Deutschland (Industrie & Logistik)', company: 'Regensburg, Bayern', date: '2012 – 2017', tasks: ['2015–2016 BMW Group: Qualitätssicherung & Produktion.', '2013–2014 Continental & Infineon: Maschinenführung & technische Abläufe.', '2014 FedEx: Logistik & Versand.', 'Hier habe ich deutsche Arbeitsmoral, Pünktlichkeit und präzise Abläufe verinnerlicht.'] },
-      anar_metal: { role: 'Maschinenbediener', company: 'Anar Metal', date: 'Nov. 2017 – Mai 2018', tasks: ['Bedienung von metallverarbeitenden Maschinen und Sicherstellung der Produktion gemäß Qualitätsstandards.'] },
-      saribekir: { role: 'Maschinenbediener', company: 'SARIBEKİR PACKAGING', date: 'Juni 2017 – Nov. 2017', tasks: ['Management des Maschinenbetriebs an Verpackungslinien und Überwachung der Effizienz.'] },
-      bmw: { role: 'Produktion & Qualitätskontrolle', company: 'BMW Group, Regensburg', date: 'Juni 2015 – Okt. 2016', tasks: ['Durchführung von Montagearbeiten und Qualitätssicherungsprüfungen gemäß SOPs.', 'Prozessüberwachung, Fehlerbehebung und Dokumentation.'] },
-      fedex: { role: 'Logistikbeauftragter', company: 'FedEx Services, Regensburg', date: 'Feb. 2014 – Nov. 2014', tasks: ['Koordination von ein- und ausgehenden Sendungen, Bestandsverwaltung und Logistikverfolgung.'] },
-      infineon: { role: 'Maschinenbediener', company: 'Infineon Technologies, Regensburg', date: 'Juli 2013 – Okt. 2014', tasks: ['Bedienung von Präzisionsmaschinen für die Halbleiterfertigung unter Einhaltung von Reinraumprotokollen.'] },
-      scheugenpflug: { role: 'Praktikant Produktionsmanagement', company: 'Scheugenpflug Global', date: 'Feb. 2014 – Aug. 2014', tasks: ['Unterstützung bei der Optimierung von Produktionsprozessen und Erstellung von Effizienzberichten.'] },
-      continental: { role: 'Maschinenbediener', company: 'Continental Automotive, Regensburg', date: 'Juni 2012 – Feb. 2014', tasks: ['Bedienung und Wartung von Produktionsmaschinen für Automobilkomponenten.', 'Sicherstellung der Effizienz zur Erreichung der Produktionsziele.'] },
-      edag: { role: 'Robotertechniker', company: 'EDAG Group', date: 'Sep. 2012 – März 2013', tasks: ['Unterstützung bei der Einrichtung und Wartung von Robotersystemen an Produktionslinien.'] },
-      tasksTitle: 'Aufgaben & Verantwortlichkeiten', problemTitle: 'Herausforderung', actionTitle: 'Ansatz', resultTitle: 'Ergebnis',
-    },
-    education: {
-        title: 'Ausbildung',
-        tourism: { degree: 'Tourismus- & Hotelmanagement (Associate Degree / Diplom)', university: 'Anadolu University', date: '2025 – Laufend', details: ['Front-Office-Management, Hospitality-Recht, Revenue/Immobilien-Module – passend für RWR-Antrag.'] },
-        aof: { degree: 'Webdesign & Coding (Associate Degree / Diplom)', university: 'Anadolu University', date: '2020 – 2023', details: ['Schwerpunkt: Web-Entwicklung & IT-Systeme. (Dieser Abschluss qualifiziert als Mangelberuf “Datenverarbeitung/Techniker” für die Rot-Weiß-Rot-Karte.)'] },
-        oth: { degree: 'Produktions- & Automatisierungstechnik', university: 'OTH Regensburg, Deutschland', date: '2015 – 2017', details: ['Technische Produktionsgrundlagen, Automatisierungsprinzipien und deutsche Fachsprache.'] }
-    },
-    certificates: {
-        title: 'Zertifikate & Qualifikationen',
-        certified: 'Zertifiziert',
-        verify: 'Zertifikat überprüfen',
-        items: [
-          { name: 'Search Ads 360 Zertifizierung', issuer: 'Google, 2025', type: 'google', details: ['Expertise in fortgeschrittenen Strategien, Gebotsmanagement und Berichterstattung für Suchkampagnen.'] },
-          { name: 'Opera PMS Hotelsoftware', issuer: 'Next Learn Academy, 2023', type: 'hospitality', details: ['Umfassende Schulung zur branchenüblichen Opera PMS-Software für das Front-Office-Management.'] },
-          { name: 'Social Media Marketing Zertifiziert', issuer: 'HubSpot Academy, 2023', type: 'hubspot', details: ['Fähigkeiten zur Entwicklung, Umsetzung und Analyse effektiver Social-Media-Strategien.'] },
-          { name: 'Büro-Admin & Rezeptionist - Stufe 7', issuer: 'One Education, 2023', type: 'default', details: ['Fortgeschrittene Kenntnisse in Büroorganisation, -verfahren und Empfangsarbeit.'] },
-          { name: 'Kundenservice (CUST150)', issuer: 'Saylor Academy, 2023', type: 'saylor', details: ['Grundsätze des professionellen Kundenservice und effektive Kommunikationsstrategien.'] },
-          { name: 'Social Media für das Gastgewerbe', issuer: 'Institute of Hospitality, 2022', type: 'hospitality', details: ['Spezialisierte Techniken im Social-Media- und Instagram-Marketing für Hotels und Tourismus.'] },
-          { name: 'Google IT-Support Professional', issuer: 'Google / Coursera, 2020', type: 'google', details: ['5-Gänge-Zertifikat: Technischer Support, Netzwerke, Betriebssysteme, Systemadministration und IT-Sicherheit.'] },
-          { name: 'Angewandtes E-Zertifikat für beglaubigte Übersetzung', issuer: 'Anadolu University, 2020', type: 'default', details: ['E-Zertifikat-Programm zu schriftlichen und mündlichen Übersetzungstechniken.'] },
-          { name: 'Objektorientierte Programmierung in Java', issuer: 'Hasso Plattner Institute, 2019', type: 'programming', details: ['Grundlagen und Konzepte der objektorientierten Programmierung mit der Sprache Java.'] },
-        ]
-    },
-    skills: {
-        title: 'Fachgebiete',
-        hospitality: { title: 'Hoteltechnologie', items: [{ name: 'ElektraWeb', level: 'Experte', percentage: 95 }, { name: 'Opera PMS', level: 'Experte', percentage: 90 }, { name: 'Sedna/Protel/MICROS', level: 'Ausgezeichnet', percentage: 85 }] },
-        web: { title: 'Web- & KI-Entwicklung', items: [{ name: 'JavaScript', level: 'Ausgezeichnet', percentage: 88 }, { name: 'React/TypeScript', level: 'Ausgezeichnet', percentage: 82 }, { name: 'KI & Automatisierung (Gemini API)', level: 'Experte', percentage: 95 }] },
-        digital: {
-          title: 'Digitales Marketing & Design',
-          items: [
-            { name: 'Google Marketing Platform (Ads, Analytics, Search Console, My Business)', level: 'Experte', percentage: 95 },
-            { name: 'Grafik & Design (Adobe Photoshop, Canva, Video)', level: 'Sehr gut', percentage: 90 },
-            { name: 'Social Media Growth (Instagram Reels, Content-Planung)', level: 'Experte', percentage: 92 },
-            { name: 'SEO & SEM (Hotels)', level: 'Experte', percentage: 95 },
-          ],
-        },
-        languages: { title: 'Sprachen', items: [{ name: 'Türkisch', level: 'Muttersprache', percentage: 100 }, { name: 'Deutsch', level: 'Fortgeschritten (C1)', percentage: 90 }, { name: 'Englisch', level: 'Fließend (B2.2)', percentage: 80 }] }
-    },
-    projects: {
-      title: 'Ausgewählte Projekte',
-      visitProject: 'Besuchen',
-      items: [
-        { name: 'Serakıncı KI-Produktplattform', description: 'Automatisierter, mehrsprachiger, SEO-fokussierter Katalog mit KI-generierten Beschreibungen und Scraping-Pipelines.', link: 'https://www.fures.at/projects/serakinci', tags: ['Automatisierung', 'Scraping', 'SEO'] },
-        { name: 'ZuzuMood E-Commerce-Erlebnis', description: 'Für die texanische Marke ZuzuMood wurde ein conversionstarker Boutique-Shop mit Etsy-zentrierter Produktfindung, klarer Kategoriestruktur und täglichem Blog-Flow umgesetzt.', link: 'https://www.zuzumood.com', tags: ['E-Commerce', 'SEO', 'Markenerlebnis'] },
-        { name: 'in Maria Alm Digitaler Entdeckungsatlas', description: 'Tourismusportal für Maria Alm und die Hochkönig-Region mit 65 normalisierten Routen, filterbarer Routensuche, interaktiver Karte, Saisonwelten, Nacht-/Foto-Erlebnissen und KI-gestütztem Tagesplaner.', link: 'https://inmariaalm.at', tags: ['Travel Tech', 'KI-Planer', 'Tourismus UX'] },
-        { name: 'KI-gestützter Zypern-Urlaubsplaner', description: 'Intelligente App, die mehrsprachige, personalisierte Reisepläne basierend auf Benutzerpräferenzen und Wetterkontext erstellt.', link: 'https://www.fures.at/projects/aboutcyprus', tags: ['KI', 'React', 'Reisetechnologie'] },
-        { name: 'Hotel- & Agenturintegration', description: 'Integration von 6 Hotels in den Agenturbetrieb; optimierte Prozesse, reduzierte Kosten und vereinheitlichte Datenflüsse.', link: 'https://www.fures.at/projects/hotel', tags: ['Digitale Transformation', 'Systeme'] },
-        { name: 'ICALT 2024 Kongressmanagement', description: 'Planung und Koordination einer internationalen Konferenz in Zusammenarbeit mit Dorana Tourism.', link: 'https://www.fures.at/projects/icalt', tags: ['Eventmanagement', 'Logistik'] },
-        { name: 'PixShop AI', description: 'KI-gestützte Fotobearbeitung, vereinfacht. Machen Sie professionelle Bearbeitungen mit einfachen Textanweisungen.', link: 'https://pixshop-720548631405.us-west1.run.app/', tags: ['Generative KI', 'SaaS', 'Bildbearbeitung'] },
-        { name: 'Pantry Chef AI', description: 'Was ist in Ihrer Speisekammer? Geben Sie Ihre Zutaten ein und lassen Sie unseren KI-Koch etwas Leckeres zaubern.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/', tags: ['KI', 'Rezeptgenerierung', 'Web-App'] }
-      ]
-    },
-    accessibility: {
-      title: 'Erklärung zur Barrierefreiheit',
-      statement: 'Diese Website wurde so konzipiert und entwickelt, dass sie den Web Content Accessibility Guidelines (WCAG) 2.1 Stufe AA entspricht. Wir bemühen uns, allen Nutzern ein inklusives Erlebnis zu bieten.'
-    },
-    contactInfo: {
-      email: 'furkanyonat@gmail.com',
-      phone: '+905338704176',
-      phoneDisplay: '+90 533 870 41 76',
-      address: 'Famagusta, Zypern',
-      whatsapp: 'https://wa.me/905338704176',
-      portfolio: 'https://www.fures.at/furkanyonat/',
-      profileImage,
-      linkedin: 'https://www.linkedin.com/in/furkan-yonat-2745061ba/',
-      facebook: 'https://www.facebook.com/furkanyonat900/',
-      instagram: 'https://www.instagram.com/furkanyonat9/',
-      xing: 'https://www.xing.com/profile/Furkan_Yonat2/'
-    },
-    chatbot: {
-      greeting: 'Guten Tag! Ich beantworte gern Ihre Fragen zu Furkan Yonat.',
-      placeholder: 'Stellen Sie eine Frage...',
-      title: 'Profil-Chat',
-      notConfigured: 'KI-Assistent ist nicht konfiguriert. API-Schlüssel fehlt.',
-      unavailable: 'Der KI-Assistent ist derzeit nicht verfügbar. Bitte versuchen Sie es später erneut.',
-      voiceStart: 'Spracheingabe starten',
-      voiceStop: 'Zuhören beenden'
-    },
-    footer: {
-      copyright: `© ${new Date().getFullYear()} Furkan Yonat.`,
-      motto: 'Mit Leidenschaft und Präzision gebaut.',
-      poweredBy: ''
-    },
-    theme: {
-        light: 'Hell',
-        dark: 'Dunkel',
-        system: 'System'
-    }
+    name: 'Furkan Yonat', title: 'Marketing- und Growth-Spezialist', vision: 'Ein Profil, das digitale Werbung, KI-gestützte Content-Produktion, Field Activation, Partnerschaften und Tourismusbetrieb mit Wachstumsfokus verbindet.',
+    nav: { experience: 'Erfahrung', skills: 'Fähigkeiten', projects: 'Projekte', more: 'Menü', education: 'Ausbildung', certificates: 'Zertifikate' }, actions: { downloadPdf: 'PDF herunterladen' },
+    hero: { pretitle: 'Digitale Werbung | KI-Content-Produktion | Field Activation | Partnerschaften', title: 'Ich verbinde Marketing und Wachstum', titleGradient: 'mit Tourismustechnologie.', subtitle: 'Ich bin ein Professional mit Erfahrung in digitalem Marketing, Wachstum, KI-gestützter Content-Produktion, Field Operations und Partnerschaften. Derzeit arbeite ich in Österreich bei Eder Hotels als IT Support und Front Office Spezialist.', imageAlt: 'Porträt von Furkan Yonat', contact: { phone: 'Telefon', email: 'E-Mail', address: 'Aktueller Standort' } },
+    features: { title: 'Kernkompetenzen', items: { operations: { title: 'Field Activation & Partnerschaften', description: 'Ich entwickle Zusammenarbeit und Markenpräsenz durch persönlichen Kontakt mit Universitäten, Unternehmen, Eventveranstaltern und Lieferanten.' }, design: { title: 'KI-Content & Designproduktion', description: 'Ich erstelle Visuals, Videos, Werbetexte, Reels, Kampagnenplakate, Webinhalte und mehrsprachige Marketingmaterialien schnell mit KI-gestützten Tools.' }, data: { title: 'Performance & Conversion Tracking', description: 'Ich bewerte Kampagnen anhand von Reservierungen, Verkäufen, Werbekosten, Conversion Tracking, Google Analytics, Search Console und wöchentlichen KPI-Reports.' }, marketing: { title: 'Digitale Werbung & Wachstum', description: 'Ich steuere Google Ads, Search Ads 360, SEO, SEM, Social Media und Direktbuchungskampagnen entlang klarer Wachstumsziele.' }, sector: { title: 'Tourismus, Hotellerie & Betrieb', description: 'Ich bringe Marketing-, IT- und Front-Office-Erfahrung aus sechs Hotels, einem Reisebüro, Restaurants, Eventflächen und internationalen Gästebetrieben mit.' } } },
+    experience: { title: 'Berufserfahrung', controls: { expandAll: 'Alle Karten öffnen', collapseAll: 'Einzelansicht verwenden' }, eder: { role: 'IT Support & Front Office Spezialist', company: 'Eder Hotels, Maria Alm, Salzburg, Österreich', date: '2026 – Heute', tasks: ['Unterstützung des täglichen Front-Office- und Hotel-IT-Betriebs.', 'Support bei technischen Problemen, Nutzergeräten, Druckern, Verbindungssystemen und Rezeptionssoftware.', 'Kommunikation mit internationalen Gästen auf Deutsch und Englisch.', 'Unterstützung der operativen Koordination zwischen Rezeption, Reservierung und weiteren Abteilungen.', 'Gemeinsames Management technischer und gästeorientierter Prozesse im intensiven Hotelbetrieb.', 'Verbindung von Hotellerie, Technologie und Customer Experience im selben Betrieb.'] }, neu: { role: 'Operations-, Marketing- und IT-Manager', company: 'Dorana Tourism Group / Near East University, TRNC', date: 'Mai 2023 – 2026', problem: 'Verantwortung für Marketing, Betrieb, digitalen Vertrieb und Technologieprozesse von sechs Hotels, einem Reisebüro, Restaurants und Eventflächen.', action: 'Steuerung von Google Ads, SEO, Social Media, Websites, Direktvertrieb, Events und digitaler Transformation; Erstellung von Visuals, Videos, Werbetexten, Reels, Kampagnenplakaten, Webinhalten und mehrsprachigen Materialien mit KI-Tools.', result: 'Unterstützung von Sales und Marketing für Kongresse, Konzerte, Graduierungen, Festivals und Corporate Events; Mitarbeit an Betrieb, Promotion, Sponsoring und Partnerschaften für eine Open-Air-Eventfläche mit etwa 4.500 Personen.', tasks: ['Google-Ads-Kampagnen eingerichtet, gesteuert und ausgewertet.', 'Google Analytics, Search Console, Google Business, Booking.com, Expedia, ElektraWeb und Opera Prozesse betreut.', 'Rezeptionsteams in Vertrieb, Gästekommunikation und Betriebsstandards geschult.', 'Entwicklung von Website, Online-Reservierung und digitalen Vertriebssystemen unterstützt.'] }, fures: { role: 'Senior Web Developer und Digital Marketing Consultant', company: 'Fures Tech, international', date: 'Januar 2023 – Heute', tasks: ['Websites und digitale Kampagnen für Tourismus, E-Commerce und lokale Unternehmen entwickelt.', 'Webprojekte mit React, TypeScript und JavaScript umgesetzt.', 'KI-gestützte Systeme für Content, Produktbeschreibungen und Werbetexte entwickelt.', 'SEO, Content-Strategie und conversion-orientierte User Experiences für Marken gestaltet.', 'Mehrsprachige Websites und Marketingmaterialien vorbereitet.', 'KI-gestützte Anwendungen für Tourismus, Content und Customer Experience entwickelt.'] }, mimoza_manager: { role: 'Stellvertretender Hoteldirektor', company: 'Mimoza Beach Hotel & Dorana Hotels', date: 'Juli 2021 – Mai 2023', tasks: ['Tägliche Hotelabläufe und Personalplanung gesteuert.', 'Vertrieb, Reservierung, Preisgestaltung und Online-Kanäle verfolgt.', 'Sonderevents, Gruppenreservierungen und Firmenkundenprozesse koordiniert.', 'Social Media, Kampagnen und saisonale Promotion unterstützt.', 'Verbesserungspotenziale aus Gästebewertungen und Feedback abgeleitet.', 'Beschwerdemanagement, Vertriebsentwicklung und Gästezufriedenheit betreut.'] }, mimoza_reception: { role: 'Rezeptionist', company: 'Mimoza Beach Hotel', date: 'November 2019 – Juli 2021', tasks: ['Reservierungen per Telefon, E-Mail und Online-Kanälen verwaltet.', 'Zimmer, Restaurantangebote, Events und Zusatzleistungen an Gäste verkauft.', 'Direkte Praxiserfahrung zu Gästeverhalten und Anfragen gesammelt.', 'Online-Bewertungen und Kundenfeedback betreut.', 'Check-in, Check-out, Rechnungsstellung und Kassenprozesse durchgeführt.'] }, concorde: { role: 'Rezeptionist', company: 'Concorde Luxury Resort & Casino', date: 'August 2018 – November 2019', tasks: ['Mit internationalen und VIP-Gästen in einem Fünf-Sterne-Hotelumfeld gearbeitet.', 'Reservierungen, Check-in und Zahlungsprozesse über Opera PMS verwaltet.', 'Schnelle Problemlösung und Überzeugungsfähigkeit im intensiven Betrieb entwickelt.', 'Persönliche Kommunikation zur Unterstützung von Gästebindung und Verkaufschancen aufgebaut.'] }, granada: { role: 'Rezeptionist', company: 'Granada Luxury Hotels', date: 'Mai 2018 – August 2018', tasks: ['Intensive Gästeabläufe in der Hochsaison betreut.', 'Zimmerzuteilung, Gästebegrüßung und Vertriebsunterstützung begleitet.', 'Promotion von Hotelleistungen und Upselling-Prozesse unterstützt.'] }, germany: { role: 'Industrie- und Logistikerfahrung', company: 'BMW Group, FedEx, Continental und Infineon — Regensburg, Deutschland', date: '2012 – 2017', tasks: ['In internationalen Unternehmen in Produktion, Qualität, Logistik und technischen Prozessen gearbeitet.', 'Erfahrung in disziplinierter Arbeit, Zeitmanagement, Qualitätskontrolle und Prozessverfolgung gesammelt.', 'Teamarbeit und Betriebsstandards in einem deutschsprachigen Arbeitsumfeld verinnerlicht.'] }, tasksTitle: 'Aufgaben & Verantwortlichkeiten', problemTitle: 'Umfang', actionTitle: 'Marketing & Content', resultTitle: 'Field, Events & Partnerschaften' },
+    education: { title: 'Ausbildung', tourism: { degree: 'Tourismus- und Hotelmanagement, Associate Degree', university: 'Anadolu University', date: '2025 – Laufend', details: [] }, aof: { degree: 'Webdesign und Coding, Associate Degree', university: 'Anadolu University', date: '2020 – 2023', details: [] }, oth: { degree: 'Produktions- und Automatisierungstechnologien', university: 'OTH Regensburg, Deutschland', date: '2015 – 2017', details: [] } },
+    certificates: { title: 'Zertifikate', certified: 'Zertifiziert', verify: 'Zertifikat überprüfen', items: [{ name: 'KI-gestützte Performance Ads', issuer: 'Google, 2026', type: 'google', details: ['KI-gestützte Performance-Werbung und Kampagnenoptimierung.'] }, { name: 'Search Ads 360 Zertifizierung', issuer: 'Google, 2025', type: 'google', details: ['Search Ads 360 Kampagnenmanagement, Gebotssteuerung und Reporting.'] }, { name: 'Social Media Marketing', issuer: 'HubSpot Academy, 2023', type: 'hubspot', details: ['Social-Media-Strategie, Content-Planung und Performance-Analyse.'] }, { name: 'Social Media für Hospitality Businesses', issuer: 'Institute of Hospitality, 2022', type: 'hospitality', details: ['Social-Media-Marketing für Hotel- und Tourismusbetriebe.'] }, { name: 'Google IT Support Professional', issuer: 'Google / Coursera, 2020', type: 'google', details: ['Technischer Support, Netzwerke, Betriebssysteme, Systemadministration und IT-Sicherheit.'] }, { name: 'Opera PMS Hotelsoftware', issuer: 'Next Learn Academy, 2023', type: 'hospitality', details: ['Front-Office- und Hotelbetriebsmanagement mit Opera PMS.'] }] },
+    skills: { title: 'Digitale Tools und Fähigkeiten', advertising: { title: 'Werbung und Analyse', items: [{ name: 'Google Ads', level: 'Experte', percentage: 95 }, { name: 'Search Ads 360', level: 'Experte', percentage: 92 }, { name: 'Google Analytics', level: 'Experte', percentage: 92 }, { name: 'Search Console', level: 'Experte', percentage: 92 }, { name: 'Google Business Profile', level: 'Experte', percentage: 90 }] }, content: { title: 'Content und Design', items: [{ name: 'Adobe Photoshop', level: 'Sehr gut', percentage: 88 }, { name: 'Canva', level: 'Experte', percentage: 95 }, { name: 'KI-Bildgenerierungstools', level: 'Experte', percentage: 95 }, { name: 'KI-Videotools', level: 'Sehr gut', percentage: 90 }, { name: 'Kurzvideo-Schnitt', level: 'Sehr gut', percentage: 88 }] }, web: { title: 'Web und Automatisierung', items: [{ name: 'JavaScript', level: 'Sehr gut', percentage: 88 }, { name: 'React', level: 'Sehr gut', percentage: 84 }, { name: 'TypeScript', level: 'Sehr gut', percentage: 82 }, { name: 'Gemini API', level: 'Sehr gut', percentage: 88 }, { name: 'KI-Automatisierungssysteme', level: 'Experte', percentage: 92 }] }, hospitality: { title: 'Hotel und Betrieb', items: [{ name: 'ElektraWeb', level: 'Experte', percentage: 95 }, { name: 'Opera PMS', level: 'Experte', percentage: 90 }, { name: 'Protel', level: 'Sehr gut', percentage: 85 }, { name: 'Sedna', level: 'Sehr gut', percentage: 85 }, { name: 'MICROS', level: 'Sehr gut', percentage: 82 }, { name: 'Booking.com', level: 'Experte', percentage: 92 }, { name: 'Expedia', level: 'Sehr gut', percentage: 88 }] }, languages: { title: 'Sprachen', items: [{ name: 'Türkisch', level: 'Muttersprache', percentage: 100 }, { name: 'Deutsch', level: 'Fortgeschritten, C1', percentage: 90 }, { name: 'Englisch', level: 'Fortgeschritten, B2.2', percentage: 82 }] } },
+    projects: { title: 'Ausgewählte Projekte', visitProject: 'Besuchen', items: deProjects }, accessibility: { title: 'Barrierefreiheitserklärung', statement: 'Diese Website wurde so gestaltet, dass sie WCAG 2.1 AA entspricht.' }, contactInfo: { ...sharedContact, address: 'Maria Alm, Salzburg, Österreich', cyprusConnection: 'Famagusta, TRNC', license: 'Führerschein Klasse B' }, chatbot: { greeting: 'Hallo! Ich beantworte Fragen über Furkan Yonat.', placeholder: 'Frage stellen...', title: 'Profil-Chat', ...baseChatbot, voiceStart: 'Spracheingabe starten', voiceStop: 'Zuhören beenden' }, footer: { copyright: `© ${new Date().getFullYear()} Furkan Yonat.`, motto: 'Mit Leidenschaft und Präzision erstellt.', poweredBy: '' }, theme: { light: 'Hell', dark: 'Dunkel', system: 'System' }
   },
   es: {
-    name: 'Furkan Yonat',
-    title: 'Especialista en Soporte IT & Front Office Manager | Diseño y Programación Web (Grado Asociado)',
-    vision: 'Perfil práctico de IT y recepción con alemán C1 y disposición para un puesto estable en Austria. Mantiene SOP de recepción, Channel Manager y web corporativa con disciplina operativa clara.',
-    nav: {
-      experience: 'Experiencia',
-      skills: 'Habilidades',
-      projects: 'Proyectos',
-      more: 'Menú',
-      education: 'Educación',
-      certificates: 'Certificados'
-    },
-    actions: {
-      downloadPdf: 'Descargar PDF',
-    },
-    hero: {
-      pretitle: 'Operaciones IT y Front Office',
-      title: 'IT-Systembetreuer & Front Office Manager',
-      titleGradient: 'Listo para Austria.',
-      subtitle:
-        'Gestor de IT y recepción con enfoque en marketing digital. Mantengo la recepción estable con Gastrodat/Opera y aumento las reservas directas mediante Google Ads, SEO y diseño de contenido profesional. Un perfil integral para tecnología, hospitalidad y crecimiento de ingresos.',
-      imageAlt: 'Retrato de Furkan Yonat',
-      contact: { phone: 'Teléfono', email: 'Correo', address: 'Dirección' },
-    },
-    features: {
-        title: 'Mis Competencias Clave',
-        items: {
-          operations: { title: 'Optimización de Procesos y Automatización', description: 'Uso herramientas digitales como Gastrodat y Opera para reducir pasos manuales y acelerar la operación.' },
-          design: { title: 'Infraestructura IT y Web', description: 'Gestiono sitios web de hotel y mantengo los sistemas estables y seguros.' },
-          data: { title: 'Monitoreo y Reporting', description: 'Detecto incidencias pronto con paneles e informes claros para guiar decisiones.' },
-          marketing: {
-            title: 'Marketing Online y Diseño',
-            description:
-              'Gestión profesional de Google Ads y Analytics para aumentar ingresos. Creo contenido social y diseños del hotel (menús, folletos) sin coste de agencia.',
-          },
-          sector: { title: 'Enfoque Hotelero', description: 'He gestionado recepción, canales y comunicación con huéspedes en sitio; brindo soporte técnico a pymes turísticas.' },
-        }
-      },
-    experience: {
-      title: 'Experiencia',
-      controls: {
-        expandAll: 'Abrir todas las tarjetas',
-        collapseAll: 'Volver a la vista individual',
-      },
-      neu: {
-        role: 'Líder Operativo e IT-Manager — Hoteles y Agencia de Viajes',
-        company: 'Dorana Tourism Group / Near East University',
-        date: 'Mayo 2023 – Actualidad',
-        problem: 'Unificar SOP de recepción en 6 hoteles y una agencia, desplegar Gastrodat/Opera y Channel Manager con infraestructura IT estable.',
-        action:
-          'Implementé Gastrodat con conexiones Booking.com/Expedia, formé al equipo de recepción en SOP y control de calidad, y configuré/rediseñé red, TPV e impresoras. Actualicé motor de reservas y programa de fidelidad para asegurar ventas online. Gestioné campañas de marketing digital (Google Ads) y aumenté las reservas directas en la web.',
-        result: 'Reduje errores de check-in y conflictos de canales, estabilicé la disponibilidad con backups y políticas de acceso y mantuve a los equipos listos para auditoría con formaciones repetibles.',
-      },
-      fures: {
-        role: 'Senior Web Developer e IT-Consultant (Trabajo adicional)',
-        company: 'Fures Tech (Internacional)',
-        date: 'Ene 2023 – Actualidad',
-        problem: 'Hoteles y pymes necesitaban soporte fiable para webs y motores de reserva sin interferir con mi puesto principal.',
-        action: 'Como actividad adicional, entregué webs y motores de reserva (React/JS), configuré SEO y seguridad, y apoyé integraciones API de Sedna/ElektraWeb. Asumí mantenimiento post-lanzamiento personalmente en modalidad on-call.',
-        result: 'Logré puestas en marcha rápidas y bajo coste de mantenimiento; reduje tiempos de resolución por ticket y mantuve todos los proyectos declarados como actividad secundaria para proteger mi rol principal.',
-        tasks: [
-          'Desarrollo y mantenimiento de sitios web hoteleros (React, JS).',
-          'Asesoría técnica para empresas turísticas en proyectos de digitalización.',
-          'Implementación de herramientas de IA para la atención de huéspedes.',
-        ],
-      },
-      mimoza_manager: {
-        role: 'Subdirector de Hotel',
-        company: 'Mimoza Beach Hotel & Dorana Hotels',
-        date: 'Jul 2021 – May 2023',
-        tasks: [
-          'Gestión de la operación diaria y la planificación de personal.',
-          'Responsable de la satisfacción de huéspedes y gestión de quejas.',
-          'Supervisión de los estándares de higiene y calidad.',
-        ]
-      },
-      mimoza_reception: { role: 'Recepcionista', company: 'Mimoza Beach Hotel', date: 'Nov 2019 – Jul 2021', tasks: [
-        'Check-in/check-out, caja y facturación.',
-        'Atención a huéspedes y gestión de reservas (OTA y directas).',
-      ] },
-      concorde: { role: 'Recepcionista', company: 'Concorde Luxury Resort & Casino', date: 'Ago 2018 – Nov 2019', tasks: [
-        'Atención a huéspedes en un entorno de 5 estrellas.',
-        'Gestión de huéspedes VIP internacionales.',
-      ] },
-      granada: { role: 'Recepcionista', company: 'Granada Luxury Hotels', date: 'May 2018 – Ago 2018', tasks: [
-        'Atención a huéspedes en un entorno de 5 estrellas.',
-        'Gestión de huéspedes VIP internacionales.',
-      ] },
-      germany: { role: 'Experiencia en Alemania (Industria y Logística)', company: 'Ratisbona, Baviera', date: '2012 – 2017', tasks: ['2015–2016 BMW Group: Control de calidad y producción.', '2013–2014 Continental & Infineon: Manejo de maquinaria y procesos técnicos.', '2014 FedEx: Logística y envíos.', 'Aquí interioricé la disciplina laboral alemana, la puntualidad y los flujos precisos.'] },
-      anar_metal: { role: 'Operador de Máquinas', company: 'Anar Metal', date: 'Nov 2017 – May 2018', tasks: ['Operé maquinaria para trabajar metales y aseguré que la producción cumpliera con los estándares de calidad.'] },
-      saribekir: { role: 'Operador de Máquinas', company: 'SARIBEKİR PACKAGING', date: 'Jun 2017 – Nov 2017', tasks: ['Gestioné las operaciones de las máquinas en las líneas de producción de envases y supervisé la eficiencia.'] },
-      bmw: { role: 'Producción y Control de Calidad', company: 'BMW Group, Ratisbona', date: 'Jun 2015 – Oct 2016', tasks: ['Realicé operaciones en la línea de montaje y controles de garantía de calidad según los SOP.', 'Llevé a cabo el monitoreo de procesos, la resolución de problemas y la documentación.'] },
-      fedex: { role: 'Oficial de Logística', company: 'FedEx Services, Ratisbona', date: 'Feb 2014 – Nov 2014', tasks: ['Coordiné los envíos entrantes y salientes, gestioné el inventario y realicé el seguimiento logístico.'] },
-      infineon: { role: 'Operador de Máquinas', company: 'Infineon Technologies, Ratisbona', date: 'Jul 2013 – Oct 2014', tasks: ['Operé maquinaria de precisión para la fabricación de semiconductores, cumpliendo con los protocolos de sala limpia.'] },
-      scheugenpflug: { role: 'Becario de Gestión de Producción', company: 'Scheugenpflug Global', date: 'Feb 2014 – Ago 2014', tasks: ['Asistí en la optimización de los procesos de producción y preparé informes de eficiencia.'] },
-      continental: { role: 'Operador de Máquinas', company: 'Continental Automotive, Ratisbona', date: 'Jun 2012 – Feb 2014', tasks: ['Operé y mantuve maquinaria de producción para componentes de automoción.', 'Aseguré la eficiencia para cumplir los objetivos de producción.'] },
-      edag: { role: 'Técnico de Robótica', company: 'EDAG Group', date: 'Sep 2012 – Mar 2013', tasks: ['Asistí en la configuración y el mantenimiento de sistemas robóticos en las líneas de producción.'] },
-      tasksTitle: 'Tareas y Responsabilidades', problemTitle: 'Desafío', actionTitle: 'Enfoque', resultTitle: 'Resultado',
-    },
-    education: {
-        title: 'Educación',
-        tourism: { degree: 'Grado Asociado en Turismo y Gestión Hotelera', university: 'Anadolu University', date: '2025 – En curso', details: ['Gestión de recepción, derecho hotelero y módulos de revenue/inmobiliario alineados con el proceso RWR.'] },
-        aof: { degree: 'Grado Asociado en Diseño y Programación Web', university: 'Anadolu University', date: '2020 – 2023', details: ['Enfoque en desarrollo web y sistemas IT. (Este título califica como ocupación escasa “Procesamiento de datos/Técnico” para la tarjeta Rojo-Blanco-Rojo.)'] },
-        oth: { degree: 'Tecnologías de Producción y Automatización', university: 'OTH Regensburg, Alemania', date: '2015 – 2017', details: ['Fundamentos de producción técnica, principios de automatización y dominio del alemán técnico.'] }
-    },
-    certificates: {
-        title: 'Certificados y Credenciales',
-        certified: 'Certificado',
-        verify: 'Verificar Certificado',
-        items: [
-          { name: 'Certificación de Search Ads 360', issuer: 'Google, 2025', type: 'google', details: ['Experiencia en estrategias avanzadas, gestión de ofertas e informes para campañas de búsqueda.'] },
-          { name: 'Software Hotelero Opera PMS', issuer: 'Next Learn Academy, 2023', type: 'hospitality', details: ['Formación completa en el software estándar de la industria Opera PMS para la gestión de la recepción.'] },
-          { name: 'Certificado en Marketing de Redes Sociales', issuer: 'HubSpot Academy, 2023', type: 'hubspot', details: ['Habilidades para desarrollar, implementar y analizar estrategias efectivas de redes sociales.'] },
-          { name: 'Administración de Oficina y Recepcionista - Nivel 7', issuer: 'One Education, 2023', type: 'default', details: ['Habilidades de nivel avanzado en administración de oficinas, procedimientos y deberes de recepcionista.'] },
-          { name: 'Servicio al Cliente (CUST150)', issuer: 'Saylor Academy, 2023', type: 'saylor', details: ['Principios de servicio al cliente profesional y estrategias de comunicación efectivas.'] },
-          { name: 'Redes Sociales para Empresas de Hostelería', issuer: 'Institute of Hospitality, 2022', type: 'hospitality', details: ['Técnicas especializadas en redes sociales y marketing de Instagram para hoteles y turismo.'] },
-          { name: 'Profesional de Soporte de TI de Google', issuer: 'Google / Coursera, 2020', type: 'google', details: ['Certificado de 5 cursos: Soporte técnico, Redes, SO, Administración de sistemas y Seguridad de TI.'] },
-          { name: 'Certificado electrónico aplicado en Traducción Jurada', issuer: 'Anadolu University, 2020', type: 'default', details: ['Programa de certificado electrónico sobre técnicas de traducción escrita y oral.'] },
-          { name: 'Programación Orientada a Objetos en Java', issuer: 'Hasso Plattner Institute, 2019', type: 'programming', details: ['Fundamentos y conceptos de la programación orientada a objetos utilizando el lenguaje Java.'] },
-        ]
-    },
-    skills: {
-        title: 'Áreas de especialización',
-        hospitality: { title: 'Tecnología Hotelera', items: [{ name: 'ElektraWeb', level: 'Experto', percentage: 95 }, { name: 'Opera PMS', level: 'Experto', percentage: 90 }, { name: 'Sedna/Protel/MICROS', level: 'Excelente', percentage: 85 }] },
-        web: { title: 'Desarrollo Web e IA', items: [{ name: 'JavaScript', level: 'Excelente', percentage: 88 }, { name: 'React/TypeScript', level: 'Excelente', percentage: 82 }, { name: 'IA y Automatización (Gemini API)', level: 'Experto', percentage: 95 }] },
-        digital: {
-          title: 'Marketing Digital y Diseño',
-          items: [
-            { name: 'Google Marketing Platform (Ads, Analytics, Search Console, My Business)', level: 'Experto', percentage: 95 },
-            { name: 'Gráfico y Diseño (Adobe Photoshop, Canva, Video)', level: 'Muy bueno', percentage: 90 },
-            { name: 'Social Media Growth (Instagram Reels, planificación de contenido)', level: 'Experto', percentage: 92 },
-            { name: 'SEO y SEM (Hoteles)', level: 'Experto', percentage: 95 },
-          ],
-        },
-        languages: { title: 'Idiomas', items: [{ name: 'Turco', level: 'Nativo', percentage: 100 }, { name: 'Alemán', level: 'Avanzado (C1)', percentage: 90 }, { name: 'Inglés', level: 'Fluido (B2.2)', percentage: 80 }] }
-    },
-    projects: {
-      title: 'Proyectos Destacados',
-      visitProject: 'Visitar',
-      items: [
-        { name: 'Plataforma de Productos con IA de Serakıncı', description: 'Catálogo automatizado, multilingüe y centrado en SEO con descripciones generadas por IA y pipelines de scraping.', link: 'https://www.fures.at/projects/serakinci', tags: ['Automatización', 'Scraping', 'SEO'] },
-        { name: 'Experiencia E-Commerce de ZuzuMood', description: 'Desarrollé para ZuzuMood una tienda boutique orientada a conversión, con descubrimiento de productos vía Etsy, arquitectura de categorías y flujo editorial diario.', link: 'https://www.zuzumood.com', tags: ['E-Commerce', 'SEO', 'Experiencia de Marca'] },
-        { name: 'Atlas Digital de Descubrimiento in Maria Alm', description: 'Portal turístico para Maria Alm y la región Hochkönig con una base de 65 rutas, búsqueda filtrable, mapa interactivo, guías estacionales, experiencias nocturnas/fotográficas y planificador diario con IA.', link: 'https://inmariaalm.at', tags: ['Travel Tech', 'Planificador IA', 'UX Turística'] },
-        { name: 'Planificador de Vacaciones en Chipre con IA', description: 'Aplicación inteligente que crea planes de viaje multilingües y personalizados basados en las preferencias del usuario y el contexto meteorológico.', link: 'https://www.fures.at/projects/aboutcyprus', tags: ['IA', 'React', 'Tecnología de Viajes'] },
-        { name: 'Integración de Hotel y Agencia', description: 'Integré 6 hoteles con las operaciones de la agencia; optimicé procesos, reduje costos y unifiqué los flujos de datos.', link: 'https://www.fures.at/projects/hotel', tags: ['Transformación Digital', 'Sistemas'] },
-        { name: 'Gestión del Congreso ICALT 2024', description: 'Planifiqué y coordiné una conferencia internacional en colaboración con Dorana Tourism.', link: 'https://www.fures.at/projects/icalt', tags: ['Gestión de Eventos', 'Logística'] },
-        { name: 'PixShop AI', description: 'Edición de fotos con IA, simplificada. Realice ediciones profesionales con sencillas instrucciones de texto.', link: 'https://pixshop-720548631405.us-west1.run.app/', tags: ['IA Generativa', 'SaaS', 'Edición de Imágenes'] },
-        { name: 'Pantry Chef AI', description: '¿Qué hay en su despensa? Introduzca sus ingredientes y deje que nuestro chef de IA prepare algo delicioso.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/', tags: ['IA', 'Generación de Recetas', 'App Web'] }
-      ]
-    },
-    accessibility: {
-      title: 'Declaración de Accesibilidad',
-      statement: 'Este sitio web está diseñado y desarrollado para cumplir con las Pautas de Accesibilidad para el Contenido Web (WCAG) 2.1 Nivel AA. Nuestro objetivo es proporcionar una experiencia inclusiva para todos los usuarios.'
-    },
-    contactInfo: {
-      email: 'furkanyonat@gmail.com',
-      phone: '+905338704176',
-      phoneDisplay: '+90 533 870 41 76',
-      address: 'Famagusta, Zypern',
-      whatsapp: 'https://wa.me/905338704176',
-      portfolio: 'https://www.fures.at/furkanyonat/',
-      profileImage,
-      linkedin: 'https://www.linkedin.com/in/furkan-yonat-2745061ba/',
-      facebook: 'https://www.facebook.com/furkanyonat900/',
-      instagram: 'https://www.instagram.com/furkanyonat9/',
-      xing: 'https://www.xing.com/profile/Furkan_Yonat2/'
-    },
-    chatbot: {
-      greeting: '¡Hola! Respondo tus preguntas sobre Furkan Yonat.',
-      placeholder: 'Haz una pregunta...',
-      title: 'Chat de Perfil',
-      notConfigured: 'El asistente de IA no está configurado. Falta la clave de API.',
-      unavailable: 'El asistente de IA no está disponible en este momento. Vuelve a intentarlo más tarde.',
-      voiceStart: 'Iniciar entrada de voz',
-      voiceStop: 'Dejar de escuchar'
-    },
-    footer: {
-      copyright: `© ${new Date().getFullYear()} Furkan Yonat.`,
-      motto: 'Construido con pasión y precisión.',
-      poweredBy: ''
-    },
-    theme: {
-        light: 'Claro',
-        dark: 'Oscuro',
-        system: 'Sistema'
-    }
-  },
+    name: 'Furkan Yonat', title: 'Especialista en Marketing y Crecimiento', vision: 'Perfil profesional que combina publicidad digital, producción de contenido con IA, activación de campo, alianzas y operaciones turísticas con enfoque de crecimiento.',
+    nav: { experience: 'Experiencia', skills: 'Habilidades', projects: 'Proyectos', more: 'Menú', education: 'Educación', certificates: 'Certificados' }, actions: { downloadPdf: 'Descargar PDF' },
+    hero: { pretitle: 'Publicidad Digital | Producción de Contenido con IA | Activación de Campo | Alianzas', title: 'Conecto marketing y crecimiento', titleGradient: 'con tecnología turística.', subtitle: 'Soy un profesional con experiencia en marketing digital, crecimiento, producción de contenido apoyada por inteligencia artificial, operaciones de campo y alianzas comerciales. Actualmente trabajo en Austria, en Eder Hotels, como especialista de IT Support y Front Office.', imageAlt: 'Foto de perfil de Furkan Yonat', contact: { phone: 'Teléfono', email: 'Correo', address: 'Ubicación actual' } },
+    features: { title: 'Competencias Clave', items: { operations: { title: 'Activación de Campo y Alianzas', description: 'Desarrollo colaboración y visibilidad de marca mediante comunicación presencial con universidades, empresas, organizadores de eventos y proveedores.' }, design: { title: 'Contenido con IA y Producción de Diseño', description: 'Produzco rápidamente visuales, videos, textos publicitarios, Reels, afiches de campaña, contenido web y materiales de marketing multilingües con herramientas apoyadas por IA.' }, data: { title: 'Seguimiento de Performance y Conversión', description: 'Evalúo campañas por reservas, ventas, coste publicitario, conversiones, Google Analytics, Search Console e informes KPI semanales.' }, marketing: { title: 'Publicidad Digital y Crecimiento', description: 'Gestiono Google Ads, Search Ads 360, SEO, SEM, redes sociales y campañas de reserva directa orientadas a crecimiento.' }, sector: { title: 'Turismo, Hotelería y Operaciones', description: 'Aporto experiencia en marketing, IT y front office en seis hoteles, una agencia de viajes, restaurantes, espacios de eventos y operaciones con huéspedes internacionales.' } } },
+    experience: { title: 'Experiencia Laboral', controls: { expandAll: 'Abrir todas las tarjetas', collapseAll: 'Vista individual' }, eder: { role: 'Especialista de IT Support y Front Office', company: 'Eder Hotels, Maria Alm, Salzburgo, Austria', date: '2026 – Presente', tasks: ['Apoyo la operación diaria de front office y sistemas IT del hotel.', 'Brindo soporte para problemas técnicos, dispositivos de usuario, impresoras, sistemas de conexión y software de recepción.', 'Me comunico con huéspedes internacionales en alemán e inglés.', 'Apoyo la coordinación operativa entre recepción, reservas y otros departamentos.', 'Gestiono procesos técnicos y orientados al huésped dentro de una operación hotelera intensa.', 'Combino hotelería, tecnología y experiencia del cliente en la misma operación.'] }, neu: { role: 'Gerente de Operaciones, Marketing e IT', company: 'Dorana Tourism Group / Near East University, TRNC', date: 'Mayo 2023 – 2026', problem: 'Gestioné procesos de marketing, operaciones, ventas digitales y tecnología para seis hoteles, una agencia de viajes, restaurantes y espacios de eventos.', action: 'Gestioné Google Ads, SEO, redes sociales, sitios web, venta directa, eventos y transformación digital; produje visuales, videos, textos publicitarios, Reels, afiches de campaña, contenido web y materiales multilingües con herramientas de IA.', result: 'Apoyé ventas y marketing de congresos, conciertos, graduaciones, festivales y eventos corporativos; participé en operaciones, promoción, patrocinios y alianzas para un espacio al aire libre de unas 4.500 personas.', tasks: ['Configuré, gestioné y seguí campañas de Google Ads.', 'Gestioné procesos de Google Analytics, Search Console, Google Business, Booking.com, Expedia, ElektraWeb y Opera.', 'Formé equipos de recepción en ventas, comunicación con huéspedes y estándares operativos.', 'Apoyé el desarrollo de sitios web, reservas online y sistemas de ventas digitales.'] }, fures: { role: 'Desarrollador Web Senior y Consultor de Marketing Digital', company: 'Fures Tech, Internacional', date: 'Enero 2023 – Presente', tasks: ['Desarrollé sitios web y campañas digitales para turismo, e-commerce y negocios locales.', 'Preparé proyectos web basados en React, TypeScript y JavaScript.', 'Desarrollé sistemas de contenido, descripciones de producto y textos publicitarios asistidos por IA.', 'Diseñé SEO, estrategia de contenido y experiencias de usuario orientadas a conversión para marcas.', 'Preparé sitios web y materiales de marketing multilingües.', 'Desarrollé aplicaciones de turismo, contenido y experiencia del cliente apoyadas por IA.'] }, mimoza_manager: { role: 'Subgerente de Hotel', company: 'Mimoza Beach Hotel & Dorana Hotels', date: 'Julio 2021 – Mayo 2023', tasks: ['Gestioné operaciones diarias del hotel y planificación del personal.', 'Seguí ventas, reservas, precios y canales online.', 'Coordiné eventos especiales, reservas de grupo y procesos de clientes corporativos.', 'Contribuí a redes sociales, campañas y promociones estacionales.', 'Identifiqué áreas de mejora a partir de reseñas y comentarios de huéspedes.', 'Gestioné quejas, desarrollo de ventas y satisfacción del huésped.'] }, mimoza_reception: { role: 'Recepcionista', company: 'Mimoza Beach Hotel', date: 'Noviembre 2019 – Julio 2021', tasks: ['Gestioné reservas por teléfono, correo electrónico y canales online.', 'Vendí habitaciones, restaurante, eventos y servicios adicionales a huéspedes.', 'Gané experiencia directa de campo sobre comportamiento y solicitudes de huéspedes.', 'Gestioné reseñas online y feedback de clientes.', 'Realicé check-in, check-out, facturación y caja.'] }, concorde: { role: 'Recepcionista', company: 'Concorde Luxury Resort & Casino', date: 'Agosto 2018 – Noviembre 2019', tasks: ['Trabajé con huéspedes internacionales y VIP en un entorno hotelero de cinco estrellas.', 'Gestioné reservas, check-in y pagos mediante Opera PMS.', 'Desarrollé resolución rápida de problemas y habilidades de persuasión en operaciones intensas.', 'Establecí comunicación directa que apoyaba fidelidad del huésped y oportunidades de venta.'] }, granada: { role: 'Recepcionista', company: 'Granada Luxury Hotels', date: 'Mayo 2018 – Agosto 2018', tasks: ['Gestioné operaciones intensas con huéspedes durante temporada alta.', 'Apoyé asignación de habitaciones, bienvenida de huéspedes y procesos de apoyo a ventas.', 'Apoyé la promoción de servicios del hotel y procesos de venta adicional.'] }, germany: { role: 'Experiencia Industrial y Logística', company: 'BMW Group, FedEx, Continental e Infineon — Regensburg, Alemania', date: '2012 – 2017', tasks: ['Trabajé en procesos de producción, calidad, logística y técnicos en empresas internacionales.', 'Gané experiencia en disciplina laboral, gestión del tiempo, control de calidad y seguimiento de procesos.', 'Me adapté al trabajo en equipo y estándares operativos en un entorno laboral en alemán.'] }, tasksTitle: 'Tareas y Responsabilidades', problemTitle: 'Alcance', actionTitle: 'Marketing y Contenido', resultTitle: 'Campo, Eventos y Alianzas' },
+    education: { title: 'Educación', tourism: { degree: 'Turismo y Gestión Hotelera, Grado Asociado', university: 'Anadolu University', date: '2025 – Presente', details: [] }, aof: { degree: 'Diseño Web y Programación, Grado Asociado', university: 'Anadolu University', date: '2020 – 2023', details: [] }, oth: { degree: 'Tecnologías de Producción y Automatización', university: 'OTH Regensburg, Alemania', date: '2015 – 2017', details: [] } },
+    certificates: { title: 'Certificados', certified: 'Certificado', verify: 'Verificar certificado', items: [{ name: 'Anuncios de Performance impulsados por IA', issuer: 'Google, 2026', type: 'google', details: ['Publicidad de performance asistida por IA y optimización de campañas.'] }, { name: 'Certificación Search Ads 360', issuer: 'Google, 2025', type: 'google', details: ['Gestión de campañas, pujas e informes en Search Ads 360.'] }, { name: 'Marketing en Redes Sociales', issuer: 'HubSpot Academy, 2023', type: 'hubspot', details: ['Estrategia de redes sociales, planificación de contenido y análisis de performance.'] }, { name: 'Redes Sociales para Hostelería', issuer: 'Institute of Hospitality, 2022', type: 'hospitality', details: ['Marketing en redes sociales para hoteles y empresas turísticas.'] }, { name: 'Soporte IT de Google', issuer: 'Google / Coursera, 2020', type: 'google', details: ['Soporte técnico, redes, sistemas operativos, administración de sistemas y seguridad IT.'] }, { name: 'Software Hotelero Opera PMS', issuer: 'Next Learn Academy, 2023', type: 'hospitality', details: ['Gestión de front office y operaciones hoteleras con Opera PMS.'] }] },
+    skills: { title: 'Herramientas Digitales y Habilidades', advertising: { title: 'Publicidad y Analítica', items: [{ name: 'Google Ads', level: 'Experto', percentage: 95 }, { name: 'Search Ads 360', level: 'Experto', percentage: 92 }, { name: 'Google Analytics', level: 'Experto', percentage: 92 }, { name: 'Search Console', level: 'Experto', percentage: 92 }, { name: 'Google Business Profile', level: 'Experto', percentage: 90 }] }, content: { title: 'Contenido y Diseño', items: [{ name: 'Adobe Photoshop', level: 'Muy bueno', percentage: 88 }, { name: 'Canva', level: 'Experto', percentage: 95 }, { name: 'Herramientas de generación visual con IA', level: 'Experto', percentage: 95 }, { name: 'Herramientas de video con IA', level: 'Muy bueno', percentage: 90 }, { name: 'Edición de video corto', level: 'Muy bueno', percentage: 88 }] }, web: { title: 'Web y Automatización', items: [{ name: 'JavaScript', level: 'Muy bueno', percentage: 88 }, { name: 'React', level: 'Muy bueno', percentage: 84 }, { name: 'TypeScript', level: 'Muy bueno', percentage: 82 }, { name: 'Gemini API', level: 'Muy bueno', percentage: 88 }, { name: 'Sistemas de automatización con IA', level: 'Experto', percentage: 92 }] }, hospitality: { title: 'Hotel y Operaciones', items: [{ name: 'ElektraWeb', level: 'Experto', percentage: 95 }, { name: 'Opera PMS', level: 'Experto', percentage: 90 }, { name: 'Protel', level: 'Muy bueno', percentage: 85 }, { name: 'Sedna', level: 'Muy bueno', percentage: 85 }, { name: 'MICROS', level: 'Muy bueno', percentage: 82 }, { name: 'Booking.com', level: 'Experto', percentage: 92 }, { name: 'Expedia', level: 'Muy bueno', percentage: 88 }] }, languages: { title: 'Idiomas', items: [{ name: 'Turco', level: 'Nativo', percentage: 100 }, { name: 'Alemán', level: 'Avanzado, C1', percentage: 90 }, { name: 'Inglés', level: 'Avanzado, B2.2', percentage: 82 }] } },
+    projects: { title: 'Proyectos Destacados', visitProject: 'Visitar', items: esProjects }, accessibility: { title: 'Declaración de Accesibilidad', statement: 'Este sitio web está diseñado para cumplir con WCAG 2.1 AA.' }, contactInfo: { ...sharedContact, address: 'Maria Alm, Salzburgo, Austria', cyprusConnection: 'Famagusta, TRNC', license: 'Permiso de conducir clase B' }, chatbot: { greeting: '¡Hola! Respondo preguntas sobre Furkan Yonat.', placeholder: 'Haz una pregunta...', title: 'Chat de Perfil', notConfigured: 'El asistente de IA no está configurado. Falta la clave de API.', unavailable: 'El asistente de IA no está disponible en este momento. Inténtalo de nuevo más tarde.', voiceStart: 'Iniciar entrada de voz', voiceStop: 'Dejar de escuchar' }, footer: { copyright: `© ${new Date().getFullYear()} Furkan Yonat.`, motto: 'Construido con pasión y precisión.', poweredBy: '' }, theme: { light: 'Claro', dark: 'Oscuro', system: 'Sistema' }
+  }
 };
 
-export const experienceOrder = [
-  'neu', 'fures',
-  'mimoza_manager', 'mimoza_reception', 'concorde', 'granada',
-  'germany'
-];
+export const experienceOrder = ['eder', 'neu', 'fures', 'mimoza_manager', 'mimoza_reception', 'concorde', 'granada', 'germany'];
