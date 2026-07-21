@@ -26,7 +26,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, visitProjectText }) 
                 </div>
                 <div className="flex flex-wrap gap-2">
                     {project.tags.map(tag => (
-                        <span key={tag} className="text-xs font-semibold text-blue-200 bg-blue-600/25 px-2.5 py-1 rounded-full border border-blue-300/15">{tag}</span>
+                        <span key={tag} className="project-tag text-xs font-semibold px-2.5 py-1 rounded-full">{tag}</span>
                     ))}
                 </div>
                 <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-primary-text">

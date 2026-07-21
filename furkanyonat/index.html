@@ -34,15 +34,21 @@
         --active-pill-text: #FFFFFF;
       }
       html.light {
-        --bg-color: #F0F2F5;
-        --bg-image-url: url('https://images.unsplash.com/photo-1634394057039-4d69b4458f4a?auto=format&fit=crop&q=80&w=2000');
-        --primary-text: #0D0D0F;
-        --secondary-text: #374151;
-        --card-bg: rgba(255, 255, 255, 0.85);
-        --card-border: rgba(0, 0, 0, 0.1);
-        --card-shadow: rgba(0, 0, 0, 0.1);
-        --active-pill-bg: rgba(0, 0, 0, 0.1);
-        --active-pill-text: #111827;
+        --bg-color: #F5F5F7;
+        --bg-image-url: none;
+        --primary-text: #1D1D1F;
+        --secondary-text: #424245;
+        --card-bg: rgba(255, 255, 255, 0.86);
+        --card-border: rgba(0, 0, 0, 0.14);
+        --card-shadow: rgba(0, 0, 0, 0.12);
+        --accent-gradient: linear-gradient(90deg, #0066CC, #007AFF);
+        --accent-glow: rgba(0, 122, 255, 0.20);
+        --highlight-gradient: linear-gradient(90deg, #0066CC, #5AC8FA);
+        --active-pill-bg: rgba(0, 122, 255, 0.14);
+        --active-pill-text: #1D1D1F;
+        --tag-bg: rgba(0, 122, 255, 0.12);
+        --tag-border: rgba(0, 122, 255, 0.26);
+        --tag-text: #004F9F;
       }
       body {
         font-family: 'Inter', sans-serif;
@@ -66,9 +72,12 @@
       }
 
       html.light #background-overlay {
-        background-color: rgba(240, 242, 245, 0.5);
-        backdrop-filter: blur(10px) brightness(1.0);
-        -webkit-backdrop-filter: blur(10px) brightness(1.0);
+        background:
+          radial-gradient(circle at 18% 8%, rgba(0, 122, 255, 0.12), transparent 30%),
+          radial-gradient(circle at 82% 18%, rgba(90, 200, 250, 0.16), transparent 34%),
+          linear-gradient(180deg, rgba(245, 245, 247, 0.94), rgba(245, 245, 247, 0.98));
+        backdrop-filter: blur(10px) brightness(1.04);
+        -webkit-backdrop-filter: blur(10px) brightness(1.04);
       }
 
       .font-display { font-family: 'Space Grotesk', sans-serif; }
@@ -103,9 +112,19 @@
         overflow: hidden;
       }
       
+      html.light .glass-card {
+        background: linear-gradient(135deg, var(--card-bg), rgba(0, 122, 255, 0.06));
+      }
+
       .active-pill-button {
         background-color: var(--active-pill-bg);
         color: var(--active-pill-text);
+      }
+
+      .project-tag {
+        background-color: var(--tag-bg, rgba(37, 99, 235, 0.25));
+        border: 1px solid var(--tag-border, rgba(147, 197, 253, 0.18));
+        color: var(--tag-text, #DBEAFE);
       }
 
       .btn {

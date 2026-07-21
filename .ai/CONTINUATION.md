@@ -2,11 +2,11 @@
 
 ## Last Completed Phase
 
-Improved the existing `/furkanyonat` CV microsite for design polish, accessibility, SEO metadata, and language consistency. Rebuilt the full project so the generated `public/furkanyonat/` output matches the updated source.
+Fixed the existing `/furkanyonat` CV microsite light-mode readability issue by aligning the light palette with Apple-style neutral surfaces and system-blue accents. Project card tags now use theme variables instead of low-contrast fixed Tailwind blue text.
 
 ## Current Project Status
 
-The repository is stable on the current branch. The main site remains a Netlify-deployed Vite + React application with Eleventy-generated RSS/sitemap/static output. The current change is scoped to the existing Furkan Yonat CV microsite source plus its generated public build output.
+The repository is stable on the current branch. The change is scoped to Furkan Yonat CV microsite source styling plus the generated `public/furkanyonat/` build output. No routes, translations, business content, SEO metadata, sitemap entries, or automation logic were changed.
 
 ## Next Phase
 
@@ -17,7 +17,7 @@ Optional next phase: add a root/public `robots.txt` with `Sitemap: https://fures
 1. Optional: add missing public-site `robots.txt` with a sitemap reference.
 2. Optional: add root `.env.example` with safe placeholders for `VITE_SITE_URL`, Gemini, Maps, and optional image provider keys.
 3. Optional: add standalone `typecheck`, `lint`, or validation scripts if stronger CI checks are desired.
-4. Optional: do a deeper copy-edit pass with the profile owner if more biographical wording changes are required.
+4. Optional: run visual screenshot verification in an environment with Playwright system dependencies installed.
 
 ## Important Files
 
@@ -29,28 +29,25 @@ Optional next phase: add a root/public `robots.txt` with `Sitemap: https://fures
 - `netlify.toml`
 - `src/sitemap.xml.njk`
 - `furkanyonat/index.html`
-- `furkanyonat/App.tsx`
-- `furkanyonat/components/Sidebar.tsx`
 - `furkanyonat/components/ui/ProjectCard.tsx`
-- `furkanyonat/data/translations.ts`
 - `public/furkanyonat/index.html`
 
 ## Commands Verified
 
-- `pwd && rg --files -g 'AGENTS.md' -g '.ai/CONTINUATION.md' -g 'AI_STATE.md' -g 'README.md' -g 'package.json' -g 'vite.config.*' -g 'netlify.toml' -g 'robots.txt' -g 'sitemap*' -g '.eleventy.js'` — checked required guide/docs/config files without slow recursive listing.
-- `git status --short && git branch --show-current && git log --oneline -5` — checked branch, working tree, and latest commits before editing.
-- `sed -n ...` and `rg -n ...` — inspected root docs, Furkan-specific guide, package scripts, sitemap/Netlify routing, and relevant CV source files.
-- `find . -maxdepth 3 \( -iname '*robots*' -o -name 'sitemap.xml' \) -print` — checked robots/sitemap status; dynamic sitemap exists and no robots file was found.
+- `pwd && rg --files -g 'AGENTS.md' -g '.ai/CONTINUATION.md' -g 'AI_STATE.md' -g 'README.md' -g 'package.json' -g 'vite.config.*' -g 'netlify.toml' -g 'robots.txt' -g 'sitemap.xml' -g 'src/sitemap.xml.njk'` — checked required guide/docs/config files without slow recursive listing.
+- `git status --short --branch && git log --oneline -5` — checked branch, working tree, and latest commits before editing.
+- `cat AGENTS.md`, `cat .ai/CONTINUATION.md`, `cat furkanyonat/AGENTS.md`, and targeted `sed`/`rg` commands — inspected root docs, Furkan-specific guide, package scripts, sitemap/Netlify routing, and relevant CV source files.
+- `find . -maxdepth 3 \( -iname '*robots*' -o -name 'sitemap.xml' \) -not -path './node_modules/*' -print` — checked robots/sitemap status; dynamic sitemap exists and no robots file was found.
 - `npm run build --prefix furkanyonat` — passed; verified the microsite Vite build.
-- `npm run build` — passed; rebuilt main site, Eleventy output, and profile/microsite public assets. Output included existing warnings about npm `http-proxy`, dependency audit notices, large chunks, outdated browsers data, and Vite CJS API deprecation.
-- `npx --yes playwright --version` — passed; Playwright CLI was available through npx.
-- `npx --yes playwright install chromium && npx --yes playwright screenshot --viewport-size=1440,1200 http://127.0.0.1:4174/furkanyonat/ furkanyonat-screenshot.png` — failed due missing system library `libatk-1.0.so.0`; no screenshot was produced.
+- `npm run build:profiles` — passed; copied updated Furkan build to `public/furkanyonat/` and rebuilt profile/tool outputs.
+- `npm run build` — passed; rebuilt travel, TypeScript/main Vite, Eleventy output, and profile/microsite public assets. Output included existing warnings about npm `http-proxy`, dependency audit notices, large chunks, outdated browsers data, and Vite CJS API deprecation.
+- `npx --yes playwright install chromium >/tmp/playwright-install.log 2>&1 && npm run preview -- --host 127.0.0.1 ... && npx --yes playwright screenshot --viewport-size=1440,1200 http://127.0.0.1:4173/furkanyonat/ furkanyonat-light-apple.png` — failed because Chromium cannot launch in this container without `libatk-1.0.so.0`; no screenshot was produced.
 
 ## Known Risks
 
 - No root/public `robots.txt` file was found; this remains technical debt for a public website.
-- The full build runs dependency installation in subprojects and reports known npm audit vulnerabilities; these are not introduced by this scoped UI/content change.
-- Playwright browser installation succeeded, but screenshot capture could not run in this container because a system GUI dependency is missing.
+- The full build runs dependency installation in subprojects and reports known npm audit vulnerabilities; these are not introduced by this scoped light-mode styling change.
+- Visual screenshot verification is blocked by the container missing Chromium system dependency `libatk-1.0.so.0`.
 - The main site `src/components/Projects.tsx` still marks `maria-alm-route-atlas` as under construction per project rule; do not change it without owner confirmation.
 
 ## Do Not Do
