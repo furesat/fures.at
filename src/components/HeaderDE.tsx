@@ -1,4 +1,4 @@
-import type { CSSProperties, MouseEvent as ReactMouseEvent } from "react";
+import type { CSSProperties, MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent } from "react";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -158,6 +158,19 @@ export function HeaderDE() {
     triggerDockBounce(event);
   };
 
+  // Pointer-tracking specular highlight on the glass — like tilting a slab
+  const handleGlassPointerMove = (event: ReactPointerEvent<HTMLElement>) => {
+    const el = event.currentTarget;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--glass-mx", `${event.clientX - rect.left}px`);
+    el.style.setProperty("--glass-my", `${event.clientY - rect.top}px`);
+  };
+  const handleGlassPointerLeave = (event: ReactPointerEvent<HTMLElement>) => {
+    const el = event.currentTarget;
+    el.style.removeProperty("--glass-mx");
+    el.style.removeProperty("--glass-my");
+  };
+
   const highlightGlassStyle: CSSProperties = {
     "--glass-surface-bg": "rgba(12, 20, 42, 0.32)",
     "--glass-surface-border": "rgba(255, 255, 255, 0.32)",
@@ -205,6 +218,8 @@ export function HeaderDE() {
             <div className="absolute inset-0 -z-10 rounded-full bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15),transparent)] opacity-40 blur-2xl" />
             <nav
               ref={navRef}
+              onPointerMove={handleGlassPointerMove}
+              onPointerLeave={handleGlassPointerLeave}
               className="fures-nav-glass relative flex items-center gap-1 rounded-full px-3 py-2.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {highlightBoxStyle && (

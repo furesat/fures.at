@@ -26,6 +26,7 @@ import { ServicesPageDE } from "./pages/de/ServicesPageDE";
 import { ContactPageDE } from "./pages/de/ContactPageDE";
 import AssistantWidget from "./furesai/components/AssistantWidget";
 import ChatWindow from "./furesai/components/ChatWindow";
+import { GlassFilters } from "./components/GlassFilters";
 import { detectLanguageByCountry } from "./utils/routes";
 import type { Language } from "./contexts/LanguageContext";
 
@@ -199,7 +200,9 @@ function DELayout() {
 
 export default function App() {
   return (
-    <Router>
+    <>
+      <GlassFilters />
+      <Router>
       <Routes>
         {/* Root: auto-redirect by IP country (falls back to browser language) */}
         <Route path="/" element={<RootRedirect />} />
@@ -243,6 +246,7 @@ export default function App() {
         {/* Catch-all */}
         <Route path="*" element={<RootRedirect />} />
       </Routes>
-    </Router>
+      </Router>
+    </>
   );
 }
