@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070811">
-  <meta name="description" content="Furkan Yonat - Teknoloji, dijital pazarlama ve otelcilik profesyoneli. IT support, web geliştirme, AI destekli içerik üretimi ve otel operasyonları.">
-  <title>Furkan Yonat | Portfolio & CV</title>
+  <meta name="description" content="Furkan Yonat: otel teknolojileri, IT support, web geliştirme ve dijital dönüşüm. MeinHotel PMS ve seçili dijital projeler.">
+  <title>Furkan Yonat | Otel Teknolojileri ve Dijital Projeler</title>
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.fures.at/furkanyonat/">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Furkan Yonat | Otel Teknolojileri ve Dijital Projeler">
+  <meta property="og:description" content="MeinHotel PMS, otel operasyonları, web geliştirme ve dijital dönüşüm odaklı projeler.">
+  <meta property="og:url" content="https://www.fures.at/furkanyonat/">
+  <meta name="twitter:card" content="summary">
   <style>
     :root {
       --bg: #05060b;
@@ -254,6 +261,54 @@
     .project-bottom span { display: inline-flex; align-items: center; gap: 7px; }
     .project-arrow { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 14px; border: 1px solid rgba(255,255,255,.09); background: rgba(255,255,255,.04); transition: .25s ease; }
     .project-card:hover .project-arrow { transform: translate(2px,-2px); color: #fff; background: rgba(255,255,255,.08); }
+
+
+    /* Portfolio project previews: distinct identity, lightweight and no external assets. */
+    .project-card { isolation: isolate; overflow: hidden; transition: border-color .25s, box-shadow .25s; }
+    .project-card:hover,.project-card:focus-visible { border-color: rgba(171,202,255,.45); box-shadow: 0 22px 65px rgba(2,7,29,.45); }
+    .project-card.featured { grid-column:1/-1; display:grid; grid-template-columns:1.05fr .95fr; min-height:340px; }
+    .project-card.featured .project-visual { height:100%; min-height:340px; border-bottom:0; border-right:1px solid rgba(255,255,255,.09); }
+    .project-card.featured .project-copy { justify-content:center; padding:clamp(23px,3.4vw,45px); }
+    .project-card.featured h3 { font-size:clamp(1.6rem,2.8vw,2.25rem); }
+    .project-visual { display:flex; align-items:center; justify-content:center; isolation:isolate; }
+    .project-visual::after { content:""; position:absolute; inset:auto 0 0; height:38%; background:linear-gradient(0deg,rgba(2,6,19,.35),transparent); pointer-events:none; }
+    .visual--meinhotel { background:radial-gradient(circle at 85% 8%,rgba(119,238,216,.2),transparent 46%),linear-gradient(135deg,#0c343b,#132440 70%,#242044); }
+    .visual--serakinci { background:radial-gradient(circle at 85% 8%,rgba(87,206,255,.28),transparent 46%),linear-gradient(125deg,#102a3c,#1a3557); }
+    .visual--zuzumood { background:radial-gradient(circle at 85% 8%,rgba(255,206,182,.32),transparent 46%),linear-gradient(125deg,#493242,#6d4d5c); }
+    .visual--mariaalm { background:radial-gradient(circle at 85% 8%,rgba(214,250,225,.28),transparent 46%),linear-gradient(125deg,#143d47,#33595b); }
+    .visual--cyprus { background:radial-gradient(circle at 85% 8%,rgba(255,228,149,.3),transparent 46%),linear-gradient(125deg,#165b67,#28768e); }
+    .visual--integration { background:radial-gradient(circle at 85% 8%,rgba(184,162,255,.28),transparent 46%),linear-gradient(125deg,#242447,#353069); }
+    .visual--icalt { background:radial-gradient(circle at 85% 8%,rgba(255,176,208,.28),transparent 46%),linear-gradient(125deg,#452945,#6a3e60); }
+    .visual-wordmark { z-index:1; width:calc(100% - 55px); max-width:400px; display:flex; flex-direction:column; gap:11px; padding:20px 22px; border-radius:18px; background:rgba(8,17,33,.28); border:1px solid rgba(255,255,255,.2); box-shadow:0 18px 55px rgba(0,0,0,.2); backdrop-filter:blur(9px); transform:rotate(-3deg); transition:transform .25s; }
+    .project-card:hover .visual-wordmark { transform:rotate(0) translateY(-3px); }
+    .visual-wordmark small { font-size:.64rem; color:rgba(255,255,255,.7); text-transform:uppercase; letter-spacing:.14em; font-weight:800; }
+    .visual-wordmark strong { color:#fff; font-size:clamp(1.35rem,2.8vw,2rem); line-height:1.13; letter-spacing:-.05em; }
+    .visual-wordmark em { font-size:.78rem; color:rgba(255,255,255,.75); font-style:normal; }
+    .visual-rule { height:3px; width:40%; border-radius:8px; background:linear-gradient(90deg,#fff,rgba(255,255,255,.12)); }
+    .project-impact { color:#b0f3e4 !important; font-weight:700; font-size:.78rem !important; margin-top:12px !important; }
+    .project-preview { z-index:1; position:relative; width:min(82%,455px); margin:40px 0 15px; padding:8px; border:1px solid rgba(191,251,242,.32); border-radius:13px; background:#101a2b; box-shadow:0 24px 65px rgba(0,0,0,.38); transform:rotate(-3deg); transition:transform .3s; }
+    .project-card:hover .project-preview { transform:rotate(0) translateY(-4px); }
+    .preview-chrome { display:flex; align-items:center; gap:5px; padding:3px 5px 10px; color:#adc4d6; font-size:8px; font-weight:800; letter-spacing:.06em; }
+    .preview-chrome i { width:5px; height:5px; border-radius:50%; background:#617d98; }
+    .preview-chrome i:first-child { background:#77eed8; }
+    .preview-chrome span { margin-left:6px; }
+    .preview-body { display:grid; grid-template-columns:25% 1fr; min-height:163px; border-radius:7px; overflow:hidden; background:#f2f7fc; color:#22354c; }
+    .preview-sidebar { display:flex; flex-direction:column; gap:9px; padding:12px 7px; background:#1b2b42; }
+    .preview-sidebar b { font-size:8px; color:#e5ffff; }
+    .preview-sidebar span { height:4px; width:75%; border-radius:3px; background:#54677d; }
+    .preview-sidebar span:nth-of-type(2) { background:#77eed8; width:90%; }
+    .preview-content { padding:12px; }
+    .preview-content strong { display:block; font-size:10px; }
+    .preview-content small { display:block; margin:4px 0 12px; color:#73839a; font-size:8px; }
+    .preview-rooms { display:grid; grid-template-columns:repeat(4,1fr); gap:5px; }
+    .preview-rooms i { height:24px; border-radius:4px; background:#d6e1f1; }
+    .preview-rooms i:nth-child(3n+1) { background:#a9e9dc; }
+    .preview-rooms i:nth-child(4n) { background:#b8c9ed; }
+    .preview-legend { display:flex; gap:10px; margin-top:10px; color:#567187; font-size:7px; }
+    .preview-legend span::before { content:""; display:inline-block; width:6px; height:6px; margin-right:4px; border-radius:2px; background:#a9e9dc; }
+    .preview-legend span:last-child::before { background:#b8c9ed; }
+    @media(max-width:760px) { .project-card.featured { display:flex; grid-column:auto; min-height:0; } .project-card.featured .project-visual { height:223px; min-height:0; border-right:0; border-bottom:1px solid rgba(255,255,255,.09); } .project-card.featured .project-copy { padding:22px; } .project-preview { width:min(80%,340px); margin:18px 0 0; } .preview-body { min-height:130px; } .preview-rooms i { height:18px; } }
+    @media print { .project-impact { color:#225c51 !important; } }
 
     .dual-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 18px; }
     .edu-list, .cert-list { display: grid; gap: 12px; }
@@ -745,44 +800,44 @@
 
     <section id="projects" class="section shell">
       <div class="section-head reveal">
-        <div><p class="eyebrow">Öne Çıkan Projeler</p><h2 class="title">Fikir değil, çalışan <span class="metallic">ürünler ve sistemler.</span></h2></div>
-        <p class="body-copy">AI, turizm teknolojisi, e-ticaret, içerik otomasyonu ve etkinlik yönetimi alanlarında geliştirilen seçili çalışmalar.</p>
+        <div><p class="eyebrow">Öne Çıkan Projeler</p><h2 class="title">İşin içinden doğan <span class="metallic">dijital çözümler.</span></h2></div>
+        <p class="body-copy">Ön bürodan yazılım geliştirmeye, marka deneyiminden otel operasyonlarına: her kartta çözümü, yaklaşımı ve projenin mevcut aşamasını görebilirsin.</p>
       </div>
 
       <div class="projects-grid">
-        <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="meinhotel">
-          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 01</span><span class="project-status">Yapım Aşamasında</span><div class="project-orbit"></div></div>
-          <div class="project-copy"><h3>MeinHotel PMS</h3><span class="project-role">Ürün Sahibi ve Bağımsız Geliştirici</span><p>Otelcilik ve ön büro deneyiminden doğan, otellerin günlük operasyonlarını tek platformdan yöneten çok kiracılı Property Management System.</p><div class="project-tags"><span class="pill">Next.js</span><span class="pill">TypeScript</span><span class="pill">Supabase</span><span class="pill">PostgreSQL</span></div><div class="project-bottom"><span>Geliştirme Sürümünü Aç <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+        <article class="glass project-card featured tilt reveal" tabindex="0" role="button" data-project="meinhotel">
+          <div class="project-visual visual--meinhotel"><div class="project-grid-art"></div><span class="project-index">01 / 07 · PROJE</span><span class="project-status">Aktif geliştirme</span><div class="project-preview" aria-hidden="true"><div class="preview-chrome"><i></i><i></i><i></i><span>MEINHOTEL · FRONT OFFICE</span></div><div class="preview-body"><div class="preview-sidebar"><b>MeinHotel</b><span></span><span></span><span></span><span></span></div><div class="preview-content"><strong>Oda planı ve rezervasyonlar</strong><small>Tek panelde günlük operasyon</small><div class="preview-rooms"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="preview-legend"><span>Müsait</span><span>Dolu</span></div></div></div></div></div>
+          <div class="project-copy"><h3>MeinHotel PMS</h3><span class="project-role">Ürün tasarımı · Full-stack geliştirme · Otel operasyonları</span><p>Otel resepsiyonunda gördüğüm ihtiyaçlardan geliştirdiğim çok kiracılı yönetim sistemi. Rezervasyon, oda planı, misafir, housekeeping ve folyo süreçlerini tek panelde buluşturuyor.</p><p class="project-impact">Rezervasyondan folyo işlemine, tek çalışma alanı.</p><div class="project-tags"><span class="pill">Next.js</span><span class="pill">TypeScript</span><span class="pill">Supabase</span><span class="pill">PostgreSQL</span></div><div class="project-bottom"><span>Geliştirme Sürümünü Aç <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
         </article>
 
         <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="serakinci">
-          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 02</span><div class="project-orbit"></div></div>
-          <div class="project-copy"><h3>Serakıncı Yapay Zeka Ürün Platformu</h3><p>Yapay zeka tarafından oluşturulan açıklamalar ve veri kazıma hatları ile otomatik, çok dilli, SEO odaklı katalog.</p><div class="project-tags"><span class="pill">Automation</span><span class="pill">Scraping</span><span class="pill">SEO</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+          <div class="project-visual visual--serakinci"><div class="project-grid-art"></div><span class="project-index">02 / 07 · PROJE</span><div class="visual-wordmark" aria-hidden="true"><small>Ürün verisi · içerik otomasyonu</small><strong>Serakıncı</strong><span class="visual-rule"></span><em>Dağınık ürün verisinden yönetilebilir dijital kataloğa.</em></div></div>
+          <div class="project-copy"><h3>Serakıncı Yapay Zeka Ürün Platformu</h3><p>Ürün verilerini düzenleyen, çok dilli katalog ve SEO içerik süreçlerine odaklanan otomasyon platformu.</p><p class="project-impact">Dağınık ürün verisinden yönetilebilir dijital kataloğa.</p><div class="project-tags"><span class="pill">Automation</span><span class="pill">Scraping</span><span class="pill">SEO</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
         </article>
 
         <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="zuzumood">
-          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 03</span><div class="project-orbit"></div></div>
-          <div class="project-copy"><h3>ZuzuMood E-Ticaret Deneyimi</h3><p>Teksas merkezli ZuzuMood için Etsy odaklı ürün vitrinleri, kategori mimarisi, blog akışı ve dönüşüm odaklı butik marka anlatımı tasarlandı.</p><div class="project-tags"><span class="pill">E-Commerce</span><span class="pill">SEO</span><span class="pill">Brand Experience</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+          <div class="project-visual visual--zuzumood"><div class="project-grid-art"></div><span class="project-index">03 / 07 · PROJE</span><div class="visual-wordmark" aria-hidden="true"><small>E-ticaret · marka deneyimi</small><strong>ZuzuMood</strong><span class="visual-rule"></span><em>Ürün keşfi ve marka anlatısı tek vitrinde.</em></div></div>
+          <div class="project-copy"><h3>ZuzuMood E-Ticaret Deneyimi</h3><p>ZuzuMood için ürün vitrini, kategori kurgusu ve içerik akışını mobil alışveriş deneyiminde buluşturan e-ticaret sitesi.</p><p class="project-impact">Ürün keşfi ve marka anlatısı tek vitrinde.</p><div class="project-tags"><span class="pill">E-Commerce</span><span class="pill">SEO</span><span class="pill">Brand Experience</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
         </article>
 
         <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="mariaalm">
-          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 04</span><span class="project-status">Yapım Aşamasında</span><div class="project-orbit"></div></div>
-          <div class="project-copy"><h3>in Maria Alm Dijital Keşif Atlası</h3><p>Yapım aşamasındaki proje; Maria Alm ve Hochkönig bölgesi için rota keşfi, interaktif harita, sezon rehberi ve AI destekli gün planlayıcı sunan turizm portalıdır.</p><div class="project-tags"><span class="pill">Travel Tech</span><span class="pill">AI Planner</span><span class="pill">Tourism UX</span></div><div class="project-bottom"><span>Geliştirme Sürümünü Aç <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+          <div class="project-visual visual--mariaalm"><div class="project-grid-art"></div><span class="project-index">04 / 07 · PROJE</span><span class="project-status">Geliştirme aşamasında</span><div class="visual-wordmark" aria-hidden="true"><small>Destinasyon · rota keşfi</small><strong>in Maria Alm</strong><span class="visual-rule"></span><em>Rotalar, harita ve yerel öneriler bir arada.</em></div></div>
+          <div class="project-copy"><h3>in Maria Alm Dijital Keşif Atlası</h3><p>Maria Alm ve Hochkönig çevresini keşfetmek için geliştirdiğim rota, harita ve yerel rehber projesi. Gezi planlama özellikleri üzerinde çalışıyorum.</p><p class="project-impact">Rotalar, harita ve yerel öneriler bir arada.</p><div class="project-tags"><span class="pill">Travel Tech</span><span class="pill">AI Planner</span><span class="pill">Tourism UX</span></div><div class="project-bottom"><span>Geliştirme Sürümünü Aç <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
         </article>
 
         <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="cyprus">
-          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 05</span><div class="project-orbit"></div></div>
-          <div class="project-copy"><h3>Yapay Zeka Destekli Kıbrıs Tatil Planlayıcısı</h3><p>Kullanıcı tercihlerine ve hava durumu bağlamına göre çok dilli, kişiselleştirilmiş seyahat planları oluşturan akıllı uygulama.</p><div class="project-tags"><span class="pill">AI</span><span class="pill">React</span><span class="pill">Travel Tech</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+          <div class="project-visual visual--cyprus"><div class="project-grid-art"></div><span class="project-index">05 / 07 · PROJE</span><div class="visual-wordmark" aria-hidden="true"><small>Travel tech · yapay zekâ</small><strong>About Cyprus</strong><span class="visual-rule"></span><em>Seyahat tercihlerinden kişiselleştirilmiş rota önerilerine.</em></div></div>
+          <div class="project-copy"><h3>Yapay Zeka Destekli Kıbrıs Tatil Planlayıcısı</h3><p>Kıbrıs’ı keşfetmek isteyenler için tercihlere göre çok dilli gezi önerileri oluşturan yapay zekâ destekli tatil planlayıcısı.</p><p class="project-impact">Seyahat tercihlerinden kişiselleştirilmiş rota önerilerine.</p><div class="project-tags"><span class="pill">AI</span><span class="pill">React</span><span class="pill">Travel Tech</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
         </article>
 
         <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="integration">
-          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 06</span><div class="project-orbit"></div></div>
-          <div class="project-copy"><h3>Otel ve Acente Entegrasyonu</h3><p>6 oteli acente operasyonlarıyla entegre ederek süreçleri kolaylaştırdı, maliyetleri düşürdü ve veri akışlarını birleştirdi.</p><div class="project-tags"><span class="pill">Digital Transformation</span><span class="pill">Systems</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+          <div class="project-visual visual--integration"><div class="project-grid-art"></div><span class="project-index">06 / 07 · PROJE</span><div class="visual-wordmark" aria-hidden="true"><small>Otel operasyonu · entegrasyon</small><strong>6 Otel · 1 Akış</strong><span class="visual-rule"></span><em>Otel ve acente ekipleri arasında daha düzenli süreçler.</em></div></div>
+          <div class="project-copy"><h3>Otel ve Acente Entegrasyonu</h3><p>Altı otel ve seyahat acentesi arasında rezervasyon, satış ve operasyon koordinasyonuna odaklanan dijital süreç iyileştirme çalışması.</p><p class="project-impact">Otel ve acente ekipleri arasında daha düzenli süreçler.</p><div class="project-tags"><span class="pill">Digital Transformation</span><span class="pill">Systems</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
         </article>
 
         <article class="glass project-card tilt reveal" tabindex="0" role="button" data-project="icalt">
-          <div class="project-visual"><div class="project-grid-art"></div><span class="project-index">PROJECT 07</span><div class="project-orbit"></div></div>
-          <div class="project-copy"><h3>ICALT 2024 Kongre Yönetimi</h3><p>Dorana Turizm işbirliğiyle uluslararası bir konferansın planlanması ve koordinasyonu.</p><div class="project-tags"><span class="pill">Event Management</span><span class="pill">Logistics</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
+          <div class="project-visual visual--icalt"><div class="project-grid-art"></div><span class="project-index">07 / 07 · PROJE</span><div class="visual-wordmark" aria-hidden="true"><small>Etkinlik · saha koordinasyonu</small><strong>ICALT 2024</strong><span class="visual-rule"></span><em>Dijital hazırlığı sahadaki organizasyonla buluşturmak.</em></div></div>
+          <div class="project-copy"><h3>ICALT 2024 Kongre Yönetimi</h3><p>Uluslararası kongrenin planlama ve koordinasyonunda turizm ve etkinlik operasyonlarını birlikte yürütmeye odaklanan çalışma.</p><p class="project-impact">Dijital hazırlığı sahadaki organizasyonla buluşturmak.</p><div class="project-tags"><span class="pill">Event Management</span><span class="pill">Logistics</span></div><div class="project-bottom"><span>Ziyaret Et <svg class="icon icon-sm"><use href="#i-arrow-up-right"></use></svg></span><span class="project-arrow"><svg class="icon"><use href="#i-arrow-up-right"></use></svg></span></div></div>
         </article>
       </div>
     </section>
@@ -887,13 +942,13 @@
   <script>
     const projectData = {
       meinhotel: {
-        eyebrow: 'Ürün Sahibi ve Bağımsız Geliştirici · Yapım Aşamasında',
+        eyebrow: 'MeinHotel · Ürün tasarımı ve geliştirme · Aktif geliştirme',
         title: 'MeinHotel PMS',
-        description: 'Otelcilik ve ön büro operasyonlarındaki deneyimimi dijital bir ürüne dönüştürerek, otellerin günlük operasyonlarını tek platformdan yönetmesini sağlayan çok kiracılı bir Property Management System geliştirdim. Sistem; rezervasyon ve misafir yönetimi, oda planı, check-in/check-out, housekeeping, folyo işlemleri, ödeme, faturalandırma, fiyat yönetimi ve operasyonel raporlama modüllerini içeriyor. Ürünün kullanıcı deneyimi, iş akışları, veri modeli, güvenlik mimarisi ve yayınlama süreçlerini uçtan uca yönettim.',
+        description: 'Otelcilikte karşılaştığım gerçek ihtiyaçlardan yola çıkarak rezervasyon, oda planı, misafir, check-in/check-out, housekeeping, folyo ve fiyat akışlarını tek yerde yöneten çok kiracılı bir PMS geliştiriyorum. Ürün mimarisi, arayüz, veri modeli ve güvenlik yetkilendirmesi üzerinde çalışıyorum. Demo henüz ticari kullanıma hazır tamamlanmış bir ürün değildir.',
         tags: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'Row Level Security', 'Vercel'],
         url: 'https://meinhotel.vercel.app/',
-        status: 'Yapım Aşamasında',
-        note: 'MeinHotel PMS aktif olarak geliştirilmektedir. Bağlantı mevcut geliştirme sürümünü yeni sekmede açar.'
+        status: 'Aktif geliştirme',
+        note: 'Canlı ön izleme geliştirme ortamıdır. Bazı modüller ve entegrasyonlar tamamlanma aşamasındadır.'
       },
       serakinci: { eyebrow: 'Automation · Scraping · SEO', title: 'Serakıncı Yapay Zeka Ürün Platformu', description: 'Yapay zeka tarafından oluşturulan açıklamalar ve veri kazıma hatları ile otomatik, çok dilli, SEO odaklı katalog.', tags: ['Automation', 'Scraping', 'SEO'], url: 'https://www.fures.at/projects/serakinci' },
       zuzumood: { eyebrow: 'E-Commerce · SEO · Brand Experience', title: 'ZuzuMood E-Ticaret Deneyimi', description: 'Teksas merkezli ZuzuMood için Etsy odaklı ürün vitrinleri, kategori mimarisi, blog akışı ve dönüşüm odaklı butik marka anlatımı tasarlandı.', tags: ['E-Commerce', 'SEO', 'Brand Experience'], url: 'https://www.zuzumood.com/' },
