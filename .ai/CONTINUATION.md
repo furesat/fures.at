@@ -1,5 +1,16 @@
 # AI Continuation State
 
+## 2026-09-19 Netlify account migration / removed public chat
+
+- Newly connected Netlify team `furkanyonat`, project `furestech` (site ID `757270a8-162c-4094-b479-d73141f1b14f`) publishes the main Fures site from `furesat/fures.at` with `npm run build` and `public`.
+- On new Netlify account, `furestech` has no environment variables. Former public Fures AI chat imported `geminiService.ts`, which threw at module import when the Gemini key was missing. This broke React startup and can explain the blank homepage even when Netlify reports the deploy as ready.
+- Removed AssistantWidget and ChatWindow from every language layout in `src/App.tsx`; the site no longer loads the client-side Gemini chatbot.
+- Removed main Vite config's inline API key substitution to avoid embedding a privileged Gemini key in public site JavaScript. Other independent microsite packages were not modified.
+- After merge verify a new Netlify `furestech` production deploy uses the merged commit, and smoke-test root `/`, `/de`, `/tr`, `/furkanyonat` over HTTPS. Keep the apex and `www` domain on the `furestech` project, not on the MeinHotel project.
+- Independent new Netlify project `fureshotel` (site ID `9852112d-505b-4d54-b4c7-b180c83dbe4c`) holds the MeinHotel application, using `furesat/meinhotel`; the missing six non-secret/publishable Supabase and demo config variables have been restored. The `app.fures.tech` custom domain and its HTTPS still need checking on this new Netlify site. Do not merge the two apps, and do not claim domain cutover is complete until tested.
+- Existing sitemap and robots configuration is unchanged; the main marketing site's route set did not change.
+
+
 ## Last Completed Phase
 
 Fixed the deploy-blocking build failure in the profile build step and added a production robots file with a sitemap reference.
