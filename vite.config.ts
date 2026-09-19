@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { defineConfig, loadEnv, type Plugin } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 
 const SUPPORTED_IMAGE_MIME_TYPES: Record<string, string> = {
@@ -108,27 +108,11 @@ function fotosBuildCopyPlugin(): Plugin {
   };
 }
 
-export default defineConfig(({ mode }) => {
-  const fileEnv = loadEnv(mode, process.cwd(), "");
-  const geminiKey =
-    fileEnv.apikey ??
-    fileEnv.API_KEY ??
-    fileEnv.GEMINI_API_KEY ??
-    process.env.apikey ??
-    process.env.API_KEY ??
-    process.env.GEMINI_API_KEY ??
-    "";
-
-  return {
-    publicDir: false,
-    plugins: [react(), fotosDevServerPlugin(), fotosBuildCopyPlugin()],
-    define: {
-      'process.env.API_KEY': JSON.stringify(geminiKey),
-      'process.env.GEMINI_API_KEY': JSON.stringify(geminiKey),
-    },
-    build: {
-      outDir: "dist",
-      sourcemap: true
-    }
-  };
+export default defineConfig({
+  publicDir: false,
+  plugins: [react(), fotosDevServerPlugin(), fotosBuildCopyPlugin()],
+  build: {
+    outDir: "dist",
+    sourcemap: true,
+  },
 });
