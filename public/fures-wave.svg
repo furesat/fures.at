@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#07101f"/>
+    <stop offset=".48" stop-color="#0a0a12"/>
+    <stop offset="1" stop-color="#160b08"/>
+  </linearGradient>
+  <radialGradient id="blue" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#355fce" stop-opacity=".9"/>
+    <stop offset=".45" stop-color="#193b87" stop-opacity=".55"/>
+    <stop offset="1" stop-color="#10214d" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="orange" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#ff7a29" stop-opacity=".95"/>
+    <stop offset=".48" stop-color="#b63f16" stop-opacity=".55"/>
+    <stop offset="1" stop-color="#6f220d" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="blur80"><feGaussianBlur stdDeviation="58"/></filter>
+  <filter id="blur30"><feGaussianBlur stdDeviation="20"/></filter>
+  <filter id="turb">
+    <feTurbulence type="fractalNoise" baseFrequency=".006 .018" numOctaves="3" seed="8" result="n">
+      <animate attributeName="baseFrequency" values=".006 .018;.010 .014;.006 .018" dur="11s" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="90" xChannelSelector="R" yChannelSelector="B">
+      <animate attributeName="scale" values="70;125;80;105;70" dur="13s" repeatCount="indefinite"/>
+    </feDisplacementMap>
+  </filter>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<g opacity=".95" filter="url(#blur80)">
+  <ellipse cx="420" cy="360" rx="520" ry="350" fill="url(#blue)">
+    <animateTransform attributeName="transform" type="translate" values="-80 0;80 35;-30 -25;-80 0" dur="14s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="1270" cy="430" rx="500" ry="380" fill="url(#orange)">
+    <animateTransform attributeName="transform" type="translate" values="75 -20;-80 30;35 10;75 -20" dur="16s" repeatCount="indefinite"/>
+  </ellipse>
+</g>
+<g opacity=".42" filter="url(#turb)">
+  <path d="M-100 500 C220 250 520 690 850 410 S1370 170 1730 480" fill="none" stroke="#5c85ee" stroke-width="90" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="translate" values="0 0;45 -18;-35 24;0 0" dur="10s" repeatCount="indefinite"/>
+  </path>
+  <path d="M-120 650 C260 390 600 780 980 500 S1420 290 1750 560" fill="none" stroke="#ff7a29" stroke-width="110" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="translate" values="0 0;-55 22;40 -28;0 0" dur="12s" repeatCount="indefinite"/>
+  </path>
+</g>
+<g opacity=".13" filter="url(#blur30)">
+  <path d="M-50 360 Q300 210 620 390 T1320 360 T1700 350" fill="none" stroke="#d8e4ff" stroke-width="8">
+    <animate attributeName="d" dur="9s" repeatCount="indefinite"
+      values="M-50 360 Q300 210 620 390 T1320 360 T1700 350;
+              M-50 390 Q280 270 610 330 T1310 410 T1700 330;
+              M-50 360 Q300 210 620 390 T1320 360 T1700 350"/>
+  </path>
+  <path d="M-50 570 Q320 430 690 600 T1380 520 T1700 590" fill="none" stroke="#ffccaa" stroke-width="7">
+    <animate attributeName="d" dur="11s" repeatCount="indefinite"
+      values="M-50 570 Q320 430 690 600 T1380 520 T1700 590;
+              M-50 540 Q340 500 700 550 T1360 570 T1700 540;
+              M-50 570 Q320 430 690 600 T1380 520 T1700 590"/>
+  </path>
+</g>
+<rect width="1600" height="900" fill="url(#bg)" opacity=".12"/>
+</svg>
