@@ -36,6 +36,16 @@ for (const app of apps) {
   }
 
   if (!existsSync(packageJsonPath)) {
+    // Furkan profile is a self-contained static HTML page, not a Vite app.
+    // Copy source on every build instead of leaving an obsolete React shell live.
+    if (app === 'furkanyonat') {
+      const staticIndex = path.join(appDir, 'index.html');
+      if (!existsSync(staticIndex)) throw new Error('Missing static Furkan profile source');
+      mkdirSync(targetDir, { recursive: true });
+      cpSync(staticIndex, path.join(targetDir, 'index.html'));
+      console.log('✅ Published static Furkan profile');
+      continue;
+    }
     console.warn(`⚠️ ${app}/package.json not found; keeping existing public/${app} output and skipping rebuild.`);
     continue;
   }
