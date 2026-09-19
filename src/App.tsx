@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Header } from "./components/Header";
 import { HeaderDE } from "./components/HeaderDE";
@@ -24,8 +24,6 @@ import { CampaignPostPage } from "./pages/CampaignPostPage";
 import { HomePageDE } from "./pages/de/HomePageDE";
 import { ServicesPageDE } from "./pages/de/ServicesPageDE";
 import { ContactPageDE } from "./pages/de/ContactPageDE";
-import AssistantWidget from "./furesai/components/AssistantWidget";
-import ChatWindow from "./furesai/components/ChatWindow";
 import { detectLanguageByCountry } from "./utils/routes";
 import type { Language } from "./contexts/LanguageContext";
 
@@ -57,7 +55,6 @@ function RootRedirect() {
 
 // TR site layout
 function TRLayout() {
-  const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
     <ThemeProvider>
@@ -84,8 +81,6 @@ function TRLayout() {
             </Routes>
           </main>
           <Footer />
-          <AssistantWidget isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
-          {isChatOpen && <ChatWindow closeChat={() => setIsChatOpen(false)} />}
         </div>
       </LanguageProvider>
     </ThemeProvider>
@@ -94,7 +89,6 @@ function TRLayout() {
 
 // EN site layout
 function ENLayout() {
-  const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
     <ThemeProvider>
@@ -121,8 +115,6 @@ function ENLayout() {
             </Routes>
           </main>
           <Footer />
-          <AssistantWidget isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
-          {isChatOpen && <ChatWindow closeChat={() => setIsChatOpen(false)} />}
         </div>
       </LanguageProvider>
     </ThemeProvider>
@@ -131,7 +123,6 @@ function ENLayout() {
 
 // RU site layout
 function RULayout() {
-  const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
     <ThemeProvider>
@@ -158,8 +149,6 @@ function RULayout() {
             </Routes>
           </main>
           <Footer />
-          <AssistantWidget isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
-          {isChatOpen && <ChatWindow closeChat={() => setIsChatOpen(false)} />}
         </div>
       </LanguageProvider>
     </ThemeProvider>
