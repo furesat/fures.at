@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { MEINHOTEL_APP, MEINHOTEL_PATHS, getMeinHotelContent } from "../data/meinhotel";
 
 export function FooterDE() {
   const { t } = useLanguage();
+  const meinHotel = getMeinHotelContent("de");
 
   const navLinks = [
     { label: t("nav.services"), href: "/de/leistungen" },
+    { label: "MeinHotel PMS", href: MEINHOTEL_PATHS.de },
     { label: t("nav.contact"), href: "/de/kontakt" },
     { label: t("footer.privacy"), href: "/de/datenschutz" },
     { label: "Cookie-Richtlinie", href: "/de/cookies" },
@@ -68,6 +71,14 @@ export function FooterDE() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href={MEINHOTEL_APP.loginUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-gray-500 transition-colors duration-200 hover:text-orange-400"
+            >
+              {meinHotel.ctaLogin} ↗
+            </a>
           </div>
         </div>
 

@@ -36,15 +36,16 @@ export function ServicesPage() {
   );
 
   const serviceItems = useMemo(
+    // Mirrors the six services rendered by <Services />. Older keys
+    // (web_design, ai_automation, data_analytics, …) no longer exist in the
+    // translation catalog and leaked raw key names into the JSON-LD output.
     () => [
-      { name: t("services.web_design"), description: t("services.web_design_desc") },
-      { name: t("services.ai_automation"), description: t("services.ai_automation_desc") },
+      { name: t("services.seo"), description: t("services.seo_desc") },
+      { name: t("services.local_seo"), description: t("services.local_seo_desc") },
       { name: t("services.social_media"), description: t("services.social_media_desc") },
-      { name: t("services.data_analytics"), description: t("services.data_analytics_desc") },
-      { name: t("services.cloud_integration"), description: t("services.cloud_integration_desc") },
-      { name: t("services.certified_translation"), description: t("services.certified_translation_desc") },
-      { name: t("services.ad_targeting"), description: t("services.ad_targeting_desc") },
-      { name: t("services.ai_content"), description: t("services.ai_content_desc") }
+      { name: t("services.hotel_web"), description: t("services.hotel_web_desc") },
+      { name: t("services.hotel_pms"), description: t("services.hotel_pms_desc") },
+      { name: t("services.guest_automation"), description: t("services.guest_automation_desc") }
     ],
     [language, t]
   );

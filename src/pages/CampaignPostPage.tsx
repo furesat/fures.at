@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { DateTime } from "luxon";
 import { LANGUAGE_META, useLanguage } from "../contexts/LanguageContext";
+import { getPath } from "../utils/routes";
 import { getCampaignPostBySlug } from "../utils/campaigns";
 import { renderMarkdown } from "../utils/markdown";
 import { useSEO } from "../hooks/useSEO";
@@ -63,7 +64,7 @@ export function CampaignPostPage() {
           <h1 className="text-3xl font-semibold text-white sm:text-4xl">{t("campaigns.not_found")}</h1>
           <p className="mt-4 text-base text-slate-300">{t("campaigns.not_found_description")}</p>
           <Link
-            to="/kampanyalar"
+            to={getPath(language, "campaigns")}
             className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-6 py-3 text-sm font-medium uppercase tracking-[0.32em] text-white transition-colors duration-300 hover:border-orange-500/80 hover:bg-orange-500/10 hover:text-orange-200"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -81,7 +82,7 @@ export function CampaignPostPage() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,122,41,0.18),transparent_55%),radial-gradient(circle_at_bottom,rgba(143,91,255,0.14),transparent_60%)]" />
       <div className="mx-auto w-full max-w-3xl px-4">
         <Link
-          to="/kampanyalar"
+          to={getPath(language, "campaigns")}
           className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 py-2 text-xs font-medium uppercase tracking-[0.32em] text-white transition-colors duration-300 hover:border-orange-500/80 hover:bg-orange-500/10 hover:text-orange-200"
         >
           <ArrowLeft className="h-4 w-4" />

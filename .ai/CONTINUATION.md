@@ -1,5 +1,13 @@
 # AI Continuation State
 
+## 2026-09-20 MeinHotel PMS case study + light-mode colour pass
+
+- New public case study for the in-house PMS at `/tr/projeler/meinhotel-pms`, `/en/projects/meinhotel-pms`, `/ru/projects/meinhotel-pms`, `/de/referenzen/meinhotel-pms`. Copy lives in `src/data/meinhotel.ts` (four languages), rendering in `src/pages/MeinHotelPage.tsx`, routes in `src/App.tsx`, sitemap entries in `src/sitemap.xml.njk`.
+- The page links into the live PMS: `https://app.fures.tech/demo` (demo user `demo@fures.tech`, shared password `Test123!`, sample hotel "Alpin Panorama Grand Resort | DEMO") and `https://app.fures.tech/login`. Those constants live in `MEINHOTEL_APP`; change them in one place if the owner rotates the demo password or moves the host.
+- MeinHotel is now the first card in the projects grid, an entry in both header "More" menus and in both footers; the footers additionally carry a direct PMS login link.
+- German-focused defect pass: duplicated language code in the header pills, the dead `/de/kampagnen` menu entry, hardcoded Turkish links in shared components (DE/EN/RU visitors were thrown into the Turkish site), off-brand mint gradient on the DE hero CTA, unreadable orange accents / placeholders / gradient button in light mode, frame-rate-dependent hero cloth fade-in, and raw translation keys in the services JSON-LD.
+- Verified with `npx tsc --noEmit`, `npm run build`, and Playwright screenshots (light + dark, desktop + phone). Live hosts could not be fetched from the session (network policy blocks outbound HTTPS); `app.fures.tech` was confirmed through the Netlify API as the primary URL of project `fureshotel` with a ready deploy.
+
 ## 2026-09-19 Netlify account migration / removed public chat
 
 - Newly connected Netlify team `furkanyonat`, project `furestech` (site ID `757270a8-162c-4094-b479-d73141f1b14f`) publishes the main Fures site from `furesat/fures.at` with `npm run build` and `public`.
@@ -13,51 +21,48 @@
 
 ## Last Completed Phase
 
-Fixed the deploy-blocking build failure in the profile build step and added a production robots file with a sitemap reference.
+Published the MeinHotel PMS case study in four languages with direct demo/login access to the live system, and fixed the German-facing design, colour and navigation defects found during the review.
 
 ## Current Project Status
 
-The repository builds successfully on the current branch. The first `npm run build` reproduced the failure: `scripts/build-profiles.mjs` always ran `npm ci` for every profile app, but the current `furkanyonat/` directory no longer contains `package.json` or a lockfile. The build script now skips missing/non-buildable profile sources and keeps existing `public/<app>` output. The build also uses `--no-audit --no-fund` for subproject installs to reduce noisy audit output and small avoidable install overhead.
+`npx tsc --noEmit` and `npm run build` both pass on the current branch. The generated `public/sitemap.xml` contains the four new case-study URLs. Screenshots of `/de`, `/de/leistungen`, `/de/referenzen`, `/de/kontakt`, `/de/blog`, `/tr`, `/tr/projeler` and the new page were reviewed in light and dark mode at 1440×900 and 390×844.
 
 ## Next Phase
 
-Optional next phase: restore the full `furkanyonat/` source project if future CV content/design edits are needed, or intentionally document that `/furkanyonat` is currently maintained from committed `public/furkanyonat/` output until source is restored.
+Optional: add real screenshots of the PMS (room rack, reception timeline) to `public/images/projects/meinhotel-pms/` and embed them in the case study — the page is currently text-and-icon only. Blur or replace any guest-looking data before publishing images.
 
 ## Remaining Phases
 
-1. Optional: restore or reconstruct the full `furkanyonat/` Vite source app so the profile can be rebuilt from source again.
-2. Optional: add root `.env.example` with safe placeholders for `VITE_SITE_URL`, Gemini, Maps, and optional image provider keys.
-3. Optional: reduce deploy duration further by consolidating microsite dependency installation or caching strategy.
-4. Optional: address known bundle-size warnings with dynamic imports/manual chunks.
+1. Optional: PMS screenshots / short screen recording on the case-study page.
+2. Optional: a German-language blog post about the PMS launch that links to the case study (the DE blog is generated automation content today).
+3. Optional: restore or reconstruct the full `furkanyonat/` Vite source app so the profile can be rebuilt from source again.
+4. Optional: add root `.env.example` with safe placeholders.
+5. Optional: address known bundle-size warnings with dynamic imports/manual chunks.
 
 ## Important Files
 
 - `AGENTS.md`
 - `.ai/CONTINUATION.md`
-- `README.md`
-- `package.json`
-- `netlify.toml`
-- `scripts/build-profiles.mjs`
-- `scripts/build-travel.mjs`
-- `src/sitemap.xml.njk`
-- `public/robots.txt`
-- `public/furkanyonat/index.html`
+- `src/data/meinhotel.ts` — case-study copy + demo/login URLs and credentials
+- `src/pages/MeinHotelPage.tsx`
+- `src/App.tsx`, `src/sitemap.xml.njk`
+- `src/components/Projects.tsx`, `src/components/Header.tsx`, `src/components/HeaderDE.tsx`, `src/components/Footer.tsx`, `src/components/FooterDE.tsx`
+- `src/styles/globals.css` (light-mode accent block at the end of the file)
+- `src/utils/routes.ts` (`getPath`)
 
 ## Commands Verified
 
-- `git status --short --branch && git log --oneline -5` — checked current branch, working tree, and latest commits before editing.
-- `sed -n '1,260p' AGENTS.md` and `sed -n '1,240p' .ai/CONTINUATION.md` — read required project guide and continuation state before editing.
-- `find . -maxdepth 3 ... -name package.json ...` — inspected root and subproject package scripts without scanning node_modules.
-- `sed -n '1,220p' src/sitemap.xml.njk` and `find ... -iname 'robots.txt'` — checked sitemap/robots setup.
-- `npm run build` — first run failed after about 1m49s at `furkanyonat` because `npm ci` requires a package lock / package metadata that no longer exists there.
-- `npm run build` — passed after the script fix in about 2m04s; output still includes known warnings for npm `http-proxy`, Vite CJS API deprecation, outdated Browserslist/baseline data, some large chunks, and missing optional `/index.css` in some microsites.
+- `npm install --no-audit --no-fund`
+- `npx tsc --noEmit` — passed, no output
+- `npm run build` — passed end to end (travel, main app, Eleventy, profile builds); the usual warnings remain (Vite CJS API deprecation, outdated Browserslist data, large chunks, missing optional `/index.css` in some microsites)
+- Playwright screenshots against the local dev server on 127.0.0.1:5175, light and dark theme, desktop and phone viewports
 
 ## Known Risks
 
-- `furkanyonat/` currently lacks its full source app (`package.json`, components, translations, Vite config). The deploy now keeps existing committed `public/furkanyonat/` output, but future Furkan CV edits should restore/reconstruct source before changing that microsite.
-- Build time is improved for noisy audit/fund output and local repeated builds no longer forcibly delete `travel/node_modules`, but the overall deploy remains relatively long because the root build compiles travel, the main app, Eleventy content, and multiple profile/tool apps.
-- The first failed build modified generated `public/furkanyonat/index.html` through Eleventy before the final successful build; verify git diff before future source changes.
-- Known dependency audit warnings were not fixed in this scoped deploy-stability pass.
+- The demo password is published on a public page by the owner's explicit instruction. It only unlocks the dedicated demo Supabase user, which has exactly one membership in the fictional sample hotel; the `enterRealDemo` server action in `furesat/meinhotel` refuses any account with a different or additional membership. Rotating it means updating `MEINHOTEL_APP` and the portfolio note.
+- Live URLs (`fures.at`, `app.fures.tech`) could not be requested from this environment, so link targets were verified from repository configuration plus the Netlify API, not by fetching the pages.
+- The light-mode colour overrides are global: they change every `text-orange-*` accent on light backgrounds site-wide, which is the intent, but a future component that deliberately wants the pale orange on a dark surface inside light mode must opt out explicitly.
+- `public/furkanyonat/index.html` is committed generated output; it was edited together with its `furkanyonat/index.html` source so the two stay in sync.
 
 ## Do Not Do
 

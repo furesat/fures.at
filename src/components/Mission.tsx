@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useLanguage } from "../contexts/LanguageContext";
+import { getPath } from "../utils/routes";
 import { Target } from "lucide-react";
 
 export function Mission() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="mission-section py-32 relative overflow-hidden bg-black">
@@ -47,7 +48,7 @@ export function Mission() {
         </p>
 
         {/* CTA */}
-        <Link to="/iletisim">
+        <Link to={getPath(language, "contact")}>
           <Button size="lg" variant="gradient" className="text-lg">
             {t('mission.cta')} →
           </Button>

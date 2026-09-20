@@ -1,15 +1,20 @@
 import type { LucideIcon } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import { ExternalLink, Cpu, Globe, Hotel, Users, Camera, ChefHat, BarChart3, Briefcase, Plane, ShieldCheck, Shirt, MapPinned } from "lucide-react";
+import { ArrowRight, ExternalLink, Cpu, Globe, Hotel, Users, Camera, ChefHat, BarChart3, Briefcase, Plane, ShieldCheck, Shirt, MapPinned, BedDouble } from "lucide-react";
+import { MEINHOTEL_PATHS } from "../data/meinhotel";
 import { useLanguage, type Language } from "../contexts/LanguageContext";
+import { getPath } from "../utils/routes";
 import { Link } from "react-router-dom";
 
 type ProjectTranslations = Record<Language, { name: string; description: string }>;
 
 type ProjectConfig = {
   id: string;
+  /** External URL or static page served outside the React app. */
   link: string;
+  /** Set for case studies that live inside this React app: routed per language. */
+  internalPaths?: Record<Language, string>;
   icon: LucideIcon;
   translations: ProjectTranslations;
 };
@@ -17,6 +22,34 @@ type ProjectConfig = {
 export const FALLBACK_LANGUAGE: Language = 'en';
 
 export const PROJECTS: readonly ProjectConfig[] = [
+  {
+    id: 'meinhotel-pms',
+    link: MEINHOTEL_PATHS.en,
+    internalPaths: MEINHOTEL_PATHS,
+    icon: BedDouble,
+    translations: {
+      tr: {
+        name: 'MeinHotel PMS — Otel Yönetim Sistemi',
+        description:
+          'Kendi geliştirdiğimiz çok kiracılı otel yönetim yazılımı: resepsiyon, rezervasyon, oda planı, folyo, fatura, kat hizmetleri, fiyat yönetimi ve otele özel rezervasyon motoru. Demo hesabıyla canlı sistemi deneyin.',
+      },
+      en: {
+        name: 'MeinHotel PMS — Hotel Management System',
+        description:
+          'Our own multi-tenant hotel management software: front office, reservations, room rack, folio, invoicing, housekeeping, rate management and a built-in booking engine. Try it with the live demo account.',
+      },
+      de: {
+        name: 'MeinHotel PMS — Hotelmanagementsystem',
+        description:
+          'Unsere eigene mandantenfähige Hotelsoftware: Rezeption, Reservierungen, Zimmerplan, Folio, Rechnungen, Housekeeping, Ratenpflege und eine integrierte Buchungsmaschine. Jetzt mit dem Demo-Zugang testen.',
+      },
+      ru: {
+        name: 'MeinHotel PMS — система управления отелем',
+        description:
+          'Наша собственная мультиарендная система управления отелем: ресепшен, бронирования, шахматка, фолио, счета, уборка, тарифы и встроенный модуль бронирования. Попробуйте в живом демо.',
+      },
+    },
+  },
   {
     id: 'serakinci-platform',
     link: '/projeler/serakinci',
@@ -367,6 +400,7 @@ export function Projects() {
           {PROJECTS.map((project) => {
             const Icon = project.icon;
             const translation = project.translations[language] ?? project.translations[FALLBACK_LANGUAGE];
+            const internalPath = project.internalPaths?.[language];
             return (
               <Card
                 key={project.id}
@@ -393,10 +427,17 @@ export function Projects() {
                     className="w-full justify-center text-sm"
                     asChild
                   >
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">
-                      {t('projects.visit_project')}
-                      <ExternalLink className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                    </a>
+                    {internalPath ? (
+                      <Link to={internalPath}>
+                        {t('projects.visit_project')}
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                      </Link>
+                    ) : (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer">
+                        {t('projects.visit_project')}
+                        <ExternalLink className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+                      </a>
+                    )}
                   </Button>
                 </CardContent>
               </Card>
@@ -417,10 +458,10 @@ export function Projects() {
               </p>
               <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                 <Button asChild size="lg" variant="gradient" className="text-lg">
-                  <Link to="/iletisim">{t('projects.start_primary_cta')}</Link>
+                  <Link to={getPath(language, "contact")}>{t('projects.start_primary_cta')}</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="text-lg">
-                  <Link to="/projeler">{t('projects.start_secondary_cta')}</Link>
+                  <Link to={getPath(language, "projects")}>{t('projects.start_secondary_cta')}</Link>
                 </Button>
               </div>
             </div>

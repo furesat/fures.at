@@ -1,11 +1,12 @@
 import type { CSSProperties } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { getPath } from "../utils/routes";
 import { Rocket, TrendingUp, Bot, Megaphone, Languages } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 
 export function ServicePackages() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const packages = [
     {
@@ -112,7 +113,7 @@ export function ServicePackages() {
 
         {/* CTA */}
         <div className="text-center">
-          <Link to="/iletisim">
+          <Link to={getPath(language, "contact")}>
             <Button size="lg" variant="gradient" className="text-lg">
               {t('pricing.cta')} →
             </Button>

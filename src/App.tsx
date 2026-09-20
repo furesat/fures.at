@@ -10,6 +10,7 @@ import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
+import { MeinHotelPage } from "./pages/MeinHotelPage";
 import { TeamPage } from "./pages/TeamPage";
 import { FAQPage } from "./pages/FAQPage";
 import { ContactPage } from "./pages/ContactPage";
@@ -66,6 +67,7 @@ function TRLayout() {
               <Route path="/" element={<HomePage />} />
               <Route path="/hakkimizda/*" element={<AboutPage />} />
               <Route path="/hizmetler/*" element={<ServicesPage />} />
+              <Route path="/projeler/meinhotel-pms" element={<MeinHotelPage />} />
               <Route path="/projeler/*" element={<ProjectsPage />} />
               <Route path="/ekip/*" element={<TeamPage />} />
               <Route path="/sss/*" element={<FAQPage />} />
@@ -100,6 +102,7 @@ function ENLayout() {
               <Route path="/" element={<HomePage />} />
               <Route path="/about/*" element={<AboutPage />} />
               <Route path="/services/*" element={<ServicesPage />} />
+              <Route path="/projects/meinhotel-pms" element={<MeinHotelPage />} />
               <Route path="/projects/*" element={<ProjectsPage />} />
               <Route path="/team/*" element={<TeamPage />} />
               <Route path="/faq/*" element={<FAQPage />} />
@@ -134,6 +137,7 @@ function RULayout() {
               <Route path="/" element={<HomePage />} />
               <Route path="/about/*" element={<AboutPage />} />
               <Route path="/services/*" element={<ServicesPage />} />
+              <Route path="/projects/meinhotel-pms" element={<MeinHotelPage />} />
               <Route path="/projects/*" element={<ProjectsPage />} />
               <Route path="/team/*" element={<TeamPage />} />
               <Route path="/faq/*" element={<FAQPage />} />
@@ -167,6 +171,7 @@ function DELayout() {
               <Route path="/" element={<HomePageDE />} />
               <Route path="/ueber-uns/*" element={<AboutPage />} />
               <Route path="/leistungen/*" element={<ServicesPageDE />} />
+              <Route path="/referenzen/meinhotel-pms" element={<MeinHotelPage />} />
               <Route path="/referenzen/*" element={<ProjectsPage />} />
               <Route path="/team/*" element={<TeamPage />} />
               <Route path="/faq/*" element={<FAQPage />} />

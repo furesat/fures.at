@@ -142,9 +142,11 @@ export function HeroDE() {
             to="/de/leistungen"
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-full transition-all duration-200 hover:-translate-y-px active:translate-y-0"
             style={{
-              background: "linear-gradient(90deg, #6ee7e0 0%, #c4e870 50%, #f4d35e 100%)",
-              color: "#0a0a0a",
-              boxShadow: "0 8px 32px rgba(110,231,224,0.15)",
+              // Brand gradient (--primary → --secondary), consistent with the
+              // gradient button used on every other locale of the site.
+              background: "linear-gradient(135deg, #FF7A29 0%, #8F5BFF 100%)",
+              color: "#ffffff",
+              boxShadow: "0 12px 36px -12px rgba(255,122,41,0.45)",
             }}
           >
             Leistungen entdecken
