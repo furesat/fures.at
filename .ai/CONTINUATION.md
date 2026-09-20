@@ -1,5 +1,17 @@
 # AI Continuation State
 
+## 2026-09-20 Aqua Lens living-water preview
+
+- Added `src/components/LivingWaterSystem.tsx`, a reusable canvas enhancement for the existing shared surface classes rather than a second card design system.
+- It automatically enhances `.fures-card`, `.fures-nav-glass`, and `.fures-dropdown-content`, including route-mounted content via a MutationObserver.
+- The water layer has continuous low-amplitude flow, tiny downward droplets with faint wet trails, a moving meniscus highlight, pointer-local optical response, and tap/click ripples.
+- IntersectionObserver pauses off-screen surfaces and device pixel ratio is capped to protect mobile/Safari performance.
+- `prefers-reduced-motion` disables droplet/ripple motion while preserving a restrained static water surface.
+- Light-mode canonical cards are made slightly more transparent so the living layer reads without sacrificing text contrast; dark mode receives an equivalent controlled surface.
+- No routes, SEO metadata, sitemap entries, form semantics, or content were changed.
+- This work is intentionally on preview branch `preview/aqua-lens-living-water-20260920`; do not merge until the visual preview is approved.
+- Local build was not run from the connector-only editing environment. Validate Netlify/GitHub preview checks before merge.
+
 ## 2026-09-20 Contact phone field + blog audit
 
 - Added an optional `phone` field to the main `fures-contact` React form and its matching static Netlify declaration in `index.html`. The appointment form already had the same `phone` field, so both public lead forms now capture phone numbers.
