@@ -2739,3 +2739,531 @@ html[data-theme="light"] .fures-gradient-text {
   display: block;
   margin-inline: auto;
 }
+
+
+/* ─── Fures Living Water System ─────────────────────────────────────
+   Canvas-based optical life layer shared by canonical cards, navigation
+   glass and dropdown surfaces. It deliberately stays behind content.
+   ------------------------------------------------------------------- */
+.fures-live-water-host {
+  position: relative;
+  isolation: isolate;
+}
+
+.fures-water-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.76;
+}
+
+.fures-live-water-host > :not(.fures-water-layer) {
+  position: relative;
+  z-index: 1;
+}
+
+html.theme-light .fures-water-layer,
+html[data-theme="light"] .fures-water-layer {
+  opacity: 0.9;
+}
+
+html.theme-light .fures-card.fures-live-water-host,
+html[data-theme="light"] .fures-card.fures-live-water-host {
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+}
+
+html[data-theme="dark"] .fures-card.fures-live-water-host,
+html:not(.theme-light) .fures-card.fures-live-water-host {
+  background: rgba(20, 24, 34, 0.64);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+}
+
+.fures-nav-glass.fures-live-water-host,
+.fures-dropdown-content.fures-live-water-host {
+  isolation: isolate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fures-water-layer {
+    opacity: 0.54;
+  }
+}
+
+
+/* ─── Aqua Lens V2 scene + edge refraction ──────────────────────────
+   Organic backdrop content gives every transparent surface something
+   visible to bend. No straight wave/grid lines are used.
+   ------------------------------------------------------------------- */
+#root {
+  position: relative;
+  isolation: isolate;
+}
+
+.fures-aqua-scene {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.34), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.04), transparent 46%);
+}
+
+.fures-aqua-scene__orb {
+  position: absolute;
+  display: block;
+  border-radius: 43% 57% 52% 48% / 48% 43% 57% 52%;
+  filter: blur(18px);
+  opacity: 0.78;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.fures-aqua-scene__orb--cyan {
+  width: min(78vw, 980px);
+  height: min(72vw, 820px);
+  left: -20vw;
+  top: 12vh;
+  background:
+    radial-gradient(circle at 32% 25%, rgba(255,255,255,0.78), transparent 10%),
+    linear-gradient(135deg, rgba(17,205,207,0.54), rgba(22,122,221,0.36) 56%, rgba(22,122,221,0.02));
+  animation: fures-scene-cyan 20s ease-in-out infinite alternate;
+}
+
+.fures-aqua-scene__orb--amber {
+  width: min(70vw, 900px);
+  height: min(66vw, 760px);
+  right: -22vw;
+  top: 38vh;
+  background:
+    radial-gradient(circle at 34% 27%, rgba(255,255,255,0.72), transparent 9%),
+    linear-gradient(135deg, rgba(255,188,73,0.50), rgba(255,103,40,0.33) 58%, rgba(255,103,40,0.01));
+  animation: fures-scene-amber 24s ease-in-out infinite alternate;
+}
+
+.fures-aqua-scene__orb--sky {
+  width: min(56vw, 720px);
+  height: min(50vw, 650px);
+  left: 34vw;
+  bottom: -24vh;
+  background:
+    radial-gradient(circle at 46% 24%, rgba(255,255,255,0.68), transparent 12%),
+    linear-gradient(145deg, rgba(128,220,255,0.38), rgba(70,140,255,0.17) 60%, transparent);
+  opacity: 0.56;
+  animation: fures-scene-sky 27s ease-in-out infinite alternate;
+}
+
+.fures-aqua-scene__veil {
+  position: absolute;
+  inset: 20vh -8vw auto -8vw;
+  height: 46vh;
+  border-radius: 45% 55% 50% 50% / 52% 44% 56% 48%;
+  background:
+    radial-gradient(80% 100% at 22% 48%, rgba(255,255,255,0.18), transparent 62%),
+    radial-gradient(60% 88% at 78% 46%, rgba(255,255,255,0.16), transparent 65%);
+  filter: blur(8px);
+  opacity: 0.7;
+  transform: rotate(-4deg);
+}
+
+.fures-aqua-scene__word {
+  position: absolute;
+  left: 2vw;
+  top: 62vh;
+  font-family: var(--font-heading);
+  font-size: clamp(7rem, 22vw, 22rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+  color: rgba(12,90,132,0.050);
+  transform: rotate(-5deg);
+  user-select: none;
+  white-space: nowrap;
+}
+
+@keyframes fures-scene-cyan {
+  from { transform: translate3d(0,0,0) rotate(-8deg) scale(1); }
+  to   { transform: translate3d(10vw,-5vh,0) rotate(7deg) scale(1.08); }
+}
+@keyframes fures-scene-amber {
+  from { transform: translate3d(0,0,0) rotate(7deg) scale(1); }
+  to   { transform: translate3d(-8vw,6vh,0) rotate(-8deg) scale(1.10); }
+}
+@keyframes fures-scene-sky {
+  from { transform: translate3d(0,0,0) rotate(-4deg) scale(1); }
+  to   { transform: translate3d(4vw,-8vh,0) rotate(6deg) scale(1.08); }
+}
+
+/* Light theme gets the clearest cyan/amber scene, like the approved prototype. */
+html.theme-light .fures-aqua-scene,
+html[data-theme="light"] .fures-aqua-scene {
+  background:
+    radial-gradient(circle at 48% -5%, rgba(255,255,255,0.92), transparent 34%),
+    linear-gradient(180deg, #f7fcff 0%, #edf8fb 54%, #edf6f7 100%);
+}
+html.theme-light .fures-aqua-scene__orb--cyan,
+html[data-theme="light"] .fures-aqua-scene__orb--cyan { opacity: 0.72; }
+html.theme-light .fures-aqua-scene__orb--amber,
+html[data-theme="light"] .fures-aqua-scene__orb--amber { opacity: 0.68; }
+html.theme-light .fures-aqua-scene__word,
+html[data-theme="light"] .fures-aqua-scene__word { color: rgba(12,90,132,0.052); }
+
+/* Dark mode keeps the same geometry but turns it into a cool luminous depth. */
+html[data-theme="dark"] .fures-aqua-scene,
+html:not(.theme-light) .fures-aqua-scene {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(98,130,255,0.10), transparent 36%),
+    linear-gradient(180deg, #0b0e14 0%, #0d121b 58%, #0a1017 100%);
+}
+html[data-theme="dark"] .fures-aqua-scene__orb,
+html:not(.theme-light) .fures-aqua-scene__orb {
+  opacity: 0.34;
+  filter: blur(30px);
+}
+html[data-theme="dark"] .fures-aqua-scene__word,
+html:not(.theme-light) .fures-aqua-scene__word {
+  color: rgba(151,203,235,0.025);
+}
+
+/* Edge refraction: strongest at the ends/corners, not as a flat border.
+   These transparent children sample the backdrop separately, so the edge
+   feels thicker than the clear centre. */
+.fures-water-edge {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.82;
+  background: rgba(255,255,255,0.015);
+  backdrop-filter: blur(5px) saturate(165%) contrast(1.035);
+  -webkit-backdrop-filter: blur(5px) saturate(165%) contrast(1.035);
+}
+
+.fures-water-edge--left,
+.fures-water-edge--right {
+  top: 4%;
+  bottom: 4%;
+  width: clamp(12px, 3.8%, 28px);
+}
+.fures-water-edge--left {
+  left: 0;
+  border-radius: inherit 0 0 inherit;
+  box-shadow:
+    inset 4px 0 8px rgba(255,255,255,0.18),
+    inset -5px 0 10px rgba(54,154,191,0.07);
+}
+.fures-water-edge--right {
+  right: 0;
+  border-radius: 0 inherit inherit 0;
+  box-shadow:
+    inset -4px 0 8px rgba(255,255,255,0.16),
+    inset 5px 0 10px rgba(54,154,191,0.06);
+}
+.fures-water-edge--bottom {
+  left: 5%;
+  right: 5%;
+  bottom: 0;
+  height: clamp(8px, 3%, 18px);
+  box-shadow:
+    inset 0 -3px 8px rgba(255,255,255,0.13),
+    inset 0 5px 10px rgba(45,139,180,0.05);
+}
+
+/* Real backdrop displacement where the browser supports SVG backdrop filters. */
+html[data-aqua-lens="on"] .fures-card.fures-live-water-host,
+html[data-aqua-lens="on"] .fures-nav-glass.fures-live-water-host,
+html[data-aqua-lens="on"] .fures-dropdown-content.fures-live-water-host {
+  backdrop-filter: url(#aquaWater) blur(15px) saturate(165%) brightness(1.035);
+  -webkit-backdrop-filter: url(#aquaWater) blur(15px) saturate(165%) brightness(1.035);
+}
+
+html[data-aqua-lens="on"] .fures-input {
+  backdrop-filter: url(#aquaWaterSmall) blur(12px) saturate(150%) brightness(1.025);
+  -webkit-backdrop-filter: url(#aquaWaterSmall) blur(12px) saturate(150%) brightness(1.025);
+}
+
+/* Clearer centre in light mode so the background scene remains visible. */
+html.theme-light .fures-card.fures-live-water-host,
+html[data-theme="light"] .fures-card.fures-live-water-host {
+  background:
+    radial-gradient(120% 95% at 16% -22%, rgba(255,255,255,0.66), transparent 54%),
+    rgba(255,255,255,0.42);
+  border-color: rgba(255,255,255,0.74);
+  backdrop-filter: blur(13px) saturate(150%);
+  -webkit-backdrop-filter: blur(13px) saturate(150%);
+}
+
+html.theme-light .fures-nav-glass.fures-live-water-host,
+html[data-theme="light"] .fures-nav-glass.fures-live-water-host,
+html.theme-light .fures-dropdown-content.fures-live-water-host,
+html[data-theme="light"] .fures-dropdown-content.fures-live-water-host {
+  background-color: rgba(255,255,255,0.44);
+  backdrop-filter: blur(14px) saturate(155%);
+  -webkit-backdrop-filter: blur(14px) saturate(155%);
+}
+
+/* Do not let the canvas hide the thicker edge layers. */
+.fures-water-layer { z-index: 0; }
+.fures-water-edge { z-index: 1; }
+.fures-live-water-host > :not(.fures-water-layer):not(.fures-water-edge) { z-index: 2; }
+
+@media (max-width: 720px) {
+  .fures-aqua-scene__orb--cyan { left: -48vw; top: 10vh; }
+  .fures-aqua-scene__orb--amber { right: -48vw; top: 48vh; }
+  .fures-aqua-scene__word { top: 68vh; }
+  .fures-water-edge--left,
+  .fures-water-edge--right { width: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fures-aqua-scene__orb {
+    animation: none;
+  }
+}
+
+
+/* ─── Aqua Lens V3 polish + performance ─────────────────────────────
+   Softer background fields, stable header geometry, upgraded dark
+   dropdowns and no hover-following optical blob.
+   ------------------------------------------------------------------- */
+
+/* Remove the old decorative word completely. */
+.fures-aqua-scene__word { display: none !important; }
+
+/* Organic fields fade into one another instead of ending as visible bands. */
+.fures-aqua-scene__orb {
+  filter: none;
+  opacity: 1;
+  will-change: auto;
+}
+
+.fures-aqua-scene__orb--cyan {
+  width: min(112vw, 1500px);
+  height: min(102vw, 1320px);
+  left: -42vw;
+  top: -2vh;
+  background:
+    radial-gradient(
+      ellipse at 45% 44%,
+      rgba(44, 213, 218, 0.34) 0%,
+      rgba(36, 170, 218, 0.25) 28%,
+      rgba(36, 146, 216, 0.12) 52%,
+      rgba(36, 146, 216, 0.035) 68%,
+      transparent 82%
+    );
+  animation-duration: 38s;
+}
+
+.fures-aqua-scene__orb--amber {
+  width: min(104vw, 1420px);
+  height: min(98vw, 1260px);
+  right: -44vw;
+  top: 26vh;
+  background:
+    radial-gradient(
+      ellipse at 42% 44%,
+      rgba(255, 184, 84, 0.30) 0%,
+      rgba(255, 132, 60, 0.20) 30%,
+      rgba(245, 100, 47, 0.095) 54%,
+      rgba(245, 100, 47, 0.025) 70%,
+      transparent 84%
+    );
+  animation-duration: 44s;
+}
+
+.fures-aqua-scene__orb--sky {
+  width: min(92vw, 1240px);
+  height: min(86vw, 1100px);
+  left: 18vw;
+  bottom: -40vh;
+  background:
+    radial-gradient(
+      ellipse at 50% 44%,
+      rgba(125, 220, 255, 0.24) 0%,
+      rgba(89, 171, 240, 0.13) 34%,
+      rgba(89, 171, 240, 0.045) 62%,
+      transparent 82%
+    );
+  animation-duration: 49s;
+}
+
+.fures-aqua-scene__veil {
+  inset: 8vh -12vw auto -12vw;
+  height: 72vh;
+  filter: none;
+  opacity: .32;
+  background:
+    radial-gradient(ellipse at 20% 44%, rgba(255,255,255,.20), transparent 68%),
+    radial-gradient(ellipse at 82% 52%, rgba(255,255,255,.16), transparent 72%);
+}
+
+/* Light mode gets the airy cyan + warm field from the prototype. */
+html.theme-light .fures-aqua-scene,
+html[data-theme="light"] .fures-aqua-scene {
+  background:
+    radial-gradient(ellipse at 50% -12%, rgba(255,255,255,.98), rgba(255,255,255,.42) 34%, transparent 60%),
+    linear-gradient(180deg, #f8fcfe 0%, #eef8fb 48%, #edf6f7 100%);
+}
+
+/* Dark mode uses the same fields, just quieter rather than reverting to the old glass. */
+html[data-theme="dark"] .fures-aqua-scene__orb,
+html:not(.theme-light) .fures-aqua-scene__orb {
+  filter: none;
+  opacity: .48;
+}
+html[data-theme="dark"] .fures-aqua-scene__orb--amber,
+html:not(.theme-light) .fures-aqua-scene__orb--amber { opacity: .34; }
+
+/* Dark dropdowns now share the new living-water material. */
+html[data-theme="dark"] .fures-dropdown-content.fures-live-water-host,
+html:not(.theme-light) .fures-dropdown-content.fures-live-water-host {
+  background:
+    radial-gradient(120% 95% at 14% -16%, rgba(124,220,238,.14), transparent 52%),
+    radial-gradient(85% 85% at 104% 110%, rgba(255,147,77,.08), transparent 58%),
+    rgba(14, 21, 31, .72);
+  border: 1px solid rgba(198,235,246,.14) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 20px 54px rgba(2,8,15,.34);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+html[data-theme="dark"] .fures-dropdown-item,
+html:not(.theme-light) .fures-dropdown-item {
+  transition: background-color 160ms ease, color 160ms ease;
+}
+html[data-theme="dark"] .fures-dropdown-item:hover,
+html[data-theme="dark"] .fures-dropdown-item:focus,
+html:not(.theme-light) .fures-dropdown-item:hover,
+html:not(.theme-light) .fures-dropdown-item:focus {
+  background:
+    radial-gradient(circle at 16% 20%, rgba(118,225,238,.12), transparent 45%),
+    rgba(255,255,255,.055);
+}
+
+/* Language/theme/header pills use the same new surface in dark mode. */
+html[data-theme="dark"] .fures-lang-pill,
+html[data-theme="dark"] .fures-lang-pill-sm,
+html[data-theme="dark"] .theme-toggle-pill,
+html[data-theme="dark"] .fures-icon-pill,
+html:not(.theme-light) .fures-lang-pill,
+html:not(.theme-light) .fures-lang-pill-sm,
+html:not(.theme-light) .theme-toggle-pill,
+html:not(.theme-light) .fures-icon-pill {
+  background:
+    radial-gradient(120% 100% at 20% -30%, rgba(132,228,240,.11), transparent 56%),
+    rgba(16, 23, 34, .58);
+  border-color: rgba(202,236,246,.13);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.13),
+    0 8px 22px rgba(2,8,15,.20);
+}
+
+/* Header stability:
+   - Radix menus are non-modal in TSX, so opening them does not remove the body scrollbar.
+   - Disable transform-based hover/bounce on the nav row itself.
+   - The active glass spotlight may change position, but does not animate layout. */
+.fures-nav-glass .ios-nav-item {
+  transform: none !important;
+  transition: color 160ms ease, background-color 160ms ease, opacity 160ms ease !important;
+}
+.fures-nav-glass .ios-nav-item:hover,
+.fures-nav-glass .ios-nav-item:active {
+  transform: none !important;
+}
+.fures-nav-glass .ios-nav-item [data-dock-icon] {
+  transform: none !important;
+}
+.fures-nav-glass .glass-spotlight {
+  transition: opacity 170ms ease !important;
+  will-change: opacity;
+}
+.fures-nav-glass {
+  min-height: 66px;
+  contain: layout paint;
+}
+
+/* The live-water canvas should never become the dominant GPU layer. */
+.fures-water-layer {
+  opacity: .66;
+}
+html.theme-light .fures-water-layer,
+html[data-theme="light"] .fures-water-layer {
+  opacity: .78;
+}
+
+@media (max-width: 720px) {
+  .fures-aqua-scene__orb--cyan {
+    width: 150vw;
+    height: 145vw;
+    left: -78vw;
+    top: 2vh;
+  }
+  .fures-aqua-scene__orb--amber {
+    width: 145vw;
+    height: 140vw;
+    right: -78vw;
+    top: 42vh;
+  }
+  .fures-aqua-scene__orb--sky {
+    width: 135vw;
+    height: 130vw;
+    left: -15vw;
+    bottom: -34vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fures-aqua-scene__orb {
+    animation: none !important;
+  }
+}
+
+
+/* ─── Header route selection fix ────────────────────────────────────
+   Active state belongs to the actual route item. No floating absolute
+   spotlight, so the selected lens cannot drift onto a neighbour. */
+.fures-nav-glass .fures-nav-item-active {
+  color: #fff !important;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255,255,255,.34), transparent 34%),
+    linear-gradient(145deg, rgba(120,220,236,.18), rgba(123,146,255,.12) 58%, rgba(255,255,255,.08));
+  border: 1px solid rgba(255,255,255,.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.42),
+    inset 0 -1px 0 rgba(42,127,164,.10),
+    0 8px 20px rgba(27,93,125,.08);
+}
+
+html.theme-light .fures-nav-glass .fures-nav-item-active,
+html[data-theme="light"] .fures-nav-glass .fures-nav-item-active {
+  color: #183443 !important;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255,255,255,.90), transparent 38%),
+    linear-gradient(145deg, rgba(114,218,232,.22), rgba(148,184,247,.14) 60%, rgba(255,255,255,.34));
+  border-color: rgba(255,255,255,.76);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.94),
+    inset 0 -1px 0 rgba(61,145,179,.10),
+    0 7px 18px rgba(58,124,152,.08);
+}
+
+.fures-nav-glass .fures-nav-item-idle {
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+/* Old movable spotlight is no longer part of the header rendering. */
+.fures-nav-glass .glass-spotlight {
+  display: none !important;
+}

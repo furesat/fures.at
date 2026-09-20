@@ -31,7 +31,7 @@ export function LanguageSelector() {
   } as CSSProperties;
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <button className="fures-lang-pill-sm text-white/70 hover:text-white/90" onClick={triggerDockBounce}>
           <Globe data-dock-icon className="h-3.5 w-3.5" />

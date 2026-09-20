@@ -6,6 +6,7 @@ import { Footer } from "./components/Footer";
 import { FooterDE } from "./components/FooterDE";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { LivingWaterSystem } from "./components/LivingWaterSystem";
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
@@ -194,6 +195,7 @@ function DELayout() {
 export default function App() {
   return (
     <Router>
+      <LivingWaterSystem />
       <Routes>
         {/* Root: auto-redirect by IP country (falls back to browser language) */}
         <Route path="/" element={<RootRedirect />} />

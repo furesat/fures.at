@@ -1,5 +1,52 @@
 # AI Continuation State
 
+## 2026-09-20 Appointment modal stacking fix
+
+- The appointment dialog was rendered inside the contact page's clipped/stacked layout, so its fixed backdrop could end at the page section and the footer/header could visually sit above it.
+- `AppointmentForm` now renders through `createPortal(..., document.body)`, uses a viewport-level z-index, and has viewport-safe internal scrolling.
+- Reduced backdrop blur slightly to keep the modal cheaper on Safari while preserving the dimmed background.
+- This fixes both the German contact page and every other place that reuses `AppointmentForm`.
+- Still preview-only on PR #137.
+
+## 2026-09-20 Header active-state hotfix + extra performance pass
+
+- Removed the floating absolute header spotlight logic entirely. Active navigation now renders its own Aqua surface directly on the route-matching item, so the highlight cannot drift onto the wrong menu entry after navigation.
+- The `Mehr` trigger receives the same route-bound active class only when one of its submenu routes is active.
+- Header dropdowns remain non-modal to avoid scrollbar-lock page/header jumps.
+- Living-water canvases are now capped at 1x DPR and 20fps. Off-screen pausing remains enabled.
+- This is still preview-only on PR #137; do not merge until the new Netlify preview is visually approved.
+
+## 2026-09-20 Aqua Lens interaction/performance polish
+
+- Removed the passive mouse-following lens entirely. Water only reacts on click/tap via ripple; idle surfaces keep only subtle autonomous motion and droplets.
+- Removed the decorative background FURES word.
+- Softened the fixed cyan/amber/sky background fields with much larger radial fades and slower motion so sections no longer feel separated by hard color boundaries.
+- Reduced canvas cost: lower DPR cap, fewer droplets, fewer optical pools and 30fps throttling while still pausing off-screen surfaces.
+- Updated dark-mode dropdowns and language/theme/header pills to the same new Aqua material instead of the older glass treatment.
+- Header dropdowns use Radix `modal={false}` to avoid scrollbar-lock horizontal jumps. Nav-item transform/bounce is suppressed inside the main nav and the active spotlight no longer animates transform, which keeps the header geometry stable.
+- Still preview-only on PR #137. No merge.
+
+## 2026-09-20 Aqua Lens preview refinement
+
+- Removed the visible horizontal water-line bands from the canvas. The living layer now uses only soft moving optical pools, tiny droplets, trails, pointer response and ripples.
+- Added a full-page organic Aqua backdrop scene behind the site: cyan, sky and amber liquid fields plus a faint oversized FURES word. Light mode intentionally shows this scene more clearly; dark mode keeps the same geometry at lower intensity.
+- Added thicker left/right/bottom refractive edge layers to cards, nav and dropdown surfaces so the ends/corners read as curved liquid volume instead of a flat translucent panel.
+- Where SVG backdrop displacement is supported, canonical cards, nav and dropdowns now use the existing `#aquaWater` filter too; form inputs use the smaller displacement filter.
+- Safari/iPhone still cannot use SVG displacement inside backdrop-filter, so they retain the animated canvas + separate edge backdrop blur/saturation fallback.
+- No merge. Continue using PR #137 and its Netlify deploy preview as the visual approval gate.
+
+## 2026-09-20 Aqua Lens living-water preview
+
+- Added `src/components/LivingWaterSystem.tsx`, a reusable canvas enhancement for the existing shared surface classes rather than a second card design system.
+- It automatically enhances `.fures-card`, `.fures-nav-glass`, and `.fures-dropdown-content`, including route-mounted content via a MutationObserver.
+- The water layer has continuous low-amplitude flow, tiny downward droplets with faint wet trails, a moving meniscus highlight, pointer-local optical response, and tap/click ripples.
+- IntersectionObserver pauses off-screen surfaces and device pixel ratio is capped to protect mobile/Safari performance.
+- `prefers-reduced-motion` disables droplet/ripple motion while preserving a restrained static water surface.
+- Light-mode canonical cards are made slightly more transparent so the living layer reads without sacrificing text contrast; dark mode receives an equivalent controlled surface.
+- No routes, SEO metadata, sitemap entries, form semantics, or content were changed.
+- This work is intentionally on preview branch `preview/aqua-lens-living-water-20260920`; do not merge until the visual preview is approved.
+- Local build was not run from the connector-only editing environment. Validate Netlify/GitHub preview checks before merge.
+
 ## 2026-09-20 Contact phone field + blog audit
 
 - Added an optional `phone` field to the main `fures-contact` React form and its matching static Netlify declaration in `index.html`. The appointment form already had the same `phone` field, so both public lead forms now capture phone numbers.
