@@ -1,11 +1,10 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  type MouseEvent,
-  type PointerEvent as ReactPointerEvent,
-  type ReactNode,
+import { useCallback, useEffect, useRef } from "react";
+import type {
+  MouseEvent as ReactMouseEvent,
+  PointerEvent as ReactPointerEvent,
+  ReactNode,
 } from "react";
+import cosmicBackgroundHtml from "../assets/cosmic-background.raw?raw";
 import { useTheme } from "../contexts/ThemeContext";
 
 type CosmicContentShellProps = {
@@ -90,7 +89,7 @@ export function CosmicContentShell({ children }: CosmicContentShellProps) {
   );
 
   const handleDoubleClick = useCallback(
-    (event: MouseEvent<HTMLDivElement>) => {
+    (event: ReactMouseEvent<HTMLDivElement>) => {
       const target = event.target as Element | null;
       if (
         target?.closest(
