@@ -67,7 +67,7 @@ export function BlogListPage() {
             {t("nav.blog")}
           </span>
           <h1
-            className="mt-6 text-3xl font-bold text-white sm:text-4xl lg:text-5xl"
+            className="fures-gradient-text is-centered mt-6 text-3xl font-bold sm:text-4xl lg:text-5xl"
             style={{ letterSpacing: "-0.02em" }}
           >
             {t("blog.title")}

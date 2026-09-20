@@ -1,24 +1,20 @@
 import { Button } from "./ui/button";
 import { NetlifyContactForm } from "./NetlifyContactForm";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { AppointmentForm } from "./AppointmentForm";
+import { Phone, MapPin } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { CardIcon, Section, SectionHeading } from "./ui/section";
 
 export function CTA() {
   const { t } = useLanguage();
+  const [appointmentOpen, setAppointmentOpen] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const contactItems = [
-    {
-      icon: Mail,
-      title: t('contact.email'),
-      content: "info@fures.at",
-      href: "mailto:info@fures.at",
-    },
     {
       icon: Phone,
       title: t('contact.phone'),
@@ -73,14 +69,19 @@ export function CTA() {
           />
 
           <div className="mb-10 flex justify-center">
-            <Button asChild size="lg" variant="outline" className="text-sm">
-              <a href="https://calendly.com/fures" target="_blank" rel="noopener noreferrer">
-                {t('contact.schedule_meeting')}
-              </a>
+            <Button
+              type="button"
+              size="lg"
+              variant="outline"
+              className="text-sm"
+              onClick={() => setAppointmentOpen(true)}
+            >
+              {t('contact.schedule_meeting')}
             </Button>
           </div>
 
           <NetlifyContactForm />
+          <AppointmentForm open={appointmentOpen} onClose={() => setAppointmentOpen(false)} />
         </motion.div>
 
         {/* Contact details */}

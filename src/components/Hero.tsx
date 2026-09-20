@@ -153,7 +153,7 @@ export function Hero() {
             <span className="block text-white font-bold" style={{ letterSpacing: '-0.03em' }}>
               {rotatingTexts[textIndex]}
             </span>
-            <span className="block mt-2 text-orange-400 font-bold" style={{ letterSpacing: '-0.03em' }}>
+            <span className="fures-gradient-text block mt-2 font-bold" style={{ letterSpacing: '-0.03em' }}>
               {t('hero.subtitle')}
             </span>
           </motion.h1>
