@@ -6,6 +6,7 @@ import { LANGUAGE_META, useLanguage } from "../contexts/LanguageContext";
 import { getCampaignPostsByLanguage } from "../utils/campaigns";
 import { renderMarkdown } from "../utils/markdown";
 import { useSEO } from "../hooks/useSEO";
+import { getPath } from "../utils/routes";
 
 function formatDate(dateIso: string, language: keyof typeof LANGUAGE_META) {
   const locale = LANGUAGE_META[language].locale.replace("_", "-");
@@ -30,7 +31,7 @@ export function CampaignListPage() {
     title: t("seo.campaigns.title"),
     description: t("seo.campaigns.description"),
     keywords: t("seo.campaigns.keywords").split(", "),
-    canonicalPath: "/kampanyalar",
+    canonicalPath: getPath(language, "campaigns"),
     language,
   });
 

@@ -6,6 +6,7 @@ import { LANGUAGE_META, useLanguage } from "../contexts/LanguageContext";
 import { getPath } from "../utils/routes";
 import { getBlogPostBySlug } from "../utils/blog";
 import { renderMarkdown } from "../utils/markdown";
+import { useSEO } from "../hooks/useSEO";
 
 function formatDate(dateIso: string, language: keyof typeof LANGUAGE_META) {
   const locale = LANGUAGE_META[language].locale.replace("_", "-");
@@ -46,6 +47,35 @@ export function BlogPostPage() {
 
     return renderMarkdown(post.content);
   }, [post]);
+
+  // Posts previously inherited the static shell metadata, so every article
+  // canonicalised to the German homepage. Slugs are language-specific, so the
+  // article announces itself as the only version of its cluster.
+  const postLanguage = post?.lang ?? language;
+  const canonicalPath = post
+    ? `${getPath(postLanguage, "blog")}/${post.slug}`
+    : getPath(postLanguage, "blog");
+
+  useSEO({
+    title: post ? `${post.title} | ${t("seo.site_name")}` : t("blog.not_found"),
+    description: post?.excerpt ?? t("blog.subtitle"),
+    canonicalPath,
+    alternates: [{ hrefLang: LANGUAGE_META[postLanguage].hrefLang, path: canonicalPath }],
+    language: postLanguage,
+    robots: post ? undefined : "noindex, follow",
+    openGraph: {
+      title: post?.title ?? t("blog.not_found"),
+      description: post?.excerpt ?? t("blog.subtitle"),
+      type: "article",
+      image: post?.image,
+      siteName: t("seo.site_name"),
+    },
+    twitter: {
+      title: post?.title ?? t("blog.not_found"),
+      description: post?.excerpt ?? t("blog.subtitle"),
+      image: post?.image,
+    },
+  });
 
   if (!post) {
     return (

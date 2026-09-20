@@ -53,7 +53,10 @@ export function CampaignPostPage() {
     title: post ? `${post.title} | ${t("seo.campaigns.title")}` : t("campaigns.not_found"),
     description: post?.description ?? t("seo.campaigns.description"),
     keywords: t("seo.campaigns.keywords").split(", "),
-    canonicalPath: post ? `/kampanyalar/${post.slug}` : "/kampanyalar",
+    canonicalPath: post
+      ? `${getPath(post.lang, "campaigns")}/${post.slug}`
+      : getPath(language, "campaigns"),
+    robots: post ? undefined : "noindex, follow",
     language: post?.lang ?? language,
   });
 

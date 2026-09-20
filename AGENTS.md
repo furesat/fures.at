@@ -740,8 +740,22 @@ Fixes:
 - `src/components/Header.tsx`, `src/components/HeaderDE.tsx`, `src/components/Footer.tsx`, `src/components/FooterDE.tsx`
 - `src/components/Hero.tsx`, `src/components/HeroDE.tsx`, `src/components/ClothCanvas.tsx`, `src/components/Mission.tsx`, `src/components/Pricing.tsx`, `src/components/ServicePackages.tsx`
 - `src/pages/BlogPostPage.tsx`, `src/pages/CampaignPostPage.tsx`
+- `src/utils/routes.ts`, `src/utils/seo.ts`, `src/hooks/useSEO.ts`, `index.html`
+- `src/pages/BlogListPage.tsx`, `src/pages/CampaignListPage.tsx`, `src/pages/de/HomePageDE.tsx`, `src/pages/de/ServicesPageDE.tsx`, `src/pages/de/ContactPageDE.tsx`
 - `src/styles/globals.css`, `src/sitemap.xml.njk`
 - `furkanyonat/index.html`, `public/furkanyonat/index.html`
+
+#### SEO Status (second pass: canonical + hreflang)
+
+While reviewing the German pages a set of pre-existing metadata defects surfaced and were fixed:
+
+- `canonicalPathForLanguage()` appended `?lang=xx` for every non-Turkish locale, so German, English and Russian pages published query-parameter canonicals (`/de/referenzen?lang=de`).
+- `buildLanguageAlternates()` built alternates from the same path plus `?lang=`, announcing the German page as the Turkish, English and Russian version of itself. Alternates are now mapped through `LANGUAGE_ROUTES`, and paths that cannot be mapped (blog/campaign slugs) return a self-reference instead of an invented URL.
+- `/de/kampagnen` is excluded from mapping via `UNAVAILABLE_ROUTES` in `src/utils/routes.ts` — the DE layout has no campaign route.
+- The three static `<link rel="alternate">` tags in `index.html` were not `data-managed`, so every page carried them on top of its own set. They are now replaced at runtime.
+- Pages could emit two or three `x-default` links. There is now exactly one, always the English version of the cluster (falling back to the default language), and callers can still override it.
+- `BlogListPage` and `BlogPostPage` called no SEO hook at all: every blog page inherited the shell metadata from `index.html` and canonicalised to `https://fures.at/de`. Both now publish their own title, description, canonical, alternates and Open Graph data (`og:type=article` for posts).
+- Campaign pages canonicalised to `/kampanyalar` without the locale prefix.
 
 #### SEO Status
 

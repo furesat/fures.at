@@ -19,9 +19,11 @@
 
     <!-- Canonical & hreflang -->
     <link rel="canonical" href="https://fures.at/de" />
-    <link rel="alternate" href="https://fures.at/de" hreflang="de-AT" />
-    <link rel="alternate" href="https://fures.at/tr" hreflang="tr" />
-    <link rel="alternate" href="https://fures.at/de" hreflang="x-default" />
+    <!-- Baseline hreflang for crawlers without JS; data-managed lets useSEO
+         replace them with the current page's real alternates. -->
+    <link rel="alternate" href="https://fures.at/de" hreflang="de-AT" data-managed="seo" />
+    <link rel="alternate" href="https://fures.at/tr" hreflang="tr" data-managed="seo" />
+    <link rel="alternate" href="https://fures.at/de" hreflang="x-default" data-managed="seo" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.svg" />

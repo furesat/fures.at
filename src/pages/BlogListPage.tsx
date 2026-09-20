@@ -5,6 +5,8 @@ import { DateTime } from "luxon";
 import { LANGUAGE_META, useLanguage } from "../contexts/LanguageContext";
 import { getPostsByLanguage } from "../utils/blog";
 import { renderMarkdown } from "../utils/markdown";
+import { getPath } from "../utils/routes";
+import { buildLanguageAlternates, useSEO } from "../hooks/useSEO";
 
 function formatDate(dateIso: string, language: keyof typeof LANGUAGE_META) {
   const locale = LANGUAGE_META[language].locale.replace("_", "-");
@@ -34,6 +36,28 @@ export function BlogListPage() {
     event.currentTarget.onerror = null;
     event.currentTarget.src = fallbackSrc;
   }, []);
+
+  // Without this the blog inherited the static shell metadata from index.html,
+  // so every locale's blog list canonicalised to the German homepage.
+  const canonicalPath = getPath(language, "blog");
+
+  useSEO({
+    title: `${t("blog.title")} | ${t("seo.site_name")}`,
+    description: t("blog.subtitle"),
+    canonicalPath,
+    alternates: buildLanguageAlternates(canonicalPath),
+    language,
+    openGraph: {
+      title: t("blog.title"),
+      description: t("blog.subtitle"),
+      siteName: t("seo.site_name"),
+    },
+    twitter: {
+      title: t("blog.title"),
+      description: t("blog.subtitle"),
+    },
+  });
+
   return (
     <section className="relative min-h-screen bg-black py-32 text-white">
       <div className="page-hero-glow absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,122,41,0.18),transparent_55%),radial-gradient(circle_at_bottom,rgba(143,91,255,0.14),transparent_60%)]" />

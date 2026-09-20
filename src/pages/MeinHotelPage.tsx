@@ -25,7 +25,7 @@ import {
   Users,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
-import { useLanguage } from "../contexts/LanguageContext";
+import { LANGUAGE_META, SUPPORTED_LANGUAGES, useLanguage } from "../contexts/LanguageContext";
 import { getPath } from "../utils/routes";
 import {
   MEINHOTEL_APP,
@@ -89,14 +89,14 @@ export function MeinHotelPage() {
   const content = getMeinHotelContent(language);
   const canonicalPath = MEINHOTEL_PATHS[language];
 
+  // Same hrefLang values the rest of the site uses, so this cluster joins the
+  // site-wide x-default rule instead of forming its own.
   const alternates = useMemo(
-    () => [
-      { hrefLang: "tr", path: MEINHOTEL_PATHS.tr },
-      { hrefLang: "en", path: MEINHOTEL_PATHS.en },
-      { hrefLang: "de-AT", path: MEINHOTEL_PATHS.de },
-      { hrefLang: "ru", path: MEINHOTEL_PATHS.ru },
-      { hrefLang: "x-default", path: MEINHOTEL_PATHS.en },
-    ],
+    () =>
+      SUPPORTED_LANGUAGES.map((lang) => ({
+        hrefLang: LANGUAGE_META[lang].hrefLang,
+        path: MEINHOTEL_PATHS[lang],
+      })),
     []
   );
 

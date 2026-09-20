@@ -1,4 +1,5 @@
 import { DEFAULT_LANGUAGE, LANGUAGE_META, SUPPORTED_LANGUAGES, type Language } from "../contexts/LanguageContext";
+import { LANGUAGE_ROUTES, languageFromPath, mapRouteToLanguage } from "./routes";
 
 const ENV_SITE_URL = (import.meta.env?.VITE_SITE_URL ?? "").trim();
 const FALLBACK_SITE_URL = (ENV_SITE_URL || "https://fures.at").replace(/\/$/, "");
@@ -58,17 +59,53 @@ export function normalizePath(path: string): string {
   return cleanPath || "/";
 }
 
+/**
+ * The site serves every locale from its own path prefix (`/tr`, `/en`, `/ru`,
+ * `/de`), so a canonical URL is simply the prefixed path. The former
+ * `?lang=xx` suffix produced duplicate canonicals and hreflang entries that
+ * pointed at the same page in the wrong language.
+ */
 export function canonicalPathForLanguage(path: string, language: Language): string {
   const cleanPath = normalizePath(path);
-  return language === DEFAULT_LANGUAGE ? cleanPath : `${cleanPath}?lang=${language}`;
+
+  if (cleanPath === "/") {
+    return LANGUAGE_ROUTES[language].home;
+  }
+
+  if (languageFromPath(cleanPath) === language) {
+    return cleanPath;
+  }
+
+  return mapRouteToLanguage(cleanPath, language) ?? cleanPath;
 }
 
+/**
+ * Only announces alternates the site actually serves. Detail pages whose slug
+ * differs per language (blog posts, campaigns) return a single self-reference
+ * instead of fabricated URLs.
+ */
 export function buildLanguageAlternates(path: string): { hrefLang: string; path: string }[] {
   const cleanPath = normalizePath(path);
-  return SUPPORTED_LANGUAGES.map((lang) => ({
-    hrefLang: LANGUAGE_META[lang].hrefLang,
-    path: canonicalPathForLanguage(cleanPath, lang)
-  }));
+  const currentLanguage = languageFromPath(cleanPath);
+
+  const alternates = SUPPORTED_LANGUAGES.reduce<{ hrefLang: string; path: string }[]>((acc, lang) => {
+    const target = lang === currentLanguage ? cleanPath : mapRouteToLanguage(cleanPath, lang);
+    if (target) {
+      acc.push({ hrefLang: LANGUAGE_META[lang].hrefLang, path: target });
+    }
+    return acc;
+  }, []);
+
+  if (alternates.length > 0) {
+    return alternates;
+  }
+
+  return [
+    {
+      hrefLang: LANGUAGE_META[currentLanguage ?? DEFAULT_LANGUAGE].hrefLang,
+      path: cleanPath
+    }
+  ];
 }
 
 export function createBreadcrumbSchema(items: { name: string; path: string }[]) {
