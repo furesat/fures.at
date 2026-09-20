@@ -1,3 +1,13 @@
+## 2026-09-20 Cosmic homepage background preview
+
+- Added the user-approved “Universe Consciousness V3” animation as one continuous background for homepage content **after** the existing top Hero. Header, Hero, copy, cards, routes and content were not replaced.
+- Integration is deliberately isolated: the original V3 runs in a same-site background iframe and the React shell only forwards theme, pointer position and scroll depth. This avoids coupling the shader/network code to the marketing UI.
+- The energy/pulse interaction is **double-click only** on non-interactive homepage space. A normal single click does nothing; links, buttons, inputs and other controls keep their normal behavior.
+- The existing pointer-gravity motion remains subtle and continuous because it is part of the approved V3 look.
+- Existing LivingWaterSystem/card treatment remains untouched.
+- No routes, copy, SEO metadata, structured data, sitemap entries or form semantics changed.
+- Branch: `preview/cosmic-home-background-20260920`. Validate the Netlify deploy preview visually before merging.
+
 # AI Continuation State
 
 ## 2026-09-20 Appointment modal stacking fix
