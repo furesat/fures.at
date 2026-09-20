@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { CalendarCheck, CheckCircle2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Button } from "./ui/button";
 
@@ -94,7 +95,9 @@ export function AppointmentForm({ open, onClose }: { open: boolean; onClose: () 
     }
   };
 
-  return (
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <AnimatePresence>
       {open && (
         <motion.div
@@ -102,7 +105,7 @@ export function AppointmentForm({ open, onClose }: { open: boolean; onClose: () 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.22 }}
-          className="fixed inset-0 z-[9500] flex items-end justify-center overflow-y-auto overscroll-contain bg-black/60 p-4 backdrop-blur-sm sm:items-center"
+          className="fixed inset-0 z-[30000] flex items-end justify-center overflow-y-auto overscroll-contain bg-black/60 p-4 backdrop-blur-[2px] sm:items-center"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) onClose();
           }}
@@ -116,7 +119,7 @@ export function AppointmentForm({ open, onClose }: { open: boolean; onClose: () 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fures-card relative my-auto w-full max-w-2xl rounded-[2rem] p-6 text-left sm:p-8"
+            className="fures-card relative my-auto max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto rounded-[2rem] p-6 text-left sm:p-8"
           >
             <button
               type="button"
@@ -261,6 +264,7 @@ export function AppointmentForm({ open, onClose }: { open: boolean; onClose: () 
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
