@@ -379,12 +379,5 @@ export function LivingWaterSystem() {
     };
   }, []);
 
-  return (
-    <div className="fures-aqua-scene" aria-hidden="true">
-      <span className="fures-aqua-scene__orb fures-aqua-scene__orb--cyan" />
-      <span className="fures-aqua-scene__orb fures-aqua-scene__orb--amber" />
-      <span className="fures-aqua-scene__orb fures-aqua-scene__orb--sky" />
-      <span className="fures-aqua-scene__veil" />
-    </div>
-  );
+  return <div className="fures-aqua-scene" aria-hidden="true" />;
 }
