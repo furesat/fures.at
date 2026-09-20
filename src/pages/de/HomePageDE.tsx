@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useLanguage } from "../../contexts/LanguageContext";
-import { HeroDE } from "../../components/HeroDE";
+import { HeroDE } from "../../components/HeroDE";\nimport { CosmicContentShell } from "../../components/CosmicContentShell";
 import { WhyUs } from "../../components/WhyUs";
 import { Services } from "../../components/Services";
 import { CTA } from "../../components/CTA";
@@ -76,9 +76,11 @@ export function HomePageDE() {
   return (
     <>
       <HeroDE />
-      <WhyUs />
-      <Services />
-      <CTA />
+      <CosmicContentShell>
+        <WhyUs />
+        <Services />
+        <CTA />
+      </CosmicContentShell>
     </>
   );
 }
