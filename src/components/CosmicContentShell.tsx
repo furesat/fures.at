@@ -119,7 +119,8 @@ export function CosmicContentShell({ children }: CosmicContentShellProps) {
         <iframe
           ref={frameRef}
           className="cosmic-site-frame"
-          src="/cosmic-background.html"
+          srcDoc={cosmicBackgroundHtml}
+          loading="lazy"
           title="Animated cosmic background"
           tabIndex={-1}
           aria-hidden="true"
