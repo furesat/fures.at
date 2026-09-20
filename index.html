@@ -176,6 +176,22 @@
       <input type="text" name="start-date" />
       <textarea name="message"></textarea>
     </form>
+    <!-- Randevu talebi: iletişim formundan ayrı tutuluyor ki gönderiler
+         Netlify panelinde karışmasın ve kendi bildirimini alabilsin.
+         Alan adları AppointmentForm.tsx ile birebir aynı olmak zorunda. -->
+    <form name="fures-appointment" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="fures-appointment" />
+      <input name="bot-field" />
+      <input type="hidden" name="recipient" value="furkanyonat@gmail.com" />
+      <input type="hidden" name="language" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="company" />
+      <input type="date" name="preferred-date" />
+      <input type="text" name="preferred-time" />
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Phone, MapPin } from "lucide-react";
 import { MEINHOTEL_APP, MEINHOTEL_PATHS, getMeinHotelContent } from "../data/meinhotel";
 
 export function FooterDE() {
@@ -36,13 +36,6 @@ export function FooterDE() {
 
             {/* Contact info */}
             <div className="flex flex-col gap-2 mt-2">
-              <a
-                href="mailto:info@fures.at"
-                className="flex items-center gap-2 text-sm text-gray-500 hover:text-orange-400 transition-colors duration-200"
-              >
-                <Mail className="w-4 h-4 shrink-0 text-orange-500/70" />
-                info@fures.at
-              </a>
               <a
                 href="tel:+4366499735268"
                 className="flex items-center gap-2 text-sm text-gray-500 hover:text-orange-400 transition-colors duration-200"

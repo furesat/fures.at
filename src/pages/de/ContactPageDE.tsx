@@ -1,8 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { AppointmentForm } from "../../components/AppointmentForm";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { buildLanguageAlternates, useSEO } from "../../hooks/useSEO";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { Phone, MapPin, Calendar } from "lucide-react";
 import { NetlifyContactForm } from "../../components/NetlifyContactForm";
 
 const CARD_FADE = {
@@ -65,14 +66,20 @@ export function ContactPageDE() {
     structuredData,
   });
 
-  const contactItems = [
-    {
-      href: "mailto:info@fures.at",
-      icon: Mail,
-      label: t("contact.email"),
-      value: "info@fures.at",
-      color: "orange",
-    },
+  const [appointmentOpen, setAppointmentOpen] = useState(false);
+
+  type ContactItem = {
+    href?: string;
+    onClick?: () => void;
+    icon: typeof Phone;
+    label: string;
+    value: string;
+    sub?: string;
+    color: "orange" | "purple";
+    external?: boolean;
+  };
+
+  const contactItems: ContactItem[] = [
     {
       href: "tel:+4366499735268",
       icon: Phone,
@@ -81,7 +88,6 @@ export function ContactPageDE() {
       color: "orange",
     },
     {
-      href: null,
       icon: MapPin,
       label: t("contact.headquarters"),
       value: t("contact.headquarters_location"),
@@ -89,12 +95,11 @@ export function ContactPageDE() {
       color: "purple",
     },
     {
-      href: "https://calendly.com/fures",
+      onClick: () => setAppointmentOpen(true),
       icon: Calendar,
       label: t("contact.schedule_meeting"),
-      value: "Termin buchen",
+      value: t("appointment.open"),
       color: "orange",
-      external: true,
     },
   ];
 
@@ -130,6 +135,7 @@ export function ContactPageDE() {
 
         <div className="mb-16">
           <NetlifyContactForm />
+        <AppointmentForm open={appointmentOpen} onClose={() => setAppointmentOpen(false)} />
         </div>
 
         {/* Contact cards grid */}
@@ -164,6 +170,23 @@ export function ContactPageDE() {
 
             const cardClass =
               "fures-nav-glass group block rounded-3xl p-7 transition-all duration-300 hover:-translate-y-0.5";
+
+            if (item.onClick) {
+              return (
+                <motion.button
+                  key={i}
+                  type="button"
+                  onClick={item.onClick}
+                  variants={CARD_FADE}
+                  initial="hidden"
+                  animate="visible"
+                  custom={i * 0.07}
+                  className={`${cardClass} w-full text-left`}
+                >
+                  {inner}
+                </motion.button>
+              );
+            }
 
             return item.href ? (
               <motion.a
