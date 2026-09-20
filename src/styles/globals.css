@@ -3228,3 +3228,42 @@ html[data-theme="light"] .fures-water-layer {
     animation: none !important;
   }
 }
+
+
+/* ─── Header route selection fix ────────────────────────────────────
+   Active state belongs to the actual route item. No floating absolute
+   spotlight, so the selected lens cannot drift onto a neighbour. */
+.fures-nav-glass .fures-nav-item-active {
+  color: #fff !important;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255,255,255,.34), transparent 34%),
+    linear-gradient(145deg, rgba(120,220,236,.18), rgba(123,146,255,.12) 58%, rgba(255,255,255,.08));
+  border: 1px solid rgba(255,255,255,.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.42),
+    inset 0 -1px 0 rgba(42,127,164,.10),
+    0 8px 20px rgba(27,93,125,.08);
+}
+
+html.theme-light .fures-nav-glass .fures-nav-item-active,
+html[data-theme="light"] .fures-nav-glass .fures-nav-item-active {
+  color: #183443 !important;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255,255,255,.90), transparent 38%),
+    linear-gradient(145deg, rgba(114,218,232,.22), rgba(148,184,247,.14) 60%, rgba(255,255,255,.34));
+  border-color: rgba(255,255,255,.76);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.94),
+    inset 0 -1px 0 rgba(61,145,179,.10),
+    0 7px 18px rgba(58,124,152,.08);
+}
+
+.fures-nav-glass .fures-nav-item-idle {
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+/* Old movable spotlight is no longer part of the header rendering. */
+.fures-nav-glass .glass-spotlight {
+  display: none !important;
+}
