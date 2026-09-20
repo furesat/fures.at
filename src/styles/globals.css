@@ -6,10 +6,10 @@
 
 :root {
   --font-size: 16px;
-  --background: #050507;
-  --background-dark: #110d14;
+  --background: #0b0e14;
+  --background-dark: #151a24;
   --foreground: oklch(0.985 0 0);
-  --card: #121017;
+  --card: #141822;
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.145 0 0);
   --popover-foreground: oklch(0.985 0 0);
@@ -35,8 +35,8 @@
   /* Glass system - slightly more visible, refined */
   --glass-blur: 24px;
   --glass-saturate: 1.7;
-  --glass-bg: rgba(255, 255, 255, 0.035);
-  --glass-border: rgba(255, 255, 255, 0.13);
+  --glass-bg: rgba(255, 255, 255, 0.048);
+  --glass-border: rgba(255, 255, 255, 0.11);
   --glass-border-strong: rgba(255, 255, 255, 0.22);
   --glass-highlight: rgba(255, 255, 255, 0.38);
   --glass-reflection: rgba(210, 230, 255, 0.20);
@@ -928,12 +928,14 @@ html[data-theme="light"] .fures-nav-glass .hover\:text-white { color: rgba(29, 2
   }
 
   body {
-    @apply bg-black text-foreground;
+    @apply text-foreground;
+    /* Dark base is a soft cool charcoal, not pure black: the section glows can
+       breathe over it instead of turning into a brown haze on a flat void. */
     background:
-      radial-gradient(ellipse at 18% 18%, rgba(255, 122, 41, 0.10), transparent 52%),
-      radial-gradient(ellipse at 78% 10%, rgba(143, 91, 255, 0.11), transparent 56%),
-      radial-gradient(ellipse at 50% 86%, rgba(77, 180, 255, 0.06), transparent 60%),
-      #050507;
+      radial-gradient(ellipse at 12% 6%, rgba(255, 141, 74, 0.07), transparent 52%),
+      radial-gradient(ellipse at 86% 4%, rgba(146, 104, 255, 0.14), transparent 58%),
+      radial-gradient(ellipse at 50% 96%, rgba(86, 170, 255, 0.1), transparent 62%),
+      linear-gradient(180deg, #0c0f16 0%, #0b0e14 55%, #090c12 100%);
     background-attachment: fixed;
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
@@ -2160,6 +2162,257 @@ html[data-theme="light"] [data-slot="button"][class*="linear-gradient"] {
 html.theme-light [data-slot="button"][class*="linear-gradient"] svg,
 html[data-theme="light"] [data-slot="button"][class*="linear-gradient"] svg {
   color: #ffffff;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Dark mode — smoother surfaces
+   Sections carry `bg-black`, which painted solid #000 over the body gradient
+   and left the dark theme flat with a brown haze from the warm section glows.
+   In dark mode those sections become transparent so the page gradient shows
+   through, cards gain enough separation to read as surfaces, and the dimmest
+   body text is lifted to a comfortable cool grey.
+   ───────────────────────────────────────────────────────────────────────── */
+html[data-theme="dark"] .bg-black,
+html:not(.theme-light) .bg-black {
+  background-color: transparent;
+}
+
+html[data-theme="dark"] .from-black,
+html[data-theme="dark"] .via-black,
+html[data-theme="dark"] .to-black,
+html:not(.theme-light) .from-black,
+html:not(.theme-light) .via-black,
+html:not(.theme-light) .to-black {
+  --tw-gradient-from: rgba(11, 14, 20, 0) var(--tw-gradient-from-position);
+  --tw-gradient-via: rgba(17, 21, 30, 0.55) var(--tw-gradient-via-position);
+  --tw-gradient-to: rgba(9, 12, 18, 0.85) var(--tw-gradient-to-position);
+}
+
+html[data-theme="dark"] .via-gray-900\/30,
+html:not(.theme-light) .via-gray-900\/30 {
+  --tw-gradient-via: rgba(26, 32, 44, 0.42) var(--tw-gradient-via-position);
+}
+
+/* Panel backgrounds that were hardcoded near-black */
+html[data-theme="dark"] .bg-\[\#0f0f0f\],
+html:not(.theme-light) .bg-\[\#0f0f0f\] { background-color: #0e121a; }
+html[data-theme="dark"] .bg-\[\#050507\],
+html:not(.theme-light) .bg-\[\#050507\] { background-color: #0b0e14; }
+html[data-theme="dark"] .bg-\[\#121017\],
+html:not(.theme-light) .bg-\[\#121017\] { background-color: #141822; }
+html[data-theme="dark"] .bg-\[\#110d14\],
+html:not(.theme-light) .bg-\[\#110d14\] { background-color: #151a24; }
+
+/* Body copy: white/50–65 sat around the comfort floor on a black page. */
+html[data-theme="dark"] .text-white\/50,
+html:not(.theme-light) .text-white\/50 { color: rgba(226, 232, 240, 0.7); }
+html[data-theme="dark"] .text-white\/55,
+html:not(.theme-light) .text-white\/55 { color: rgba(226, 232, 240, 0.74); }
+html[data-theme="dark"] .text-white\/60,
+html:not(.theme-light) .text-white\/60 { color: rgba(228, 234, 242, 0.78); }
+html[data-theme="dark"] .text-white\/65,
+html:not(.theme-light) .text-white\/65 { color: rgba(228, 234, 242, 0.82); }
+html[data-theme="dark"] .text-white\/70,
+html:not(.theme-light) .text-white\/70 { color: rgba(230, 236, 244, 0.86); }
+html[data-theme="dark"] .text-white\/45,
+html:not(.theme-light) .text-white\/45 { color: rgba(214, 222, 235, 0.62); }
+html[data-theme="dark"] .text-white\/40,
+html:not(.theme-light) .text-white\/40 { color: rgba(214, 222, 235, 0.58); }
+html[data-theme="dark"] .text-white\/35,
+html:not(.theme-light) .text-white\/35 { color: rgba(214, 222, 235, 0.55); }
+
+html[data-theme="dark"] .text-slate-300,
+html[data-theme="dark"] .text-slate-200,
+html:not(.theme-light) .text-slate-300,
+html:not(.theme-light) .text-slate-200 { color: rgba(226, 232, 240, 0.84); }
+
+html[data-theme="dark"] .text-gray-400,
+html:not(.theme-light) .text-gray-400 { color: #9fa9bd; }
+html[data-theme="dark"] .text-gray-500,
+html:not(.theme-light) .text-gray-500 { color: #929cb1; }
+html[data-theme="dark"] .text-gray-600,
+html:not(.theme-light) .text-gray-600 { color: #7d869a; }
+
+/* Accents: a touch brighter so they read as brand colour, not rust. */
+html[data-theme="dark"] .text-orange-400,
+html:not(.theme-light) .text-orange-400 { color: #ffa057; }
+html[data-theme="dark"] .text-orange-300,
+html:not(.theme-light) .text-orange-300 { color: #ffb37a; }
+
+/* Cards need a readable edge against the lifted background. */
+html[data-theme="dark"] .fures-nav-glass,
+html:not(.theme-light) .fures-nav-glass {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.05),
+    0 24px 60px -40px rgba(0, 0, 0, 0.9);
+}
+
+html[data-theme="dark"] .placeholder\:text-white\/30::placeholder,
+html:not(.theme-light) .placeholder\:text-white\/30::placeholder {
+  color: rgba(214, 222, 235, 0.45);
+}
+
+/* Section washes: the warm blobs were tuned for a pure-black page and turn
+   muddy on the lifted dark base. Violet leads, warm stays an accent. */
+html[data-theme="dark"] .bg-orange-500\/20,
+html:not(.theme-light) .bg-orange-500\/20 { background-color: rgba(255, 138, 66, 0.12); }
+html[data-theme="dark"] .bg-purple-600\/20,
+html:not(.theme-light) .bg-purple-600\/20 { background-color: rgba(150, 104, 255, 0.17); }
+
+html[data-theme="dark"] .from-purple-900\/20,
+html:not(.theme-light) .from-purple-900\/20 {
+  --tw-gradient-from: rgba(91, 33, 182, 0.22) var(--tw-gradient-from-position);
+}
+html[data-theme="dark"] .to-orange-900\/20,
+html:not(.theme-light) .to-orange-900\/20 {
+  --tw-gradient-to: rgba(124, 45, 18, 0.12) var(--tw-gradient-to-position);
+}
+html[data-theme="dark"] .from-orange-900\/10,
+html:not(.theme-light) .from-orange-900\/10 {
+  --tw-gradient-from: rgba(124, 45, 18, 0.08) var(--tw-gradient-from-position);
+}
+html[data-theme="dark"] .to-purple-900\/10,
+html:not(.theme-light) .to-purple-900\/10 {
+  --tw-gradient-to: rgba(91, 33, 182, 0.16) var(--tw-gradient-to-position);
+}
+
+html[data-theme="dark"] .page-hero-glow,
+html:not(.theme-light) .page-hero-glow {
+  background:
+    radial-gradient(circle at 50% -10%, rgba(150, 104, 255, 0.18), transparent 58%),
+    radial-gradient(circle at 12% 20%, rgba(255, 138, 66, 0.07), transparent 46%),
+    radial-gradient(circle at bottom, rgba(86, 170, 255, 0.1), transparent 62%);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   .fures-card — the canonical content surface
+   The nav recipe (`.fures-nav-glass`) is tuned for a floating pill: heavy
+   blur with saturate(200%). Behind a card grid that amplifies whatever glow
+   sits underneath, so neighbouring cards picked up different tints (one
+   brown, one violet). Cards use a calmer, more opaque surface instead, so a
+   grid reads as one set of panels in both themes.
+   ───────────────────────────────────────────────────────────────────────── */
+.fures-card {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0.02) 60%, rgba(255, 255, 255, 0.03) 100%),
+    rgba(19, 23, 33, 0.72);
+  backdrop-filter: blur(28px) saturate(115%);
+  -webkit-backdrop-filter: blur(28px) saturate(115%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 20px 48px -32px rgba(0, 0, 0, 0.85);
+  transition:
+    transform 0.3s var(--spring-transition),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.fures-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 28px 64px -34px rgba(0, 0, 0, 0.9);
+}
+
+html.theme-light .fures-card,
+html[data-theme="light"] .fures-card {
+  border-color: rgba(0, 0, 0, 0.06);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.86) 100%);
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 18px 40px -30px rgba(38, 44, 60, 0.42);
+}
+
+html.theme-light .fures-card:hover,
+html[data-theme="light"] .fures-card:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 26px 56px -32px rgba(38, 44, 60, 0.5);
+}
+
+/* Section rhythm shared by every marketing section. */
+.fures-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .fures-section {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+/* One soft, theme-aware ambient wash per section — replaces the stacked
+   orange/purple blobs that turned muddy on the dark page. */
+.fures-section-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 55% at 50% -10%, rgba(150, 104, 255, 0.14), transparent 70%),
+    radial-gradient(45% 45% at 12% 105%, rgba(255, 138, 66, 0.08), transparent 72%);
+}
+
+html.theme-light .fures-section-glow,
+html[data-theme="light"] .fures-section-glow {
+  background:
+    radial-gradient(60% 55% at 50% -10%, rgba(168, 142, 255, 0.12), transparent 70%),
+    radial-gradient(45% 45% at 12% 105%, rgba(255, 151, 96, 0.1), transparent 72%);
+}
+
+/* Form fields — explicit surfaces in both themes. These used to rely on
+   `bg-white/8`, an opacity Tailwind does not generate, so in dark mode the
+   inputs fell back to the browser default (solid white on a dark card). */
+.fures-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.75rem 1rem;
+  color: #f5f7fa;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fures-input::placeholder {
+  color: rgba(214, 222, 235, 0.45);
+}
+
+.fures-input:focus {
+  border-color: rgba(255, 160, 87, 0.6);
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 0 3px rgba(255, 160, 87, 0.12);
+}
+
+html.theme-light .fures-input,
+html[data-theme="light"] .fures-input {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  color: #1d1d1f;
+}
+
+html.theme-light .fures-input::placeholder,
+html[data-theme="light"] .fures-input::placeholder {
+  color: rgba(29, 29, 31, 0.45);
+}
+
+html.theme-light .fures-input:focus,
+html[data-theme="light"] .fures-input:focus {
+  border-color: rgba(194, 65, 12, 0.5);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.1);
 }
 
 /* ══════════════════════════════════════════════════════════════════════

@@ -15,6 +15,22 @@
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Fures Tech" />
     <meta name="theme-color" content="#FF7A29" />
+
+    <!-- Apply the stored theme before first paint. Light is the default, so
+         without this the page flashes the dark shell on every load. -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var stored = null;
+        try { stored = localStorage.getItem('fures-theme'); } catch (e) {}
+        if (stored === 'dark') {
+          root.setAttribute('data-theme', 'dark');
+        } else {
+          root.classList.add('theme-light');
+          root.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
     <meta name="format-detection" content="telephone=no" />
 
     <!-- Canonical & hreflang -->
@@ -148,7 +164,7 @@
       ]
     </script>
   </head>
-  <body class="bg-black">
+  <body>
     <form name="fures-contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
       <input type="hidden" name="form-name" value="fures-contact" />
       <input name="bot-field" />

@@ -154,7 +154,7 @@ export function MeinHotelPage() {
               {content.badge}
             </span>
             <h1
-              className="mb-5 bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl lg:text-6xl"
+              className="mx-auto mb-5 block w-fit bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl lg:text-6xl"
               style={{ letterSpacing: "-0.03em" }}
             >
               {content.title}
@@ -425,7 +425,7 @@ export function MeinHotelPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="liquid-glass relative mx-auto max-w-4xl rounded-[2.5rem] border border-white/15 p-10 text-center sm:p-12">
             <h2
-              className="mb-5 bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent lg:text-4xl"
+              className="mx-auto mb-5 block w-fit bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-3xl font-bold text-transparent lg:text-4xl"
               style={{ letterSpacing: "-0.02em" }}
             >
               {content.finalHeading}

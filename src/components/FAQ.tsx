@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "./ui/accordion";
 import { HelpCircle } from "lucide-react";
+import { Section, SectionHeading } from "./ui/section";
 
 export function FAQ() {
   const { t } = useLanguage();
@@ -30,47 +31,31 @@ export function FAQ() {
   ];
 
   return (
-    <section className="py-32 relative overflow-hidden bg-black">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/30 to-black"></div>
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          {/* Icon */}
-          <div className="liquid-icon mb-8 flex h-20 w-20 items-center justify-center rounded-full">
-            <HelpCircle className="w-10 h-10 text-white" />
-          </div>
-
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl mb-6">
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              {t('faq.title')}
-            </span>
-          </h2>
+    <Section>
+      <div className="mx-auto max-w-4xl">
+        <div className="liquid-icon mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-full">
+          <HelpCircle className="h-7 w-7 text-white" />
         </div>
 
-        {/* Accordion */}
+        <SectionHeading title={t('faq.title')} />
+
         <Accordion type="single" collapsible className="space-y-4">
           {faqs.map((faq, index) => (
-            <AccordionItem 
-              key={index} 
+            <AccordionItem
+              key={index}
               value={`item-${index}`}
-              className="border border-white/10 rounded-2xl px-6 bg-gradient-to-br from-white/5 to-white/0 hover:border-orange-500/50 transition-colors"
+              className="fures-card rounded-[1.5rem] px-6"
             >
-              <AccordionTrigger className="text-lg text-white hover:text-orange-400 transition-colors py-6">
+              <AccordionTrigger className="py-5 text-left text-base font-semibold text-white transition-colors hover:text-orange-400">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-gray-400 leading-relaxed pb-6">
+              <AccordionContent className="pb-6 text-sm leading-relaxed text-white/60">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
       </div>
-    </section>
+    </Section>
   );
 }

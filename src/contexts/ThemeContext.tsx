@@ -2,16 +2,18 @@ import { createContext, useContext, useState, useEffect, type ReactNode } from '
 
 export type SiteTheme = 'dark' | 'light';
 
-const ThemeValueContext = createContext<SiteTheme>('dark');
+/**
+ * Light is the product default. Only an explicit choice by the visitor (the
+ * theme toggle, persisted in localStorage) switches the site to dark; neither
+ * the clock nor the OS preference does.
+ */
+const DEFAULT_THEME: SiteTheme = 'light';
+
+const ThemeValueContext = createContext<SiteTheme>(DEFAULT_THEME);
 const ThemeActionsContext = createContext<{
   toggleTheme: () => void;
   setTheme: (t: SiteTheme) => void;
 }>({ toggleTheme: () => {}, setTheme: () => {} });
-
-function getTimeBasedDefault(): SiteTheme {
-  const hour = new Date().getHours();
-  return hour >= 6 && hour < 18 ? 'light' : 'dark';
-}
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<SiteTheme>(() => {
@@ -19,7 +21,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       const saved = localStorage.getItem('fures-theme') as SiteTheme | null;
       if (saved === 'dark' || saved === 'light') return saved;
     } catch {}
-    return getTimeBasedDefault();
+    return DEFAULT_THEME;
   });
 
   const setTheme = (t: SiteTheme) => {

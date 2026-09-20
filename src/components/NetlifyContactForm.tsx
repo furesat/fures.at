@@ -60,7 +60,7 @@ export function NetlifyContactForm() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="liquid-glass mx-auto max-w-3xl rounded-[2rem] border border-emerald-300/25 p-8 text-center"
+        className="fures-card mx-auto max-w-3xl rounded-[2rem] p-8 text-center"
         role="status"
         aria-live="polite"
       >
@@ -81,7 +81,7 @@ export function NetlifyContactForm() {
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
-      className="liquid-glass mx-auto max-w-3xl rounded-[2rem] border border-white/15 p-6 text-left sm:p-8"
+      className="fures-card mx-auto max-w-3xl rounded-[2rem] p-6 text-left sm:p-8"
     >
       <input type="hidden" name="form-name" value={FORM_NAME} />
       <input type="hidden" name="recipient" value="furkanyonat@gmail.com" />
@@ -105,7 +105,7 @@ export function NetlifyContactForm() {
             type="text"
             name="name"
             autoComplete="name"
-            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/30 focus:border-orange-300/60"
+            className="fures-input"
             placeholder={t("form.name")}
           />
         </label>
@@ -117,7 +117,7 @@ export function NetlifyContactForm() {
             type="email"
             name="email"
             autoComplete="email"
-            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/30 focus:border-orange-300/60"
+            className="fures-input"
             placeholder="name@example.com"
           />
         </label>
@@ -128,7 +128,7 @@ export function NetlifyContactForm() {
             type="text"
             name="company"
             autoComplete="organization"
-            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/30 focus:border-orange-300/60"
+            className="fures-input"
             placeholder={t("form.company")}
           />
         </label>
@@ -138,7 +138,7 @@ export function NetlifyContactForm() {
           <input
             type="text"
             name="start-date"
-            className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/30 focus:border-orange-300/60"
+            className="fures-input"
             placeholder={t("form.date_placeholder")}
           />
         </label>
@@ -150,7 +150,7 @@ export function NetlifyContactForm() {
           required
           name="message"
           rows={5}
-          className="w-full resize-none rounded-2xl border border-white/10 bg-white/8 px-4 py-3 text-white outline-none transition-colors placeholder:text-white/30 focus:border-orange-300/60"
+          className="fures-input resize-none"
           placeholder={t("form.message_placeholder")}
         />
       </label>

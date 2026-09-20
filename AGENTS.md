@@ -366,6 +366,12 @@ Important data/content files:
 - Preserve semantic class refactors such as `premium-card`, `page-hero-glow`, and `whyus-*`; avoid returning to brittle long utility selector chains.
 - Light-mode fixes should generally live under `html.theme-light` / `[data-theme="light"]` selectors and should not unintentionally change dark-mode tokens.
 - The orange brand tints (`text-orange-200/300/400`), the orange→purple gradient stops, the `placeholder:text-white/30` inputs and the gradient button are re-mapped to readable values at the end of `src/styles/globals.css` for light mode. Extend that block instead of hardcoding per-component light colors.
+- **Light is the default theme.** `ThemeContext` starts from `DEFAULT_THEME = 'light'`; only an explicit toggle (persisted as `fures-theme` in localStorage) switches to dark, and neither the clock nor `prefers-color-scheme` is consulted. An inline script in `index.html` applies the stored/default theme to `<html>` before first paint, so there is no dark flash — keep it in sync if the storage key or class names change.
+- `src/styles/globals.css` ends with two override blocks, one per theme (`html.theme-light …` and `html[data-theme="dark"] … , html:not(.theme-light) …`). Dark lifts the page off pure black: sections carrying `bg-black` become transparent so the body gradient shows, `--background` is `#0b0e14`, cards are `#141822`, and the dimmest body text (`text-white/40…70`, `text-gray-400/500/600`) is re-mapped to a cool grey. Put new theme fixes in those blocks rather than in component classes.
+- Gradient-clipped headings (`bg-clip-text`) must be `mx-auto block w-fit`, otherwise a short centred heading only shows the middle of a full-width gradient (pink instead of orange→purple).
+- **The MeinHotel case study is the site's design reference.** Its language is now shared: `src/components/ui/section.tsx` exports `Section` (rhythm + one ambient wash), `SectionHeading` (eyebrow → title → description), `GradientTitle` and `CardIcon`; `.fures-card` in `src/styles/globals.css` is the canonical content surface and `.fures-input` the canonical form field. Build new sections from those instead of new one-off card/heading markup.
+- Do not use `.fures-nav-glass` for content cards. Its `saturate(200%)` backdrop is tuned for the floating nav pill; behind a card grid it amplifies whatever glow sits underneath, so neighbouring cards picked up different tints. `.fures-card` is calmer and more opaque.
+- Tailwind only generates opacity modifiers in steps of 5. `bg-white/8` produced **no rule at all**, so those inputs fell back to the browser default (solid white) in dark mode. Stick to /5 steps, or use arbitrary syntax (`bg-white/[0.08]`).
 - Header/nav uses liquid glass visual treatment; avoid duplicate active-pill layers that create rectangular artifacts.
 - WhyUs/Mission/About hero light surfaces are intentionally aligned with the references design language.
 - Use existing components and UI primitives before creating new ones.
@@ -776,3 +782,103 @@ Four new indexable routes with unique titles, descriptions, keywords, canonical 
 
 - The published demo password is an owner decision: it unlocks a dedicated Supabase demo user that is a member of the fictional sample hotel only. If it is ever rotated, update `MEINHOTEL_APP` in `src/data/meinhotel.ts` and the portfolio note in `furkanyonat/index.html` + `public/furkanyonat/index.html`.
 - Live URLs could not be fetched from this environment (outbound HTTPS is blocked by the network policy). `https://app.fures.tech` was confirmed as the primary URL of the Netlify project `fureshotel` with a ready deploy through the Netlify API instead.
+
+### 2026-09-20: Light Default Theme and Dark Palette Pass
+
+#### Summary
+
+Light mode is now the site's default for every visitor; dark mode is only used when the visitor picks it from the toggle. The dark theme itself was reworked so it reads as a soft, cool surface instead of a flat black page with brown washes.
+
+Theme default:
+
+- `ThemeContext` replaced the time-of-day default (`06:00–18:00 = light`) with a fixed `DEFAULT_THEME = 'light'`. A stored `fures-theme` value still wins, so an explicit choice is preserved.
+- `index.html` applies the stored/default theme to `<html>` in an inline script before first paint, and `<body class="bg-black">` became `<body>`, so a first-time visitor no longer sees a black flash before React mounts. `prefers-color-scheme: dark` is deliberately ignored.
+
+Dark palette:
+
+- Sections carry `bg-black`, which painted solid `#000` over the body gradient. In dark mode they are transparent now, so the page gradient (violet-led, with a warm accent and a cool floor) shows through.
+- `--background` `#050507 → #0b0e14`, `--card` `#121017 → #141822`, glass surfaces slightly stronger, plus a soft outline/shadow on `.fures-nav-glass` so cards separate from the background.
+- Body text at `text-white/40…70`, `text-slate-200/300` and `text-gray-400/500/600` was re-mapped to a cool light grey; `text-orange-300/400` slightly brightened.
+- The heavy section washes (`bg-orange-500/20`, `purple-900/20`, `orange-900/10…20`, `.page-hero-glow`) were rebalanced so violet leads and the warm tint stays an accent.
+- `ClothCanvas` dark silk went from a near-black warm base (`#0a0508`) to a cool charcoal with a violet→amber drift, with lighting lifted (ambient `0.18 → 0.30`) so the hero fabric reads as fabric.
+- `Hero`/`HeroDE` inline `#000` bases and `rgba(5,5,5,…)` overlays now use the new `#0b0e14` base.
+
+Layout fixes found during the pass:
+
+- The hero icon badge in `Mission`, `FAQ` and `Pricing` is a block-level flex box inside a centred section, so it sat flush left. It is `mx-auto` now.
+- Gradient-clipped headings are `mx-auto block w-fit`; previously a short centred heading such as "Projeler" only showed the pink middle of a full-width orange→purple gradient.
+- The campaign list/post hero glow now reuses the shared `page-hero-glow` class so it follows the theme overrides like the blog pages do.
+
+#### Files Changed
+
+- `AGENTS.md`, `.ai/CONTINUATION.md`
+- `index.html`, `src/contexts/ThemeContext.tsx`, `src/styles/globals.css`
+- `src/components/ClothCanvas.tsx`, `src/components/Hero.tsx`, `src/components/HeroDE.tsx`
+- `src/components/Mission.tsx`, `src/components/FAQ.tsx`, `src/components/Pricing.tsx`, `src/components/Projects.tsx`, `src/components/LegalDocument.tsx`
+- `src/pages/MeinHotelPage.tsx`, `src/pages/CampaignListPage.tsx`, `src/pages/CampaignPostPage.tsx`
+
+#### SEO Status
+
+Presentation only: no route, title, description, canonical, hreflang or structured-data change. The pre-paint theme script is inline and does not affect crawling.
+
+#### Sitemap Status
+
+No new public route; `src/sitemap.xml.njk` unchanged. `public/robots.txt` unchanged.
+
+#### Commands Run
+
+- `npx tsc --noEmit` — passed
+- `npm run build` — passed end to end
+- Playwright checks: default theme with `prefers-color-scheme: dark` and empty storage renders light at first paint and stores nothing; the toggle switches to dark and survives a reload; light and dark screenshots of `/de`, `/de/leistungen`, `/de/blog`, `/de/referenzen/meinhotel-pms`, `/tr`, `/tr/projeler`, `/tr/hakkimizda`, `/tr/ekip` at 1440×900 and 390×844
+
+#### Known Risks / Notes
+
+- The dark overrides are global by design; a component that deliberately wants pure black or the old dim greys must opt out explicitly.
+- Visitors who already toggled dark keep dark: the stored `fures-theme` value is respected and was not cleared.
+
+### 2026-09-20: Shared Design System and Dark-Mode Form Fix
+
+#### Summary
+
+Rolled the MeinHotel case-study design out across the site and fixed the dark-mode defects that were left.
+
+Shared primitives:
+
+- `src/components/ui/section.tsx` (new): `Section`, `SectionHeading`, `GradientTitle`, `CardIcon`.
+- `.fures-card`, `.fures-section`, `.fures-section-glow` and `.fures-input` in `src/styles/globals.css`, each with a light and a dark variant.
+
+Applied to `Services`, `WhyUs`, `Team`, `FAQ`, `Pricing`, `ServicePackages`, `CTA`, `Mission`, `Quote`, `Projects`, `About`, `BlogListPage`, `CampaignListPage`, the blog/campaign article pages, `LegalDocument` and `NetlifyContactForm`. Sections now share one rhythm (`fures-section`), one ambient wash instead of stacked orange/purple blobs, one heading pattern and one card surface.
+
+Dark-mode fixes:
+
+- Content cards used `.fures-nav-glass`, whose `saturate(200%)` backdrop amplified the section glows: in a four-card row one card read brown, another violet. `.fures-card` is calmer and more opaque, so a grid reads as one set of panels.
+- The contact form's inputs were `bg-white/8` — an opacity Tailwind does not generate — so no background rule existed and the fields fell back to the browser default: **solid white boxes with white placeholder text on a dark card**. They now use the explicit `.fures-input` class. The same invalid utility appeared in `Header`, `HeaderDE`, `Hero`, `HeroDE` and `ContactPageDE` (`bg-white/8`, `border-white/12`, `bg-orange-500/8`, `bg-purple-600/8`) and was corrected everywhere.
+- Section-level `bg-black` panels, the flat `py-32` rhythm and the heavy blob stacks were removed in favour of the shared section treatment.
+
+Also fixed: the blog and campaign list pages linked to `/blog/<slug>` and `/kampanyalar/<slug>` without the locale prefix, so a German or English reader opening a post was redirected into the Turkish site.
+
+#### Files Changed
+
+- `AGENTS.md`, `.ai/CONTINUATION.md`
+- `src/components/ui/section.tsx` (new), `src/styles/globals.css`
+- `src/components/Services.tsx`, `WhyUs.tsx`, `Team.tsx`, `FAQ.tsx`, `Pricing.tsx`, `ServicePackages.tsx`, `CTA.tsx`, `Mission.tsx`, `Quote.tsx`, `Projects.tsx`, `About.tsx`, `NetlifyContactForm.tsx`, `LegalDocument.tsx`, `Header.tsx`, `HeaderDE.tsx`, `Hero.tsx`, `HeroDE.tsx`
+- `src/pages/BlogListPage.tsx`, `BlogPostPage.tsx`, `CampaignListPage.tsx`, `CampaignPostPage.tsx`, `src/pages/de/ContactPageDE.tsx`
+
+#### SEO Status
+
+Presentation and internal linking only; no title, description, canonical, hreflang or structured-data change. The locale-prefix fix means blog/campaign article links now stay inside the visitor's language.
+
+#### Sitemap Status
+
+No route added or removed; `src/sitemap.xml.njk` unchanged.
+
+#### Commands Run
+
+- `npx tsc --noEmit` — passed
+- `npm run build` — passed end to end
+- Playwright screenshots in both themes for `/de`, `/de/kontakt`, `/de/blog`, `/tr`, `/tr/projeler`, `/tr/hizmetler`, `/tr/ekip`, `/tr/blog`, `/tr/kampanyalar` at 1440×900, plus a computed-style probe confirming the form fields now resolve to the themed surface.
+
+#### Known Risks / Notes
+
+- `src/components/ui/card.tsx` and the `premium-card` CSS block are no longer referenced by any component; they were left in place rather than removed in this pass.
+- `Section` renders Tailwind's `container`, so very wide screens now follow the container max-width instead of the old per-section `max-w-7xl`.

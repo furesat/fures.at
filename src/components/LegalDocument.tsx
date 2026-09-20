@@ -21,13 +21,13 @@ interface LegalDocumentProps {
 
 export function LegalDocument({ content }: LegalDocumentProps) {
   return (
-    <section className="pt-32 pb-24 bg-black text-white">
+    <section className="fures-section pt-32 text-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <p className="text-sm uppercase tracking-[0.3em] text-orange-400 mb-3">
             {content.updatedOn}
           </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-orange-400 to-purple-500 bg-clip-text text-transparent">
+          <h1 className="mx-auto block w-fit bg-gradient-to-r from-orange-400 to-purple-500 bg-clip-text text-4xl font-bold leading-tight text-transparent sm:text-5xl lg:text-6xl">
             {content.title}
           </h1>
         </div>

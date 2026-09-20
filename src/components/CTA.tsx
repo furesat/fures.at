@@ -5,59 +5,51 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { CardIcon, Section, SectionHeading } from "./ui/section";
 
 export function CTA() {
   const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  return (
-    <section ref={ref} className="py-32 relative overflow-hidden bg-black">
-      {/* Animated Gradient Waves */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-purple-600/5 to-orange-500/10"></div>
-        <motion.div
-          animate={{
-            scale: [1, 1.06, 1],
-            opacity: [0.25, 0.40, 0.25]
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-orange-500/15 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.08, 1],
-            opacity: [0.20, 0.35, 0.20]
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-          className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-3xl"
-        />
-      </div>
+  const contactItems = [
+    {
+      icon: Mail,
+      title: t('contact.email'),
+      content: "info@fures.at",
+      href: "mailto:info@fures.at",
+    },
+    {
+      icon: Phone,
+      title: t('contact.phone'),
+      content: "+43 664 99735268",
+      href: "tel:+4366499735268",
+    },
+    {
+      icon: MapPin,
+      title: t('contact.headquarters'),
+      content: t('contact.headquarters_location'),
+      href: null,
+    },
+    {
+      icon: MapPin,
+      title: t('contact.second_location'),
+      content: t('contact.second_location_place'),
+      href: null,
+    },
+  ];
 
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
-        backgroundSize: '50px 50px'
-      }}></div>
-      
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Video Section */}
+  return (
+    <div ref={ref}>
+      <Section>
+        {/* Intro film */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <div className="liquid-glass relative max-w-5xl mx-auto overflow-hidden rounded-[2.5rem] border border-white/15">
+          <div className="fures-card mx-auto max-w-5xl overflow-hidden rounded-[2.5rem]">
             <iframe
               src="https://player.vimeo.com/video/1054771811?autoplay=1&loop=1&autopause=0&muted=1&playsinline=1&background=1&controls=0"
               className="aspect-video w-full"
@@ -68,103 +60,59 @@ export function CTA() {
           </div>
         </motion.div>
 
-        {/* Main Contact Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-sm uppercase tracking-wider text-orange-400 mb-4 font-medium">
-            {t('contact.title')}
-          </h2>
-          
-          <h3 className="text-4xl sm:text-5xl lg:text-6xl mb-6 font-bold text-white">
-            {t('contact.subtitle')}
-          </h3>
-          
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12">
-            {t('contact.description')}
-          </p>
+          <SectionHeading
+            eyebrow={t('contact.title')}
+            title={t('contact.subtitle')}
+            description={t('contact.description')}
+          />
 
-          {/* CTA Buttons */}
-          <div className="mb-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href="https://calendly.com/fures" target="_blank" rel="noopener noreferrer">
-              <motion.div
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <Button size="lg" variant="outline">
-                  {t('contact.schedule_meeting')}
-                </Button>
-              </motion.div>
-            </a>
+          <div className="mb-10 flex justify-center">
+            <Button asChild size="lg" variant="outline" className="text-sm">
+              <a href="https://calendly.com/fures" target="_blank" rel="noopener noreferrer">
+                {t('contact.schedule_meeting')}
+              </a>
+            </Button>
           </div>
 
           <NetlifyContactForm />
         </motion.div>
 
-        {/* Contact Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              icon: Mail,
-              title: t('contact.email'),
-              content: "info@fures.at",
-              href: "mailto:info@fures.at"
-            },
-            {
-              icon: Phone,
-              title: t('contact.phone'),
-              content: "+43 664 99735268",
-              href: "tel:+4366499735268"
-            },
-            {
-              icon: MapPin,
-              title: t('contact.headquarters'),
-              content: t('contact.headquarters_location'),
-              href: null
-            },
-            {
-              icon: MapPin,
-              title: t('contact.second_location'),
-              content: t('contact.second_location_place'),
-              href: null
-            }
-          ].map((item, index) => {
+        {/* Contact details */}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {contactItems.map((item, index) => {
             const Component = item.href ? 'a' : 'div';
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                transition={{ duration: 0.5, delay: 0.25 + index * 0.07 }}
               >
                 <Component
                   {...(item.href && { href: item.href })}
-                  className="liquid-glass group relative block overflow-hidden rounded-[1.75rem] border border-white/15 p-6 transition-all duration-500 hover:-translate-y-1"
+                  className="fures-card group block h-full rounded-[2rem] p-7 hover:-translate-y-0.5"
                 >
-                  <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] bg-gradient-to-br from-orange-500/0 to-purple-600/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-hover:from-orange-500/10 group-hover:to-purple-600/10"></div>
-
-                  <div className="relative z-10">
-                    <motion.div
-                      whileHover={{ rotate: 6 }}
-                      className="liquid-icon mb-4 flex h-12 w-12 items-center justify-center rounded-xl"
-                    >
-                      <item.icon className="h-6 w-6 text-white" />
-                    </motion.div>
-                    <h4 className="text-sm text-gray-400 mb-2 font-medium">{item.title}</h4>
-                    <p className="text-white group-hover:text-orange-400 transition-colors">
-                      {item.content}
-                    </p>
-                  </div>
+                  <CardIcon>
+                    <item.icon className="h-5 w-5 text-white" />
+                  </CardIcon>
+                  <p className="mb-1.5 text-xs font-semibold uppercase tracking-wider text-white/40">
+                    {item.title}
+                  </p>
+                  <p className="text-sm font-medium text-white transition-colors group-hover:text-orange-400">
+                    {item.content}
+                  </p>
                 </Component>
               </motion.div>
             );
           })}
         </div>
-      </div>
-    </section>
+      </Section>
+    </div>
   );
 }

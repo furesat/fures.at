@@ -276,7 +276,7 @@ export function Header() {
                           onClick={triggerDockBounce}
                         >
                           <span className="flex items-center gap-3">
-                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/8">
+                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10">
                               <Icon data-dock-icon className="h-3.5 w-3.5 text-white/80" />
                             </span>
                             {link.label}

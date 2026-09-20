@@ -79,7 +79,7 @@ export function BlogPostPage() {
 
   if (!post) {
     return (
-      <section className="flex min-h-screen items-center justify-center bg-black px-4 py-32 text-white">
+      <section className="fures-section flex min-h-screen items-center justify-center px-4 text-white">
         <div className="max-w-xl text-center">
           <h1 className="text-3xl font-semibold text-white sm:text-4xl">{t("blog.not_found")}</h1>
           <p className="mt-4 text-base text-slate-300">{t("blog.not_found_description")}</p>
@@ -98,7 +98,7 @@ export function BlogPostPage() {
   const formattedDate = formatDate(post.date, post.lang);
 
   return (
-    <article className="relative min-h-screen bg-black py-32 text-white">
+    <article className="fures-section relative min-h-screen text-white">
       <div className="page-hero-glow absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,122,41,0.18),transparent_55%),radial-gradient(circle_at_bottom,rgba(143,91,255,0.14),transparent_60%)]" />
       <div className="mx-auto w-full max-w-3xl px-4">
         <Link
