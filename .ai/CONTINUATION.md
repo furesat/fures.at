@@ -6,7 +6,7 @@
 - The existing pointer-gravity motion remains subtle and continuous because it is part of the approved V3 look.
 - Existing LivingWaterSystem/card treatment remains untouched.
 - No routes, copy, SEO metadata, structured data, sitemap entries or form semantics changed.
-- Branch: `preview/cosmic-home-background-20260920`. Validate the Netlify deploy preview visually before merging.
+- Branch: `preview/cosmic-home-background-20260920`, PR #138. `npx tsc --noEmit` passed in GitHub Actions and the full Netlify deploy preview built successfully. Production is intentionally not merged until the visual preview is approved.
 
 # AI Continuation State
 
