@@ -31,6 +31,7 @@ class LivingWaterSurface {
   readonly canvas: HTMLCanvasElement;
   readonly ctx: CanvasRenderingContext2D;
   readonly resizeObserver: ResizeObserver;
+  readonly edgeLayers: HTMLSpanElement[];
 
   visible = true;
   width = 0;
@@ -54,6 +55,15 @@ class LivingWaterSurface {
     this.ctx = context;
 
     this.host.classList.add("fures-live-water-host");
+
+    this.edgeLayers = ["left", "right", "bottom"].map((side) => {
+      const edge = document.createElement("span");
+      edge.className = `fures-water-edge fures-water-edge--${side}`;
+      edge.setAttribute("aria-hidden", "true");
+      this.host.prepend(edge);
+      return edge;
+    });
+
     this.host.prepend(this.canvas);
 
     this.resizeObserver = new ResizeObserver(() => this.resize());
@@ -134,38 +144,30 @@ class LivingWaterSurface {
     const h = this.height;
 
     ctx.save();
-    ctx.globalCompositeOperation = "source-over";
+    ctx.globalCompositeOperation = "screen";
 
-    for (let row = 0.18; row < 0.96; row += 0.19) {
-      const amplitude = h * (0.006 + 0.0025 * Math.sin(this.seed + row * 9));
+    // No horizontal wave lines. The water stays alive through soft,
+    // continuously moving optical pools with irregular elliptical geometry.
+    for (let index = 0; index < 4; index += 1) {
+      const phase = now * (0.00016 + index * 0.000025) + this.seed * (1.7 + index * 0.3);
+      const x = (0.16 + index * 0.23 + Math.sin(phase) * 0.07) * w;
+      const y = (0.18 + (index % 2) * 0.42 + Math.cos(phase * 0.77) * 0.09) * h;
+      const radius = Math.max(48, Math.min(w, h) * (0.36 + index * 0.035));
+      const pool = ctx.createRadialGradient(x, y, 0, x, y, radius);
+      pool.addColorStop(0, "rgba(255,255,255,0.105)");
+      pool.addColorStop(0.34, "rgba(102,226,238,0.052)");
+      pool.addColorStop(0.72, "rgba(255,188,113,0.018)");
+      pool.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = pool;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(Math.sin(phase * 0.43) * 0.22);
+      ctx.scale(1.28 + Math.sin(phase) * 0.04, 0.68 + Math.cos(phase * 0.82) * 0.035);
       ctx.beginPath();
-
-      for (let step = 0; step <= 40; step += 1) {
-        const x = (step / 40) * w;
-        const nx = step / 40;
-        const y =
-          row * h +
-          Math.sin(nx * 10 + now * 0.00055 + this.seed * 2.8) * amplitude +
-          Math.sin(nx * 23 - now * 0.00031 + row * 7) * amplitude * 0.34;
-
-        if (step === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      }
-
-      ctx.strokeStyle = "rgba(255,255,255,0.11)";
-      ctx.lineWidth = 0.8;
-      ctx.stroke();
+      ctx.arc(0, 0, radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
     }
-
-    const glowX = (0.2 + (Math.sin(now * 0.00032 + this.seed) + 1) * 0.3) * w;
-    const glowY = (0.18 + (Math.cos(now * 0.00027 + this.seed) + 1) * 0.2) * h;
-    const radius = Math.max(50, Math.min(w, h) * 0.52);
-    const glow = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, radius);
-    glow.addColorStop(0, "rgba(255,255,255,0.12)");
-    glow.addColorStop(0.42, "rgba(93,220,235,0.055)");
-    glow.addColorStop(1, "rgba(255,255,255,0)");
-    ctx.fillStyle = glow;
-    ctx.fillRect(0, 0, w, h);
 
     ctx.restore();
   }
@@ -347,6 +349,7 @@ class LivingWaterSurface {
     this.host.removeEventListener("pointerleave", this.onPointerLeave);
     this.host.removeEventListener("pointerdown", this.onPointerDown);
     this.canvas.remove();
+    this.edgeLayers.forEach((edge) => edge.remove());
     this.host.classList.remove("fures-live-water-host");
   }
 }
@@ -425,5 +428,13 @@ export function LivingWaterSystem() {
     };
   }, []);
 
-  return null;
+  return (
+    <div className="fures-aqua-scene" aria-hidden="true">
+      <span className="fures-aqua-scene__orb fures-aqua-scene__orb--cyan" />
+      <span className="fures-aqua-scene__orb fures-aqua-scene__orb--amber" />
+      <span className="fures-aqua-scene__orb fures-aqua-scene__orb--sky" />
+      <span className="fures-aqua-scene__veil" />
+      <span className="fures-aqua-scene__word">FURES</span>
+    </div>
+  );
 }
