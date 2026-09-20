@@ -333,7 +333,7 @@ export function HeaderDE() {
             <button
               type="button"
               onClick={(e) => { triggerDockBounce(e); setMobileOpen((p) => !p); }}
-              className="fures-nav-item-idle flex h-9 w-9 items-center justify-center rounded-full text-white/70 hover:text-white"
+              className="fures-icon-pill flex h-9 w-9 items-center justify-center rounded-full text-white/70 hover:text-white"
               aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
             >
               {mobileOpen ? <X data-dock-icon className="h-5 w-5" /> : <Menu data-dock-icon className="h-5 w-5" />}
@@ -349,6 +349,7 @@ export function HeaderDE() {
         }`}
       >
         <div className="fures-nav-glass rounded-3xl p-3">
+          <span className="aqua-sheen" aria-hidden="true" />
           <nav className="flex flex-col gap-1">
             {navItems.map((item) => {
               const Icon = item.icon;

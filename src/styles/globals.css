@@ -2414,3 +2414,293 @@ html[data-theme="light"] .fures-input:focus {
   background: #ffffff;
   box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.1);
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   AQUA GLASS — sıvı cam malzemesi
+
+   İki ayrı katman var ve ikisinin tarayıcı desteği farklı:
+
+   1. KIRILMA. Camın arkasındaki içeriği gerçekten bükmek için SVG yer
+      değiştirme filtresi `backdrop-filter` içinde çalışıyor. WebKit
+      (Safari, iPhone) bunu desteklemiyor ve bildirimin tamamını
+      düşürdüğü için orada hiç denenmiyor — kural `data-aqua-lens="on"`
+      ile korunuyor, o özniteliği yalnızca destekleyen motorda JS koyuyor.
+      Her kuralda önce sade bulanıklık yazılı: url() geçersiz sayılırsa
+      cam yok olmuyor, bir öncekine düşüyor.
+
+   2. KENAR. Işık sol üstte duran yumuşak bir stüdyo lambası; parlama
+      orada güçlü, sağa doğru sönüyor, alt kenarda ters yönden zayıf bir
+      ikinci yansıma dönüyor. Her yerde aynı biçimde çalışıyor.
+
+   Filtre sırası önemli: önce kırılma, sonra bulanıklık. Tersi olursa
+   bükülme görünmez, çünkü bulanık bir yüzeyin bükülmesi fark edilmiyor.
+   Bu yüzden kırılma açıkken bulanıklık da düşüyor.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── Kırılma: ana navigasyon kapsülü ── */
+html[data-aqua-lens="on"] .fures-nav-glass {
+  backdrop-filter: blur(24px) saturate(190%) brightness(1.08);
+  backdrop-filter: url(#aquaWater) blur(24px) saturate(190%) brightness(1.08);
+  -webkit-backdrop-filter: url(#aquaWater) blur(24px) saturate(190%) brightness(1.08);
+}
+html[data-aqua-lens="on"][data-aqua-surface="ice"] .fures-nav-glass {
+  backdrop-filter: blur(24px) saturate(190%) brightness(1.08);
+  backdrop-filter: url(#aquaIce) blur(24px) saturate(190%) brightness(1.08);
+  -webkit-backdrop-filter: url(#aquaIce) blur(24px) saturate(190%) brightness(1.08);
+}
+
+/* ── Kırılma: açılan menüler ── */
+html[data-aqua-lens="on"] .fures-dropdown-content {
+  backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+  backdrop-filter: url(#aquaWater) blur(22px) saturate(185%) brightness(1.06);
+  -webkit-backdrop-filter: url(#aquaWater) blur(22px) saturate(185%) brightness(1.06);
+}
+html[data-aqua-lens="on"][data-aqua-surface="ice"] .fures-dropdown-content {
+  backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+  backdrop-filter: url(#aquaIce) blur(22px) saturate(185%) brightness(1.06);
+  -webkit-backdrop-filter: url(#aquaIce) blur(22px) saturate(185%) brightness(1.06);
+}
+
+/* ── Kırılma: site genelindeki cam yüzeyler ── */
+html[data-aqua-lens="on"] .apple-glass,
+html[data-aqua-lens="on"] .glass-surface {
+  backdrop-filter: blur(20px) saturate(175%) brightness(1.04);
+  backdrop-filter: url(#aquaWater) blur(20px) saturate(175%) brightness(1.04);
+  -webkit-backdrop-filter: url(#aquaWater) blur(20px) saturate(175%) brightness(1.04);
+}
+html[data-aqua-lens="on"][data-aqua-surface="ice"] .apple-glass,
+html[data-aqua-lens="on"][data-aqua-surface="ice"] .glass-surface {
+  backdrop-filter: blur(20px) saturate(175%) brightness(1.04);
+  backdrop-filter: url(#aquaIce) blur(20px) saturate(175%) brightness(1.04);
+  -webkit-backdrop-filter: url(#aquaIce) blur(20px) saturate(175%) brightness(1.04);
+}
+
+/* Küçük hapların (logo, dil, CTA) kırılması yok: 15 piksellik öteleme
+   36 piksellik bir yüzeyde gürültüye dönüşüyor. Onlar kenar işçiliğini
+   alıyor, bükülmeyi almıyor. */
+
+/* ── Kenar: asimetrik stüdyo ışığı ──
+   Her yerde çalışır, kırılma desteğine bağlı değil. */
+.fures-nav-glass::before,
+.fures-dropdown-content::before {
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.32) 13%,
+    rgba(255, 255, 255, 0.07) 30%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0) 67%,
+    rgba(255, 255, 255, 0.10) 84%,
+    rgba(255, 255, 255, 0.36) 100%
+  );
+}
+
+/* Üst kenarda ince bir menisküs, alt kenarda ters yönden zayıf dönüş. */
+.fures-nav-glass::after,
+.fures-dropdown-content::after {
+  background:
+    linear-gradient(
+      97deg,
+      rgba(255, 255, 255, 0.58) 0%,
+      rgba(255, 255, 255, 0.20) 22%,
+      rgba(255, 255, 255, 0) 56%
+    ) top left / 100% 1px no-repeat,
+    linear-gradient(
+      268deg,
+      rgba(255, 255, 255, 0.24) 0%,
+      rgba(255, 255, 255, 0) 42%
+    ) bottom left / 100% 1px no-repeat,
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.035) 28%,
+      rgba(255, 255, 255, 0) 56%
+    );
+}
+
+/* Açık temada aynı ışık, daha az beyaz: parlak zeminde 0.92'lik bir
+   kenar yanıp sönmüş gibi duruyor. */
+html.theme-light .fures-nav-glass::before,
+html[data-theme="light"] .fures-nav-glass::before,
+html.theme-light .fures-dropdown-content::before,
+html[data-theme="light"] .fures-dropdown-content::before {
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(255, 255, 255, 0.42) 14%,
+    rgba(120, 132, 160, 0.10) 34%,
+    rgba(255, 255, 255, 0) 52%,
+    rgba(255, 255, 255, 0) 68%,
+    rgba(255, 255, 255, 0.24) 86%,
+    rgba(255, 255, 255, 0.62) 100%
+  );
+}
+
+/* Hareket tercihi: dalga JS tarafında zaten duruyor, kırılma sabit kalıyor. */
+
+/* ══════════════════════════════════════════════════════════════════════
+   AQUA GLASS — MOBİL
+
+   Mobilde ana navigasyon kapsülü (.fures-nav-glass) hiç render edilmiyor;
+   `hidden md:block` ile gizli. Görünen tek cam yüzeyler logo hapı, dil
+   hapı, tema düğmesi ve hamburger. Malzemeyi yalnız kapsüle uygularsak
+   telefonda hiçbir şey değişmiyor — bu bölüm onu kapatıyor.
+
+   İki parça var:
+   - Kırılma, küçük yüzeyler için ayrı ve daha yumuşak ölçekte. Yine
+     yalnız destekleyen motorda.
+   - Gezinen ışık, WebKit dahil her yerde. backdrop-filter'a hiç
+     dokunmuyor; sıradan bir transform animasyonu, ekran kartında dönüyor.
+     iPhone'da camın canlı göründüğü tek katman bu.
+   ══════════════════════════════════════════════════════════════════════ */
+
+html[data-aqua-lens="on"] .fures-logo-pill,
+html[data-aqua-lens="on"] .fures-lang-pill,
+html[data-aqua-lens="on"] .fures-lang-pill-sm,
+html[data-aqua-lens="on"] .theme-toggle-pill,
+html[data-aqua-lens="on"] .fures-icon-pill {
+  backdrop-filter: blur(18px) saturate(185%) brightness(1.08);
+  backdrop-filter: url(#aquaWaterSmall) blur(18px) saturate(185%) brightness(1.08);
+  -webkit-backdrop-filter: url(#aquaWaterSmall) blur(18px) saturate(185%) brightness(1.08);
+}
+
+/* ── Hamburger ve tema düğmesi de cam olsun ──
+   Bunlar mobilde başlığın yarısı; şeffaf bırakılınca cam dil bozuluyor. */
+.fures-icon-pill {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: none;
+  background:
+    radial-gradient(140% 110% at 50% -60%, rgba(255, 255, 255, 0.16) 0%, transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.015) 60%, rgba(255, 255, 255, 0.05) 100%),
+    rgba(20, 20, 28, 0.24);
+  backdrop-filter: blur(30px) saturate(180%) brightness(1.08);
+  -webkit-backdrop-filter: blur(30px) saturate(180%) brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+    0 6px 18px rgba(0, 0, 0, 0.28),
+    0 1px 3px rgba(0, 0, 0, 0.18);
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+.fures-icon-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0.86) 0%,
+    rgba(255, 255, 255, 0.24) 16%,
+    rgba(255, 255, 255, 0) 48%,
+    rgba(255, 255, 255, 0) 70%,
+    rgba(255, 255, 255, 0.30) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+html.theme-light .fures-icon-pill,
+html[data-theme="light"] .fures-icon-pill {
+  background:
+    radial-gradient(140% 110% at 50% -60%, rgba(255, 255, 255, 0.85) 0%, transparent 58%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.50) 100%),
+    rgba(255, 255, 255, 0.62);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.04),
+    0 6px 18px rgba(0, 0, 0, 0.10),
+    0 1px 3px rgba(0, 0, 0, 0.06);
+  color: #1d1d1f;
+}
+
+/* ── Gezinen ışık ──
+   Sıvının canlı durmasını sağlayan katman. Yavaş: 9 saniyede bir geçiyor,
+   dikkat dağıtmıyor ama cam ölü de durmuyor. */
+.fures-logo-pill,
+.fures-lang-pill,
+.fures-lang-pill-sm,
+.fures-cta-pill,
+.theme-toggle-pill {
+  overflow: hidden;
+}
+
+.fures-logo-pill::after,
+.fures-lang-pill::after,
+.fures-lang-pill-sm::after,
+.fures-icon-pill::after,
+.fures-cta-pill::after,
+.theme-toggle-pill::after,
+.aqua-sheen {
+  content: '';
+  position: absolute;
+  inset: 0 -70%;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    74deg,
+    rgba(255, 255, 255, 0) 41%,
+    rgba(255, 255, 255, 0.26) 50%,
+    rgba(255, 255, 255, 0) 59%
+  );
+  transform: translateX(-36%);
+  opacity: 0;
+  animation: aqua-sheen 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Çekmecenin kendi ışık katmanı — ::before ve ::after cam kenarında dolu,
+   bu yüzden ayrı bir eleman olarak geçiyor. */
+.aqua-sheen {
+  inset: 0 -40%;
+  animation-duration: 11s;
+}
+
+@keyframes aqua-sheen {
+  0%   { opacity: 0; transform: translateX(-36%); }
+  14%  { opacity: 1; }
+  86%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(36%); }
+}
+
+html.theme-light .fures-logo-pill::after,
+html[data-theme="light"] .fures-logo-pill::after,
+html.theme-light .fures-lang-pill::after,
+html[data-theme="light"] .fures-lang-pill::after,
+html.theme-light .fures-lang-pill-sm::after,
+html[data-theme="light"] .fures-lang-pill-sm::after,
+html.theme-light .fures-icon-pill::after,
+html[data-theme="light"] .fures-icon-pill::after,
+html.theme-light .aqua-sheen,
+html[data-theme="light"] .aqua-sheen {
+  background: linear-gradient(
+    74deg,
+    rgba(255, 255, 255, 0) 41%,
+    rgba(255, 255, 255, 0.62) 50%,
+    rgba(255, 255, 255, 0) 59%
+  );
+}
+
+/* ── Mobil çekmece: küçük bir cam levha değil, sıvı bir yüzey ── */
+.fures-nav-glass.rounded-3xl {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fures-logo-pill::after,
+  .fures-lang-pill::after,
+  .fures-lang-pill-sm::after,
+  .fures-icon-pill::after,
+  .fures-cta-pill::after,
+  .aqua-sheen {
+    animation: none;
+    opacity: 0;
+  }
+}
