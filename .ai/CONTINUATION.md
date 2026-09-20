@@ -1,5 +1,12 @@
 # AI Continuation State
 
+## 2026-09-20 Contact phone field + blog audit
+
+- Added an optional `phone` field to the main `fures-contact` React form and its matching static Netlify declaration in `index.html`. The appointment form already had the same `phone` field, so both public lead forms now capture phone numbers.
+- Reused the existing localized `appointment.phone` label (TR/EN/RU/DE) instead of creating duplicate translation keys.
+- Audited blog discovery: the React app uses `import.meta.glob("../../blog/**/*.md")` and Eleventy recursively discovers the same `blog/` tree, so Markdown posts already present on `main` are automatically included. No orphan/generated-but-unregistered blog post files were found to add manually.
+- Sitemap routing did not need changes because blog entries are already sourced from the automatic blog data loader.
+
 ## 2026-09-20 Shared design system + dark-mode form fix
 
 - The MeinHotel case-study design is now the site-wide system: `src/components/ui/section.tsx` (`Section`, `SectionHeading`, `GradientTitle`, `CardIcon`) plus `.fures-card`, `.fures-section`, `.fures-section-glow` and `.fures-input` in `src/styles/globals.css`. Build new sections from these.

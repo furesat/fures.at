@@ -123,6 +123,18 @@ export function NetlifyContactForm() {
         </label>
 
         <label className="block">
+          <span className="mb-2 block text-sm font-medium text-white/70">{t("appointment.phone")}</span>
+          <input
+            type="tel"
+            name="phone"
+            autoComplete="tel"
+            inputMode="tel"
+            className="fures-input"
+            placeholder="+43 ..."
+          />
+        </label>
+
+        <label className="block">
           <span className="mb-2 block text-sm font-medium text-white/70">{t("form.company")}</span>
           <input
             type="text"
