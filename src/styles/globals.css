@@ -2161,3 +2161,126 @@ html.theme-light [data-slot="button"][class*="linear-gradient"] svg,
 html[data-theme="light"] [data-slot="button"][class*="linear-gradient"] svg {
   color: #ffffff;
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   AQUA GLASS — sıvı cam malzemesi
+
+   İki ayrı katman var ve ikisinin tarayıcı desteği farklı:
+
+   1. KIRILMA. Camın arkasındaki içeriği gerçekten bükmek için SVG yer
+      değiştirme filtresi `backdrop-filter` içinde çalışıyor. WebKit
+      (Safari, iPhone) bunu desteklemiyor ve bildirimin tamamını
+      düşürdüğü için orada hiç denenmiyor — kural `data-aqua-lens="on"`
+      ile korunuyor, o özniteliği yalnızca destekleyen motorda JS koyuyor.
+      Her kuralda önce sade bulanıklık yazılı: url() geçersiz sayılırsa
+      cam yok olmuyor, bir öncekine düşüyor.
+
+   2. KENAR. Işık sol üstte duran yumuşak bir stüdyo lambası; parlama
+      orada güçlü, sağa doğru sönüyor, alt kenarda ters yönden zayıf bir
+      ikinci yansıma dönüyor. Her yerde aynı biçimde çalışıyor.
+
+   Filtre sırası önemli: önce kırılma, sonra bulanıklık. Tersi olursa
+   bükülme görünmez, çünkü bulanık bir yüzeyin bükülmesi fark edilmiyor.
+   Bu yüzden kırılma açıkken bulanıklık da düşüyor.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── Kırılma: ana navigasyon kapsülü ── */
+html[data-aqua-lens="on"] .fures-nav-glass {
+  backdrop-filter: blur(24px) saturate(190%) brightness(1.08);
+  backdrop-filter: url(#aquaWater) blur(24px) saturate(190%) brightness(1.08);
+  -webkit-backdrop-filter: url(#aquaWater) blur(24px) saturate(190%) brightness(1.08);
+}
+html[data-aqua-lens="on"][data-aqua-surface="ice"] .fures-nav-glass {
+  backdrop-filter: blur(24px) saturate(190%) brightness(1.08);
+  backdrop-filter: url(#aquaIce) blur(24px) saturate(190%) brightness(1.08);
+  -webkit-backdrop-filter: url(#aquaIce) blur(24px) saturate(190%) brightness(1.08);
+}
+
+/* ── Kırılma: açılan menüler ── */
+html[data-aqua-lens="on"] .fures-dropdown-content {
+  backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+  backdrop-filter: url(#aquaWater) blur(22px) saturate(185%) brightness(1.06);
+  -webkit-backdrop-filter: url(#aquaWater) blur(22px) saturate(185%) brightness(1.06);
+}
+html[data-aqua-lens="on"][data-aqua-surface="ice"] .fures-dropdown-content {
+  backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+  backdrop-filter: url(#aquaIce) blur(22px) saturate(185%) brightness(1.06);
+  -webkit-backdrop-filter: url(#aquaIce) blur(22px) saturate(185%) brightness(1.06);
+}
+
+/* ── Kırılma: site genelindeki cam yüzeyler ── */
+html[data-aqua-lens="on"] .apple-glass,
+html[data-aqua-lens="on"] .glass-surface {
+  backdrop-filter: blur(20px) saturate(175%) brightness(1.04);
+  backdrop-filter: url(#aquaWater) blur(20px) saturate(175%) brightness(1.04);
+  -webkit-backdrop-filter: url(#aquaWater) blur(20px) saturate(175%) brightness(1.04);
+}
+html[data-aqua-lens="on"][data-aqua-surface="ice"] .apple-glass,
+html[data-aqua-lens="on"][data-aqua-surface="ice"] .glass-surface {
+  backdrop-filter: blur(20px) saturate(175%) brightness(1.04);
+  backdrop-filter: url(#aquaIce) blur(20px) saturate(175%) brightness(1.04);
+  -webkit-backdrop-filter: url(#aquaIce) blur(20px) saturate(175%) brightness(1.04);
+}
+
+/* Küçük hapların (logo, dil, CTA) kırılması yok: 15 piksellik öteleme
+   36 piksellik bir yüzeyde gürültüye dönüşüyor. Onlar kenar işçiliğini
+   alıyor, bükülmeyi almıyor. */
+
+/* ── Kenar: asimetrik stüdyo ışığı ──
+   Her yerde çalışır, kırılma desteğine bağlı değil. */
+.fures-nav-glass::before,
+.fures-dropdown-content::before {
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.32) 13%,
+    rgba(255, 255, 255, 0.07) 30%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0) 67%,
+    rgba(255, 255, 255, 0.10) 84%,
+    rgba(255, 255, 255, 0.36) 100%
+  );
+}
+
+/* Üst kenarda ince bir menisküs, alt kenarda ters yönden zayıf dönüş. */
+.fures-nav-glass::after,
+.fures-dropdown-content::after {
+  background:
+    linear-gradient(
+      97deg,
+      rgba(255, 255, 255, 0.58) 0%,
+      rgba(255, 255, 255, 0.20) 22%,
+      rgba(255, 255, 255, 0) 56%
+    ) top left / 100% 1px no-repeat,
+    linear-gradient(
+      268deg,
+      rgba(255, 255, 255, 0.24) 0%,
+      rgba(255, 255, 255, 0) 42%
+    ) bottom left / 100% 1px no-repeat,
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.035) 28%,
+      rgba(255, 255, 255, 0) 56%
+    );
+}
+
+/* Açık temada aynı ışık, daha az beyaz: parlak zeminde 0.92'lik bir
+   kenar yanıp sönmüş gibi duruyor. */
+html.theme-light .fures-nav-glass::before,
+html[data-theme="light"] .fures-nav-glass::before,
+html.theme-light .fures-dropdown-content::before,
+html[data-theme="light"] .fures-dropdown-content::before {
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(255, 255, 255, 0.42) 14%,
+    rgba(120, 132, 160, 0.10) 34%,
+    rgba(255, 255, 255, 0) 52%,
+    rgba(255, 255, 255, 0) 68%,
+    rgba(255, 255, 255, 0.24) 86%,
+    rgba(255, 255, 255, 0.62) 100%
+  );
+}
+
+/* Hareket tercihi: dalga JS tarafında zaten duruyor, kırılma sabit kalıyor. */
