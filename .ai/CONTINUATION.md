@@ -1,5 +1,13 @@
 # AI Continuation State
 
+## 2026-09-20 Appointment modal stacking fix
+
+- The appointment dialog was rendered inside the contact page's clipped/stacked layout, so its fixed backdrop could end at the page section and the footer/header could visually sit above it.
+- `AppointmentForm` now renders through `createPortal(..., document.body)`, uses a viewport-level z-index, and has viewport-safe internal scrolling.
+- Reduced backdrop blur slightly to keep the modal cheaper on Safari while preserving the dimmed background.
+- This fixes both the German contact page and every other place that reuses `AppointmentForm`.
+- Still preview-only on PR #137.
+
 ## 2026-09-20 Header active-state hotfix + extra performance pass
 
 - Removed the floating absolute header spotlight logic entirely. Active navigation now renders its own Aqua surface directly on the route-matching item, so the highlight cannot drift onto the wrong menu entry after navigation.
