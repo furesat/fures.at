@@ -154,16 +154,25 @@ export function useSEO({
       appendAlternateLink(alternate.hrefLang, buildAbsoluteUrl(alternate.path));
     });
 
-    const defaultHrefLang = LANGUAGE_META[DEFAULT_LANGUAGE].hrefLang;
-    const defaultAlternate = alternatesToRender.find((alt) => alt.hrefLang === defaultHrefLang);
-    appendAlternateLink(
-      "x-default",
-      buildAbsoluteUrl(
-        defaultAlternate
-          ? defaultAlternate.path
-          : canonicalPathForLanguage(normalizePath(canonicalPath), DEFAULT_LANGUAGE)
-      )
-    );
+    // One x-default per cluster, always the same rule: the English version is
+    // the neutral landing page for visitors whose language matches no
+    // alternate; the site default language is the fallback. Callers may still
+    // provide their own, and a page must never carry two.
+    if (!alternatesToRender.some((alt) => alt.hrefLang === "x-default")) {
+      const neutralHrefLang = LANGUAGE_META.en.hrefLang;
+      const defaultHrefLang = LANGUAGE_META[DEFAULT_LANGUAGE].hrefLang;
+      const neutralAlternate =
+        alternatesToRender.find((alt) => alt.hrefLang === neutralHrefLang) ??
+        alternatesToRender.find((alt) => alt.hrefLang === defaultHrefLang);
+      appendAlternateLink(
+        "x-default",
+        buildAbsoluteUrl(
+          neutralAlternate
+            ? neutralAlternate.path
+            : canonicalPathForLanguage(normalizePath(canonicalPath), DEFAULT_LANGUAGE)
+        )
+      );
+    }
 
     const ogImage = openGraph?.image ? buildAbsoluteUrl(openGraph.image) : buildAbsoluteUrl(DEFAULT_OG_IMAGE);
     const ogTitle = openGraph?.title ?? title;

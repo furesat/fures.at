@@ -77,6 +77,52 @@ export function getPath(lang: Language, page: PageKey): string {
   return LANGUAGE_ROUTES[lang][page];
 }
 
+/**
+ * Routes that exist in LANGUAGE_ROUTES but are not mounted for that locale.
+ * Campaign content is generated in Turkish only and the German layout has no
+ * campaign route, so `/de/kampagnen` must never be linked or announced as an
+ * hreflang alternate.
+ */
+const UNAVAILABLE_ROUTES: Partial<Record<Language, PageKey[]>> = {
+  de: ['campaigns'],
+};
+
+export function isRouteAvailable(lang: Language, page: PageKey): boolean {
+  return !UNAVAILABLE_ROUTES[lang]?.includes(page);
+}
+
+const LOCALE_PREFIX_PATTERN = new RegExp(`^/(${Object.keys(LANGUAGE_ROUTES).join('|')})(?=/|$)`);
+
+/** Returns the locale a path is prefixed with, or null for unprefixed paths. */
+export function languageFromPath(path: string): Language | null {
+  const match = path.match(LOCALE_PREFIX_PATTERN);
+  return match ? (match[1] as Language) : null;
+}
+
+/** Finds the page a path belongs to, in whichever locale declares it. */
+export function pageKeyFromPath(path: string): PageKey | null {
+  for (const lang of Object.keys(LANGUAGE_ROUTES) as Language[]) {
+    const routes = LANGUAGE_ROUTES[lang];
+    for (const page of Object.keys(routes) as PageKey[]) {
+      if (routes[page] === path) return page;
+    }
+  }
+  return null;
+}
+
+/**
+ * Translates a known route into another locale. Returns null when the path is
+ * not a catalogued route (blog and campaign detail slugs differ per language,
+ * so they must never be mapped by guessing) or when the target locale does not
+ * serve that page.
+ */
+export function mapRouteToLanguage(path: string, target: Language): string | null {
+  const page = pageKeyFromPath(path);
+  if (!page) return null;
+  if (!isRouteAvailable(target, page)) return null;
+  return LANGUAGE_ROUTES[target][page];
+}
+
 // Countries that should be served in German (DACH region)
 const DE_COUNTRIES = new Set(['DE', 'AT', 'CH', 'LI']);
 

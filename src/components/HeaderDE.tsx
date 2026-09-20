@@ -10,7 +10,7 @@ import {
   Newspaper,
   MoreHorizontal,
   HelpCircle,
-  Megaphone,
+  BedDouble,
   Menu,
   X,
   Globe,
@@ -18,6 +18,7 @@ import {
 import { useLanguage } from "../contexts/LanguageContext";
 import type { Language } from "../contexts/LanguageContext";
 import { getPath } from "../utils/routes";
+import { MEINHOTEL_PATHS } from "../data/meinhotel";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -65,8 +66,8 @@ export function HeaderDE() {
   ];
 
   const moreLinks: MoreLink[] = [
+    { path: MEINHOTEL_PATHS.de, label: "MeinHotel PMS", icon: BedDouble },
     { path: "/de/team", label: t("nav.team"), icon: Users2 },
-    { path: "/de/kampagnen", label: t("nav.campaigns"), icon: Megaphone },
     { path: "/de/faq", label: "FAQ", icon: HelpCircle },
   ];
 
@@ -281,7 +282,6 @@ export function HeaderDE() {
               <DropdownMenuTrigger asChild>
                 <button className="fures-lang-pill text-white/65 hover:text-white/90" onClick={triggerDockBounce}>
                   <Globe data-dock-icon className="h-3.5 w-3.5" />
-                  <span className="text-white/40">DE</span>
                   <span className="font-semibold text-white">DE</span>
                 </button>
               </DropdownMenuTrigger>

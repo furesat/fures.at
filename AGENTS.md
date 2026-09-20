@@ -250,6 +250,7 @@ Preserve long operating prompts as clean operational summaries in this file, not
 | `/tr/hakkimizda`, `/en/about`, `/ru/about`, `/de/ueber-uns` | About pages | Managed by `AboutPage`; keep canonical/hreflang coherent. |
 | `/tr/hizmetler`, `/en/services`, `/ru/services`, `/de/leistungen` | Services pages | Public SEO pages. |
 | `/tr/projeler`, `/en/projects`, `/ru/projects`, `/de/referenzen` | Projects/references listings | Public SEO pages; external-only project links do not need sitemap entries. |
+| `/tr/projeler/meinhotel-pms`, `/en/projects/meinhotel-pms`, `/ru/projects/meinhotel-pms`, `/de/referenzen/meinhotel-pms` | MeinHotel PMS case study (React page, 4 locales) | Public SEO pages; content in `src/data/meinhotel.ts`, listed in `src/sitemap.xml.njk`. Links out to the live PMS demo/login on `app.fures.tech`. |
 | `/tr/ekip`, `/en/team`, `/ru/team`, `/de/team` | Team pages | Public SEO pages. |
 | `/tr/sss`, `/en/faq`, `/ru/faq`, `/de/faq` | FAQ pages | Should preserve FAQ structured data where used. |
 | `/tr/iletisim`, `/en/contact`, `/ru/contact`, `/de/kontakt` | Contact pages | Netlify Forms flow; do not break static form registration. |
@@ -354,7 +355,8 @@ Important data/content files:
 - `src/utils/blog.ts`: main app blog utilities.
 - `src/utils/campaigns.ts`: main app campaign utilities.
 - `src/contexts/LanguageContext.tsx`: language metadata/translations for main app.
-- `src/components/Projects.tsx`: project/reference card collection.
+- `src/components/Projects.tsx`: project/reference card collection. Cards with `internalPaths` are routed inside the React app (`<Link>`); everything else stays an external `<a target="_blank">`.
+- `src/data/meinhotel.ts`: MeinHotel PMS case-study content (TR/EN/DE/RU), canonical route per language, and the public app/demo/login URLs. Product claims must stay in sync with the `furesat/meinhotel` README/CLAUDE.md.
 
 ---
 
@@ -363,6 +365,7 @@ Important data/content files:
 - Main site uses dark-first premium visuals with light-mode overrides in `src/styles/globals.css`.
 - Preserve semantic class refactors such as `premium-card`, `page-hero-glow`, and `whyus-*`; avoid returning to brittle long utility selector chains.
 - Light-mode fixes should generally live under `html.theme-light` / `[data-theme="light"]` selectors and should not unintentionally change dark-mode tokens.
+- The orange brand tints (`text-orange-200/300/400`), the orange→purple gradient stops, the `placeholder:text-white/30` inputs and the gradient button are re-mapped to readable values at the end of `src/styles/globals.css` for light mode. Extend that block instead of hardcoding per-component light colors.
 - Header/nav uses liquid glass visual treatment; avoid duplicate active-pill layers that create rectangular artifacts.
 - WhyUs/Mission/About hero light surfaces are intentionally aligned with the references design language.
 - Use existing components and UI primitives before creating new ones.
@@ -377,6 +380,7 @@ Important data/content files:
 - Route declarations live in `src/App.tsx`; language path constants live in `src/utils/routes.ts`.
 - SEO work should use `useSEO` and helpers from `src/utils/seo.ts` rather than ad hoc direct DOM logic.
 - Preserve existing multilingual route structure and route redirects.
+- Never hardcode a Turkish path in a shared component: use `getPath(language, page)` from `src/utils/routes.ts` so DE/EN/RU visitors stay in their locale.
 - Do not invent translations; keep `LANGS`, `LANG_NAMES`, `SUPPORTED_LANGUAGES`, and related translation data synchronized when adding languages.
 - External requests in scripts must have timeouts and fallback behavior.
 - Keep automation logs helpful for missing API keys or provider failures.
@@ -708,3 +712,67 @@ No new public route was added. Existing dynamic sitemap remains at `src/sitemap.
 
 - `npm run build` — first run reproduced deploy failure at `furkanyonat/package.json` missing / `npm ci` usage error.
 - `npm run build` — passed after build-script fix; warnings remain for known large chunks, outdated Browserslist/baseline data, npm `http-proxy`, and missing optional `/index.css` in some microsites.
+
+### 2026-09-20: MeinHotel PMS Case Study and Light-Mode Colour Pass
+
+#### Summary
+
+Added a full MeinHotel PMS case study to the public site in all four languages, surfaced the product in the projects grid, headers and footers, and linked it to the live PMS on `app.fures.tech` including the shared demo credentials the owner publishes. Fixed a set of design/colour and navigation defects that were most visible on the German pages.
+
+Content: new `src/data/meinhotel.ts` (TR/EN/DE/RU copy, module list, operational flow, architecture, audiences, honest product status) rendered by `src/pages/MeinHotelPage.tsx` at `/tr/projeler/meinhotel-pms`, `/en/projects/meinhotel-pms`, `/ru/projects/meinhotel-pms` and `/de/referenzen/meinhotel-pms`.
+
+Fixes:
+
+- Language pill rendered the active locale twice ("DE DE", "TR TR") in both headers.
+- The German "Mehr" menu linked to `/de/kampagnen`, a route the DE layout does not define (campaign content is Turkish-only), so it bounced visitors back to `/de`.
+- Shared components (`Hero`, `Projects`, `Mission`, `Pricing`, `ServicePackages`, `BlogPostPage`, `CampaignPostPage`) linked to hardcoded Turkish paths, dropping DE/EN/RU visitors into the Turkish site; they now use `getPath(language, …)`.
+- `ServicesPage` structured data referenced eight translation keys that no longer exist, so raw key names ("services.web_design") were published in the JSON-LD of every locale. It now mirrors the six services actually rendered.
+- Light mode: orange accents, gradient headings, form placeholders and the gradient button were below readable contrast on the light surface; overrides added at the end of `src/styles/globals.css`.
+- `HeroDE` primary CTA used an off-brand mint/lime/yellow gradient; it now uses the brand orange→purple gradient like every other locale.
+- `ClothCanvas` faded in per frame (`intro += (1 - intro) * 0.011`), so on low-frame-rate devices the hero stayed dark for many seconds — very visible in light mode. The fade is now time-based.
+- The Furkan portfolio card pointed at the retired `meinhotel-fures.netlify.app` host and described a passwordless demo; it now points at `https://app.fures.tech/demo` with the current demo note.
+
+#### Files Changed
+
+- `AGENTS.md`, `.ai/CONTINUATION.md`
+- `src/data/meinhotel.ts` (new), `src/pages/MeinHotelPage.tsx` (new)
+- `src/App.tsx`, `src/components/Projects.tsx`, `src/pages/ProjectsPage.tsx`, `src/pages/ServicesPage.tsx`
+- `src/components/Header.tsx`, `src/components/HeaderDE.tsx`, `src/components/Footer.tsx`, `src/components/FooterDE.tsx`
+- `src/components/Hero.tsx`, `src/components/HeroDE.tsx`, `src/components/ClothCanvas.tsx`, `src/components/Mission.tsx`, `src/components/Pricing.tsx`, `src/components/ServicePackages.tsx`
+- `src/pages/BlogPostPage.tsx`, `src/pages/CampaignPostPage.tsx`
+- `src/utils/routes.ts`, `src/utils/seo.ts`, `src/hooks/useSEO.ts`, `index.html`
+- `src/pages/BlogListPage.tsx`, `src/pages/CampaignListPage.tsx`, `src/pages/de/HomePageDE.tsx`, `src/pages/de/ServicesPageDE.tsx`, `src/pages/de/ContactPageDE.tsx`
+- `src/styles/globals.css`, `src/sitemap.xml.njk`
+- `furkanyonat/index.html`, `public/furkanyonat/index.html`
+
+#### SEO Status (second pass: canonical + hreflang)
+
+While reviewing the German pages a set of pre-existing metadata defects surfaced and were fixed:
+
+- `canonicalPathForLanguage()` appended `?lang=xx` for every non-Turkish locale, so German, English and Russian pages published query-parameter canonicals (`/de/referenzen?lang=de`).
+- `buildLanguageAlternates()` built alternates from the same path plus `?lang=`, announcing the German page as the Turkish, English and Russian version of itself. Alternates are now mapped through `LANGUAGE_ROUTES`, and paths that cannot be mapped (blog/campaign slugs) return a self-reference instead of an invented URL.
+- `/de/kampagnen` is excluded from mapping via `UNAVAILABLE_ROUTES` in `src/utils/routes.ts` — the DE layout has no campaign route.
+- The three static `<link rel="alternate">` tags in `index.html` were not `data-managed`, so every page carried them on top of its own set. They are now replaced at runtime.
+- Pages could emit two or three `x-default` links. There is now exactly one, always the English version of the cluster (falling back to the default language), and callers can still override it.
+- `BlogListPage` and `BlogPostPage` called no SEO hook at all: every blog page inherited the shell metadata from `index.html` and canonicalised to `https://fures.at/de`. Both now publish their own title, description, canonical, alternates and Open Graph data (`og:type=article` for posts).
+- Campaign pages canonicalised to `/kampanyalar` without the locale prefix.
+
+#### SEO Status
+
+Four new indexable routes with unique titles, descriptions, keywords, canonical URLs, hreflang alternates (including `x-default`), Open Graph/Twitter metadata and `SoftwareApplication` + `BreadcrumbList` + `Organization` JSON-LD. The services JSON-LD no longer publishes raw translation keys. The demo page on `app.fures.tech/demo` stays `noindex` on its own side; fures.at only links to it.
+
+#### Sitemap Status
+
+`src/sitemap.xml.njk` gained the four case-study URLs (verified in the generated `public/sitemap.xml`). `public/robots.txt` already references the sitemap; unchanged.
+
+#### Commands Run
+
+- `npm install --no-audit --no-fund`
+- `npx tsc --noEmit` — passed
+- `npm run build` — passed (travel + main app + Eleventy + profile builds)
+- Playwright screenshots of `/de`, `/de/leistungen`, `/de/referenzen`, `/de/kontakt`, `/de/blog`, `/tr`, `/tr/projeler` and the new case study in light and dark mode, desktop (1440×900) and phone (390×844)
+
+#### Known Risks / Notes
+
+- The published demo password is an owner decision: it unlocks a dedicated Supabase demo user that is a member of the fictional sample hotel only. If it is ever rotated, update `MEINHOTEL_APP` in `src/data/meinhotel.ts` and the portfolio note in `furkanyonat/index.html` + `public/furkanyonat/index.html`.
+- Live URLs could not be fetched from this environment (outbound HTTPS is blocked by the network policy). `https://app.fures.tech` was confirmed as the primary URL of the Netlify project `fureshotel` with a ready deploy through the Netlify API instead.

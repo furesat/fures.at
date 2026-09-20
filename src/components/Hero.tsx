@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import { Button } from "./ui/button";
 import { useLanguage } from "../contexts/LanguageContext";
+import { getPath } from "../utils/routes";
 import { useTheme } from "../contexts/ThemeContext";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -184,7 +185,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row gap-3 justify-center items-center"
           >
-            <Link to="/hizmetler">
+            <Link to={getPath(language, "services")}>
               <motion.div
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.97 }}
@@ -201,7 +202,7 @@ export function Hero() {
               </motion.div>
             </Link>
 
-            <Link to="/iletisim">
+            <Link to={getPath(language, "contact")}>
               <motion.div
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.97 }}

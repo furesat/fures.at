@@ -14,6 +14,7 @@ import {
   UserRound,
   Newspaper,
   Megaphone,
+  BedDouble,
   Menu,
   X,
   Globe,
@@ -21,6 +22,7 @@ import {
 import { useLanguage } from "../contexts/LanguageContext";
 import type { Language } from "../contexts/LanguageContext";
 import { getPath, LANGUAGE_ROUTES } from "../utils/routes";
+import { MEINHOTEL_PATHS } from "../data/meinhotel";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -73,6 +75,7 @@ export function Header() {
   const navItemPaths = new Set(navItems.map((item) => normalizePath(item.path)));
 
   const moreLinks: MoreLink[] = [
+    { path: MEINHOTEL_PATHS[language], label: "MeinHotel PMS", icon: BedDouble },
     { path: r.campaigns, label: t("nav.campaigns"), icon: Megaphone },
     { path: r.blog, label: t("nav.blog"), icon: Newspaper },
     { path: r.faq, label: "FAQ", icon: HelpCircle },
@@ -295,7 +298,6 @@ export function Header() {
               <DropdownMenuTrigger asChild>
                 <button className="fures-lang-pill text-white/65 hover:text-white/90" onClick={triggerDockBounce}>
                   <Globe data-dock-icon className="h-3.5 w-3.5" />
-                  <span className="text-white/40">{language.toUpperCase()}</span>
                   <span className="font-semibold text-white">{language.toUpperCase()}</span>
                 </button>
               </DropdownMenuTrigger>

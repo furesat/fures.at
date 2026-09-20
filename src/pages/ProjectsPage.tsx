@@ -41,7 +41,7 @@ export function ProjectsPage() {
         return {
           name: translation.name,
           description: translation.description,
-          url: project.link
+          url: project.internalPaths?.[language] ?? project.link
         };
       }),
     [language]

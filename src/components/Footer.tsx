@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { LANGUAGE_ROUTES } from "../utils/routes";
+import { MEINHOTEL_APP, MEINHOTEL_PATHS, getMeinHotelContent } from "../data/meinhotel";
 
 export function Footer() {
   const { t, language } = useLanguage();
   const logoSrc = "/images/fures.png";
   const r = LANGUAGE_ROUTES[language];
+  const meinHotel = getMeinHotelContent(language);
 
   const footerLinks = [
     { title: t('nav.about'), href: r.about },
     { title: t('nav.services'), href: r.services },
     { title: t('nav.projects'), href: r.projects },
+    { title: 'MeinHotel PMS', href: MEINHOTEL_PATHS[language] },
     { title: t('nav.campaigns'), href: r.campaigns },
     { title: t('nav.blog'), href: r.blog },
     { title: t('nav.team') || 'Team', href: r.team },
@@ -64,6 +67,16 @@ export function Footer() {
           <div className="text-gray-400 text-sm text-center md:text-left">
             <p>{t('footer.copyright')}</p>
           </div>
+
+          {/* PMS access */}
+          <a
+            href={MEINHOTEL_APP.loginUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-gray-400 transition-colors hover:text-orange-400"
+          >
+            {meinHotel.ctaLogin} ↗
+          </a>
 
           {/* Legal Links */}
           <div className="flex gap-6 text-sm">

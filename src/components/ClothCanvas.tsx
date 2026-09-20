@@ -342,7 +342,10 @@ export function ClothCanvas() {
       mouse.y += (mouse.ty - mouse.y) * 0.05;
       mouse.influence += (mouse.tInfluence - mouse.influence) * 0.03;
 
-      intro += (1 - intro) * 0.011;
+      // Time-based, not frame-based: on low-frame-rate devices (phones, older
+      // laptops) a per-frame ease left the hero dimmed for many seconds —
+      // very visible in light mode, where the cloth fades in from dark.
+      intro = Math.min(1, t / 1.6);
 
       material.uniforms.uTime.value = t;
       material.uniforms.uMouse.value.set(mouse.x, mouse.y);

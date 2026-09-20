@@ -3,8 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { DateTime } from "luxon";
 import { LANGUAGE_META, useLanguage } from "../contexts/LanguageContext";
+import { getPath } from "../utils/routes";
 import { getBlogPostBySlug } from "../utils/blog";
 import { renderMarkdown } from "../utils/markdown";
+import { useSEO } from "../hooks/useSEO";
 
 function formatDate(dateIso: string, language: keyof typeof LANGUAGE_META) {
   const locale = LANGUAGE_META[language].locale.replace("_", "-");
@@ -46,6 +48,35 @@ export function BlogPostPage() {
     return renderMarkdown(post.content);
   }, [post]);
 
+  // Posts previously inherited the static shell metadata, so every article
+  // canonicalised to the German homepage. Slugs are language-specific, so the
+  // article announces itself as the only version of its cluster.
+  const postLanguage = post?.lang ?? language;
+  const canonicalPath = post
+    ? `${getPath(postLanguage, "blog")}/${post.slug}`
+    : getPath(postLanguage, "blog");
+
+  useSEO({
+    title: post ? `${post.title} | ${t("seo.site_name")}` : t("blog.not_found"),
+    description: post?.excerpt ?? t("blog.subtitle"),
+    canonicalPath,
+    alternates: [{ hrefLang: LANGUAGE_META[postLanguage].hrefLang, path: canonicalPath }],
+    language: postLanguage,
+    robots: post ? undefined : "noindex, follow",
+    openGraph: {
+      title: post?.title ?? t("blog.not_found"),
+      description: post?.excerpt ?? t("blog.subtitle"),
+      type: "article",
+      image: post?.image,
+      siteName: t("seo.site_name"),
+    },
+    twitter: {
+      title: post?.title ?? t("blog.not_found"),
+      description: post?.excerpt ?? t("blog.subtitle"),
+      image: post?.image,
+    },
+  });
+
   if (!post) {
     return (
       <section className="flex min-h-screen items-center justify-center bg-black px-4 py-32 text-white">
@@ -53,7 +84,7 @@ export function BlogPostPage() {
           <h1 className="text-3xl font-semibold text-white sm:text-4xl">{t("blog.not_found")}</h1>
           <p className="mt-4 text-base text-slate-300">{t("blog.not_found_description")}</p>
           <Link
-            to="/blog"
+            to={getPath(language, "blog")}
             className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-6 py-3 text-sm font-medium uppercase tracking-[0.32em] text-white transition-colors duration-300 hover:border-orange-500/80 hover:bg-orange-500/10 hover:text-orange-200"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -71,7 +102,7 @@ export function BlogPostPage() {
       <div className="page-hero-glow absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,122,41,0.18),transparent_55%),radial-gradient(circle_at_bottom,rgba(143,91,255,0.14),transparent_60%)]" />
       <div className="mx-auto w-full max-w-3xl px-4">
         <Link
-          to="/blog"
+          to={getPath(language, "blog")}
           className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 py-2 text-xs font-medium uppercase tracking-[0.32em] text-white transition-colors duration-300 hover:border-orange-500/80 hover:bg-orange-500/10 hover:text-orange-200"
         >
           <ArrowLeft className="h-4 w-4" />

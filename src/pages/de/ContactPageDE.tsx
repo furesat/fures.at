@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useLanguage } from "../../contexts/LanguageContext";
-import { useSEO } from "../../hooks/useSEO";
+import { buildLanguageAlternates, useSEO } from "../../hooks/useSEO";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Calendar } from "lucide-react";
 import { NetlifyContactForm } from "../../components/NetlifyContactForm";
@@ -56,11 +56,7 @@ export function ContactPageDE() {
     description: t("seo.contact.description"),
     canonicalPath: "/de/kontakt",
     language: "de",
-    alternates: [
-      { hrefLang: "de-AT", path: "/de/kontakt" },
-      { hrefLang: "tr", path: "/tr/iletisim" },
-      { hrefLang: "x-default", path: "/de/kontakt" },
-    ],
+    alternates: buildLanguageAlternates("/de/kontakt"),
     openGraph: {
       title: t("seo.contact.title"),
       description: t("seo.contact.description"),

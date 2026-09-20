@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useLanguage } from "../contexts/LanguageContext";
+import { getPath } from "../utils/routes";
 import { DollarSign, Zap } from "lucide-react";
 
 export function Pricing() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="py-32 relative overflow-hidden bg-black">
@@ -74,7 +75,7 @@ export function Pricing() {
 
           {/* CTA */}
           <div className="flex flex-col items-center gap-4">
-            <Link to="/iletisim">
+            <Link to={getPath(language, "contact")}>
               <Button size="lg" variant="gradient" className="text-lg">
                 {t('pricing.cta')} →
               </Button>

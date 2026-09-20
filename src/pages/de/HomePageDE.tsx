@@ -6,6 +6,7 @@ import { Services } from "../../components/Services";
 import { CTA } from "../../components/CTA";
 import {
   useSEO,
+  buildLanguageAlternates,
   createOrganizationSchema,
 } from "../../hooks/useSEO";
 
@@ -59,11 +60,7 @@ export function HomePageDE() {
       .filter(Boolean),
     canonicalPath: "/de",
     language: "de",
-    alternates: [
-      { hrefLang: "de-AT", path: "/de" },
-      { hrefLang: "tr", path: "/tr" },
-      { hrefLang: "x-default", path: "/de" },
-    ],
+    alternates: buildLanguageAlternates("/de"),
     openGraph: {
       title: t("seo.home.title"),
       description: t("seo.home.description"),
