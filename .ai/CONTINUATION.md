@@ -1,5 +1,15 @@
 # AI Continuation State
 
+## 2026-09-20 Aqua Lens interaction/performance polish
+
+- Removed the passive mouse-following lens entirely. Water only reacts on click/tap via ripple; idle surfaces keep only subtle autonomous motion and droplets.
+- Removed the decorative background FURES word.
+- Softened the fixed cyan/amber/sky background fields with much larger radial fades and slower motion so sections no longer feel separated by hard color boundaries.
+- Reduced canvas cost: lower DPR cap, fewer droplets, fewer optical pools and 30fps throttling while still pausing off-screen surfaces.
+- Updated dark-mode dropdowns and language/theme/header pills to the same new Aqua material instead of the older glass treatment.
+- Header dropdowns use Radix `modal={false}` to avoid scrollbar-lock horizontal jumps. Nav-item transform/bounce is suppressed inside the main nav and the active spotlight no longer animates transform, which keeps the header geometry stable.
+- Still preview-only on PR #137. No merge.
+
 ## 2026-09-20 Aqua Lens preview refinement
 
 - Removed the visible horizontal water-line bands from the canvas. The living layer now uses only soft moving optical pools, tiny droplets, trails, pointer response and ripples.
