@@ -1,5 +1,5 @@
 import type { CSSProperties, MouseEvent as ReactMouseEvent } from "react";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Info,
@@ -43,11 +43,6 @@ export function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const logoSrc = "/images/fures.png";
-  const navRef = useRef<HTMLElement | null>(null);
-  const activeItemRef = useRef<HTMLElement | null>(null);
-  const moreTriggerRef = useRef<HTMLButtonElement | null>(null);
-  const [highlightBoxStyle, setHighlightBoxStyle] = useState<CSSProperties | null>(null);
-  const [isMobileNav, setIsMobileNav] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const normalizePath = (path: string) =>
@@ -93,65 +88,6 @@ export function Header() {
   const navBaseClasses =
     "ios-nav-item group relative z-10 flex min-w-[72px] flex-col items-center justify-center gap-1 rounded-full px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.2em] transition-all duration-500 focus-visible:outline-none";
 
-  const moveHighlightToElement = useCallback((targetEl: HTMLElement | null) => {
-    if (isMobileNav) { setHighlightBoxStyle(null); return; }
-    const navEl = navRef.current;
-    if (!navEl || !targetEl) { setHighlightBoxStyle(null); return; }
-    const navRect = navEl.getBoundingClientRect();
-    const targetRect = targetEl.getBoundingClientRect();
-    const paddingX = 12;
-    const paddingY = 7;
-    setHighlightBoxStyle({
-      width: `${targetRect.width + paddingX * 2}px`,
-      height: `${targetRect.height + paddingY * 2}px`,
-      transform: `translate3d(${targetRect.left - navRect.left - paddingX}px, ${targetRect.top - navRect.top - paddingY}px, 0)`,
-      opacity: 1,
-    });
-  }, [isMobileNav]);
-
-  const updateHighlightPosition = useCallback(() => {
-    const targetEl = activeItemRef.current ?? (moreMenuActive ? moreTriggerRef.current : null);
-    moveHighlightToElement(targetEl);
-  }, [moreMenuActive, moveHighlightToElement]);
-
-  const setActiveItemRef = useCallback(
-    (node: HTMLAnchorElement | null) => {
-      activeItemRef.current = node;
-      if (node) requestAnimationFrame(() => updateHighlightPosition());
-      else setHighlightBoxStyle(null);
-    },
-    [updateHighlightPosition],
-  );
-
-  useLayoutEffect(() => { updateHighlightPosition(); }, [location.pathname, updateHighlightPosition]);
-  useEffect(() => { setMobileOpen(false); }, [location.pathname]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(max-width: 768px)");
-    const handler = (e: MediaQueryListEvent) => setIsMobileNav(e.matches);
-    setIsMobileNav(mq.matches);
-    if (typeof mq.addEventListener === "function") {
-      mq.addEventListener("change", handler);
-      return () => mq.removeEventListener("change", handler);
-    }
-    mq.addListener(handler);
-    return () => mq.removeListener(handler);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("resize", updateHighlightPosition);
-    return () => window.removeEventListener("resize", updateHighlightPosition);
-  }, [updateHighlightPosition]);
-
-  useEffect(() => {
-    const navEl = navRef.current;
-    if (!navEl) return;
-    const observer = new ResizeObserver(() => updateHighlightPosition());
-    observer.observe(navEl);
-    return () => observer.disconnect();
-  }, [updateHighlightPosition]);
-
   const navItemClasses = (path: string) =>
     `${navBaseClasses} ${
       isActive(path)
@@ -159,23 +95,9 @@ export function Header() {
         : "fures-nav-item-idle text-slate-200/70 hover:text-white"
     }`;
 
-  const handleNavPointerDown = (event: ReactMouseEvent<HTMLElement>) => {
-    moveHighlightToElement(event.currentTarget);
-  };
-
   const handleNavClick = (event: ReactMouseEvent<HTMLElement>) => {
-    moveHighlightToElement(event.currentTarget);
     triggerDockBounce(event);
   };
-
-  const highlightGlassStyle: CSSProperties = {
-    "--glass-surface-bg": "rgba(12, 20, 42, 0.32)",
-    "--glass-surface-border": "rgba(255, 255, 255, 0.32)",
-    "--glass-surface-highlight": "rgba(255, 255, 255, 0.55)",
-    "--glass-surface-reflection": "rgba(210, 230, 255, 0.36)",
-    "--glass-highlight-height": "16%",
-    "--glass-reflection-height": "58%",
-  } as CSSProperties;
 
   const dropdownGlassStyle: CSSProperties = {
     "--glass-surface-bg": "rgba(8, 14, 28, 0.12)",
@@ -219,16 +141,8 @@ export function Header() {
           <div className="relative hidden min-w-0 flex-1 md:block">
             <div className="absolute inset-0 -z-10 rounded-full bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15),transparent)] opacity-40 blur-2xl" />
             <nav
-              ref={navRef}
               className="fures-nav-glass relative flex items-center gap-1 overflow-x-auto rounded-full px-3 py-2.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
-              {highlightBoxStyle && (
-                <span
-                  aria-hidden="true"
-                  className="glass-spotlight"
-                  style={{ ...highlightGlassStyle, ...highlightBoxStyle }}
-                />
-              )}
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const active = isActive(item.path);
@@ -238,8 +152,6 @@ export function Header() {
                     to={item.path}
                     className={navItemClasses(item.path)}
                     data-active={active || undefined}
-                    ref={active ? setActiveItemRef : undefined}
-                    onPointerDown={handleNavPointerDown}
                     onClick={handleNavClick}
                   >
                     <Icon data-dock-icon className={`relative z-10 h-4 w-4 transition-all duration-300 ${active ? "text-white" : "text-white/75"}`} />
@@ -253,10 +165,8 @@ export function Header() {
                 <DropdownMenuTrigger asChild>
                   <button
                     type="button"
-                    className={`${navBaseClasses} fures-nav-item-idle text-slate-200/70 hover:text-white focus-visible:outline-none ${moreMenuActive ? "text-white" : ""}`}
+                    className={`${navBaseClasses} ${moreMenuActive ? "fures-nav-item-active text-white" : "fures-nav-item-idle text-slate-200/70 hover:text-white"} focus-visible:outline-none`}
                     data-active={moreMenuActive || undefined}
-                    ref={moreTriggerRef}
-                    onPointerDown={handleNavPointerDown}
                     onClick={handleNavClick}
                   >
                     <MoreHorizontal data-dock-icon className={`relative z-10 h-4 w-4 ${moreMenuActive ? "text-white" : "text-white/75"}`} />
