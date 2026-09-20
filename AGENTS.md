@@ -369,6 +369,9 @@ Important data/content files:
 - **Light is the default theme.** `ThemeContext` starts from `DEFAULT_THEME = 'light'`; only an explicit toggle (persisted as `fures-theme` in localStorage) switches to dark, and neither the clock nor `prefers-color-scheme` is consulted. An inline script in `index.html` applies the stored/default theme to `<html>` before first paint, so there is no dark flash — keep it in sync if the storage key or class names change.
 - `src/styles/globals.css` ends with two override blocks, one per theme (`html.theme-light …` and `html[data-theme="dark"] … , html:not(.theme-light) …`). Dark lifts the page off pure black: sections carrying `bg-black` become transparent so the body gradient shows, `--background` is `#0b0e14`, cards are `#141822`, and the dimmest body text (`text-white/40…70`, `text-gray-400/500/600`) is re-mapped to a cool grey. Put new theme fixes in those blocks rather than in component classes.
 - Gradient-clipped headings (`bg-clip-text`) must be `mx-auto block w-fit`, otherwise a short centred heading only shows the middle of a full-width gradient (pink instead of orange→purple).
+- **The MeinHotel case study is the site's design reference.** Its language is now shared: `src/components/ui/section.tsx` exports `Section` (rhythm + one ambient wash), `SectionHeading` (eyebrow → title → description), `GradientTitle` and `CardIcon`; `.fures-card` in `src/styles/globals.css` is the canonical content surface and `.fures-input` the canonical form field. Build new sections from those instead of new one-off card/heading markup.
+- Do not use `.fures-nav-glass` for content cards. Its `saturate(200%)` backdrop is tuned for the floating nav pill; behind a card grid it amplifies whatever glow sits underneath, so neighbouring cards picked up different tints. `.fures-card` is calmer and more opaque.
+- Tailwind only generates opacity modifiers in steps of 5. `bg-white/8` produced **no rule at all**, so those inputs fell back to the browser default (solid white) in dark mode. Stick to /5 steps, or use arbitrary syntax (`bg-white/[0.08]`).
 - Header/nav uses liquid glass visual treatment; avoid duplicate active-pill layers that create rectangular artifacts.
 - WhyUs/Mission/About hero light surfaces are intentionally aligned with the references design language.
 - Use existing components and UI primitives before creating new ones.
@@ -832,3 +835,50 @@ No new public route; `src/sitemap.xml.njk` unchanged. `public/robots.txt` unchan
 
 - The dark overrides are global by design; a component that deliberately wants pure black or the old dim greys must opt out explicitly.
 - Visitors who already toggled dark keep dark: the stored `fures-theme` value is respected and was not cleared.
+
+### 2026-09-20: Shared Design System and Dark-Mode Form Fix
+
+#### Summary
+
+Rolled the MeinHotel case-study design out across the site and fixed the dark-mode defects that were left.
+
+Shared primitives:
+
+- `src/components/ui/section.tsx` (new): `Section`, `SectionHeading`, `GradientTitle`, `CardIcon`.
+- `.fures-card`, `.fures-section`, `.fures-section-glow` and `.fures-input` in `src/styles/globals.css`, each with a light and a dark variant.
+
+Applied to `Services`, `WhyUs`, `Team`, `FAQ`, `Pricing`, `ServicePackages`, `CTA`, `Mission`, `Quote`, `Projects`, `About`, `BlogListPage`, `CampaignListPage`, the blog/campaign article pages, `LegalDocument` and `NetlifyContactForm`. Sections now share one rhythm (`fures-section`), one ambient wash instead of stacked orange/purple blobs, one heading pattern and one card surface.
+
+Dark-mode fixes:
+
+- Content cards used `.fures-nav-glass`, whose `saturate(200%)` backdrop amplified the section glows: in a four-card row one card read brown, another violet. `.fures-card` is calmer and more opaque, so a grid reads as one set of panels.
+- The contact form's inputs were `bg-white/8` — an opacity Tailwind does not generate — so no background rule existed and the fields fell back to the browser default: **solid white boxes with white placeholder text on a dark card**. They now use the explicit `.fures-input` class. The same invalid utility appeared in `Header`, `HeaderDE`, `Hero`, `HeroDE` and `ContactPageDE` (`bg-white/8`, `border-white/12`, `bg-orange-500/8`, `bg-purple-600/8`) and was corrected everywhere.
+- Section-level `bg-black` panels, the flat `py-32` rhythm and the heavy blob stacks were removed in favour of the shared section treatment.
+
+Also fixed: the blog and campaign list pages linked to `/blog/<slug>` and `/kampanyalar/<slug>` without the locale prefix, so a German or English reader opening a post was redirected into the Turkish site.
+
+#### Files Changed
+
+- `AGENTS.md`, `.ai/CONTINUATION.md`
+- `src/components/ui/section.tsx` (new), `src/styles/globals.css`
+- `src/components/Services.tsx`, `WhyUs.tsx`, `Team.tsx`, `FAQ.tsx`, `Pricing.tsx`, `ServicePackages.tsx`, `CTA.tsx`, `Mission.tsx`, `Quote.tsx`, `Projects.tsx`, `About.tsx`, `NetlifyContactForm.tsx`, `LegalDocument.tsx`, `Header.tsx`, `HeaderDE.tsx`, `Hero.tsx`, `HeroDE.tsx`
+- `src/pages/BlogListPage.tsx`, `BlogPostPage.tsx`, `CampaignListPage.tsx`, `CampaignPostPage.tsx`, `src/pages/de/ContactPageDE.tsx`
+
+#### SEO Status
+
+Presentation and internal linking only; no title, description, canonical, hreflang or structured-data change. The locale-prefix fix means blog/campaign article links now stay inside the visitor's language.
+
+#### Sitemap Status
+
+No route added or removed; `src/sitemap.xml.njk` unchanged.
+
+#### Commands Run
+
+- `npx tsc --noEmit` — passed
+- `npm run build` — passed end to end
+- Playwright screenshots in both themes for `/de`, `/de/kontakt`, `/de/blog`, `/tr`, `/tr/projeler`, `/tr/hizmetler`, `/tr/ekip`, `/tr/blog`, `/tr/kampanyalar` at 1440×900, plus a computed-style probe confirming the form fields now resolve to the themed surface.
+
+#### Known Risks / Notes
+
+- `src/components/ui/card.tsx` and the `premium-card` CSS block are no longer referenced by any component; they were left in place rather than removed in this pass.
+- `Section` renders Tailwind's `container`, so very wide screens now follow the container max-width instead of the old per-section `max-w-7xl`.

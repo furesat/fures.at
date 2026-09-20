@@ -84,7 +84,7 @@ export function HeroDE() {
           initial="hidden"
           animate="visible"
           custom={0}
-          className="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 mb-8 rounded-full bg-white/5 border border-white/12 text-orange-300 text-sm font-medium backdrop-blur-sm"
+          className="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 mb-8 rounded-full bg-white/5 border border-white/10 text-orange-300 text-sm font-medium backdrop-blur-sm"
         >
           <span className="flex items-center gap-1.5"><span>🏨</span> Hotel-Website</span>
           <span className="text-white/20">·</span>

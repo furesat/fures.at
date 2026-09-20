@@ -1,5 +1,13 @@
 # AI Continuation State
 
+## 2026-09-20 Shared design system + dark-mode form fix
+
+- The MeinHotel case-study design is now the site-wide system: `src/components/ui/section.tsx` (`Section`, `SectionHeading`, `GradientTitle`, `CardIcon`) plus `.fures-card`, `.fures-section`, `.fures-section-glow` and `.fures-input` in `src/styles/globals.css`. Build new sections from these.
+- Applied across Services, WhyUs, Team, FAQ, Pricing, ServicePackages, CTA, Mission, Quote, Projects, About, blog/campaign list and article pages, LegalDocument and the contact form.
+- Dark-mode defects fixed: content cards no longer use the nav pill's `saturate(200%)` glass (that is why neighbouring cards looked brown vs violet), and the contact inputs no longer rely on `bg-white/8` — an opacity Tailwind never generated, which left the fields as solid white boxes with white placeholders on a dark card. Other invalid opacities (`border-white/12`, `bg-orange-500/8`, `bg-purple-600/8`) were corrected too.
+- Blog and campaign list items linked to `/blog/<slug>` and `/kampanyalar/<slug>` without the locale prefix; they now use the current locale's path.
+- Reminder for future work: Tailwind generates opacity modifiers in steps of 5 only.
+
 ## 2026-09-20 Light default theme + dark palette pass
 
 - Light is now the default theme for everyone: `DEFAULT_THEME = 'light'` in `src/contexts/ThemeContext.tsx`, an explicit toggle still persists through the `fures-theme` localStorage key, and `prefers-color-scheme` is ignored on purpose. An inline script in `index.html` applies the theme before first paint (no dark flash); `<body>` no longer carries `bg-black`.
@@ -30,7 +38,7 @@
 
 ## Last Completed Phase
 
-Made light mode the product default and reworked the dark palette so both themes read as deliberate designs.
+Unified the site on the MeinHotel design language and fixed the remaining dark-mode colour and form defects.
 
 ## Current Project Status
 

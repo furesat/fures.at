@@ -21,7 +21,7 @@ interface LegalDocumentProps {
 
 export function LegalDocument({ content }: LegalDocumentProps) {
   return (
-    <section className="pt-32 pb-24 bg-black text-white">
+    <section className="fures-section pt-32 text-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <p className="text-sm uppercase tracking-[0.3em] text-orange-400 mb-3">

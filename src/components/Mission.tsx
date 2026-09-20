@@ -3,57 +3,29 @@ import { Button } from "./ui/button";
 import { useLanguage } from "../contexts/LanguageContext";
 import { getPath } from "../utils/routes";
 import { Target } from "lucide-react";
+import { Section, SectionHeading } from "./ui/section";
 
 export function Mission() {
   const { t, language } = useLanguage();
 
   return (
-    <section className="mission-section py-32 relative overflow-hidden bg-black">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-orange-900/20"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        </div>
-      </div>
-
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
-        backgroundSize: '50px 50px'
-      }}></div>
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Icon Badge */}
-        <div className="liquid-icon mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full">
-          <Target className="w-10 h-10 text-white" />
+    <Section className="mission-section">
+      <div className="mx-auto max-w-4xl text-center">
+        <div className="liquid-icon mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-full">
+          <Target className="h-7 w-7 text-white" />
         </div>
 
-        {/* Title */}
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl mb-8">
-          <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-            {t('mission.title')}
-          </span>
-        </h2>
+        <SectionHeading title={t('mission.title')} className="mb-8" />
 
-        {/* Description */}
-        <p className="text-xl sm:text-2xl text-gray-300 mb-6 leading-relaxed">
+        <p className="mb-5 text-xl leading-relaxed text-white/75 sm:text-2xl">
           {t('mission.description')}
         </p>
+        <p className="mb-12 text-base text-white/55">{t('mission.priority')}</p>
 
-        {/* Priority */}
-        <p className="text-lg text-gray-400 mb-12">
-          {t('mission.priority')}
-        </p>
-
-        {/* CTA */}
-        <Link to={getPath(language, "contact")}>
-          <Button size="lg" variant="gradient" className="text-lg">
-            {t('mission.cta')} →
-          </Button>
-        </Link>
+        <Button asChild size="lg" variant="gradient" className="text-sm">
+          <Link to={getPath(language, "contact")}>{t('mission.cta')} →</Link>
+        </Button>
       </div>
-    </section>
+    </Section>
   );
 }

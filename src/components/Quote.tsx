@@ -44,11 +44,8 @@ export function Quote() {
   }, [quotes]);
 
   return (
-    <section className="py-20 relative overflow-hidden bg-black">
-      {/* Center Blur Light Ring */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-[500px] h-[500px] bg-gradient-radial from-orange-500/20 via-purple-600/10 to-transparent rounded-full blur-3xl animate-glow-pulse"></div>
-      </div>
+    <section className="relative overflow-hidden py-20">
+      <div className="fures-section-glow" aria-hidden="true" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="min-h-[200px] flex items-center justify-center">
@@ -61,7 +58,7 @@ export function Quote() {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white italic">
+              <p className="text-2xl font-semibold italic leading-snug text-white sm:text-3xl lg:text-4xl">
                 "{quotes[currentQuote]}"
               </p>
             </motion.div>
