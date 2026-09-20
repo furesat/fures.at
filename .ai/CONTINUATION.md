@@ -1,5 +1,13 @@
 # AI Continuation State
 
+## 2026-09-20 Header active-state hotfix + extra performance pass
+
+- Removed the floating absolute header spotlight logic entirely. Active navigation now renders its own Aqua surface directly on the route-matching item, so the highlight cannot drift onto the wrong menu entry after navigation.
+- The `Mehr` trigger receives the same route-bound active class only when one of its submenu routes is active.
+- Header dropdowns remain non-modal to avoid scrollbar-lock page/header jumps.
+- Living-water canvases are now capped at 1x DPR and 20fps. Off-screen pausing remains enabled.
+- This is still preview-only on PR #137; do not merge until the new Netlify preview is visually approved.
+
 ## 2026-09-20 Aqua Lens interaction/performance polish
 
 - Removed the passive mouse-following lens entirely. Water only reacts on click/tap via ripple; idle surfaces keep only subtle autonomous motion and droplets.
