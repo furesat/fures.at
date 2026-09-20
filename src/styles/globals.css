@@ -2796,3 +2796,236 @@ html:not(.theme-light) .fures-card.fures-live-water-host {
     opacity: 0.54;
   }
 }
+
+
+/* ─── Aqua Lens V2 scene + edge refraction ──────────────────────────
+   Organic backdrop content gives every transparent surface something
+   visible to bend. No straight wave/grid lines are used.
+   ------------------------------------------------------------------- */
+#root {
+  position: relative;
+  isolation: isolate;
+}
+
+.fures-aqua-scene {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.34), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,0.04), transparent 46%);
+}
+
+.fures-aqua-scene__orb {
+  position: absolute;
+  display: block;
+  border-radius: 43% 57% 52% 48% / 48% 43% 57% 52%;
+  filter: blur(18px);
+  opacity: 0.78;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.fures-aqua-scene__orb--cyan {
+  width: min(78vw, 980px);
+  height: min(72vw, 820px);
+  left: -20vw;
+  top: 12vh;
+  background:
+    radial-gradient(circle at 32% 25%, rgba(255,255,255,0.78), transparent 10%),
+    linear-gradient(135deg, rgba(17,205,207,0.54), rgba(22,122,221,0.36) 56%, rgba(22,122,221,0.02));
+  animation: fures-scene-cyan 20s ease-in-out infinite alternate;
+}
+
+.fures-aqua-scene__orb--amber {
+  width: min(70vw, 900px);
+  height: min(66vw, 760px);
+  right: -22vw;
+  top: 38vh;
+  background:
+    radial-gradient(circle at 34% 27%, rgba(255,255,255,0.72), transparent 9%),
+    linear-gradient(135deg, rgba(255,188,73,0.50), rgba(255,103,40,0.33) 58%, rgba(255,103,40,0.01));
+  animation: fures-scene-amber 24s ease-in-out infinite alternate;
+}
+
+.fures-aqua-scene__orb--sky {
+  width: min(56vw, 720px);
+  height: min(50vw, 650px);
+  left: 34vw;
+  bottom: -24vh;
+  background:
+    radial-gradient(circle at 46% 24%, rgba(255,255,255,0.68), transparent 12%),
+    linear-gradient(145deg, rgba(128,220,255,0.38), rgba(70,140,255,0.17) 60%, transparent);
+  opacity: 0.56;
+  animation: fures-scene-sky 27s ease-in-out infinite alternate;
+}
+
+.fures-aqua-scene__veil {
+  position: absolute;
+  inset: 20vh -8vw auto -8vw;
+  height: 46vh;
+  border-radius: 45% 55% 50% 50% / 52% 44% 56% 48%;
+  background:
+    radial-gradient(80% 100% at 22% 48%, rgba(255,255,255,0.18), transparent 62%),
+    radial-gradient(60% 88% at 78% 46%, rgba(255,255,255,0.16), transparent 65%);
+  filter: blur(8px);
+  opacity: 0.7;
+  transform: rotate(-4deg);
+}
+
+.fures-aqua-scene__word {
+  position: absolute;
+  left: 2vw;
+  top: 62vh;
+  font-family: var(--font-heading);
+  font-size: clamp(7rem, 22vw, 22rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+  color: rgba(12,90,132,0.050);
+  transform: rotate(-5deg);
+  user-select: none;
+  white-space: nowrap;
+}
+
+@keyframes fures-scene-cyan {
+  from { transform: translate3d(0,0,0) rotate(-8deg) scale(1); }
+  to   { transform: translate3d(10vw,-5vh,0) rotate(7deg) scale(1.08); }
+}
+@keyframes fures-scene-amber {
+  from { transform: translate3d(0,0,0) rotate(7deg) scale(1); }
+  to   { transform: translate3d(-8vw,6vh,0) rotate(-8deg) scale(1.10); }
+}
+@keyframes fures-scene-sky {
+  from { transform: translate3d(0,0,0) rotate(-4deg) scale(1); }
+  to   { transform: translate3d(4vw,-8vh,0) rotate(6deg) scale(1.08); }
+}
+
+/* Light theme gets the clearest cyan/amber scene, like the approved prototype. */
+html.theme-light .fures-aqua-scene,
+html[data-theme="light"] .fures-aqua-scene {
+  background:
+    radial-gradient(circle at 48% -5%, rgba(255,255,255,0.92), transparent 34%),
+    linear-gradient(180deg, #f7fcff 0%, #edf8fb 54%, #edf6f7 100%);
+}
+html.theme-light .fures-aqua-scene__orb--cyan,
+html[data-theme="light"] .fures-aqua-scene__orb--cyan { opacity: 0.72; }
+html.theme-light .fures-aqua-scene__orb--amber,
+html[data-theme="light"] .fures-aqua-scene__orb--amber { opacity: 0.68; }
+html.theme-light .fures-aqua-scene__word,
+html[data-theme="light"] .fures-aqua-scene__word { color: rgba(12,90,132,0.052); }
+
+/* Dark mode keeps the same geometry but turns it into a cool luminous depth. */
+html[data-theme="dark"] .fures-aqua-scene,
+html:not(.theme-light) .fures-aqua-scene {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(98,130,255,0.10), transparent 36%),
+    linear-gradient(180deg, #0b0e14 0%, #0d121b 58%, #0a1017 100%);
+}
+html[data-theme="dark"] .fures-aqua-scene__orb,
+html:not(.theme-light) .fures-aqua-scene__orb {
+  opacity: 0.34;
+  filter: blur(30px);
+}
+html[data-theme="dark"] .fures-aqua-scene__word,
+html:not(.theme-light) .fures-aqua-scene__word {
+  color: rgba(151,203,235,0.025);
+}
+
+/* Edge refraction: strongest at the ends/corners, not as a flat border.
+   These transparent children sample the backdrop separately, so the edge
+   feels thicker than the clear centre. */
+.fures-water-edge {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.82;
+  background: rgba(255,255,255,0.015);
+  backdrop-filter: blur(5px) saturate(165%) contrast(1.035);
+  -webkit-backdrop-filter: blur(5px) saturate(165%) contrast(1.035);
+}
+
+.fures-water-edge--left,
+.fures-water-edge--right {
+  top: 4%;
+  bottom: 4%;
+  width: clamp(12px, 3.8%, 28px);
+}
+.fures-water-edge--left {
+  left: 0;
+  border-radius: inherit 0 0 inherit;
+  box-shadow:
+    inset 4px 0 8px rgba(255,255,255,0.18),
+    inset -5px 0 10px rgba(54,154,191,0.07);
+}
+.fures-water-edge--right {
+  right: 0;
+  border-radius: 0 inherit inherit 0;
+  box-shadow:
+    inset -4px 0 8px rgba(255,255,255,0.16),
+    inset 5px 0 10px rgba(54,154,191,0.06);
+}
+.fures-water-edge--bottom {
+  left: 5%;
+  right: 5%;
+  bottom: 0;
+  height: clamp(8px, 3%, 18px);
+  box-shadow:
+    inset 0 -3px 8px rgba(255,255,255,0.13),
+    inset 0 5px 10px rgba(45,139,180,0.05);
+}
+
+/* Real backdrop displacement where the browser supports SVG backdrop filters. */
+html[data-aqua-lens="on"] .fures-card.fures-live-water-host,
+html[data-aqua-lens="on"] .fures-nav-glass.fures-live-water-host,
+html[data-aqua-lens="on"] .fures-dropdown-content.fures-live-water-host {
+  backdrop-filter: url(#aquaWater) blur(15px) saturate(165%) brightness(1.035);
+  -webkit-backdrop-filter: url(#aquaWater) blur(15px) saturate(165%) brightness(1.035);
+}
+
+html[data-aqua-lens="on"] .fures-input {
+  backdrop-filter: url(#aquaWaterSmall) blur(12px) saturate(150%) brightness(1.025);
+  -webkit-backdrop-filter: url(#aquaWaterSmall) blur(12px) saturate(150%) brightness(1.025);
+}
+
+/* Clearer centre in light mode so the background scene remains visible. */
+html.theme-light .fures-card.fures-live-water-host,
+html[data-theme="light"] .fures-card.fures-live-water-host {
+  background:
+    radial-gradient(120% 95% at 16% -22%, rgba(255,255,255,0.66), transparent 54%),
+    rgba(255,255,255,0.42);
+  border-color: rgba(255,255,255,0.74);
+  backdrop-filter: blur(13px) saturate(150%);
+  -webkit-backdrop-filter: blur(13px) saturate(150%);
+}
+
+html.theme-light .fures-nav-glass.fures-live-water-host,
+html[data-theme="light"] .fures-nav-glass.fures-live-water-host,
+html.theme-light .fures-dropdown-content.fures-live-water-host,
+html[data-theme="light"] .fures-dropdown-content.fures-live-water-host {
+  background-color: rgba(255,255,255,0.44);
+  backdrop-filter: blur(14px) saturate(155%);
+  -webkit-backdrop-filter: blur(14px) saturate(155%);
+}
+
+/* Do not let the canvas hide the thicker edge layers. */
+.fures-water-layer { z-index: 0; }
+.fures-water-edge { z-index: 1; }
+.fures-live-water-host > :not(.fures-water-layer):not(.fures-water-edge) { z-index: 2; }
+
+@media (max-width: 720px) {
+  .fures-aqua-scene__orb--cyan { left: -48vw; top: 10vh; }
+  .fures-aqua-scene__orb--amber { right: -48vw; top: 48vh; }
+  .fures-aqua-scene__word { top: 68vh; }
+  .fures-water-edge--left,
+  .fures-water-edge--right { width: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fures-aqua-scene__orb {
+    animation: none;
+  }
+}
