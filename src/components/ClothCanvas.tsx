@@ -44,15 +44,16 @@ export function ClothCanvas() {
         ctx.fillStyle = colorDrift;
         ctx.fillRect(0, 0, 4096, 2048);
       } else {
-        // Dark silk — original deep, warm-tinted base
-        ctx.fillStyle = "#0a0508";
+        // Dark silk — cool charcoal base with a violet→amber drift. The old
+        // near-black warm base read as a brown smear on the dark page.
+        ctx.fillStyle = "#101521";
         ctx.fillRect(0, 0, 4096, 2048);
 
         const colorDrift = ctx.createLinearGradient(0, 0, 4096, 0);
-        colorDrift.addColorStop(0, "rgba(8, 10, 22, 0.7)");
-        colorDrift.addColorStop(0.4, "rgba(15, 8, 12, 0.5)");
-        colorDrift.addColorStop(0.8, "rgba(28, 14, 10, 0.6)");
-        colorDrift.addColorStop(1, "rgba(35, 18, 12, 0.7)");
+        colorDrift.addColorStop(0, "rgba(28, 34, 62, 0.65)");
+        colorDrift.addColorStop(0.4, "rgba(38, 30, 60, 0.5)");
+        colorDrift.addColorStop(0.8, "rgba(52, 36, 48, 0.5)");
+        colorDrift.addColorStop(1, "rgba(66, 45, 40, 0.55)");
         ctx.fillStyle = colorDrift;
         ctx.fillRect(0, 0, 4096, 2048);
       }
@@ -244,17 +245,17 @@ export function ClothCanvas() {
           uExposure: 1.0,
         }
       : {
-          uLight1Color: new THREE.Color(0.42, 0.62, 1.05),
-          uLight2Color: new THREE.Color(1.15, 0.55, 0.22),
-          uAmbient: 0.18,
-          uDiffuse1: 0.7,
-          uDiffuse2: 0.55,
-          uSpecular1: 0.55,
-          uSpecular2: 1.1,
-          uRimStrength: 0.7,
-          uAoFloor: 0.55,
-          uVignetteFloor: 0.7,
-          uExposure: 1.1,
+          uLight1Color: new THREE.Color(0.5, 0.68, 1.1),
+          uLight2Color: new THREE.Color(1.15, 0.62, 0.3),
+          uAmbient: 0.3,
+          uDiffuse1: 0.62,
+          uDiffuse2: 0.5,
+          uSpecular1: 0.42,
+          uSpecular2: 0.85,
+          uRimStrength: 0.55,
+          uAoFloor: 0.66,
+          uVignetteFloor: 0.78,
+          uExposure: 1.05,
         };
 
     const material = new THREE.ShaderMaterial({

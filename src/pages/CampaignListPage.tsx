@@ -27,11 +27,13 @@ export function CampaignListPage() {
     [posts],
   );
 
+  const canonicalPath = getPath(language, "campaigns");
+
   useSEO({
     title: t("seo.campaigns.title"),
     description: t("seo.campaigns.description"),
     keywords: t("seo.campaigns.keywords").split(", "),
-    canonicalPath: getPath(language, "campaigns"),
+    canonicalPath,
     language,
   });
 
@@ -47,8 +49,8 @@ export function CampaignListPage() {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-black py-32 text-white">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,122,41,0.18),transparent_55%),radial-gradient(circle_at_bottom,rgba(143,91,255,0.14),transparent_60%)]" />
+    <section className="fures-section min-h-screen text-white">
+      <div className="page-hero-glow absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,122,41,0.18),transparent_55%),radial-gradient(circle_at_bottom,rgba(143,91,255,0.14),transparent_60%)]" />
       <div className="mx-auto w-full max-w-6xl px-4">
         <header className="mb-16 text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.4em] text-white/70">
@@ -71,7 +73,7 @@ export function CampaignListPage() {
             {renderedPosts.map((post) => (
               <article
                 key={post.slug}
-                className="premium-card group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_28px_72px_-42px_rgba(255,122,41,0.75)]"
+                className="fures-card group overflow-hidden rounded-[2rem] p-8 hover:-translate-y-0.5 sm:p-10"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-[0.35em] text-orange-300/80">
                   <span>{formatDate(post.date, language)}</span>
@@ -82,11 +84,11 @@ export function CampaignListPage() {
 
                 <div className="mt-6 flex flex-col gap-6">
                   <h2 className="text-3xl font-semibold text-white transition-colors duration-300 group-hover:text-orange-300">
-                    <Link to={`/kampanyalar/${post.slug}`}>{post.title}</Link>
+                    <Link to={`${canonicalPath}/${post.slug}`}>{post.title}</Link>
                   </h2>
 
                   {post.image && (
-                    <Link to={`/kampanyalar/${post.slug}`} className="block overflow-hidden rounded-3xl">
+                    <Link to={`${canonicalPath}/${post.slug}`} className="block overflow-hidden rounded-3xl">
                       <img
                         src={post.image}
                         alt={post.imageAlt ?? post.title}
@@ -111,7 +113,7 @@ export function CampaignListPage() {
 
                 <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
                   <Link
-                    to={`/kampanyalar/${post.slug}`}
+                    to={`${canonicalPath}/${post.slug}`}
                     className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 py-2 text-sm font-medium tracking-[0.25em] text-white transition-colors duration-300 hover:border-orange-400/80 hover:bg-orange-500/10 hover:text-orange-200"
                   >
                     {t("campaigns.read_more")}

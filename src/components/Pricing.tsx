@@ -3,87 +3,51 @@ import { Button } from "./ui/button";
 import { useLanguage } from "../contexts/LanguageContext";
 import { getPath } from "../utils/routes";
 import { DollarSign, Zap } from "lucide-react";
+import { Section, SectionHeading } from "./ui/section";
 
 export function Pricing() {
   const { t, language } = useLanguage();
 
+  const highlights = [
+    { title: "Modüler", description: "İhtiyaca göre birleştirilebilir" },
+    { title: "Şeffaf", description: "Sabit kapsam + sprint" },
+    { title: "Hızlı", description: "48 saat içinde teklif" },
+  ];
+
   return (
-    <section className="py-32 relative overflow-hidden bg-black">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-black to-purple-600/10"></div>
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-      </div>
+    <Section>
+      <div className="mx-auto max-w-5xl">
+        <div className="liquid-icon mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-full">
+          <DollarSign className="h-7 w-7 text-white" />
+        </div>
 
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
-        backgroundSize: '50px 50px'
-      }}></div>
+        <SectionHeading
+          title={t('pricing.title')}
+          description={t('pricing.description')}
+          className="mb-10"
+        />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          {/* Icon */}
-          <div className="liquid-icon mb-8 flex h-20 w-20 items-center justify-center rounded-full">
-            <DollarSign className="w-10 h-10 text-white" />
-          </div>
+        <p className="mb-12 text-center text-lg font-medium text-orange-400">{t('pricing.subtitle')}</p>
 
-          {/* Title */}
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl mb-6">
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              {t('pricing.title')}
-            </span>
-          </h2>
-
-          {/* Subtitle */}
-          <p className="text-xl text-orange-400 mb-4">
-            {t('pricing.subtitle')}
-          </p>
-
-          {/* Description */}
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12">
-            {t('pricing.description')}
-          </p>
-
-          {/* Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-            <div className="liquid-glass p-6 text-white/85">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Zap className="w-5 h-5 text-orange-400" />
-                <h3 className="text-lg text-white">Modüler</h3>
+        <div className="mx-auto mb-12 grid max-w-4xl grid-cols-1 gap-5 md:grid-cols-3">
+          {highlights.map((item) => (
+            <div key={item.title} className="fures-card rounded-[2rem] p-7 text-center">
+              <div className="mb-2 flex items-center justify-center gap-2">
+                <Zap className="h-4 w-4 text-orange-400" />
+                <h3 className="text-base font-semibold text-white">{item.title}</h3>
               </div>
-              <p className="text-sm text-gray-400">İhtiyaca göre birleştirilebilir</p>
+              <p className="text-sm text-white/55">{item.description}</p>
             </div>
+          ))}
+        </div>
 
-            <div className="liquid-glass p-6 text-white/85">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Zap className="w-5 h-5 text-orange-400" />
-                <h3 className="text-lg text-white">Şeffaf</h3>
-              </div>
-              <p className="text-sm text-gray-400">Sabit kapsam + sprint</p>
-            </div>
-
-            <div className="liquid-glass p-6 text-white/85">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Zap className="w-5 h-5 text-orange-400" />
-                <h3 className="text-lg text-white">Hızlı</h3>
-              </div>
-              <p className="text-sm text-gray-400">48 saat içinde teklif</p>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="flex flex-col items-center gap-4">
-            <Link to={getPath(language, "contact")}>
-              <Button size="lg" variant="gradient" className="text-lg">
-                {t('pricing.cta')} →
-              </Button>
-            </Link>
-            <p className="text-sm text-gray-400">{t('pricing.cta_desc')}</p>
-          </div>
+        <div className="flex flex-col items-center gap-4">
+          <Button asChild size="lg" variant="gradient" className="text-sm">
+            <Link to={getPath(language, "contact")}>{t('pricing.cta')} →</Link>
+          </Button>
+          <p className="text-sm text-white/50">{t('pricing.cta_desc')}</p>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

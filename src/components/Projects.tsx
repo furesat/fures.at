@@ -1,6 +1,6 @@
 import type { LucideIcon } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
+import { CardIcon, GradientTitle, Section } from "./ui/section";
 import { ArrowRight, ExternalLink, Cpu, Globe, Hotel, Users, Camera, ChefHat, BarChart3, Briefcase, Plane, ShieldCheck, Shirt, MapPinned, BedDouble } from "lucide-react";
 import { MEINHOTEL_PATHS } from "../data/meinhotel";
 import { useLanguage, type Language } from "../contexts/LanguageContext";
@@ -380,94 +380,79 @@ export function Projects() {
   const { language, t } = useLanguage();
 
   return (
-    <section id="projeler" className="py-20 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-sm uppercase tracking-[0.32em] text-orange-400 mb-4">
-            {t('projects.subtitle')}
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent">
-            {t('projects.title')}
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            {t('projects.description')}
-          </p>
-        </div>
+    <Section id="projeler">
+      {/* Header */}
+      <div className="mb-14 text-center">
+        <p className="mb-3 text-sm uppercase tracking-[0.32em] text-orange-400">
+          {t('projects.subtitle')}
+        </p>
+        <GradientTitle className="mb-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
+          {t('projects.title')}
+        </GradientTitle>
+        <p className="mx-auto max-w-2xl text-base leading-relaxed text-white/60">
+          {t('projects.description')}
+        </p>
+      </div>
 
-        {/* Projects Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {PROJECTS.map((project) => {
-            const Icon = project.icon;
-            const translation = project.translations[language] ?? project.translations[FALLBACK_LANGUAGE];
-            const internalPath = project.internalPaths?.[language];
-            return (
-              <Card
-                key={project.id}
-                className="group relative overflow-hidden transition-all duration-500 hover:scale-[1.02]"
-              >
-                <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.22),transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-80"></div>
+      {/* Projects grid */}
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {PROJECTS.map((project) => {
+          const Icon = project.icon;
+          const translation = project.translations[language] ?? project.translations[FALLBACK_LANGUAGE];
+          const internalPath = project.internalPaths?.[language];
+          return (
+            <article
+              key={project.id}
+              className="fures-card group flex flex-col rounded-[2rem] p-7 hover:-translate-y-0.5"
+            >
+              <CardIcon className="transition-transform duration-300 group-hover:scale-105">
+                <Icon className="h-5 w-5 text-white" />
+              </CardIcon>
 
-                <CardHeader className="relative">
-                  <div className="liquid-icon mb-4 flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-105">
-                    <Icon className="h-7 w-7 text-white" />
-                  </div>
-                  <CardTitle className="text-xl text-white group-hover:text-orange-400 transition-colors line-clamp-2">
-                    {translation.name}
-                  </CardTitle>
-                </CardHeader>
-
-                <CardContent className="relative">
-                  <CardDescription className="text-gray-400 mb-6 line-clamp-3">
-                    {translation.description}
-                  </CardDescription>
-                  
-                  <Button
-                    variant="outline"
-                    className="w-full justify-center text-sm"
-                    asChild
-                  >
-                    {internalPath ? (
-                      <Link to={internalPath}>
-                        {t('projects.visit_project')}
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                      </Link>
-                    ) : (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer">
-                        {t('projects.visit_project')}
-                        <ExternalLink className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
-                      </a>
-                    )}
-                  </Button>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-20 text-center">
-          <div className="relative">
-            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-orange-500/15 via-transparent to-purple-600/15 blur-3xl"></div>
-            <div className="liquid-glass relative rounded-[2.5rem] border border-white/15 p-12 text-white">
-              <h3 className="text-3xl lg:text-4xl mb-6 bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent">
-                {t('projects.start_heading')}
+              <h3 className="mb-2.5 text-base font-semibold text-white transition-colors group-hover:text-orange-400" style={{ letterSpacing: '-0.02em' }}>
+                {translation.name}
               </h3>
-              <p className="text-gray-400 mb-10 max-w-2xl mx-auto text-lg">
-                {t('projects.start_body')}
+              <p className="mb-6 line-clamp-4 text-sm leading-relaxed text-white/55">
+                {translation.description}
               </p>
-              <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-                <Button asChild size="lg" variant="gradient" className="text-lg">
-                  <Link to={getPath(language, "contact")}>{t('projects.start_primary_cta')}</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg">
-                  <Link to={getPath(language, "projects")}>{t('projects.start_secondary_cta')}</Link>
-                </Button>
-              </div>
-            </div>
+
+              <Button variant="outline" className="mt-auto w-full justify-center text-sm" asChild>
+                {internalPath ? (
+                  <Link to={internalPath}>
+                    {t('projects.visit_project')}
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </Link>
+                ) : (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    {t('projects.visit_project')}
+                    <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:scale-110" />
+                  </a>
+                )}
+              </Button>
+            </article>
+          );
+        })}
+      </div>
+
+      {/* Bottom CTA */}
+      <div className="mt-16">
+        <div className="fures-card mx-auto max-w-4xl rounded-[2.5rem] p-10 text-center sm:p-12">
+          <GradientTitle as="h3" className="mb-4 text-2xl font-bold sm:text-3xl lg:text-4xl">
+            {t('projects.start_heading')}
+          </GradientTitle>
+          <p className="mx-auto mb-9 max-w-2xl text-base leading-relaxed text-white/60">
+            {t('projects.start_body')}
+          </p>
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Button asChild size="lg" variant="gradient" className="text-sm">
+              <Link to={getPath(language, "contact")}>{t('projects.start_primary_cta')}</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="text-sm">
+              <Link to={getPath(language, "projects")}>{t('projects.start_secondary_cta')}</Link>
+            </Button>
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

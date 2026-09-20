@@ -10,18 +10,9 @@ export function About() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="about-section py-32 relative overflow-hidden bg-black">
-      {/* Background with center glow */}
-      <div className="absolute inset-0">
-        <div className="about-bg-layer absolute inset-0 bg-gradient-to-br from-orange-900/10 via-black to-purple-900/10"></div>
-        <div className="about-center-glow absolute top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-gradient-radial from-orange-500/15 via-purple-600/10 to-transparent blur-3xl animate-glow-pulse"></div>
-      </div>
-
-      {/* Grid Pattern */}
-      <div className="about-grid-pattern absolute inset-0 opacity-5" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
-        backgroundSize: '50px 50px'
-      }}></div>
+    <section ref={ref} className="about-section fures-section">
+      {/* Ambient wash (theme-aware, see .fures-section-glow) */}
+      <div className="about-bg-layer fures-section-glow" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -30,13 +21,13 @@ export function About() {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center gap-6"
         >
-          <div className="liquid-icon w-20 h-20">
-            <Lightbulb className="w-10 h-10 text-white" />
+          <div className="liquid-icon flex h-16 w-16 items-center justify-center rounded-full">
+            <Lightbulb className="h-7 w-7 text-white" />
           </div>
-          <h2 className="about-hero-title text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+          <h2 className="about-hero-title text-3xl font-bold text-white sm:text-4xl lg:text-5xl" style={{ letterSpacing: "-0.02em" }}>
             {t('why_fures.title')}
           </h2>
-          <p className="about-hero-description max-w-3xl text-lg sm:text-xl text-gray-300/85">
+          <p className="about-hero-description max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">
             {t('why_fures.description')}
           </p>
         </motion.div>
@@ -45,7 +36,7 @@ export function About() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.8, 0.35, 1] }}
-          className="liquid-glass relative mt-12 h-[60vh] w-full overflow-hidden rounded-[3rem] border border-white/15 shadow-[0_48px_120px_-60px_rgba(10,12,30,0.95)]"
+          className="fures-card relative mt-12 h-[60vh] w-full overflow-hidden rounded-[2.5rem]"
         >
           <iframe
             src="https://player.vimeo.com/video/1054772121?autoplay=1&loop=1&autopause=0&muted=1&playsinline=1&background=1&controls=0"

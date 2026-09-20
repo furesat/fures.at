@@ -61,7 +61,7 @@ export function HeroDE() {
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16"
-      style={{ background: isLight ? "#f5f5f7" : "#000" }}
+      style={{ background: isLight ? "#f5f5f7" : "#0b0e14" }}
     >
       {/* Three.js silk cloth background */}
       <ClothCanvas />
@@ -73,7 +73,7 @@ export function HeroDE() {
           zIndex: 2,
           background: isLight
             ? "linear-gradient(90deg, rgba(245,245,247,0.78) 0%, rgba(245,245,247,0.5) 30%, rgba(245,245,247,0.1) 60%, rgba(245,245,247,0) 75%), linear-gradient(180deg, rgba(245,245,247,0.45) 0%, rgba(245,245,247,0) 30%, rgba(245,245,247,0) 70%, rgba(245,245,247,0.55) 100%)"
-            : "linear-gradient(90deg, rgba(5,5,5,0.88) 0%, rgba(5,5,5,0.6) 30%, rgba(5,5,5,0.15) 60%, rgba(5,5,5,0) 75%), linear-gradient(180deg, rgba(5,5,5,0.45) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.55) 100%)",
+            : "linear-gradient(90deg, rgba(11,14,20,0.88) 0%, rgba(11,14,20,0.6) 30%, rgba(11,14,20,0.15) 60%, rgba(11,14,20,0) 75%), linear-gradient(180deg, rgba(11,14,20,0.45) 0%, rgba(11,14,20,0) 30%, rgba(11,14,20,0) 70%, rgba(11,14,20,0.55) 100%)",
         }}
       />
 
@@ -84,7 +84,7 @@ export function HeroDE() {
           initial="hidden"
           animate="visible"
           custom={0}
-          className="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 mb-8 rounded-full bg-white/5 border border-white/12 text-orange-300 text-sm font-medium backdrop-blur-sm"
+          className="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 mb-8 rounded-full bg-white/5 border border-white/10 text-orange-300 text-sm font-medium backdrop-blur-sm"
         >
           <span className="flex items-center gap-1.5"><span>🏨</span> Hotel-Website</span>
           <span className="text-white/20">·</span>
