@@ -235,7 +235,7 @@ export function HeaderDE() {
               })}
 
               {moreLinks.length > 0 && (
-                <DropdownMenu>
+                <DropdownMenu modal={false}>
                   <DropdownMenuTrigger asChild>
                     <button
                       type="button"
@@ -278,7 +278,7 @@ export function HeaderDE() {
           {/* Desktop right: theme toggle + lang + CTA */}
           <div className="hidden shrink-0 items-center gap-2 md:flex">
             <ThemeToggle />
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <button className="fures-lang-pill text-white/65 hover:text-white/90" onClick={triggerDockBounce}>
                   <Globe data-dock-icon className="h-3.5 w-3.5" />
@@ -308,7 +308,7 @@ export function HeaderDE() {
           {/* Mobile: theme toggle + lang + hamburger */}
           <div className="ml-auto flex shrink-0 items-center gap-2 md:hidden">
             <ThemeToggle />
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <button className="fures-lang-pill-sm text-white/70" onClick={triggerDockBounce}>
                   <Globe data-dock-icon className="h-3.5 w-3.5" />
