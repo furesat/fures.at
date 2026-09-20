@@ -1,5 +1,14 @@
 # AI Continuation State
 
+## 2026-09-20 Aqua Lens preview refinement
+
+- Removed the visible horizontal water-line bands from the canvas. The living layer now uses only soft moving optical pools, tiny droplets, trails, pointer response and ripples.
+- Added a full-page organic Aqua backdrop scene behind the site: cyan, sky and amber liquid fields plus a faint oversized FURES word. Light mode intentionally shows this scene more clearly; dark mode keeps the same geometry at lower intensity.
+- Added thicker left/right/bottom refractive edge layers to cards, nav and dropdown surfaces so the ends/corners read as curved liquid volume instead of a flat translucent panel.
+- Where SVG backdrop displacement is supported, canonical cards, nav and dropdowns now use the existing `#aquaWater` filter too; form inputs use the smaller displacement filter.
+- Safari/iPhone still cannot use SVG displacement inside backdrop-filter, so they retain the animated canvas + separate edge backdrop blur/saturation fallback.
+- No merge. Continue using PR #137 and its Netlify deploy preview as the visual approval gate.
+
 ## 2026-09-20 Aqua Lens living-water preview
 
 - Added `src/components/LivingWaterSystem.tsx`, a reusable canvas enhancement for the existing shared surface classes rather than a second card design system.
