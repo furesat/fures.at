@@ -38,7 +38,6 @@ class LivingWaterSurface {
   height = 0;
   dpr = 1;
   seed = Math.random() * 7;
-  pointer = { x: 0.5, y: 0.5, active: false };
   droplets: Droplet[] = [];
   ripples: Ripple[] = [];
 
@@ -69,25 +68,10 @@ class LivingWaterSurface {
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(this.host);
 
-    this.host.addEventListener("pointerenter", this.onPointerMove, { passive: true });
-    this.host.addEventListener("pointermove", this.onPointerMove, { passive: true });
-    this.host.addEventListener("pointerleave", this.onPointerLeave, { passive: true });
     this.host.addEventListener("pointerdown", this.onPointerDown, { passive: true });
 
     this.resize();
   }
-
-  onPointerMove = (event: PointerEvent) => {
-    const rect = this.host.getBoundingClientRect();
-    if (!rect.width || !rect.height) return;
-    this.pointer.x = clamp((event.clientX - rect.left) / rect.width, 0, 1);
-    this.pointer.y = clamp((event.clientY - rect.top) / rect.height, 0, 1);
-    this.pointer.active = true;
-  };
-
-  onPointerLeave = () => {
-    this.pointer.active = false;
-  };
 
   onPointerDown = (event: PointerEvent) => {
     const rect = this.host.getBoundingClientRect();
@@ -109,7 +93,7 @@ class LivingWaterSurface {
     const rect = this.host.getBoundingClientRect();
     this.width = Math.max(1, rect.width);
     this.height = Math.max(1, rect.height);
-    this.dpr = Math.min(window.devicePixelRatio || 1, this.width < 680 ? 1.35 : 1.65);
+    this.dpr = Math.min(window.devicePixelRatio || 1, this.width < 680 ? 1 : 1.2);
 
     const pixelWidth = Math.max(1, Math.round(this.width * this.dpr));
     const pixelHeight = Math.max(1, Math.round(this.height * this.dpr));
@@ -125,7 +109,7 @@ class LivingWaterSurface {
   }
 
   createDroplets() {
-    const count = clamp(Math.round(this.width / 190), 2, 6);
+    const count = clamp(Math.round(this.width / 260), 1, 4);
     this.droplets = Array.from({ length: count }, () => ({
       x: random(0.08, 0.92),
       y: random(-0.65, 1),
@@ -148,7 +132,8 @@ class LivingWaterSurface {
 
     // No horizontal wave lines. The water stays alive through soft,
     // continuously moving optical pools with irregular elliptical geometry.
-    for (let index = 0; index < 4; index += 1) {
+    const poolCount = this.height < 110 ? 1 : 2;
+    for (let index = 0; index < poolCount; index += 1) {
       const phase = now * (0.00016 + index * 0.000025) + this.seed * (1.7 + index * 0.3);
       const x = (0.16 + index * 0.23 + Math.sin(phase) * 0.07) * w;
       const y = (0.18 + (index % 2) * 0.42 + Math.cos(phase * 0.77) * 0.09) * h;
@@ -170,41 +155,6 @@ class LivingWaterSurface {
     }
 
     ctx.restore();
-  }
-
-  drawPointerLens(now: number, reducedMotion: boolean) {
-    if (!this.pointer.active || reducedMotion) return;
-
-    const ctx = this.ctx;
-    const x = this.pointer.x * this.width;
-    const y = this.pointer.y * this.height;
-    const radius = Math.max(34, Math.min(this.width, this.height) * 0.16);
-    const gradient = ctx.createRadialGradient(
-      x - radius * 0.24,
-      y - radius * 0.28,
-      0,
-      x,
-      y,
-      radius,
-    );
-
-    gradient.addColorStop(0, "rgba(255,255,255,0.14)");
-    gradient.addColorStop(0.52, "rgba(126,231,240,0.055)");
-    gradient.addColorStop(0.8, "rgba(255,255,255,0.095)");
-    gradient.addColorStop(1, "rgba(255,255,255,0)");
-
-    ctx.fillStyle = gradient;
-    ctx.beginPath();
-    ctx.ellipse(
-      x,
-      y,
-      radius * (1 + Math.sin(now * 0.0016) * 0.018),
-      radius * 0.72 * (1 + Math.cos(now * 0.0013) * 0.016),
-      Math.sin(now * 0.0005) * 0.045,
-      0,
-      Math.PI * 2,
-    );
-    ctx.fill();
   }
 
   drawRipples(deltaMs: number, reducedMotion: boolean) {
@@ -336,7 +286,6 @@ class LivingWaterSurface {
     ctx.fillRect(0, 0, this.width, this.height);
 
     this.drawFlow(now);
-    this.drawPointerLens(now, reducedMotion);
     this.drawRipples(deltaMs, reducedMotion);
     this.drawDroplets(now, deltaMs, reducedMotion);
     this.drawMeniscus(now);
@@ -344,9 +293,6 @@ class LivingWaterSurface {
 
   destroy() {
     this.resizeObserver.disconnect();
-    this.host.removeEventListener("pointerenter", this.onPointerMove);
-    this.host.removeEventListener("pointermove", this.onPointerMove);
-    this.host.removeEventListener("pointerleave", this.onPointerLeave);
     this.host.removeEventListener("pointerdown", this.onPointerDown);
     this.canvas.remove();
     this.edgeLayers.forEach((edge) => edge.remove());
@@ -397,20 +343,25 @@ export function LivingWaterSystem() {
     mutationObserver.observe(document.body, { childList: true, subtree: true });
 
     let animationFrame = 0;
-    let previous = performance.now();
+    let previousDraw = performance.now();
+    const frameInterval = 1000 / 30;
 
     const animate = (now: number) => {
-      const delta = Math.min(34, now - previous);
-      previous = now;
+      const elapsed = now - previousDraw;
 
-      if (!document.hidden) {
-        for (const surface of Array.from(surfaces)) {
-          if (!surface.host.isConnected) {
-            surfaces.delete(surface);
-            surface.destroy();
-            continue;
+      if (elapsed >= frameInterval) {
+        const delta = Math.min(50, elapsed);
+        previousDraw = now;
+
+        if (!document.hidden) {
+          for (const surface of Array.from(surfaces)) {
+            if (!surface.host.isConnected) {
+              surfaces.delete(surface);
+              surface.destroy();
+              continue;
+            }
+            surface.draw(now, delta, reducedMotion.matches);
           }
-          surface.draw(now, delta, reducedMotion.matches);
         }
       }
 
@@ -434,7 +385,6 @@ export function LivingWaterSystem() {
       <span className="fures-aqua-scene__orb fures-aqua-scene__orb--amber" />
       <span className="fures-aqua-scene__orb fures-aqua-scene__orb--sky" />
       <span className="fures-aqua-scene__veil" />
-      <span className="fures-aqua-scene__word">FURES</span>
     </div>
   );
 }
