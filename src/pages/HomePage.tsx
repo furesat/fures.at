@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { Hero } from "../components/Hero";\nimport { CosmicContentShell } from "../components/CosmicContentShell";
+import { Hero } from "../components/Hero";
+import { CosmicContentShell } from "../components/CosmicContentShell";
 import { WhyUs } from "../components/WhyUs";
 import { Mission } from "../components/Mission";
 import { Services } from "../components/Services";
