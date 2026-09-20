@@ -387,7 +387,7 @@ export function Projects() {
           <p className="text-sm uppercase tracking-[0.32em] text-orange-400 mb-4">
             {t('projects.subtitle')}
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6 bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="mx-auto mb-6 block w-fit bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-4xl text-transparent md:text-5xl lg:text-6xl">
             {t('projects.title')}
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -450,7 +450,7 @@ export function Projects() {
           <div className="relative">
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-orange-500/15 via-transparent to-purple-600/15 blur-3xl"></div>
             <div className="liquid-glass relative rounded-[2.5rem] border border-white/15 p-12 text-white">
-              <h3 className="text-3xl lg:text-4xl mb-6 bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-transparent">
+              <h3 className="mx-auto mb-6 block w-fit bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-3xl text-transparent lg:text-4xl">
                 {t('projects.start_heading')}
               </h3>
               <p className="text-gray-400 mb-10 max-w-2xl mx-auto text-lg">

@@ -1,5 +1,13 @@
 # AI Continuation State
 
+## 2026-09-20 Light default theme + dark palette pass
+
+- Light is now the default theme for everyone: `DEFAULT_THEME = 'light'` in `src/contexts/ThemeContext.tsx`, an explicit toggle still persists through the `fures-theme` localStorage key, and `prefers-color-scheme` is ignored on purpose. An inline script in `index.html` applies the theme before first paint (no dark flash); `<body>` no longer carries `bg-black`.
+- Dark mode was rebuilt around a `#0b0e14` base: `bg-black` sections are transparent so the body gradient shows, cards are `#141822` with a visible edge, dim body text is lifted to a cool grey, warm section washes were rebalanced towards violet, and the hero silk (`ClothCanvas`) uses a cool charcoal base with lifted ambient light.
+- Layout bugs fixed in passing: centred hero icon badges (Mission/FAQ/Pricing) were flush left; gradient-clipped headings needed `mx-auto block w-fit` to show the whole orange→purple range; campaign pages now reuse `page-hero-glow`.
+- Both theme override blocks live at the end of `src/styles/globals.css` — extend those instead of hardcoding colours in components.
+- PR #132 (MeinHotel case study + SEO pass) is merged into `main`; this branch was restarted from `origin/main` for the theme work.
+
 ## 2026-09-20 MeinHotel PMS case study + light-mode colour pass
 
 - New public case study for the in-house PMS at `/tr/projeler/meinhotel-pms`, `/en/projects/meinhotel-pms`, `/ru/projects/meinhotel-pms`, `/de/referenzen/meinhotel-pms`. Copy lives in `src/data/meinhotel.ts` (four languages), rendering in `src/pages/MeinHotelPage.tsx`, routes in `src/App.tsx`, sitemap entries in `src/sitemap.xml.njk`.
@@ -22,7 +30,7 @@
 
 ## Last Completed Phase
 
-Published the MeinHotel PMS case study in four languages with direct demo/login access to the live system, and fixed the German-facing design, colour and navigation defects found during the review.
+Made light mode the product default and reworked the dark palette so both themes read as deliberate designs.
 
 ## Current Project Status
 

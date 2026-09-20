@@ -54,7 +54,7 @@ export function Hero() {
   return (
     <section
       className="relative flex min-h-screen items-center justify-center overflow-x-hidden overflow-y-visible pt-16"
-      style={{ background: isLight ? "#f5f5f7" : "#000" }}
+      style={{ background: isLight ? "#f5f5f7" : "#0b0e14" }}
     >
       {/* Three.js silk cloth background */}
       <ClothCanvas />
@@ -66,7 +66,7 @@ export function Hero() {
           zIndex: 2,
           background: isLight
             ? "linear-gradient(90deg, rgba(245,245,247,0.82) 0%, rgba(245,245,247,0.55) 25%, rgba(245,245,247,0.15) 50%, rgba(245,245,247,0) 65%), linear-gradient(180deg, rgba(245,245,247,0.5) 0%, rgba(245,245,247,0) 30%, rgba(245,245,247,0) 70%, rgba(245,245,247,0.6) 100%)"
-            : "linear-gradient(90deg, rgba(5,5,5,0.92) 0%, rgba(5,5,5,0.7) 25%, rgba(5,5,5,0.2) 50%, rgba(5,5,5,0) 65%), linear-gradient(180deg, rgba(5,5,5,0.5) 0%, rgba(5,5,5,0) 30%, rgba(5,5,5,0) 70%, rgba(5,5,5,0.6) 100%)",
+            : "linear-gradient(90deg, rgba(11,14,20,0.92) 0%, rgba(11,14,20,0.7) 25%, rgba(11,14,20,0.2) 50%, rgba(11,14,20,0) 65%), linear-gradient(180deg, rgba(11,14,20,0.5) 0%, rgba(11,14,20,0) 30%, rgba(11,14,20,0) 70%, rgba(11,14,20,0.6) 100%)",
         }}
       />
 

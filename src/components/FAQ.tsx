@@ -42,7 +42,7 @@ export function FAQ() {
         {/* Header */}
         <div className="text-center mb-16">
           {/* Icon */}
-          <div className="liquid-icon mb-8 flex h-20 w-20 items-center justify-center rounded-full">
+          <div className="liquid-icon mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full">
             <HelpCircle className="w-10 h-10 text-white" />
           </div>
 

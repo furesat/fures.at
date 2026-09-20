@@ -26,7 +26,7 @@ export function Mission() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Icon Badge */}
-        <div className="liquid-icon mb-8 flex h-20 w-20 items-center justify-center rounded-full">
+        <div className="liquid-icon mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full">
           <Target className="w-10 h-10 text-white" />
         </div>
 
