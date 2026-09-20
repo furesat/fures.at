@@ -93,7 +93,7 @@ class LivingWaterSurface {
     const rect = this.host.getBoundingClientRect();
     this.width = Math.max(1, rect.width);
     this.height = Math.max(1, rect.height);
-    this.dpr = Math.min(window.devicePixelRatio || 1, this.width < 680 ? 1 : 1.2);
+    this.dpr = 1;
 
     const pixelWidth = Math.max(1, Math.round(this.width * this.dpr));
     const pixelHeight = Math.max(1, Math.round(this.height * this.dpr));
@@ -344,7 +344,7 @@ export function LivingWaterSystem() {
 
     let animationFrame = 0;
     let previousDraw = performance.now();
-    const frameInterval = 1000 / 30;
+    const frameInterval = 1000 / 20;
 
     const animate = (now: number) => {
       const elapsed = now - previousDraw;
