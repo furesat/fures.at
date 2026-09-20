@@ -1,3 +1,8 @@
+## 2026-09-20 Cosmic homepage animation removed
+
+- At the owner's request, PR #138 (cosmic V3 homepage background) was reverted in commit `49d66fd990ff457f3d71f348add4ebc3bff204ba`. The homepage Hero, sections, existing design, and animation-free styles are back to their pre-PR #138 state.
+- Do not re-add the cosmic background to the Fures homepage. The original V3 prototype is preserved as a conversation artifact for possible use in another project.
+
 # AI Continuation State
 
 ## 2026-09-20 Appointment modal stacking fix
