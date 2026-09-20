@@ -118,7 +118,7 @@ export function ContactPageDE() {
             {t("contact.title")}
           </span>
           <h1
-            className="text-4xl sm:text-5xl font-bold text-white mb-4"
+            className="fures-gradient-text is-centered text-4xl sm:text-5xl font-bold mb-4"
             style={{ letterSpacing: "-0.03em" }}
           >
             {t("contact.subtitle")}

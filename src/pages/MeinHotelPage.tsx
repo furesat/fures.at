@@ -154,7 +154,7 @@ export function MeinHotelPage() {
               {content.badge}
             </span>
             <h1
-              className="mx-auto mb-5 block w-fit bg-gradient-to-r from-orange-400 to-purple-600 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl lg:text-6xl"
+              className="fures-gradient-text is-centered mx-auto mb-5 text-4xl font-bold sm:text-5xl lg:text-6xl"
               style={{ letterSpacing: "-0.03em" }}
             >
               {content.title}

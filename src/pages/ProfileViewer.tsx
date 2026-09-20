@@ -133,7 +133,7 @@ export function ProfileViewer({ profile }: ProfileViewerProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-300/80 mb-3">
                 Dijital Profil
               </p>
-              <h1 className="text-3xl sm:text-4xl font-semibold text-white mb-4">{profile.title}</h1>
+              <h1 className="fures-gradient-text text-3xl sm:text-4xl font-semibold mb-4">{profile.title}</h1>
               <p className="text-sm sm:text-base text-gray-300/85 max-w-2xl leading-relaxed">
                 {profile.description}
               </p>

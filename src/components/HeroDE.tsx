@@ -106,7 +106,7 @@ export function HeroDE() {
         >
           Mehr{" "}
           <span
-            className="inline-block transition-all duration-300 text-orange-400"
+            className="fures-gradient-text transition-all duration-300"
             style={{
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(6px)",

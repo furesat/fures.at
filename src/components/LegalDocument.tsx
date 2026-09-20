@@ -27,7 +27,7 @@ export function LegalDocument({ content }: LegalDocumentProps) {
           <p className="text-sm uppercase tracking-[0.3em] text-orange-400 mb-3">
             {content.updatedOn}
           </p>
-          <h1 className="mx-auto block w-fit bg-gradient-to-r from-orange-400 to-purple-500 bg-clip-text text-4xl font-bold leading-tight text-transparent sm:text-5xl lg:text-6xl">
+          <h1 className="fures-gradient-text is-centered mx-auto text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
             {content.title}
           </h1>
         </div>

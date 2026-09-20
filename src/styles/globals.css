@@ -2704,3 +2704,38 @@ html[data-theme="light"] .aqua-sheen {
     opacity: 0;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   .fures-gradient-text — sayfa başlıklarının paleti
+
+   MeinHotel referans sayfasının belirlediği turuncu → mor geçişi. Daha
+   önce iki yerde elle yazılmıştı ve tonları kaymıştı (purple-500 ile
+   purple-600); tek kaynağa alındı, sayfa başlıkları buradan besleniyor.
+
+   Kural referans sayfadan geliyor: H1 degrade, bölüm H2'leri düz. Her
+   başlığı degrade yapmak vurguyu yok eder.
+   ══════════════════════════════════════════════════════════════════════ */
+.fures-gradient-text {
+  background-image: linear-gradient(to right, #fb923c 0%, #9333ea 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  /* Degrade metin kendi kutusu kadar geniş olmalı; blok bir başlıkta
+     geçiş satır değil sayfa genişliğine yayılır ve tonlar kaybolur. */
+  display: inline-block;
+  width: fit-content;
+}
+
+/* Açık temada turuncu uç beyaz zeminde çok açık kalıyor: iki tonu da
+   bir kademe koyulaştırıyoruz, renk ailesi aynı kalıyor. */
+html.theme-light .fures-gradient-text,
+html[data-theme="light"] .fures-gradient-text {
+  background-image: linear-gradient(to right, #f97316 0%, #7e22ce 100%);
+}
+
+/* Ortalanmış başlıklarda kutu içerik kadar olduğu için ortalama bozulur. */
+.fures-gradient-text.is-centered {
+  display: block;
+  margin-inline: auto;
+}

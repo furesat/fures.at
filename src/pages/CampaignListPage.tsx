@@ -56,7 +56,7 @@ export function CampaignListPage() {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.4em] text-white/70">
             {t("nav.campaigns")}
           </span>
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          <h1 className="fures-gradient-text is-centered mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">
             {t("campaigns.title")}
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-base text-slate-300 sm:text-lg">
