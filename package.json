@@ -7,11 +7,10 @@
     "dev": "vite",
     "dev:eleventy": "ELEVENTY_ENV=development npx @11ty/eleventy --serve",
     "build:travel": "node scripts/build-travel.mjs",
-    "build": "npx tsc --noEmit > public/build-diagnostic.txt 2>&1 || true",
+    "build": "npm run build:travel && tsc && vite build && ELEVENTY_ENV=production npx @11ty/eleventy && node scripts/build-profiles.mjs",
     "build:profiles": "node scripts/build-profiles.mjs",
     "build:eleventy": "ELEVENTY_ENV=production npx @11ty/eleventy",
-    "preview": "vite preview",
-    "build:diagnostic-original": "npm run build:travel && tsc && vite build && ELEVENTY_ENV=production npx @11ty/eleventy && node scripts/build-profiles.mjs"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@google/genai": "^1.24.0",
