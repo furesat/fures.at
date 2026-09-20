@@ -16,6 +16,7 @@
 
 const DEFS_ID = "aqua-glass-defs";
 const OFFSET_ID = "aqua-wave-offset";
+const OFFSET_SMALL_ID = "aqua-wave-offset-sm";
 
 /** Geliştirici ayarları — arayüzde kontrol yok, değerler burada sabit. */
 export const AQUA_SETTINGS = {
@@ -23,6 +24,9 @@ export const AQUA_SETTINGS = {
   surface: "water" as "water" | "ice",
   /** Yer değiştirme gücü (piksel). Yatayda bu kadar, dikeyde %30'u. */
   displace: 15,
+  /** Küçük yüzeyler için ayrı ölçek: 36 piksellik bir hapta 15 piksellik
+      öteleme kırılma değil gürültü üretiyor. */
+  displaceSmall: 6,
   /** Dalga genliği (piksel) ve saniyedeki güncelleme sayısı. */
   waveAmplitude: 5,
   waveFps: 20,
@@ -42,10 +46,14 @@ function el(name: string, attrs: Record<string, string>): SVGElement {
  * Yeşil kanal 0.5'e (nötr) doğru bastırılıyor: başlık çubuğu yüksek değil,
  * dikey öteleme kendi dışına taşıp boş piksel çekiyor.
  */
-function injectDefs(): SVGElement | null {
-  if (document.getElementById(DEFS_ID)) {
-    return document.getElementById(OFFSET_ID) as SVGElement | null;
-  }
+function collectOffsets(): SVGElement[] {
+  return [OFFSET_ID, OFFSET_SMALL_ID]
+    .map((id) => document.getElementById(id) as SVGElement | null)
+    .filter((node): node is SVGElement => node !== null);
+}
+
+function injectDefs(): SVGElement[] {
+  if (document.getElementById(DEFS_ID)) return collectOffsets();
 
   const svg = el("svg", { id: DEFS_ID, "aria-hidden": "true", focusable: "false" });
   svg.setAttribute(
@@ -65,28 +73,35 @@ function injectDefs(): SVGElement | null {
   };
 
   // Su — gürültü sabit, okunduğu nokta kayıyor (dx JS'ten güncelleniyor).
-  const water = el("filter", { id: "aquaWater", ...region });
-  water.appendChild(
-    el("feTurbulence", {
-      type: "fractalNoise",
-      baseFrequency: "0.010 0.015",
-      numOctaves: "1",
-      seed: "4",
-      result: "n",
-    }),
+  // Büyük ve küçük yüzeyler için iki ayrı ölçek; ikisi de aynı dalgayı sürüyor.
+  const water = (id: string, offsetId: string, scale: number, freq: string) => {
+    const f = el("filter", { id, ...region });
+    f.appendChild(
+      el("feTurbulence", {
+        type: "fractalNoise",
+        baseFrequency: freq,
+        numOctaves: "1",
+        seed: "4",
+        result: "n",
+      }),
+    );
+    f.appendChild(el("feOffset", { id: offsetId, in: "n", dx: "0", dy: "0", result: "no" }));
+    f.appendChild(el("feColorMatrix", { in: "no", type: "matrix", values: flatten, result: "map" }));
+    f.appendChild(
+      el("feDisplacementMap", {
+        in: "SourceGraphic",
+        in2: "map",
+        scale: String(scale),
+        xChannelSelector: "R",
+        yChannelSelector: "G",
+      }),
+    );
+    return f;
+  };
+  defs.appendChild(water("aquaWater", OFFSET_ID, AQUA_SETTINGS.displace, "0.010 0.015"));
+  defs.appendChild(
+    water("aquaWaterSmall", OFFSET_SMALL_ID, AQUA_SETTINGS.displaceSmall, "0.024 0.032"),
   );
-  water.appendChild(el("feOffset", { id: OFFSET_ID, in: "n", dx: "0", dy: "0", result: "no" }));
-  water.appendChild(el("feColorMatrix", { in: "no", type: "matrix", values: flatten, result: "map" }));
-  water.appendChild(
-    el("feDisplacementMap", {
-      in: "SourceGraphic",
-      in2: "map",
-      scale: String(AQUA_SETTINGS.displace),
-      xChannelSelector: "R",
-      yChannelSelector: "G",
-    }),
-  );
-  defs.appendChild(water);
 
   // Buz — sabit duruyor, o yüzden üç kanalı ayrı ayrı kırabiliyor.
   // Camın renk kenarı buradan geliyor; hareketli olsaydı pahalı olurdu.
@@ -127,7 +142,7 @@ function injectDefs(): SVGElement | null {
 
   svg.appendChild(defs);
   document.body.appendChild(svg);
-  return document.getElementById(OFFSET_ID) as SVGElement | null;
+  return collectOffsets();
 }
 
 /**
@@ -153,7 +168,7 @@ export function initAquaGlass(): () => void {
   if (typeof window === "undefined" || typeof document === "undefined") return () => {};
 
   const root = document.documentElement;
-  const offset = injectDefs();
+  const offsets = injectDefs();
   const supported = canRefractBackdrop();
 
   root.dataset.aquaSurface = AQUA_SETTINGS.surface;
@@ -178,7 +193,8 @@ export function initAquaGlass(): () => void {
     const t = now / 1000;
     const a = AQUA_SETTINGS.waveAmplitude;
     const dx = Math.sin(t * 0.34) * a + Math.sin(t * 0.15 + 2) * a * 0.4;
-    offset?.setAttribute("dx", dx.toFixed(2));
+    const value = dx.toFixed(2);
+    for (const node of offsets) node.setAttribute("dx", value);
   };
 
   const sync = () => {
