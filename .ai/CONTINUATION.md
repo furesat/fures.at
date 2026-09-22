@@ -1,3 +1,11 @@
+## 2026-09-22 TFV cross-link and attribution correction (preview branch)
+
+- Replaced the incorrect German footer claim that Fures Tech is a project of the Tourismus Förder Verband. TFV is an independent organization and Fures Tech supports its technical/digital implementation; neither website should claim the other owns it.
+- Added a clearly labeled outbound TFV partner link in both Fures footers and a dedicated TFV project card with TR/EN/DE/RU copy in `src/components/Projects.tsx`. It links to `https://tourismusverband.net/` in a new tab.
+- Existing projects routes, SEO/sitemap and Netlify configuration were left unchanged. No new public Fures route was created, so no sitemap entry was needed.
+- Changes are on `feature/tfv-partner-showcase-20260922`. Do not merge or deploy to production until the owner explicitly approves. Connector-only review does not replace local `npx tsc --noEmit` and `npm run build` verification.
+- First step on continuation: confirm the links and relationship copy match the owner's expectations; run the build and preview at phone/desktop widths before any merge.
+
 ## 2026-09-20 Cosmic homepage animation removed
 
 - At the owner's request, PR #138 (cosmic V3 homepage background) was reverted in commit `49d66fd990ff457f3d71f348add4ebc3bff204ba`. The homepage Hero, sections, existing design, and animation-free styles are back to their pre-PR #138 state.
