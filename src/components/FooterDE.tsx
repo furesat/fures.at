@@ -89,15 +89,18 @@ export function FooterDE() {
             >
               fures.at
             </a>
-            &nbsp;|&nbsp;
+          </p>
+          <p className="text-center sm:text-left leading-relaxed">
+            Digitales Partnerprojekt:&nbsp;
             <a
-              href="https://tourismusverband.net"
+              href="https://tourismusverband.net/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-orange-400 transition-colors duration-200"
+              className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
             >
-              ein Projekt von Tourismus Förder Verband
+              Tourismus Förder Verband ↗
             </a>
+            <span className="block mt-1">Fures Tech unterstützt die technische Umsetzung des eigenständigen Verbands.</span>
           </p>
           <div className="flex gap-5">
             <Link
