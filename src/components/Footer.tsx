@@ -1,13 +1,21 @@
 import { Link } from "react-router-dom";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useLanguage, type Language } from "../contexts/LanguageContext";
 import { LANGUAGE_ROUTES } from "../utils/routes";
 import { MEINHOTEL_APP, MEINHOTEL_PATHS, getMeinHotelContent } from "../data/meinhotel";
+
+const TFV_ATTRIBUTION: Record<Language, { before: string; after: string }> = {
+  tr: { before: "Fures Tech, ", after: "'ın bir projesidir." },
+  en: { before: "Fures Tech is a project of ", after: "." },
+  de: { before: "Fures Tech ist ein Projekt von ", after: "." },
+  ru: { before: "Fures Tech — проект ", after: "." },
+};
 
 export function Footer() {
   const { t, language } = useLanguage();
   const logoSrc = "/images/fures.png";
   const r = LANGUAGE_ROUTES[language];
   const meinHotel = getMeinHotelContent(language);
+  const tfvAttribution = TFV_ATTRIBUTION[language];
 
   const footerLinks = [
     { title: t('nav.about'), href: r.about },
@@ -66,6 +74,22 @@ export function Footer() {
           {/* Copyright */}
           <div className="text-gray-400 text-sm text-center md:text-left">
             <p>{t('footer.copyright')}</p>
+            <p
+              className="mt-3 max-w-sm leading-relaxed"
+              style={{ color: "#DC0000", fontFamily: '"Inter", system-ui, sans-serif', fontSize: "13.5px" }}
+            >
+              {tfvAttribution.before}
+              <a
+                href="https://tourismusverband.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold underline-offset-2 hover:underline"
+                style={{ color: "inherit" }}
+              >
+                Tourismus Förder Verband
+              </a>
+              {tfvAttribution.after}
+            </p>
           </div>
 
           {/* PMS access */}
