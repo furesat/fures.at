@@ -3,23 +3,11 @@ import { useLanguage, type Language } from "../contexts/LanguageContext";
 import { LANGUAGE_ROUTES } from "../utils/routes";
 import { MEINHOTEL_APP, MEINHOTEL_PATHS, getMeinHotelContent } from "../data/meinhotel";
 
-const TFV_FOOTER: Record<Language, { label: string; description: string }> = {
-  tr: {
-    label: 'Dijital iş birliği',
-    description: 'Fures Tech, bağımsız TFV’nin dijital çalışmalarına teknik destek sağlar.',
-  },
-  en: {
-    label: 'Digital collaboration',
-    description: 'Fures Tech supports the independent TFV’s digital implementation.',
-  },
-  de: {
-    label: 'Digitales Partnerprojekt',
-    description: 'Fures Tech unterstützt die technische Umsetzung des eigenständigen TFV.',
-  },
-  ru: {
-    label: 'Цифровое сотрудничество',
-    description: 'Fures Tech помогает независимому TFV в цифровой реализации.',
-  },
+const TFV_ATTRIBUTION: Record<Language, { before: string; after: string }> = {
+  tr: { before: "Fures Tech, ", after: "'ın bir projesidir." },
+  en: { before: "Fures Tech is a project of ", after: "." },
+  de: { before: "Fures Tech ist ein Projekt von ", after: "." },
+  ru: { before: "Fures Tech — проект ", after: "." },
 };
 
 export function Footer() {
@@ -27,7 +15,7 @@ export function Footer() {
   const logoSrc = "/images/fures.png";
   const r = LANGUAGE_ROUTES[language];
   const meinHotel = getMeinHotelContent(language);
-  const tfvFooter = TFV_FOOTER[language];
+  const tfvAttribution = TFV_ATTRIBUTION[language];
 
   const footerLinks = [
     { title: t('nav.about'), href: r.about },
@@ -86,17 +74,21 @@ export function Footer() {
           {/* Copyright */}
           <div className="text-gray-400 text-sm text-center md:text-left">
             <p>{t('footer.copyright')}</p>
-            <p className="mt-3 max-w-sm text-xs leading-relaxed text-gray-400">
-              {tfvFooter.label}:&nbsp;
+            <p
+              className="mt-3 max-w-sm leading-relaxed"
+              style={{ color: "#DC0000", fontFamily: '"Inter", system-ui, sans-serif', fontSize: "13.5px" }}
+            >
+              {tfvAttribution.before}
               <a
                 href="https://tourismusverband.net/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 underline-offset-2 hover:text-orange-400 hover:underline transition-colors"
+                className="font-semibold underline-offset-2 hover:underline"
+                style={{ color: "inherit" }}
               >
-                Tourismus Förder Verband ↗
+                Tourismus Förder Verband
               </a>
-              <span className="block mt-1">{tfvFooter.description}</span>
+              {tfvAttribution.after}
             </p>
           </div>
 
