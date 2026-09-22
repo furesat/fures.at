@@ -84,19 +84,19 @@ export function FooterDE() {
             © {new Date().getFullYear()} Fures Tech — Maria Alm, Salzburgerland
             &nbsp;|&nbsp;
             <a
-              href="https://fures.at"
+              href="https://fures.tech"
               className="hover:text-orange-400 transition-colors duration-200"
             >
-              fures.at
+              fures.tech
             </a>
           </p>
-          <p className="text-center sm:text-left leading-relaxed">
+          <p className="text-center sm:text-left leading-relaxed text-gray-400">
             Digitales Partnerprojekt:&nbsp;
             <a
               href="https://tourismusverband.net/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-orange-400 transition-colors duration-200"
+              className="text-gray-200 hover:text-orange-400 transition-colors duration-200"
             >
               Tourismus Förder Verband ↗
             </a>
