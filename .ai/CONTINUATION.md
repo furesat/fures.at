@@ -1,10 +1,10 @@
-## 2026-09-22 TFV cross-link and attribution correction (preview branch)
+## 2026-09-22 TFV ownership and red copyright-style attribution (preview branch)
 
-- Replaced the incorrect German footer claim that Fures Tech is a project of the Tourismus Förder Verband. TFV is an independent organization and Fures Tech supports its technical/digital implementation; neither website should claim the other owns it.
-- Added a clearly labeled outbound TFV partner link in both Fures footers and a dedicated TFV project card with TR/EN/DE/RU copy in `src/components/Projects.tsx`. It links to `https://tourismusverband.net/` in a new tab.
-- Existing projects routes, SEO/sitemap and Netlify configuration were left unchanged. No new public Fures route was created, so no sitemap entry was needed.
-- Changes are on `feature/tfv-partner-showcase-20260922`. Do not merge or deploy to production until the owner explicitly approves. Connector-only review does not replace local `npx tsc --noEmit` and `npm run build` verification.
-- First step on continuation: confirm the links and relationship copy match the owner's expectations; run the build and preview at phone/desktop widths before any merge.
+- The owner clarified the authoritative relationship: **Fures Tech ist ein Projekt von Tourismus Förder Verband**. This supersedes the earlier independent-partner wording. Do not describe Fures Tech as independent from TFV or as a separate digital partner.
+- German `FooterDE.tsx` now displays that exact attribution with a hyperlink to `https://tourismusverband.net/`. Shared `Footer.tsx` uses the equivalent localized phrase in DE/TR/EN/RU.
+- The project attribution uses TFV brand red `#DC0000`, Inter font, and `13.5px` text sizing in the copyright area to align with the association's brand and copyright typography; the TFV reference page has Inter in its footer and the same 13.5px copyright size. This uses requested red instead of the reference site's muted copyright grey.
+- The TFV card in `Projects.tsx` describes Fures Tech as a project of the association in all four languages and links to its official website.
+- No routes, sitemap, SEO tags or Netlify configuration changed. No local build was run through the GitHub connector. Branch `feature/tfv-partner-showcase-20260922` is preview-only until owner approval. Verify `npx tsc --noEmit` and `npm run build`, then inspect the footer in both themes and mobile layout before merging.
 
 ## 2026-09-20 Cosmic homepage animation removed
 
