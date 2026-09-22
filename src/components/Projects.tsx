@@ -51,6 +51,33 @@ export const PROJECTS: readonly ProjectConfig[] = [
     },
   },
   {
+    id: 'tourismus-foerder-verband',
+    link: 'https://tourismusverband.net/',
+    icon: Hotel,
+    translations: {
+      tr: {
+        name: 'Tourismus Förder Verband | Dijital Turizm İş Birliği',
+        description:
+          'Avusturya’daki bağımsız Turizm Destek Birliği TFV’nin dijital varlığı için Fures Tech’in teknik katkısı. Konaklama işletmelerine yönelik danışmanlık ve dijitalleşme girişimini keşfedin.',
+      },
+      en: {
+        name: 'Tourismus Förder Verband | Digital Tourism Collaboration',
+        description:
+          'Fures Tech supports the digital presence of the independent Austrian Tourismus Förder Verband (TFV). Discover its advisory and digitalisation initiative for hospitality businesses.',
+      },
+      de: {
+        name: 'Tourismus Förder Verband | Digitales Partnerprojekt',
+        description:
+          'Fures Tech unterstützt die digitale Umsetzung des eigenständigen Tourismus Förder Verbands (TFV). Entdecken Sie dessen Beratungs- und Digitalisierungsangebot für Österreichs Gastgeber.',
+      },
+      ru: {
+        name: 'Tourismus Förder Verband | Цифровое сотрудничество',
+        description:
+          'Fures Tech помогает независимому австрийскому объединению Tourismus Förder Verband (TFV) с цифровым присутствием. Узнайте о консультациях и цифровизации для гостиничного бизнеса.',
+      },
+    },
+  },
+  {
     id: 'serakinci-platform',
     link: '/projeler/serakinci',
     icon: Cpu,
