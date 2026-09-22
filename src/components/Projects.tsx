@@ -56,24 +56,24 @@ export const PROJECTS: readonly ProjectConfig[] = [
     icon: Hotel,
     translations: {
       tr: {
-        name: 'Tourismus Förder Verband | Dijital Turizm İş Birliği',
+        name: 'Tourismus Förder Verband | Fures Tech',
         description:
-          'Avusturya’daki bağımsız Turizm Destek Birliği TFV’nin dijital varlığı için Fures Tech’in teknik katkısı. Konaklama işletmelerine yönelik danışmanlık ve dijitalleşme girişimini keşfedin.',
+          'Fures Tech, Tourismus Förder Verband’ın bir projesidir. Avusturya’daki konaklama ve turizm işletmeleri için danışmanlık ve dijitalleşme çalışmalarını keşfedin.',
       },
       en: {
-        name: 'Tourismus Förder Verband | Digital Tourism Collaboration',
+        name: 'Tourismus Förder Verband | Fures Tech',
         description:
-          'Fures Tech supports the digital presence of the independent Austrian Tourismus Förder Verband (TFV). Discover its advisory and digitalisation initiative for hospitality businesses.',
+          'Fures Tech is a project of Tourismus Förder Verband. Discover the association’s advisory and digitalisation work for hospitality and tourism businesses in Austria.',
       },
       de: {
-        name: 'Tourismus Förder Verband | Digitales Partnerprojekt',
+        name: 'Tourismus Förder Verband | Fures Tech',
         description:
-          'Fures Tech unterstützt die digitale Umsetzung des eigenständigen Tourismus Förder Verbands (TFV). Entdecken Sie dessen Beratungs- und Digitalisierungsangebot für Österreichs Gastgeber.',
+          'Fures Tech ist ein Projekt von Tourismus Förder Verband. Entdecken Sie die Beratung und digitale Unterstützung des Verbands für Österreichs Gastgeber.',
       },
       ru: {
-        name: 'Tourismus Förder Verband | Цифровое сотрудничество',
+        name: 'Tourismus Förder Verband | Fures Tech',
         description:
-          'Fures Tech помогает независимому австрийскому объединению Tourismus Förder Verband (TFV) с цифровым присутствием. Узнайте о консультациях и цифровизации для гостиничного бизнеса.',
+          'Fures Tech — проект Tourismus Förder Verband. Узнайте о консультациях и цифровой поддержке австрийских гостиничных и туристических предприятий.',
       },
     },
   },
