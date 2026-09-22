@@ -1,13 +1,33 @@
 import { Link } from "react-router-dom";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useLanguage, type Language } from "../contexts/LanguageContext";
 import { LANGUAGE_ROUTES } from "../utils/routes";
 import { MEINHOTEL_APP, MEINHOTEL_PATHS, getMeinHotelContent } from "../data/meinhotel";
+
+const TFV_FOOTER: Record<Language, { label: string; description: string }> = {
+  tr: {
+    label: 'Dijital iş birliği',
+    description: 'Fures Tech, bağımsız TFV’nin dijital çalışmalarına teknik destek sağlar.',
+  },
+  en: {
+    label: 'Digital collaboration',
+    description: 'Fures Tech supports the independent TFV’s digital implementation.',
+  },
+  de: {
+    label: 'Digitales Partnerprojekt',
+    description: 'Fures Tech unterstützt die technische Umsetzung des eigenständigen TFV.',
+  },
+  ru: {
+    label: 'Цифровое сотрудничество',
+    description: 'Fures Tech помогает независимому TFV в цифровой реализации.',
+  },
+};
 
 export function Footer() {
   const { t, language } = useLanguage();
   const logoSrc = "/images/fures.png";
   const r = LANGUAGE_ROUTES[language];
   const meinHotel = getMeinHotelContent(language);
+  const tfvFooter = TFV_FOOTER[language];
 
   const footerLinks = [
     { title: t('nav.about'), href: r.about },
@@ -66,6 +86,18 @@ export function Footer() {
           {/* Copyright */}
           <div className="text-gray-400 text-sm text-center md:text-left">
             <p>{t('footer.copyright')}</p>
+            <p className="mt-3 max-w-sm text-xs leading-relaxed text-gray-400">
+              {tfvFooter.label}:&nbsp;
+              <a
+                href="https://tourismusverband.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 underline-offset-2 hover:text-orange-400 hover:underline transition-colors"
+              >
+                Tourismus Förder Verband ↗
+              </a>
+              <span className="block mt-1">{tfvFooter.description}</span>
+            </p>
           </div>
 
           {/* PMS access */}
