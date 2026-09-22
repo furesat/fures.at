@@ -90,17 +90,20 @@ export function FooterDE() {
               fures.tech
             </a>
           </p>
-          <p className="text-center sm:text-left leading-relaxed text-gray-400">
-            Digitales Partnerprojekt:&nbsp;
+          <p
+            className="text-center sm:text-left leading-relaxed"
+            style={{ color: "#DC0000", fontFamily: '"Inter", system-ui, sans-serif', fontSize: "13.5px" }}
+          >
+            Fures Tech ist ein Projekt von&nbsp;
             <a
               href="https://tourismusverband.net/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-200 hover:text-orange-400 transition-colors duration-200"
+              className="font-semibold underline-offset-2 hover:underline"
+              style={{ color: "inherit" }}
             >
-              Tourismus Förder Verband ↗
-            </a>
-            <span className="block mt-1">Fures Tech unterstützt die technische Umsetzung des eigenständigen Verbands.</span>
+              Tourismus Förder Verband
+            </a>.
           </p>
           <div className="flex gap-5">
             <Link
