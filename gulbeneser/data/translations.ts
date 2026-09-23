@@ -44,7 +44,6 @@ export const translations = {
         date: '2023 – 2024',
         tasks: ['ICALT 2024 Dünya Bilgisayar Kongresi hazırlık ve koordinasyon süreçlerinde görev aldı.', 'Kongreye özel web sitesi tasarımını gerçekleştirdi.', 'Online kayıt sisteminin kurulum ve yönetimini sağladı.', 'Katılımcı iletişimi, lojistik destek ve etkinlik planlamasında aktif rol aldı.', 'Sosyal medya ve pazarlama stratejilerinin geliştirilmesi ve uygulanmasına katkıda bulundu.']
       },
-      mimoza: { role: 'Servis Elemanı (Garson)', company: 'Mimoza Beach Hotel', date: '2023 – 2024 (part-time & full-time)', tasks: ['Müşteri siparişlerini alma, servis yapma ve müşteri memnuniyetini sağlama görevlerini yürüttü.'] },
       eser_emlak: { role: 'Satış ve Muhasebe', company: 'Eser Emlak', date: '2020 – 2022', tasks: ['Satış süreçlerini ve muhasebe işlemlerini yürüttü.', 'Müşteri ilişkileri ve finansal kayıtların takibini yaptı.'] },
       tasksTitle: 'Görev ve Sorumluluklar', problemTitle: 'PROBLEM', actionTitle: 'AKSİYON', resultTitle: 'SONUÇ', learningsTitle: 'ÖĞRENİLENLER & BAŞARISIZLIK YÖNETİMİ'
     },
@@ -89,9 +88,6 @@ export const translations = {
         { name: 'Yapay Zeka Destekli Serakıncı Ürün Platformu', description: 'Yapay zeka tarafından oluşturulan açıklamalar ve veri kazıma işlem hatları ile otomatikleştirilmiş, çok dilli, SEO odaklı bir katalog.', link: '/projeler/serakinci' },
         { name: 'Otel ve Acenta Entegrasyonu', description: '6 oteli acenta operasyonlarıyla entegre etti; süreçleri optimize etti, maliyetleri düşürdü ve veri akışlarını birleştirdi.', link: '/projeler/hotel' },
         { name: 'ICALT 2024 Kongre Yönetimi', description: 'Dorana Turizm işbirliğiyle uluslararası bir konferansın planlanması ve koordinasyonu.', link: '/projeler/icalt' },
-        { name: 'PixShop', description: 'Yapay zeka destekli fotoğraf düzenleme, basitleştirildi. Karmaşık araçlar olmadan metin komutlarıyla rötuş yapın, filtreler uygulayın veya profesyonel düzenlemeler yapın.', link: 'https://pixshop-720548631405.us-west1.run.app/' },
-        { name: 'Pantry Chef AI', description: 'Mutfağınızda ne var? Malzemelerinizi girin ve yapay zeka şefimizin sizin için leziz bir şeyler hazırlamasına izin verin.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/' },
-        { name: 'ODYSSEUS', description: 'Geleceğe Hazır İş Zekası. Başlamak için tanımlı otellerden birini seçin veya kendi web sitenizin içeriğini yapıştırın.', link: 'https://project-odysseus-720548631405.us-west1.run.app/' }
       ]
     },
     accessibility: {
@@ -174,7 +170,6 @@ export const translations = {
         date: '2023 – 2024',
         tasks: ['Took part in the preparation and coordination processes for the ICALT 2024 World Computer Congress.', 'Designed the special website for the congress.', 'Set up and managed the online registration system.', 'Played an active role in participant communication, logistical support, and event planning.', 'Contributed to the development and implementation of social media and marketing strategies.']
       },
-      mimoza: { role: 'Service Staff (Waitress)', company: 'Mimoza Beach Hotel', date: '2023 – 2024 (part-time & full-time)', tasks: ['Handled customer orders, served food and beverages, and ensured customer satisfaction.'] },
       eser_emlak: { role: 'Sales and Accounting', company: 'Eser Emlak', date: '2020 – 2022', tasks: ['Managed sales processes and accounting transactions.', 'Handled customer relations and tracked financial records.'] },
       tasksTitle: 'Tasks & Responsibilities', problemTitle: 'PROBLEM', actionTitle: 'ACTION', resultTitle: 'RESULT', learningsTitle: 'LEARNINGS & FAILURE MANAGEMENT'
     },
@@ -219,9 +214,6 @@ export const translations = {
         { name: 'AI-Powered Serakıncı Product Platform', description: 'An automated, multilingual, SEO-driven catalog with AI-generated descriptions and scraping pipelines.', link: '/projeler/serakinci' },
         { name: 'Hotel & Agency Integration', description: 'Integrated 6 hotels with agency operations; optimized processes, reduced costs, and unified data flows.', link: '/projeler/hotel' },
         { name: 'ICALT 2024 Congress Management', description: 'Planning and coordination of an international conference in collaboration with Dorana Tourism.', link: '/projeler/icalt' },
-        { name: 'PixShop', description: 'AI-powered photo editing, simplified. Retouch photos, apply creative filters, or make professional adjustments with simple text instructions. No complex tools required.', link: 'https://pixshop-720548631405.us-west1.run.app/' },
-        { name: 'Pantry Chef AI', description: 'What\'s in your pantry? Enter your ingredients and let our AI chef whip up something delicious for you.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/' },
-        { name: 'ODYSSEUS', description: 'Future-Ready Business Intelligence. To get started, select one of the defined hotels below or paste the content of your own website.', link: 'https://project-odysseus-720548631405.us-west1.run.app/' }
       ]
     },
     accessibility: {
@@ -304,7 +296,6 @@ export const translations = {
             date: '2023 – 2024',
             tasks: ['Teilnahme an den Vorbereitungs- und Koordinationsprozessen für den ICALT 2024 Weltcomputerkongress.', 'Entwurf der speziellen Website für den Kongress.', 'Einrichtung und Verwaltung des Online-Registrierungssystems.', 'Aktive Rolle in der Teilnehmerkommunikation, logistischen Unterstützung und Veranstaltungsplanung.', 'Beitrag zur Entwicklung und Umsetzung von Social-Media- und Marketingstrategien.'],
         },
-        mimoza: { role: 'Servicekraft (Kellnerin)', company: 'Mimoza Beach Hotel', date: '2023 – 2024 (Teilzeit & Vollzeit)', tasks: ['Kundenbestellungen bearbeitet, Speisen und Getränke serviert und die Kundenzufriedenheit sichergestellt.'] },
         eser_emlak: { role: 'Verkauf und Buchhaltung', company: 'Eser Emlak', date: '2020 – 2022', tasks: ['Verkaufsprozesse und Buchhaltungstransaktionen verwaltet.', 'Kundenbeziehungen gepflegt und Finanzunterlagen verfolgt.'] },
         tasksTitle: 'Aufgaben & Verantwortlichkeiten', problemTitle: 'PROBLEM', actionTitle: 'AKTION', resultTitle: 'ERGEBNIS', learningsTitle: 'LERNERFOLGE & FEHLERMANAGEMENT',
     },
@@ -343,9 +334,6 @@ export const translations = {
         { name: 'KI-gestützte Serakıncı-Produktplattform', description: 'Ein automatisierter, mehrsprachiger, SEO-gesteuerter Katalog mit KI-generierten Beschreibungen und Scraping-Pipelines.', link: '/projeler/serakinci' },
         { name: 'Hotel- und Agenturintegration', description: 'Integration von 6 Hotels in die Agenturabläufe; optimierte Prozesse, reduzierte Kosten und vereinheitlichte Datenflüsse.', link: '/projeler/hotel' },
         { name: 'ICALT 2024 Kongressmanagement', description: 'Planung und Koordination einer internationalen Konferenz in Zusammenarbeit mit Dorana Tourism.', link: '/projeler/icalt' },
-        { name: 'PixShop', description: 'KI-gestützte Fotobearbeitung, vereinfacht. Retuschieren Sie Fotos, wenden Sie kreative Filter an oder nehmen Sie professionelle Anpassungen mit einfachen Textanweisungen vor.', link: 'https://pixshop-720548631405.us-west1.run.app/' },
-        { name: 'Pantry Chef AI', description: 'Was ist in Ihrer Speisekammer? Geben Sie Ihre Zutaten ein und lassen Sie unseren KI-Koch etwas Leckeres für Sie zaubern.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/' },
-        { name: 'ODYSSEUS', description: 'Zukunftsfähige Business Intelligence. Wählen Sie eines der vordefinierten Hotels aus oder fügen Sie den Inhalt Ihrer eigenen Website ein.', link: 'https://project-odysseus-720548631405.us-west1.run.app/' }
       ]
     },
     accessibility: {
@@ -428,7 +416,6 @@ export const translations = {
             date: '2023 – 2024',
             tasks: ['Participé en los procesos de preparación y coordinación del Congreso Mundial de Computación ICALT 2024.', 'Diseñé el sitio web especial para el congreso.', 'Configuré y gestioné el sistema de registro en línea.', 'Jugué un papel activo en la comunicación con los participantes, el apoyo logístico y la planificación de eventos.', 'Contribuí al desarrollo e implementación de estrategias de redes sociales y marketing.'],
         },
-        mimoza: { role: 'Personal de Servicio (Camarera)', company: 'Mimoza Beach Hotel', date: '2023 – 2024 (tiempo parcial y completo)', tasks: ['Manejé los pedidos de los clientes, serví alimentos y bebidas, y aseguré la satisfacción del cliente.'] },
         eser_emlak: { role: 'Ventas y Contabilidad', company: 'Eser Emlak', date: '2020 – 2022', tasks: ['Gestioné procesos de ventas y transacciones contables.', 'Manejé las relaciones con los clientes y el seguimiento de los registros financieros.'] },
         tasksTitle: 'Tareas y Responsabilidades', problemTitle: 'PROBLEMA', actionTitle: 'ACCIÓN', resultTitle: 'RESULTADO', learningsTitle: 'APRENDIZAJES Y GESTIÓN DE FRACASOS',
     },
@@ -467,9 +454,6 @@ export const translations = {
         { name: 'Plataforma de Productos Serakıncı con IA', description: 'Un catálogo automatizado, multilingüe y orientado a SEO con descripciones generadas por IA y pipelines de scraping.', link: '/projeler/serakinci' },
         { name: 'Integración de Hotel y Agencia', description: 'Integró 6 hoteles con las operaciones de la agencia; optimizó procesos, redujo costos y unificó los flujos de datos.', link: '/projeler/hotel' },
         { name: 'Gestión del Congreso ICALT 2024', description: 'Planificación y coordinación de una conferencia internacional en colaboración con Dorana Tourism.', link: '/projeler/icalt' },
-        { name: 'PixShop', description: 'Edición de fotos con IA, simplificada. Retoca fotos, aplica filtros creativos o realiza ajustes profesionales con simples instrucciones de texto.', link: 'https://pixshop-720548631405.us-west1.run.app/' },
-        { name: 'Pantry Chef AI', description: '¿Qué tienes en tu despensa? Introduce tus ingredientes y deja que nuestro chef de IA prepare algo delicioso para ti.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/' },
-        { name: 'ODYSSEUS', description: 'Inteligencia de Negocios Lista para el Futuro. Para empezar, selecciona uno de los hoteles definidos o pega el contenido de tu propio sitio web.', link: 'https://project-odysseus-720548631405.us-west1.run.app/' }
       ]
     },
     accessibility: {
@@ -552,7 +536,6 @@ export const translations = {
             date: '2023 – 2024',
             tasks: ['Participation aux processus de préparation et de coordination du Congrès Mondial de l\'Informatique ICALT 2024.', 'Conception du site web spécial pour le congrès.', 'Mise en place et gestion du système d\'inscription en ligne.', 'Rôle actif dans la communication avec les participants, le soutien logistique et la planification de l\'événement.', 'Contribution au développement et à la mise en œuvre de stratégies de médias sociaux et de marketing.'],
         },
-        mimoza: { role: 'Employée de Service (Serveuse)', company: 'Mimoza Beach Hotel', date: '2023 – 2024 (temps partiel & plein temps)', tasks: ['Prise des commandes des clients, service des plats et des boissons, et garantie de la satisfaction des clients.'] },
         eser_emlak: { role: 'Ventes et Comptabilité', company: 'Eser Emlak', date: '2020 – 2022', tasks: ['Gestion des processus de vente et des transactions comptables.', 'Gestion des relations clients et suivi des dossiers financiers.'] },
         tasksTitle: 'Tâches et Responsabilités', problemTitle: 'PROBLÈME', actionTitle: 'ACTION', resultTitle: 'RÉSULTAT', learningsTitle: 'APPRENTISSAGES ET GESTION DES ÉCHECS',
     },
@@ -591,9 +574,6 @@ export const translations = {
         { name: 'Plateforme de Produits Serakıncı Alimentée par l\'IA', description: 'Un catalogue automatisé, multilingue et axé sur le SEO avec des descriptions générées par l\'IA et des pipelines de scraping.', link: '/projeler/serakinci' },
         { name: 'Intégration Hôtel & Agence', description: 'A intégré 6 hôtels aux opérations de l\'agence ; a optimisé les processus, réduit les coûts et unifié les flux de données.', link: '/projeler/hotel' },
         { name: 'Gestion du Congrès ICALT 2024', description: 'Planification et coordination d\'une conférence internationale en collaboration avec Dorana Tourisme.', link: '/projeler/icalt' },
-        { name: 'PixShop', description: 'Édition de photos assistée par IA, simplifiée. Retouchez des photos, appliquez des filtres créatifs ou effectuez des ajustements professionnels avec de simples instructions textuelles.', link: 'https://pixshop-720548631405.us-west1.run.app/' },
-        { name: 'Pantry Chef AI', description: 'Qu\'y a-t-il dans votre garde-manger ? Entrez vos ingrédients et laissez notre chef IA vous concocter quelque chose de délicieux.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/' },
-        { name: 'ODYSSEUS', description: 'Intelligence d\'Affaires Prête pour l\'Avenir. Pour commencer, sélectionnez l\'un des hôtels définis ou collez le contenu de votre propre site web.', link: 'https://project-odysseus-720548631405.us-west1.run.app/' }
       ]
     },
     accessibility: {
@@ -676,7 +656,6 @@ export const translations = {
         date: '2023 – 2024',
         tasks: ['Участие в подготовке и координации Всемирного компьютерного конгресса ICALT 2024.', 'Разработка специального веб-сайта для конгресса.', 'Настройка и управление системой онлайн-регистрации.', 'Активная роль в общении с участниками, логистической поддержке и планировании мероприятий.', 'Содействие в разработке и реализации стратегий в социальных сетях и маркетинге.']
       },
-      mimoza: { role: 'Официант', company: 'Mimoza Beach Hotel', date: '2023 – 2024 (частичная и полная занятость)', tasks: ['Принимала заказы, обслуживала гостей и обеспечивала их удовлетворенность.'] },
       eser_emlak: { role: 'Продажи и бухгалтерия', company: 'Eser Emlak', date: '2020 – 2022', tasks: ['Вела процессы продаж и бухгалтерские операции.', 'Поддерживала отношения с клиентами и вела финансовый учет.'] },
       tasksTitle: 'Задачи и обязанности', problemTitle: 'ПРОБЛЕМА', actionTitle: 'ДЕЙСТВИЕ', resultTitle: 'РЕЗУЛЬТАТ', learningsTitle: 'ВЫВОДЫ И УПРАВЛЕНИЕ ОШИБКАМИ'
     },
@@ -715,9 +694,6 @@ export const translations = {
           { name: 'Продуктовая платформа Serakıncı на базе ИИ', description: 'Автоматизированный, многоязычный, SEO-ориентированный каталог с описаниями, сгенерированными ИИ, и конвейерами скрапинга.', link: '/projeler/serakinci' },
           { name: 'Интеграция отелей и агентства', description: 'Интегрировал 6 отелей с операциями агентства; оптимизировал процессы, сократил расходы и унифицировал потоки данных.', link: '/projeler/hotel' },
           { name: 'Управление конгрессом ICALT 2024', description: 'Планирование и координация международной конференции в сотрудничестве с Dorana Tourism.', link: '/projeler/icalt' },
-          { name: 'PixShop', description: 'Редактирование фотографий с помощью ИИ, упрощенно. Ретушируйте фото, применяйте креативные фильтры или вносите профессиональные правки с помощью простых текстовых команд.', link: 'https://pixshop-720548631405.us-west1.run.app/' },
-          { name: 'Pantry Chef AI', description: 'Что у вас в кладовке? Введите ингредиенты, и наш ИИ-шеф приготовит для вас что-нибудь вкусное.', link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/' },
-          { name: 'ODYSSEUS', description: 'Бизнес-аналитика, готовая к будущему. Для начала выберите один из определенных отелей или вставьте контент вашего собственного веб-сайта.', link: 'https://project-odysseus-720548631405.us-west1.run.app/' }
       ]
     },
      accessibility: {
