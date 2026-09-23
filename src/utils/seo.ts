@@ -143,7 +143,7 @@ export function createOrganizationSchema(description: string) {
         "@type": "ContactPoint",
         contactType: "customer service",
         telephone: "+90-548-876-6819",
-        email: "info@fures.at",
+        email: "office@fures.tech",
         availableLanguage: ["Turkish", "English", "German", "Russian"]
       }
     ]
