@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { CardIcon, GradientTitle, Section } from "./ui/section";
-import { ArrowRight, ExternalLink, Cpu, Globe, Hotel, Users, Camera, ChefHat, BarChart3, Briefcase, Plane, ShieldCheck, Shirt, MapPinned, BedDouble } from "lucide-react";
+import { ArrowRight, ExternalLink, Cpu, Globe, Hotel, Users, Briefcase, Plane, ShieldCheck, Shirt, MapPinned, BedDouble } from "lucide-react";
 import { MEINHOTEL_PATHS } from "../data/meinhotel";
 import { useLanguage, type Language } from "../contexts/LanguageContext";
 import { getPath } from "../utils/routes";
@@ -320,87 +320,6 @@ export const PROJECTS: readonly ProjectConfig[] = [
       },
     },
   },
-  {
-    id: 'pixshop',
-    link: 'https://pixshop-720548631405.us-west1.run.app/',
-    icon: Camera,
-    translations: {
-      tr: {
-        name: 'PixShop',
-        description:
-          'Yapay zekâ destekli fotoğraf düzenleme: tek tıkla rötuş, yaratıcı filtreler ve profesyonel ayarlamalar.',
-      },
-      en: {
-        name: 'PixShop',
-        description:
-          'AI-powered photo editing made simple: retouch, apply creative filters, or make professional adjustments in one click.',
-      },
-      de: {
-        name: 'PixShop',
-        description:
-          'KI-gestütztes Foto-Editing leicht gemacht: Retusche, kreative Filter und professionelle Anpassungen mit nur einem Klick.',
-      },
-      ru: {
-        name: 'PixShop',
-        description:
-          'Простое редактирование фото на базе ИИ: ретушь, творческие фильтры и профессиональные настройки в один клик.',
-      },
-    },
-  },
-  {
-    id: 'pantry-chef',
-    link: 'https://ai-recipe-generator-720548631405.us-west1.run.app/',
-    icon: ChefHat,
-    translations: {
-      tr: {
-        name: 'Pantry Chef AI',
-        description:
-          'Dolabınızdaki malzemeleri girin; yapay zekâ şefimiz size anında yaratıcı tarifler önersin.',
-      },
-      en: {
-        name: 'Pantry Chef AI',
-        description:
-          'Enter the ingredients in your pantry and let our AI chef instantly suggest creative recipes.',
-      },
-      de: {
-        name: 'Pantry Chef KI',
-        description:
-          'Einfach vorhandene Zutaten eingeben und der KI-Koch schlägt sofort kreative Rezepte vor.',
-      },
-      ru: {
-        name: 'Pantry Chef AI',
-        description:
-          'Введи продукты из кладовой — ИИ-шеф мгновенно предложит креативные рецепты.',
-      },
-    },
-  },
-  {
-    id: 'odysseus',
-    link: 'https://project-odysseus-720548631405.us-west1.run.app/',
-    icon: BarChart3,
-    translations: {
-      tr: {
-        name: 'ODYSSEUS',
-        description:
-          'Geleceğe hazır iş zekâsı platformu; tanımlı otelleri seçin veya kendi web sitenizi analiz edin.',
-      },
-      en: {
-        name: 'ODYSSEUS',
-        description:
-          'Future-ready business intelligence platform—select a featured hotel or analyse your own website content.',
-      },
-      de: {
-        name: 'ODYSSEUS',
-        description:
-          'Zukunftsfähige Business-Intelligence-Plattform: Wähle ein Hotel oder analysiere deine eigene Website.',
-      },
-      ru: {
-        name: 'ODYSSEUS',
-        description:
-          'Бизнес-аналитика нового поколения: выберите один из отелей или проанализируйте свой сайт.',
-      },
-    },
-  }
 ] as const;
 
 export function Projects() {
