@@ -25,7 +25,7 @@ const PRIVACY_DOCUMENT: Record<Language, LegalDocumentContent> = {
         body: [
           "Veri sorumlusu: Fures Tech",
           "Adres: Gazimağusa, Kuzey Kıbrıs Türk Cumhuriyeti",
-          "E-posta: info@fures.at",
+          "E-posta: office@fures.tech",
           "Telefon: +90 (548) 876 68 19",
           "Bu metin kapsamındaki kişisel verilerinizden Fures Tech sorumludur. Sorularınız veya talepleriniz için bize dilediğiniz zaman ulaşabilirsiniz."
         ]
@@ -109,7 +109,7 @@ const PRIVACY_DOCUMENT: Record<Language, LegalDocumentContent> = {
       }
     ],
     closingNote:
-      "Haklarınıza ilişkin başvurularınızı, kimliğinizi teyit eden bilgi ve belgelerle birlikte info@fures.at adresine e-posta göndererek veya Gazimağusa'daki merkezimize yazılı başvuru yaparak iletebilirsiniz. Başvurularınız mevzuatta öngörülen en geç 30 gün içinde ücretsiz olarak sonuçlandırılır."
+      "Haklarınıza ilişkin başvurularınızı, kimliğinizi teyit eden bilgi ve belgelerle birlikte office@fures.tech adresine e-posta göndererek veya Gazimağusa'daki merkezimize yazılı başvuru yaparak iletebilirsiniz. Başvurularınız mevzuatta öngörülen en geç 30 gün içinde ücretsiz olarak sonuçlandırılır."
   },
   en: {
     title: "Privacy Policy",
@@ -125,7 +125,7 @@ const PRIVACY_DOCUMENT: Record<Language, LegalDocumentContent> = {
         body: [
           "Data Controller: Fures Tech",
           "Address: Famagusta, Turkish Republic of Northern Cyprus",
-          "Email: info@fures.at",
+          "Email: office@fures.tech",
           "Phone: +90 (548) 876 68 19",
           "Fures Tech is responsible for the personal data covered by this notice. You can contact us at any time regarding your privacy questions or requests."
         ]
@@ -209,7 +209,7 @@ const PRIVACY_DOCUMENT: Record<Language, LegalDocumentContent> = {
       }
     ],
     closingNote:
-      "You can submit your privacy requests to info@fures.at or by sending a written notice to our headquarters in Famagusta, TRNC. We will respond free of charge within 30 days, as required by applicable legislation."
+      "You can submit your privacy requests to office@fures.tech or by sending a written notice to our headquarters in Famagusta, TRNC. We will respond free of charge within 30 days, as required by applicable legislation."
   },
   ru: {
     title: "Политика конфиденциальности",
@@ -225,7 +225,7 @@ const PRIVACY_DOCUMENT: Record<Language, LegalDocumentContent> = {
         body: [
           "Контролер данных: Fures Tech",
           "Адрес: Фамагуста, Турецкая Республика Северного Кипра",
-          "Электронная почта: info@fures.at",
+          "Электронная почта: office@fures.tech",
           "Телефон: +90 (548) 876 68 19",
           "Fures Tech отвечает за обработку персональных данных, описанную в настоящем уведомлении. Вы можете связаться с нами по любым вопросам конфиденциальности в удобное время."
         ]
@@ -309,7 +309,7 @@ const PRIVACY_DOCUMENT: Record<Language, LegalDocumentContent> = {
       }
     ],
     closingNote:
-      "Вы можете направить запрос по адресу info@fures.at или почтой на наш адрес в Фамагусте. Ваши обращения будут рассмотрены бесплатно в течение 30 дней, как того требует законодательство."
+      "Вы можете направить запрос по адресу office@fures.tech или почтой на наш адрес в Фамагусте. Ваши обращения будут рассмотрены бесплатно в течение 30 дней, как того требует законодательство."
   },
   de: {
     title: "Datenschutzerklärung",
@@ -325,7 +325,7 @@ const PRIVACY_DOCUMENT: Record<Language, LegalDocumentContent> = {
         body: [
           "Verantwortliche Stelle: Fures Tech",
           "Adresse: Famagusta, Türkische Republik Nordzypern",
-          "E-Mail: info@fures.at",
+          "E-Mail: office@fures.tech",
           "Telefon: +90 (548) 876 68 19",
           "Fures Tech ist für die in dieser Erklärung beschriebenen Datenverarbeitungen verantwortlich. Bei Fragen zum Datenschutz können Sie uns jederzeit kontaktieren."
         ]
@@ -409,7 +409,7 @@ const PRIVACY_DOCUMENT: Record<Language, LegalDocumentContent> = {
       }
     ],
     closingNote:
-      "Sie können Ihre Datenschutzanfragen an info@fures.at oder postalisch an unseren Standort in Famagusta richten. Wir beantworten sie innerhalb von 30 Tagen kostenlos gemäß den gesetzlichen Vorgaben."
+      "Sie können Ihre Datenschutzanfragen an office@fures.tech oder postalisch an unseren Standort in Famagusta richten. Wir beantworten sie innerhalb von 30 Tagen kostenlos gemäß den gesetzlichen Vorgaben."
   }
 };
 
