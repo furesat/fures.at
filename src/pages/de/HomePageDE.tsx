@@ -24,7 +24,7 @@ export function HomePageDE() {
         description: t("seo.organization.description"),
         url: "https://fures.at/de",
         telephone: "+4366499735268",
-        email: "info@fures.at",
+        email: "office@fures.tech",
         address: {
           "@type": "PostalAddress",
           streetAddress: "Maria Alm",
