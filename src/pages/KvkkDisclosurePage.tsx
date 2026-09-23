@@ -85,7 +85,7 @@ const KVKK_DOCUMENT: Record<Language, LegalDocumentContent> = {
         id: "application",
         heading: "6. Başvuru Yöntemleri",
         body: [
-          "Haklarınıza ilişkin taleplerinizi yazılı olarak veya kayıtlı elektronik posta (KEP), güvenli elektronik imza ya da tarafımıza daha önce bildirdiğiniz ve sistemimizde kayıtlı bulunan e-posta adresinizi kullanarak info@fures.at adresine iletebilirsiniz.",
+          "Haklarınıza ilişkin taleplerinizi yazılı olarak veya kayıtlı elektronik posta (KEP), güvenli elektronik imza ya da tarafımıza daha önce bildirdiğiniz ve sistemimizde kayıtlı bulunan e-posta adresinizi kullanarak office@fures.tech adresine iletebilirsiniz.",
           "Başvurularınızı kimliğinizi doğrulayan belgelerle birlikte bize ulaştırmanız gerekmektedir. Talepleriniz en geç 30 gün içinde sonuçlandırılır; maliyet gerektiren işlemler için Kişisel Verileri Koruma Kurumu tarafından belirlenen tarifedeki ücret talep edilebilir."
         ]
       }
@@ -167,7 +167,7 @@ const KVKK_DOCUMENT: Record<Language, LegalDocumentContent> = {
         id: "application",
         heading: "6. Application Procedure",
         body: [
-          "You may submit your requests via written application, registered electronic mail (KEP), secure electronic signature or the email address previously notified to us by sending a message to info@fures.at.",
+          "You may submit your requests via written application, registered electronic mail (KEP), secure electronic signature or the email address previously notified to us by sending a message to office@fures.tech.",
           "Please include documents verifying your identity. We will finalise your requests within 30 days. If your application requires additional cost, we may charge the fee set by the Turkish Data Protection Authority."
         ]
       }
@@ -248,7 +248,7 @@ const KVKK_DOCUMENT: Record<Language, LegalDocumentContent> = {
         id: "application",
         heading: "6. Порядок обращения",
         body: [
-          "Вы можете направить запрос письменно, через зарегистрированную электронную почту (KEP), с использованием защищённой электронной подписи или с зарегистрированного адреса электронной почты на info@fures.at.",
+          "Вы можете направить запрос письменно, через зарегистрированную электронную почту (KEP), с использованием защищённой электронной подписи или с зарегистрированного адреса электронной почты на office@fures.tech.",
           "Необходимо предоставить документы, подтверждающие вашу личность. Запросы обрабатываются в течение 30 дней. В случае дополнительных затрат взимается сбор, установленный Управлением по защите данных."
         ]
       }
@@ -329,7 +329,7 @@ const KVKK_DOCUMENT: Record<Language, LegalDocumentContent> = {
         id: "application",
         heading: "6. Antragsverfahren",
         body: [
-          "Anfragen können schriftlich, per registrierter elektronischer Post (KEP), mit qualifizierter elektronischer Signatur oder über Ihre zuvor hinterlegte E-Mail-Adresse an info@fures.at gestellt werden.",
+          "Anfragen können schriftlich, per registrierter elektronischer Post (KEP), mit qualifizierter elektronischer Signatur oder über Ihre zuvor hinterlegte E-Mail-Adresse an office@fures.tech gestellt werden.",
           "Bitte fügen Sie Identitätsnachweise bei. Wir beantworten Anfragen innerhalb von 30 Tagen; etwaige Gebühren richten sich nach den Vorgaben der Datenschutzbehörde."
         ]
       }
