@@ -67,7 +67,7 @@ const COOKIE_DOCUMENT: Record<Language, LegalDocumentContent> = {
       }
     ],
     closingNote:
-      "Çerez tercihlerinize veya kişisel verilerinizin işlenmesine ilişkin sorularınızı info@fures.at adresine iletebilirsiniz. Gizlilik Politikamız ve KVKK Aydınlatma Metnimiz çerezler dışında kalan tüm veri işleme faaliyetlerini açıklar."
+      "Çerez tercihlerinize veya kişisel verilerinizin işlenmesine ilişkin sorularınızı office@fures.tech adresine iletebilirsiniz. Gizlilik Politikamız ve KVKK Aydınlatma Metnimiz çerezler dışında kalan tüm veri işleme faaliyetlerini açıklar."
   },
   en: {
     title: "Cookie Policy",
@@ -125,7 +125,7 @@ const COOKIE_DOCUMENT: Record<Language, LegalDocumentContent> = {
       }
     ],
     closingNote:
-      "For questions about your cookie preferences or the processing of your personal data, please contact info@fures.at. Our Privacy Policy and KVKK Disclosure explain all processing activities beyond cookies."
+      "For questions about your cookie preferences or the processing of your personal data, please contact office@fures.tech. Our Privacy Policy and KVKK Disclosure explain all processing activities beyond cookies."
   },
   ru: {
     title: "Политика файлов cookie",
@@ -183,7 +183,7 @@ const COOKIE_DOCUMENT: Record<Language, LegalDocumentContent> = {
       }
     ],
     closingNote:
-      "По вопросам, связанным с cookie или обработкой персональных данных, обращайтесь на info@fures.at. Политика конфиденциальности и уведомление KVKK описывают все прочие процессы обработки данных."
+      "По вопросам, связанным с cookie или обработкой персональных данных, обращайтесь на office@fures.tech. Политика конфиденциальности и уведомление KVKK описывают все прочие процессы обработки данных."
   },
   de: {
     title: "Cookie-Richtlinie",
@@ -241,7 +241,7 @@ const COOKIE_DOCUMENT: Record<Language, LegalDocumentContent> = {
       }
     ],
     closingNote:
-      "Bei Fragen zu Cookies oder zur Verarbeitung personenbezogener Daten wenden Sie sich bitte an info@fures.at. Unsere Datenschutzerklärung und der KVKK-Hinweis erläutern alle weiteren Verarbeitungstätigkeiten."
+      "Bei Fragen zu Cookies oder zur Verarbeitung personenbezogener Daten wenden Sie sich bitte an office@fures.tech. Unsere Datenschutzerklärung und der KVKK-Hinweis erläutern alle weiteren Verarbeitungstätigkeiten."
   }
 };
 
