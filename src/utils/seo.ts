@@ -274,11 +274,16 @@ export function createPersonSchema({
 export function createSoftwareApplicationSchema({
   name,
   description,
-  url
+  url,
+  applicationCategory = "BusinessApplication",
+  sameAs
 }: {
   name: string;
   description: string;
   url: string;
+  applicationCategory?: string;
+  /** The product's own public address, when it lives outside this site. */
+  sameAs?: string;
 }) {
   return {
     "@context": "https://schema.org",
@@ -286,9 +291,10 @@ export function createSoftwareApplicationSchema({
     name,
     description,
     operatingSystem: "Web",
-    applicationCategory: "BusinessApplication",
+    applicationCategory,
     publisher: { "@id": `${buildAbsoluteUrl("/")}#organization` },
-    url: buildAbsoluteUrl(url)
+    url: buildAbsoluteUrl(url),
+    ...(sameAs ? { sameAs } : {})
   };
 }
 

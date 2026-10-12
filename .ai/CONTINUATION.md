@@ -1,3 +1,10 @@
+## 2026-10-12 Deutsch da! case study (preview branch)
+
+- New project card + case-study page for **Deutsch da!** (German learning app for Turkish speakers, live at https://www.deutschda.org, source repo furesat/Newdeutsch).
+- Routes: `/tr/projeler/deutsch-da`, `/en/projects/deutsch-da`, `/de/referenzen/deutsch-da` (`src/pages/DeutschDaPage.tsx`, content in `src/data/deutschda.ts`, TR/DE/EN only; the RU card links to the English page). hreflang cluster tr/en/de + x-default en; SoftwareApplication schema (EducationalApplication, sameAs the app URL); three URLs added to `src/sitemap.xml.njk`.
+- Screenshots are hot-linked from the app's own landing assets (`/images/landing/screens/<screen>-<lang>.webp`, demo profile "Lena"). Keep facts aligned with Newdeutsch AGENTS.md (levels, counts); no prices, no Goethe endorsement.
+- Verified: `npm run build` pass; Chromium 390/1440 tr/de/en no page errors, no horizontal overflow. Build outputs in `public/` reverted before commit.
+
 ## 2026-09-22 TFV ownership and red copyright-style attribution (preview branch)
 
 - The owner clarified the authoritative relationship: **Fures Tech ist ein Projekt von Tourismus Förder Verband**. This supersedes the earlier independent-partner wording. Do not describe Fures Tech as independent from TFV or as a separate digital partner.
