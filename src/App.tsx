@@ -12,6 +12,7 @@ import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { MeinHotelPage } from "./pages/MeinHotelPage";
+import { DeutschDaPage } from "./pages/DeutschDaPage";
 import { TeamPage } from "./pages/TeamPage";
 import { FAQPage } from "./pages/FAQPage";
 import { ContactPage } from "./pages/ContactPage";
@@ -69,6 +70,7 @@ function TRLayout() {
               <Route path="/hakkimizda/*" element={<AboutPage />} />
               <Route path="/hizmetler/*" element={<ServicesPage />} />
               <Route path="/projeler/meinhotel-pms" element={<MeinHotelPage />} />
+              <Route path="/projeler/deutsch-da" element={<DeutschDaPage />} />
               <Route path="/projeler/*" element={<ProjectsPage />} />
               <Route path="/ekip/*" element={<TeamPage />} />
               <Route path="/sss/*" element={<FAQPage />} />
@@ -104,6 +106,7 @@ function ENLayout() {
               <Route path="/about/*" element={<AboutPage />} />
               <Route path="/services/*" element={<ServicesPage />} />
               <Route path="/projects/meinhotel-pms" element={<MeinHotelPage />} />
+              <Route path="/projects/deutsch-da" element={<DeutschDaPage />} />
               <Route path="/projects/*" element={<ProjectsPage />} />
               <Route path="/team/*" element={<TeamPage />} />
               <Route path="/faq/*" element={<FAQPage />} />
@@ -173,6 +176,7 @@ function DELayout() {
               <Route path="/ueber-uns/*" element={<AboutPage />} />
               <Route path="/leistungen/*" element={<ServicesPageDE />} />
               <Route path="/referenzen/meinhotel-pms" element={<MeinHotelPage />} />
+              <Route path="/referenzen/deutsch-da" element={<DeutschDaPage />} />
               <Route path="/referenzen/*" element={<ProjectsPage />} />
               <Route path="/team/*" element={<TeamPage />} />
               <Route path="/faq/*" element={<FAQPage />} />

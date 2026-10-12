@@ -1,8 +1,9 @@
 import type { LucideIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { CardIcon, GradientTitle, Section } from "./ui/section";
-import { ArrowRight, ExternalLink, Cpu, Globe, Hotel, Users, Briefcase, Plane, ShieldCheck, Shirt, MapPinned, BedDouble } from "lucide-react";
+import { ArrowRight, ExternalLink, Cpu, Globe, Hotel, Users, Briefcase, Plane, ShieldCheck, Shirt, MapPinned, BedDouble, GraduationCap } from "lucide-react";
 import { MEINHOTEL_PATHS } from "../data/meinhotel";
+import { DEUTSCHDA_LINKS } from "../data/deutschda";
 import { useLanguage, type Language } from "../contexts/LanguageContext";
 import { getPath } from "../utils/routes";
 import { Link } from "react-router-dom";
@@ -47,6 +48,34 @@ export const PROJECTS: readonly ProjectConfig[] = [
         name: 'MeinHotel PMS — система управления отелем',
         description:
           'Наша собственная мультиарендная система управления отелем: ресепшен, бронирования, шахматка, фолио, счета, уборка, тарифы и встроенный модуль бронирования. Попробуйте в живом демо.',
+      },
+    },
+  },
+  {
+    id: 'deutsch-da',
+    link: DEUTSCHDA_LINKS.en,
+    internalPaths: DEUTSCHDA_LINKS,
+    icon: GraduationCap,
+    translations: {
+      tr: {
+        name: 'Deutsch da! — Almanca Öğrenme Uygulaması',
+        description:
+          'Türkçe konuşanlar için geliştirdiğimiz Almanca uygulaması (www.deutschda.org): A1’den C1’e Türkçe anlatımlı dersler, yapay zekâ destekli konuşma laboratuvarı, aralıklı tekrar ve özgün Goethe formatında deneme sınavları.',
+      },
+      en: {
+        name: 'Deutsch da! — German Learning App',
+        description:
+          'Our German learning app for Turkish speakers (www.deutschda.org): A1 to C1 lessons explained in Turkish, an AI-assisted speaking lab, spaced repetition and original practice tests in the Goethe format.',
+      },
+      de: {
+        name: 'Deutsch da! — Deutsch-Lern-App',
+        description:
+          'Unsere Deutsch-Lern-App für Türkischsprachige (www.deutschda.org): Lektionen von A1 bis C1 mit türkischen Erklärungen, KI-gestütztes Sprechlabor, Wiederholung mit System und eigene Übungsprüfungen im Goethe-Format.',
+      },
+      ru: {
+        name: 'Deutsch da! — German Learning App',
+        description:
+          'Our German learning app for Turkish speakers (www.deutschda.org): A1 to C1 lessons explained in Turkish, an AI-assisted speaking lab, spaced repetition and original practice tests in the Goethe format.',
       },
     },
   },
