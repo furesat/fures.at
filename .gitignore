@@ -36,3 +36,6 @@ public/**/AGENTS/
 public/**/README/
 public/**/Attributions/
 public/**/Guidelines/
+
+# Google GitHub Actions auth temp credentials — never commit
+gha-creds-*.json
