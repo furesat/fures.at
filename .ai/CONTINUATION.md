@@ -1,3 +1,9 @@
+## 2026-10-12 Impressum (all locales)
+
+- New `src/pages/ImpressumPage.tsx` (LegalDocument) at `/tr/kunye`, `/en/imprint`, `/ru/imprint`, `/de/impressum` (PageKey `imprint`); linked in Footer legal links + FooterDE nav; 4 sitemap URLs.
+- Operator Furkan Yonat + office@fures.tech supplied by the owner; phone and "Maria Alm, Salzburgerland" reuse what the footer already publishes; full postal address still missing (§ 5 ECG) — to verify, never invent. Keeps "Fures Tech ist ein Projekt von Tourismus Förder Verband".
+- Footer copyright year now dynamic (`{year}` placeholder, was hardcoded 2025).
+
 ## 2026-10-12 Deutsch da! case study (preview branch)
 
 - New project card + case-study page for **Deutsch da!** (German learning app for Turkish speakers, live at https://www.deutschda.org, source repo furesat/Newdeutsch).

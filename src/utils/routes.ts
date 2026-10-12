@@ -12,7 +12,8 @@ export type PageKey =
   | 'campaigns'
   | 'privacy'
   | 'cookies'
-  | 'legal';
+  | 'legal'
+  | 'imprint';
 
 export const LANGUAGE_ROUTES: Record<Language, Record<PageKey, string>> = {
   tr: {
@@ -28,6 +29,7 @@ export const LANGUAGE_ROUTES: Record<Language, Record<PageKey, string>> = {
     privacy: '/tr/gizlilik-politikasi',
     cookies: '/tr/cerez-politikasi',
     legal: '/tr/kvkk-aydinlatma-metni',
+    imprint: '/tr/kunye',
   },
   en: {
     home: '/en',
@@ -42,6 +44,7 @@ export const LANGUAGE_ROUTES: Record<Language, Record<PageKey, string>> = {
     privacy: '/en/privacy-policy',
     cookies: '/en/cookie-policy',
     legal: '/en/gdpr-disclosure',
+    imprint: '/en/imprint',
   },
   ru: {
     home: '/ru',
@@ -56,6 +59,7 @@ export const LANGUAGE_ROUTES: Record<Language, Record<PageKey, string>> = {
     privacy: '/ru/privacy-policy',
     cookies: '/ru/cookie-policy',
     legal: '/ru/gdpr-disclosure',
+    imprint: '/ru/imprint',
   },
   de: {
     home: '/de',
@@ -70,6 +74,7 @@ export const LANGUAGE_ROUTES: Record<Language, Record<PageKey, string>> = {
     privacy: '/de/datenschutz',
     cookies: '/de/cookies',
     legal: '/de/datenschutzhinweis',
+    imprint: '/de/impressum',
   },
 };
 

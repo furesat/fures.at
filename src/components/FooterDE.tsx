@@ -13,6 +13,7 @@ export function FooterDE() {
     { label: t("nav.contact"), href: "/de/kontakt" },
     { label: t("footer.privacy"), href: "/de/datenschutz" },
     { label: "Cookie-Richtlinie", href: "/de/cookies" },
+    { label: "Impressum", href: "/de/impressum" },
   ];
 
   return (

@@ -20,6 +20,7 @@ import { ProfileViewer, PROFILE_CONFIG } from "./pages/ProfileViewer";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { CookiePolicyPage } from "./pages/CookiePolicyPage";
 import { KvkkDisclosurePage } from "./pages/KvkkDisclosurePage";
+import { ImpressumPage } from "./pages/ImpressumPage";
 import { BlogListPage } from "./pages/BlogListPage";
 import { BlogPostPage } from "./pages/BlogPostPage";
 import { CampaignListPage } from "./pages/CampaignListPage";
@@ -78,6 +79,7 @@ function TRLayout() {
               <Route path="/gizlilik-politikasi" element={<PrivacyPolicyPage />} />
               <Route path="/cerez-politikasi" element={<CookiePolicyPage />} />
               <Route path="/kvkk-aydinlatma-metni" element={<KvkkDisclosurePage />} />
+              <Route path="/kunye" element={<ImpressumPage />} />
               <Route path="/blog" element={<BlogListPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/kampanyalar" element={<CampaignListPage />} />
@@ -114,6 +116,7 @@ function ENLayout() {
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/cookie-policy" element={<CookiePolicyPage />} />
               <Route path="/gdpr-disclosure" element={<KvkkDisclosurePage />} />
+              <Route path="/imprint" element={<ImpressumPage />} />
               <Route path="/blog" element={<BlogListPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/campaigns" element={<CampaignListPage />} />
@@ -149,6 +152,7 @@ function RULayout() {
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/cookie-policy" element={<CookiePolicyPage />} />
               <Route path="/gdpr-disclosure" element={<KvkkDisclosurePage />} />
+              <Route path="/imprint" element={<ImpressumPage />} />
               <Route path="/blog" element={<BlogListPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/campaigns" element={<CampaignListPage />} />
@@ -184,6 +188,7 @@ function DELayout() {
               <Route path="/datenschutz" element={<PrivacyPolicyPage />} />
               <Route path="/cookies" element={<CookiePolicyPage />} />
               <Route path="/datenschutzhinweis" element={<KvkkDisclosurePage />} />
+              <Route path="/impressum" element={<ImpressumPage />} />
               <Route path="/blog" element={<BlogListPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="*" element={<Navigate to="/de" replace />} />

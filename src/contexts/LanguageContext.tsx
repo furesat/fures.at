@@ -251,10 +251,11 @@ const translations = {
     'contact.schedule_meeting': 'Toplantı Planla',
 
     // Footer
-    'footer.copyright': '© 2025 Fures Tech — fures.at · Tüm hakları saklıdır.',
+    'footer.copyright': '© {year} Fures Tech — fures.at · Tüm hakları saklıdır.',
     'footer.privacy': 'Gizlilik',
     'footer.cookies': 'Çerezler',
     'footer.kvkk': 'KVKK/Aydınlatma',
+    'footer.imprint': 'Künye',
 
     // Form
     'form.title': 'Hadi projenizi kıvılcımlayalım.',
@@ -516,10 +517,11 @@ const translations = {
     'contact.schedule_meeting': 'Schedule Meeting',
 
     // Footer
-    'footer.copyright': '© 2025 Fures Tech — fures.at · All rights reserved.',
+    'footer.copyright': '© {year} Fures Tech — fures.at · All rights reserved.',
     'footer.privacy': 'Privacy',
     'footer.cookies': 'Cookies',
     'footer.kvkk': 'GDPR/Disclosure',
+    'footer.imprint': 'Imprint',
 
     // Form
     'form.title': 'Let\'s spark your project.',
@@ -781,10 +783,11 @@ const translations = {
     'contact.schedule_meeting': 'Назначить Встречу',
 
     // Footer
-    'footer.copyright': '© 2025 Fures Tech — fures.at · Все права защищены.',
+    'footer.copyright': '© {year} Fures Tech — fures.at · Все права защищены.',
     'footer.privacy': 'Конфиденциальность',
     'footer.cookies': 'Куки',
     'footer.kvkk': 'GDPR/Раскрытие',
+    'footer.imprint': 'Выходные данные',
 
     // Form
     'form.title': 'Давайте зажжем ваш проект.',
@@ -1046,10 +1049,11 @@ const translations = {
     'contact.schedule_meeting': 'Termin vereinbaren',
 
     // Footer
-    'footer.copyright': '© 2025 Fures Tech — fures.at · Alle Rechte vorbehalten.',
+    'footer.copyright': '© {year} Fures Tech — fures.at · Alle Rechte vorbehalten.',
     'footer.privacy': 'Datenschutz',
     'footer.cookies': 'Cookies',
     'footer.kvkk': 'DSGVO/Datenschutzhinweis',
+    'footer.imprint': 'Impressum',
 
     // Form
     'form.title': 'Beschreiben Sie uns Ihr Projekt.',

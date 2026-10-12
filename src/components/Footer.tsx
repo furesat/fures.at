@@ -33,6 +33,7 @@ export function Footer() {
     { title: t('footer.privacy'), href: r.privacy },
     { title: t('footer.cookies'), href: r.cookies },
     { title: t('footer.kvkk'), href: r.legal },
+    { title: t('footer.imprint'), href: r.imprint },
   ];
 
   return (
@@ -73,7 +74,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           {/* Copyright */}
           <div className="text-gray-400 text-sm text-center md:text-left">
-            <p>{t('footer.copyright')}</p>
+            <p>{t('footer.copyright').replace('{year}', String(new Date().getFullYear()))}</p>
             <p
               className="mt-3 max-w-sm leading-relaxed"
               style={{ color: "#DC0000", fontFamily: '"Inter", system-ui, sans-serif', fontSize: "13.5px" }}
