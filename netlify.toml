@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run build && node scripts/hide-netlify-badge.mjs"
   publish = "public"
 
 [build.environment]
